@@ -4,22 +4,22 @@
 > 
 > 每一个大人都曾经是一个孩子，只不过我们忘记了。——《小王子》
 
-* [在线阅读](https://ng.apachecn.org)
+* [在线阅读](https://ng.flygon.net)
 ## 下载
 
 ### Docker
 
 ```
-docker pull apachecn0/apachecn-angular-zh
-docker run -tid -p <port>:80 apachecn0/apachecn-angular-zh
+docker pull apachecn0/flygon-angular-zh
+docker run -tid -p <port>:80 apachecn0/flygon-angular-zh
 # 访问 http://localhost:{port} 查看文档
 ```
 
 ### NPM
 
 ```
-npm install -g apachecn-angular-zh
-apachecn-angular-zh <port>
+npm install -g flygon-angular-zh
+flygon-angular-zh <port>
 # 访问 http://localhost:{port} 查看文档
 ```
 
