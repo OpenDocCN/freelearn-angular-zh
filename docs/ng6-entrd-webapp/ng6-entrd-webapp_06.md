@@ -164,19 +164,7 @@ Angular 中有两种类型的表单：
 
 让我们首先将`ReactiveFormsModule`导入到我们的应用程序中：
 
-```ts
-src/app/app.module.ts
-...
-import { FormsModule, ReactiveFormsModule } from '@angular/forms'
-...
-@NgModule({
-  ...
-  imports: [
-    ...
-    FormsModule,
-    ReactiveFormsModule,
-    ...
-```
+[PRE0]
 
 响应式表单是使 Angular Material 团队能够编写更丰富的工具的核心技术，例如可以根据将来的 TypeScript 接口自动生成输入表单的工具。
 
@@ -186,60 +174,23 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 
 1.  将`MatFormFieldModule`和`MatInputModule`添加到`material.module`中，以便在应用程序中可用：
 
-```ts
-src/app/material.module.ts
-import {
-  ...
-  MatFormFieldModule,
-  MatInputModule,
-} from '@angular/material'
-...
-@NgModule({
-  imports: [
-    ...
-    MatFormFieldModule,
-    MatInputModule,
-  ],
-  exports: [
-    ...
-    MatFormFieldModule,
-    MatInputModule,
-  ],
-})
-```
+[PRE1]
 
 我们正在添加`MatFormFieldModule`，因为每个输入字段都应该包装在`<mat-form-field>`标签中，以充分利用 Angular Material 的功能。在高层次上，`<form>`封装了键盘、屏幕阅读器和浏览器扩展用户的许多默认行为；`<mat-form-field>`实现了简单的双向数据绑定，这种技术应该适度使用，并且还允许优雅的标签、验证和错误消息显示。
 
 1.  创建新的`citySearch`组件：
 
-```ts
-$ npx ng g c citySearch --module=app.module
-```
+[PRE2]
 
 由于我们添加了`material.module.ts`文件，`ng`无法猜测应将城市搜索功能模块添加到哪里，导致出现错误，例如*More than one module matches*。因此，我们需要使用`--module`选项提供要将`citySearch`添加到的模块。使用`--skip-import`选项跳过将组件导入到任何模块中。
 
 1.  创建一个基本模板：
 
-```ts
-src/app/city-search/city-search.component.html
-<form>
-  <mat-form-field>
-    <mat-icon matPrefix>search</mat-icon>
-    <input matInput placeholder="Enter city or zip" aria-label="City or Zip" [formControl]="search">
-  </mat-form-field>
-</form>
-```
+[PRE3]
 
 1.  导入并实例化`FormControl`的实例：
 
-```ts
-src/app/city-search/city-search.component.ts
-import { FormControl } from '@angular/forms'
-...
-export class CitySearchComponent implements OnInit {
-  search = new FormControl()
-  ...
-```
+[PRE4]
 
 响应式表单有三个级别的控件：
 
@@ -253,16 +204,7 @@ export class CitySearchComponent implements OnInit {
 
 1.  在包含`app-current-weather`的外部行的标题之间，在`app.component`中添加`app-city-search`：
 
-```ts
-src/app/app.component.ts
-...
-  </div>    
-  <div fxLayoutAlign="center">
-    <app-city-search></app-city-search>
-  </div>
-  <div fxLayout="row">
-...
-```
+[PRE5]
 
 1.  通过在浏览器中查看应用程序来测试组件的集成，如下所示：
 
@@ -278,26 +220,7 @@ OpenWeatherMap 的 API 接受 URI 参数，因此我们可以使用 TypeScript �
 
 1.  重构`weather.service`中的`getCurrentWeather`函数以处理邮政编码和城市输入：
 
-```ts
-app/src/weather/weather.service.ts  
-  getCurrentWeather(
-    search: string | number,
-    country?: string
-  ): Observable<ICurrentWeather> {
-    let uriParams = ''
-    if (typeof search === 'string') {
-      uriParams = `q=${search}`
-    } else {
-      uriParams = `zip=${search}`
-    }
-
-    if (country) {
-      uriParams = `${uriParams},${country}`
-    }
-
-    return this.getCurrentWeatherHelper(uriParams)
-  }
-```
+[PRE6]
 
 我们将城市参数重命名为`search`，因为它可以是城市名称或邮政编码。然后，我们允许其类型为`string`或`number`，并根据运行时的类型，我们将使用`q`或`zip`。如果存在，我们还将`country`设置为可选，并仅在查询中追加它。
 
@@ -305,29 +228,9 @@ app/src/weather/weather.service.ts
 
 1.  将 HTTP 调用重构为`getCurrentWeatherHelper`。
 
-在下一个示例中，请注意使用反引号字符```ts instead of a single-quote character `'`, which leverages the template literals functionality that allows embedded expressions in JavaScript:
+在下一个示例中，请注意使用反引号字符`` ` ``而不是单引号字符`'`，它利用了允许在JavaScript中嵌入表达式的模板文字功能：
 
-```
-
-src/app/weather/weather.service.ts
-
-private getCurrentWeatherHelper(uriParams: string): Observable<ICurrentWeather> {
-
-return this.httpClient
-
-.get<ICurrentWeatherData>(
-
-`${environment.baseUrl}api.openweathermap.org/data/2.5/weather?` +
-
-`${uriParams}&appid=${environment.appId}`
-
-)
-
-.pipe(map(data => this.transformToICurrentWeather(data)))
-
-}
-
-```ts
+[PRE7]
 
 As a positive side effect, `getCurrentWeatherHelper` adheres to the Open/Closed principle, because it is open to extension by our ability to change the function's behavior by supplying different `uriParams` and is closed to modification, because it won't have to be changed frequently.
 
@@ -335,19 +238,7 @@ To demonstrate the latter point, let's implement a new function to get the curre
 
 3.  Implement `getCurrentWeatherByCoords`:
 
-```
-
-src/app/weather/weather.service.ts
-
-getCurrentWeatherByCoords(coords: Coordinates): Observable<ICurrentWeather> {
-
-const uriParams = `lat=${coords.latitude}&lon=${coords.longitude}`
-
-return this.getCurrentWeatherHelper(uriParams)
-
-}
-
-```ts
+[PRE8]
 
 As you can see, `getCurrentWeatherHelper` can easily be extended without any modification.
 
@@ -361,29 +252,7 @@ Now, let's connect the new service method to the input field:
 
 1.  Update `citySearch` to inject the `weatherService` and subscribe to input changes:
 
-```
-
-src/app/city-search/city-search.component.ts
-
-...
-
-export class CitySearchComponent implements OnInit {
-
-search = new FormControl()
-
-constructor(private weatherService: WeatherService) {}
-
-...
-
-ngOnInit() {
-
-this.search.valueChanges
-
-.subscribe(...)
-
-}
-
-```ts
+[PRE9]
 
 We are treating all input as `string` at this point. The user input can be a city, zip code or a city and country code, or zip code and country code separated by a comma. While city or zip code is required, country code is optional. We can use the `String.split` function to parse any potential comma separated input and then trim any whitespace out from the beginning and the end of the string with `String.trim`. We then ensure that we trim all parts of the string by iterating over them with `Array.map`.
 
@@ -391,51 +260,11 @@ We then deal with the optional parameter with ternary operator `?:`, only passin
 
 2.  Implement the search handler:
 
-```
-
-src/app/city-search/city-search.component.ts
-
-this.search.valueChanges
-
-.subscribe((searchValue: string) => {
-
-if (searchValue) {
-
-const userInput = searchValue.split(',').map(s => s.trim())
-
-this.weatherService.getCurrentWeather(
-
-userInput[0],
-
-userInput.length > 1 ? userInput[1] : undefined
-
-).subscribe(data => (console.log(data)))
-
-}
-
-})
-
-```ts
+[PRE10]
 
 3.  Add a hint for the user about the optional country functionality:
 
-```
-
-src/app/city-search/city-search.component.html
-
-...
-
-<mat-form-field>
-
-...
-
-<mat-hint>指定国家代码，如'巴黎，美国'</mat-hint>
-
-</mat-form-field>
-
-...
-
-```ts
+[PRE11]
 
 At this point, the subscribe handler will make calls to the server and log its output to the console.
 
@@ -453,19 +282,7 @@ It is very easy to inject throttling into the observable stream using `RxJS/debo
 
 Implement `debounceTime` with `pipe`:
 
-```
-
-src/app/city-search/city-search.component.ts
-
-import { debounceTime } from 'rxjs/operators'
-
-this.search.valueChanges
-
-.pipe(debounceTime(1000))
-
-.subscribe(...)
-
-```ts
+[PRE12]
 
 `debounceTime` will, at a maximum, run a search every second, but also run a last search after the user has stopped typing. In comparison, `RxJS/throttleTime` will only run a search every second, on the second, and will not necessarily capture the last few characters the user may have input.
 
@@ -479,95 +296,31 @@ It is not a good practice to check in code with active `console.log` statements.
 
 `FormControl` is highly customizable. It allows you to set a default initial value, add validators, or listen to changes on blur, change, and submit events, as follows:
 
-```
-
-example
-
-new FormControl('Bethesda', { updateOn: 'submit' })
-
-```ts
+[PRE13]
 
 We won't be initializing the `FormControl` with a value, but we need to implement a validator to disallow one character inputs:
 
 1.  Import `Validators` from `@angular/forms`:
 
-```
-
-src/app/city-search/city-search.component.ts
-
-import { FormControl, Validators } from '@angular/forms'
-
-```ts
+[PRE14]
 
 2.  Modify `FormControl` to add a minimum length validator:
 
-```
-
-src/app/city-search/city-search.component.ts
-
-search = new FormControl('', [Validators.minLength(2)])
-
-```ts
+[PRE15]
 
 3.  Modify the template to show a validation error message:
 
-```
-
-src/app/city-search/city-search.component.html
-
-...
-
-<form style="margin-bottom: 32px">
-
-<mat-form-field>
-
-...
-
-<mat-error * ngIf =“search.invalid”>
-
-键入多个字符以进行搜索
-
-</ mat-error>
-
-</ mat-form-field>
-
-</ form>
-
-...
-
-```ts
+[PRE16]
 
 Note the addition of some extra margin to make room for lengthy error messages.
 
 If you are handling different kinds of errors, the `hasError` syntax in the template can get repetitive. You may want to implement a more scalable solution that can be customized through code, as shown:
 
-```
-
-例
-
-<mat-error * ngIf =“search.invalid”>{{getErrorMessage（）}} </ mat-error>
-
-getErrorMessage（）{
-
-返回 this.search.hasError（'minLength'）？'键入多个字符以进行搜索'：'';
-
-}
-
-```ts
+[PRE17]
 
 4.  Modify the `search` function to not execute a search with invalid input:
 
-```
-
-src / app / city-search / city-search.component.ts
-
-this.search.valueChanges.pipe（debounceTime（1000））。subscribe（（searchValue：string）=> {
-
-if（！this.search.invalid）{
-
-...
-
-```ts
+[PRE18]
 
 Instead of doing a simple check to see whether `searchValue` is defined and not an empty string, we can tap in to the validation engine for a more robust check by calling `this.search.invalid`.
 
@@ -579,65 +332,13 @@ Behind the scenes, `ngModel` implements a `FormControl` that can automatically 
 
 In the Local Weather app, I have included a commented-out component in `app.component.ts` named `app-city-search-tpldriven`. You can uncomment this component in `app.component` to experiment with it. Let's see how the alternate template implementation looks like:
 
-```
-
-src / app / city-search-tpldriven / city-search-tpldriven.component.html
-
-...
-
-<input matInput placeholder =“输入城市或邮政编码”aria-label =“城市或邮政编码”
-
-[(ngModel)] =“model.search”(ngModelChange) =“doSearch($event)”
-
-minlength =“2” name =“search”＃search =“ngModel”>
-
-...
-
-<mat-error * ngIf =“search.invalid”>
-
-键入多个字符以进行搜索
-
-</ mat-error>
-
-...
-
-```ts
+[PRE19]
 
 Note the `[()]` "box of bananas" two-way binding syntax being used with `ngModel`.
 
 The differences in the component are implemented as follows:
 
-```
-
-src / app / city-search-tpldriven / city-search-tpldriven.component.ts
-
-导入{NgModel，Validators} from'@angular/forms'
-
-...
-
-export class CitySearchTpldrivenComponent implements OnInit {
-
-模型 = {
-
-搜索：'',
-
-}
-
-...
-
-doSearch（searchValue）{
-
-const userInput = searchValue.split(',')。map（s => s.trim（））
-
-this.weatherService
-
-.getCurrentWeather（userInput [0]，userInput.length> 1？userInput [1]：未定义）
-
-.subscribe（数据=> console.log（数据））
-
-}
-
-```ts
+[PRE20]
 
 As you can see, most of the logic is implemented in the template, and the programmer is required to maintain an active mental model of what's in the template and the controller and switch back and forth between the two files to make changes to event handlers and validation logic.
 
@@ -672,73 +373,11 @@ Let's see how this implementation will look:
 
 1.  The `city-search` component exposes an `EventEmitter` through an `@Output` property:
 
-```
-
-src / app / city-search / city-search.component.ts
-
-导入{Component，Output，EventEmitter} from'@angular/core'
-
-export class CitySearchComponent implements OnInit {
-
-...
-
-@Output（）searchEvent = new EventEmitter <string>（）
-
-...
-
-this.search.valueChanges.debounceTime（1000）。subscribe（（searchValue：string）=> {
-
-if（！this.search.invalid）{
-
-this.searchEvent.emit(this.searchValue)
-
-}
-
-}）
-
-...
-
-}
-
-```ts
+[PRE21]
 
 2.  The `app` component consumes that and calls the `weatherService`, setting the `currentWeather` variable:
 
-```
-
-src / app / app.component.ts
-
-模板：`
-
-...
-
-<app-city-search（searchEvent）=“doSearch($event)”> </ app-city-search>
-
-...
-
-`
-
-export class AppComponent {
-
-currentWeather：ICurrenWeather
-
-constructor（）{}
-
-doSearch（searchValue）{
-
-const userInput = searchValue.split(',')。map（s => s.trim（））
-
-this.weatherService
-
-.getCurrentWeather（userInput [0]，userInput.length> 1？userInput [1]：未定义）
-
-.subscribe（数据=> this.currentWeather =数据）
-
-}
-
-}
-
-```ts
+[PRE22]
 
 We have been able to successfully bubble up the information, but now we must be able to pass it down to the `current-weather` component.
 
@@ -746,41 +385,11 @@ We have been able to successfully bubble up the information, but now we must be 
 
 By definition, your parent component will be aware of what child components it is working with. Since the `currentWeather` property is bound to the `current` property on the `current-weather` component, the results pass down to be displayed. This is achieved by creating an `@Input` property:
 
-```
-
-src / app / current-weather / current-weather.component.ts
-
-导入{Component，Input} from'@angular/core'
-
-...
-
-export class CurrentWeatherComponent implements OnInit {
-
-@Input() current：ICurrentWeather
-
-...
-
-}
-
-```ts
+[PRE23]
 
 You can then update `app` component to bind the data to `current` weather:
 
-```
-
-src / app / app.component.ts
-
-模板：`
-
-...
-
-<app-current-weather [current] =“currentWeather”> </ app-current-weather>
-
-...
-
-`
-
-```ts
+[PRE24]
 
 This approach may be appropriate in cases where you are creating well-coupled components or user controls and no outside data is being consumed. A good example might be adding forecast information to the `current-weather` component, as shown:
 
@@ -788,17 +397,7 @@ This approach may be appropriate in cases where you are creating well-coupled co
 
 Each day of the week can be implemented as a component that is repeated using `*ngFor`, and it will be perfectly reasonable for `current-weather` to retrieve and bind this information to its children component:
 
-```
-
-例
-
-<app-mini-forecast * ngFor =“let dailyForecast of forecastArray
-
-[forecast]="dailyForecast">
-
-</app-mini-forecast>
-
-```ts
+[PRE25]
 
 In general, if you're working with data-driven components, the parent-child or child-parent communication pattern results in an inflexible architecture, making it very difficult to reuse or rearrange your components. Given the ever-changing business requirements and design, this is an important lesson to keep in mind.
 
@@ -806,35 +405,11 @@ In general, if you're working with data-driven components, the parent-child or c
 
 The main reason for components to interact is to send or receive updates to data either provided by the user or received from the server. In Angular, your services expose `RxJS.Observable` endpoints, which are data-streams that your components can subscribe to. `RxJS.Observer` compliments `RxJS.Observable` as a consumer of events emitted by `Observable`. `RxJS.Subject` brings the two sets of functionalities together, in an easy to work with object. You can essentially describe a stream that belongs to a particular set of data, such as the current weather data that is being displayed, with subjects:
 
-```
-
-src/app/weather/weather.service.ts
-
-import { Subject } from 'rxjs'
-
-...
-
-export class WeatherService implements IWeatherService {
-
-currentWeather: Subject<ICurrentWeather>
-
-...
-
-}
-
-```ts
+[PRE26]
 
 `currentWeather` is still a data stream and does not simply represent one data point. You can subscribe to changes to `currentWeather` data with subscribe, or you can publish changes to it as follows:
 
-```
-
-例子
-
-currentWeather.subscribe(data => (this.current = data))
-
-currentWeather.next(newData)
-
-```ts
+[PRE27]
 
 The default behavior of `Subject` is very much like generic pub/sub mechanisms, such as jQuery events. However, in an asynchronous world where components are loaded or unloaded in ways that are unpredictable, using the default `Subject` is not very useful.
 
@@ -848,79 +423,15 @@ There are three different types of Subjects:
 
 1.  Define `BehaviorSubject` in `weatherService` and set a default value:
 
-```
-
-app/src/weather/weather.service.ts
-
-import { BehaviorSubject } from 'rxjs'
-
-...
-
-export class WeatherService implements IWeatherService {
-
-currentWeather = new BehaviorSubject<ICurrentWeather>({
-
-城市：'--'，
-
-国家：'--'，
-
-日期：Date.now()，
-
-图像：'',
-
-温度：0，
-
-描述：'',
-
-})
-
-...
-
-}
-
-```ts
+[PRE28]
 
 2.  Update the `current-weather` component to subscribe to the new `BehaviorSubject`:
 
-```
-
-app/src/current-weather/current-weather.component.ts
-
-...
-
-ngOnInit() {
-
-this.weatherService.currentWeather.subscribe(data => (this.current = data))
-
-}
-
-...
-
-```ts
+[PRE29]
 
 3.  Update the `city-search` component to publish the data it receives to `BehaviorSubject`:
 
-```
-
-app/src/city-search/city-search.component.ts
-
-...
-
-this.weatherService
-
-.getCurrentWeather(
-
-userInput[0]，
-
-用户输入长度大于 1？userInput[1]：未定义
-
-)
-
-.subscribe(data => this.weatherService.currentWeather.next(data))
-
-...
-
-```
+[PRE30]
 
 1.  在浏览器中测试您的应用程序；它应该如下所示：
 
