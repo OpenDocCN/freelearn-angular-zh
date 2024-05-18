@@ -161,41 +161,49 @@
   id: totrans-24
   prefs: []
   type: TYPE_NORMAL
+  zh: 用户信息也在应用程序的其他地方进行了模拟显示，在`/manager/users`：
 - en: '![](img/b9b855d5-243b-4cc0-b625-511856a1f3b8.png)'
   id: totrans-25
   prefs: []
   type: TYPE_IMG
+  zh: '![](img/b9b855d5-243b-4cc0-b625-511856a1f3b8.png)'
 - en: Manager user management mock-up
   id: totrans-26
   prefs: []
   type: TYPE_NORMAL
+  zh: 用户管理模拟
 - en: To maximize code reuse, we need to ensure that you design a `User` component
     that can be used in both contexts.
   id: totrans-27
   prefs: []
   type: TYPE_NORMAL
+  zh: 为了最大限度地提高代码重用率，我们需要确保设计一个能在两种情境下使用的`User`组件。
 - en: As an example, let's complete the implementation of two user profile-related
     screens.
   id: totrans-28
   prefs: []
   type: TYPE_NORMAL
+  zh: 例如，让我们完成两个与用户资料相关的屏幕的实现。
 - en: User profile with multi-step auth-enabled responsive forms
   id: totrans-29
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 带有多步鉴权功能的响应式表单的用户资料
 - en: Now, let's implement a multi-step input form to capture user profile information.
     We will also make this multi-step form responsive for mobile devices using media
     queries.
   id: totrans-30
   prefs: []
   type: TYPE_NORMAL
+  zh: 现在，让我们实现一个多步输入表单来捕获用户资料信息。我们还将使用媒体查询使这个多步表单对移动设备具有响应性。
 - en: 'Let''s start with adding some helper data that will help us display an input
     form with options:'
   id: totrans-31
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 让我们首先添加一些辅助数据，这些数据将帮助我们显示具有选项的输入表单：
 - en: '[PRE2]'
   id: totrans-32
   prefs: []
@@ -206,6 +214,7 @@
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 安装一个帮助库来以编程方式访问TypeScript枚举值
 - en: '[PRE3]'
   id: totrans-34
   prefs: []
@@ -216,6 +225,7 @@
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 在`common/validations.ts`中添加新的验证规则
 - en: '[PRE4]'
   id: totrans-36
   prefs: []
@@ -226,6 +236,7 @@
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 现在按照以下方式实现`profile.component.ts`：
 - en: '[PRE5]'
   id: totrans-38
   prefs: []
@@ -240,21 +251,25 @@
   id: totrans-39
   prefs: []
   type: TYPE_NORMAL
+  zh: 加载时，我们从`userService`请求当前用户，但这可能需要一段时间，因此我们必须首先用`this.buildUserForm()`构建一个空表单。在这个函数中，您还可以实现一个resolve守卫，如后面将要讨论的，根据路由提供的`userId`加载用户，并将数据传递到`buildUserForm(routeUser)`，然后跳过加载`currentUser`以增加此组件的可重用性。
 - en: Form groups
   id: totrans-40
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 表单组
 - en: Our form has many input fields, so we will use a `FormGroup`, created by `this.formBuilder.group`
     to house our various `FormControl` objects. Additionally, children `FormGroup`
     objects will allow us to maintain the correct shape of the data structure.
   id: totrans-41
   prefs: []
   type: TYPE_NORMAL
+  zh: 我们的表单有许多输入字段，因此我们将使用`FormGroup`，由`this.formBuilder.group`创建以容纳我们的各种`FormControl`对象。此外，子`FormGroup`对象将允许我们保持数据结构的正确形状。
 - en: 'Start building the `buildUserForm` function, as follows:'
   id: totrans-42
   prefs: []
   type: TYPE_NORMAL
+  zh: 开始构建`buildUserForm`函数，如下所示：
 - en: '[PRE6]'
   id: totrans-43
   prefs: []
@@ -270,17 +285,20 @@
   id: totrans-44
   prefs: []
   type: TYPE_NORMAL
+  zh: '`buildUserForm`可选择接受一个`IUser`以预填表单，否则所有字段都设置为默认值。`userForm`本身是顶层`FormGroup`。其中添加了各种`FormControls`，例如`email`，根据需要连接到它们的验证器。注意`name`和`address`是它们自己的`FormGroup`对象。这种父子关系确保表单数据的正确结构，在序列化为JSON时，这适配了`IUser`的结构，以保证我们应用程序和服务端代码的运用。'
 - en: You will completing the implementation of the `userForm` independently following
     the sample code provided for the chapter and I will be going over sections of
     the code piece by piece over the next few sections to explain certain key capabilities.
   id: totrans-45
   prefs: []
   type: TYPE_NORMAL
+  zh: 您将独立完成`userForm`的实现，按照章节提供的示例代码，并且在接下来的几个章节中我将逐步解释代码的某些关键功能。
 - en: Stepper and responsive layout
   id: totrans-46
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 分步表单和响应式布局
 - en: 'Angular Material Stepper ships with the MatStepperModule. The stepper allows
     for form inputs to be broken up into multiple steps so that the user is not overwhelmed
     with processing dozens of input fields all at once. The user can still track their
@@ -733,6 +751,7 @@
   id: totrans-121
   prefs: []
   type: TYPE_NORMAL
+  zh: 在多步表单的最后一步，用户应该能够进行审查，然后保存表单数据。作为良好的做法，成功的`POST`请求将返回保存的数据到浏览器。然后我们可以使用从服务器收到的信息重新加载表单：
 - en: '[PRE17]'
   id: totrans-122
   prefs: []
@@ -744,6 +763,7 @@
   id: totrans-123
   prefs: []
   type: TYPE_NORMAL
+  zh: 如果有错误，它们将被设置为`userError`来显示。在保存之前，我们将以紧凑的形式呈现数据，使用可重用组件将表单数据绑定到：
 - en: '[PRE18]'
   id: totrans-124
   prefs: []
@@ -753,19 +773,23 @@
   id: totrans-125
   prefs: []
   type: TYPE_NORMAL
+  zh: 最终产品应该是这样的：
 - en: '![](img/3f8afd93-786d-4ae7-b43b-d665971ae9a6.png)'
   id: totrans-126
   prefs: []
   type: TYPE_IMG
+  zh: '![](img/3f8afd93-786d-4ae7-b43b-d665971ae9a6.png)'
 - en: Review step
   id: totrans-127
   prefs: []
   type: TYPE_NORMAL
+  zh: 审查步骤
 - en: Note the option to reset the form. Adding an alert dialog to confirm resetting
     of user input data would be good UX.
   id: totrans-128
   prefs: []
   type: TYPE_NORMAL
+  zh: 注意重置表单的选项。添加一个警报对话框来确认重置用户输入数据将是良好的用户体验。
 - en: Now that the user profile input is done, we are about midway into our eventual
     goal of creating a master/detail view where a Manager can click on a user and
     view their profile details. We still have a lot more code to add, and along the
@@ -775,11 +799,13 @@
   id: totrans-129
   prefs: []
   type: TYPE_NORMAL
+  zh: 现在用户配置文件输入完成，我们正在逐渐地朝着最终目标迈进，即创建一个主/细节视图，其中经理可以点击用户并查看其个人资料详细信息。我们仍然需要添加更多的代码，并且在此过程中，我们已经陷入了一种向组件加载必要数据的样板代码模式。在下一部分中，我们将了解resolve守卫，以便我们可以简化我们的代码并减少样板内容。
 - en: Resolve guard
   id: totrans-130
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 解析守卫
 - en: A resolve guard is a type of a router guard, as mentioned in [Chapter 14](c1386d03-1f04-49e0-a623-bc5c64be089c.xhtml),* Design
     Authentication and Authorization.* A resolve guard can load necessary data for
     a component by reading record IDs from route parameters, asynchronously load the
@@ -787,17 +813,21 @@
   id: totrans-131
   prefs: []
   type: TYPE_NORMAL
+  zh: 解析守卫是路由守卫的一种类型，如 [第14章](c1386d03-1f04-49e0-a623-bc5c64be089c.xhtml)中所述，*设计身份验证和授权。*
+    解析守卫可以通过从路由参数中读取记录ID异步加载必要的数据，并在组件激活和初始化时准备好这些数据。
 - en: 'The major advantages for a resolve guard includes reusability of loading logic,
     reduction of boilerplate code, and also shedding dependencies, because the component
     can receive the data it needs without having to import any service:'
   id: totrans-132
   prefs: []
   type: TYPE_NORMAL
+  zh: 解析守卫的主要优势包括加载逻辑的可重用性，减少样板代码以及摆脱依赖关系，因为组件可以接收到其所需的数据而无需导入任何服务：
 - en: 'Create a new `user.resolve.ts` class under `user/user`:'
   id: totrans-133
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 在`user/user`下创建一个新的 `user.resolve.ts` 类：
 - en: '[PRE19]'
   id: totrans-134
   prefs: []
@@ -808,6 +838,7 @@
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 您可以像这样使用resolve守卫：
 - en: '[PRE20]'
   id: totrans-136
   prefs: []
@@ -818,6 +849,7 @@
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: '`routerLink`将是这样的：'
 - en: '[PRE21]'
   id: totrans-138
   prefs: []
@@ -829,6 +861,7 @@
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 在目标组件的 ` ngOnInit` 挂钩中，您可以这样读取已解析的用户：
 - en: '[PRE22]'
   id: totrans-140
   prefs: []
@@ -839,11 +872,13 @@
   id: totrans-141
   prefs: []
   type: TYPE_NORMAL
+  zh: 在我们更新`ViewUserComponent`和路由以利用resolve守卫后，您可以在接下来的两个部分中观察这种行为。
 - en: Reusable component with binding and route data
   id: totrans-142
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 具有绑定和路由数据的可重用组件
 - en: 'Now, let''s refactor the `viewUser` component, so that we can reuse it in multiple
     contexts. One where it can load its own data using a resolve guard, suitable for
     a master/detail view and another, where we can bind the current user to it, as
@@ -852,11 +887,13 @@
   id: totrans-143
   prefs: []
   type: TYPE_NORMAL
+  zh: 现在，让我们重构`viewUser`组件，以便我们可以在多个上下文中重复使用它。一个是它可以使用resolve守卫加载自己的数据，适用于主/细节视图，另一个是可以将当前用户绑定到它上，在我们在前一节中构建的多步输入表单的审查步骤中已经完成了绑定：
 - en: 'Update `viewUser` component with the following changes:'
   id: totrans-144
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 用以下更改更新`viewUser`组件：
 - en: '[PRE23]'
   id: totrans-145
   prefs: []
@@ -870,6 +907,8 @@
   id: totrans-146
   prefs: []
   type: TYPE_NORMAL
+  zh: 现在我们有了两个独立的事件。一个用于`ngOnChanges`，它处理`this.user`已绑定的情况下`this.currentUser`被分配了哪个值。
+    `ngOnInit`只会在组件首次初始化或路由到达时触发一次。在这种情况下，如果路由的任何数据已被解析，那么它将被分配给`this.currentUser`。
 - en: To be able to use this component across multiple lazy loaded modules, we must
     wrap it in its own module.
   id: totrans-147
