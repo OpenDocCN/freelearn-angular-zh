@@ -4,6 +4,7 @@
   prefs:
   - PREF_H2
   type: TYPE_NORMAL
+  zh: 第7章。在Visual Studio中使用Angular，ASP.NET MVC和Web API创建应用程序
 - en: This chapter guides you through the process of integrating an Angular application
     with ASP.NET MVC and the ASP.NET Web API. In the last chapter, we consumed ASP.NET
     Web API services using Angular applications. All the views are rendered by Angular.
@@ -13,35 +14,45 @@
   id: totrans-1
   prefs: []
   type: TYPE_NORMAL
+  zh: 本章将指导您通过将Angular应用程序与ASP.NET MVC和ASP.NET Web API集成的过程。在上一章中，我们使用Angular应用程序消耗了ASP.NET
+    Web API服务。所有视图都由Angular渲染。在本章中，我们将从ASP.NET MVC提供视图。因此，它提供了许多机会，比如使用Razor语法，因为Angular视图将由ASP.NET
+    MVC提供动力。
 - en: 'In this chapter, we will cover the following topics:'
   id: totrans-2
   prefs: []
   type: TYPE_NORMAL
+  zh: 在本章中，我们将涵盖以下主题：
 - en: Using ASP.NET MVC to serve views for Angular component templates
   id: totrans-3
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 使用ASP.NET MVC为Angular组件模板提供视图
 - en: Combining routing for ASP.NET MVC, the ASP.NET Web API, and Angular
   id: totrans-4
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 结合ASP.NET MVC，ASP.NET Web API和Angular的路由
 - en: Using ASP.NET MVC
   id: totrans-5
   prefs:
   - PREF_H2
   type: TYPE_NORMAL
+  zh: 使用ASP.NET MVC
 - en: '* * *'
   id: totrans-6
   prefs: []
   type: TYPE_NORMAL
+  zh: '* * *'
 - en: ASP.NET includes web stacks such as ASP.NET MVC, Razor, and Web APIs. The ASP.NET
     MVC framework was built on top of ASP.NET. The ASP.NET MVC web framework implements
     the **Model-View-Controller** (**MVC**) pattern to develop web applications.
   id: totrans-7
   prefs: []
   type: TYPE_NORMAL
+  zh: ASP.NET包括Web堆栈，如ASP.NET MVC，Razor和Web API。ASP.NET MVC框架是建立在ASP.NET之上的。ASP.NET
+    MVC Web框架实现了**模型-视图-控制器**（MVC）模式以开发Web应用程序。
 - en: 'In the MVC pattern, **Model** represents the state of the business object.
     **View** represents the user interface andÂ **Controller** handles the communication
     between the model and view. All requests will be handled by controllers and a
@@ -49,50 +60,60 @@
   id: totrans-8
   prefs: []
   type: TYPE_NORMAL
+  zh: 在MVC模式中，**模型**代表业务对象的状态。**视图**表示用户界面，**控制器**处理模型和视图之间的通信。所有请求将由控制器处理，并返回响应：
 - en: '![](img/image_07_001.jpg)'
   id: totrans-9
   prefs: []
   type: TYPE_IMG
+  zh: '![](img/image_07_001.jpg)'
 - en: The MVC architecture
   id: totrans-10
   prefs: []
   type: TYPE_NORMAL
+  zh: MVC架构
 - en: ASP.NET MVC has its own view engine called the Razor engine.
   id: totrans-11
   prefs: []
   type: TYPE_NORMAL
+  zh: ASP.NET MVC有自己的视图引擎，称为Razor引擎。
 - en: Combining routing for ASP.NET MVC, the ASP.NET Web API, and Angular
   id: totrans-12
   prefs:
   - PREF_H2
   type: TYPE_NORMAL
+  zh: 结合ASP.NET MVC，ASP.NET Web API和Angular的路由
 - en: '* * *'
   id: totrans-13
   prefs: []
   type: TYPE_NORMAL
+  zh: '* * *'
 - en: '**Routing** is the process of decomposing an endpoint to identify a module
     or controller and action that can handle a request. Routing makes the URL readable
     and meaningful. It also helps in hiding data from users.'
   id: totrans-14
   prefs: []
   type: TYPE_NORMAL
+  zh: '**路由**是将端点分解为可处理请求的模块或控制器和操作的过程。路由使URL可读且有意义。它还帮助隐藏用户的数据。'
 - en: Routing in ASP.NET MVC
   id: totrans-15
   prefs:
   - PREF_H3
   type: TYPE_NORMAL
+  zh: ASP.NET MVC中的路由
 - en: ASP.NET MVC routing maps the request to the controller actions. All routes will
     be defined in the route table and are used by the route engine to match the URL
     patterns of the requests with the controllers and actions.
   id: totrans-16
   prefs: []
   type: TYPE_NORMAL
+  zh: ASP.NET MVC路由将请求映射到控制器操作。所有路由将在路由表中定义，并由路由引擎使用来匹配请求的URL模式与控制器和操作。
 - en: 'We can add the routes to the route table in the configure method of the `Startup.cs`
     file. The following code snippet shows the default route registered on the route
     table:'
   id: totrans-17
   prefs: []
   type: TYPE_NORMAL
+  zh: 我们可以在`Startup.cs`文件的configure方法中向路由表添加路由。以下代码片段显示了在路由表上注册的默认路由：
 - en: '[PRE0]'
   id: totrans-18
   prefs: []
@@ -105,16 +126,19 @@
   id: totrans-19
   prefs: []
   type: TYPE_NORMAL
+  zh: 在这里，一个路由被注册为模板和默认值。如果在URL中未提供控制器或操作名称，则该请求将映射到`HomeController`类中的`Index`操作；否则，它将映射到相应的控制器操作。
 - en: In our application, we have three MVC controllers, namely, `HomeController`,
     `UserController`, and `TodoController`.
   id: totrans-20
   prefs: []
   type: TYPE_NORMAL
+  zh: 在我们的应用程序中，我们有三个MVC控制器，分别是`HomeController`，`UserController`和`TodoController`。
 - en: Adding ASP.NET MVC HomeController
   id: totrans-21
   prefs:
   - PREF_H4
   type: TYPE_NORMAL
+  zh: 添加ASP.NET MVC HomeController
 - en: '[PRE1]'
   id: totrans-22
   prefs: []
@@ -130,6 +154,7 @@
   id: totrans-24
   prefs: []
   type: TYPE_NORMAL
+  zh: 当一个请求被路由到`Index`操作时，它将返回`Index`视图。`Index.cshtml`的源代码如下所示：
 - en: '[PRE3]'
   id: totrans-25
   prefs: []
@@ -140,46 +165,55 @@
   id: totrans-26
   prefs: []
   type: TYPE_NORMAL
+  zh: 按照给定的步骤，将ASP.NET MVC的`HomeController`及其相应视图添加到我们在早期章节中创建的`My Todo`应用程序中：
 - en: Right-click on theÂ `Controllers` folder and add a new controller.
   id: totrans-27
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 右键单击`Controllers`文件夹并添加一个新的控制器。
 - en: Name the newly added controller as `HomeController`. Note that there is an `Index`
     action added to `HomeController` by default.
   id: totrans-28
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 将新添加的控制器命名为`HomeController`。请注意，默认情况下`HomeController`已添加了`Index`操作。
 - en: Now, let's add a view for theÂ `Index` action. Right-click on theÂ `My Todo`Â application
     and add a new folder named `Views`.
   id: totrans-29
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 现在，让我们为`Index`动作添加一个视图。右键单击`My Todo`应用程序，并添加一个名为`Views`的新文件夹。
 - en: Then, add a folder named `Home` under theÂ `Views` folder we just created.
   id: totrans-30
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 然后，在刚刚创建的`Views`文件夹下添加一个名为`Home`的文件夹。
 - en: 'Right-click on the `Home` folder and add a new view named `Index.cshtml`:'
   id: totrans-31
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 右键单击`Home`文件夹并添加一个名为`Index.cshtml`的新视图：
 - en: '![](img/image_07_002.png)'
   id: totrans-32
   prefs: []
   type: TYPE_IMG
+  zh: '![](img/image_07_002.png)'
 - en: ASP.NET MVC HomeController Index View
   id: totrans-33
   prefs: []
   type: TYPE_NORMAL
+  zh: ASP.NET MVC HomeController Index视图
 - en: Routing for ASP.NET MVC
   id: totrans-34
   prefs:
   - PREF_H3
   type: TYPE_NORMAL
+  zh: ASP.NET MVC的路由
 - en: 'We just created an ASP.NET MVC controller and added a view for an `Index` action
     in the controller. Now we need to configure routing for the ASP.NET MVC application
     so that any request to the `Index` action is handled by the ASP.NET MVC router.
@@ -187,22 +221,27 @@
   id: totrans-35
   prefs: []
   type: TYPE_NORMAL
+  zh: 我们刚刚创建了一个ASP.NET MVC控制器，并为控制器的`Index`动作添加了一个视图。现在我们需要为ASP.NET MVC应用配置路由，以便任何对`Index`动作的请求都由ASP.NET
+    MVC路由处理。请按照以下步骤配置ASP.NET MVC路由：
 - en: Open `Startup.cs`.
   id: totrans-36
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 打开`Startup.cs`。
 - en: Comment or remove the `app.UseDefaultFiles()` statement from theÂ `Configure`
     method as we will serve views using ASP.NET MVC.
   id: totrans-37
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 请注释或删除`Configure`方法中的`app.UseDefaultFiles()`语句，因为我们将使用ASP.NET MVC来提供视图。
 - en: 'Replace the `app.UseMvc()` statement in theÂ `Configure` method with this one:'
   id: totrans-38
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 用这个声明替换`Configure`方法中的`app.UseMvc()`语句：
 - en: '[PRE4]'
   id: totrans-39
   prefs: []
@@ -213,24 +252,29 @@
   id: totrans-40
   prefs: []
   type: TYPE_NORMAL
+  zh: 在这里，我们已经添加了ASP.NET MVC的默认路由。对于Web API的任何请求都将与控制器中的HTTP谓词或动作进行映射。
 - en: 'Let''s run the application by pressing *F5*, and you will get the illustrated
     screen rendered in the browser:'
   id: totrans-41
   prefs: []
   type: TYPE_NORMAL
+  zh: 通过按下*F5*键来运行应用程序，您将在浏览器中看到呈现的图形界面：
 - en: '![](img/image_07_003.png)'
   id: totrans-42
   prefs: []
   type: TYPE_IMG
+  zh: '![](img/image_07_003.png)'
 - en: ASP.NET MVC HomeController Index View rendered in browser
   id: totrans-43
   prefs: []
   type: TYPE_NORMAL
+  zh: ASP.NET MVC HomeController Index视图在浏览器中呈现
 - en: Moving the content from the default page to the ASP.NET MVC view
   id: totrans-44
   prefs:
   - PREF_H3
   type: TYPE_NORMAL
+  zh: 将内容从默认页面移动到ASP.NET MVC视图
 - en: 'In the preceding section, we were able to run the application and noticed that
     the default view is served is the ASP.NET MVC Index view of HomeController. Now,
     let''s update the `Index.cshtml` view with the content of theÂ `Index.html` file
@@ -238,6 +282,7 @@
   id: totrans-45
   prefs: []
   type: TYPE_NORMAL
+  zh: 在前面的部分中，我们能够运行应用程序并注意到默认视图是由HomeController提供的ASP.NET MVC Index视图。现在，让我们使用`wwwroot`文件夹下的`Index.html`文件的内容更新`Index.cshtml`视图。更新后的`Index.cshtml`如下所示：
 - en: '[PRE5]'
   id: totrans-46
   prefs: []
@@ -249,19 +294,23 @@
   id: totrans-47
   prefs: []
   type: TYPE_NORMAL
+  zh: 现在通过按下*F5*来运行应用程序，并注意`my-app`特殊标签已被Angular解析为`app.component.html`的模板，如下所示：
 - en: '![](img/image_07_004.png)'
   id: totrans-48
   prefs: []
   type: TYPE_IMG
+  zh: '![](img/image_07_004.png)'
 - en: Angular app loaded onto the ASP.NET MVC Index view
   id: totrans-49
   prefs: []
   type: TYPE_NORMAL
+  zh: Angular应用加载到ASP.NET MVC Index视图
 - en: Routing in the ASP.NET Web API
   id: totrans-50
   prefs:
   - PREF_H3
   type: TYPE_NORMAL
+  zh: ASP.NET Web API中的路由
 - en: 'Any request to the Web API is mapped with the HTTP verbs or actions in the
     controller using routing. Web API 2 introduced an attribute-based routing technique
     called **attribute routing**. Attribute routing can be added at the controller
@@ -270,6 +319,8 @@
   id: totrans-51
   prefs: []
   type: TYPE_NORMAL
+  zh: 任何对Web API的请求都将使用路由将其映射到控制器中的HTTP谓词或动作。Web API 2引入了一种基于属性的路由技术，称为**属性路由**。可以在控制器级别和操作级别添加属性路由。可以通过传递URL模板来修饰Web
+    API控制器的`Route`属性，如下所示：
 - en: '[PRE6]'
   id: totrans-52
   prefs: []
@@ -282,6 +333,7 @@
   id: totrans-53
   prefs: []
   type: TYPE_NORMAL
+  zh: 在这里，`TodosController`被`Route`修饰，并且使用`api/[controller]` URL模板。这意味着如果收到的请求为[http://www.programmerguide.net/api/todos](http://www.programmerguide.net/api/todos)，它将被路由到`TodosController`，且动作将根据应用的HTTP动作进行选择。
 - en: Note that the `GetPendingOnly` action is decorated by `Route` with the `pending-only`
     URL template. This means that if there are more `GET` actions available in the
     controller and if the request URL is [http://www.programmerguide.net/api/todos/pending-only](http://www.programmerguide.net/api/todos/pending-only),
@@ -289,6 +341,7 @@
   id: totrans-54
   prefs: []
   type: TYPE_NORMAL
+  zh: 注意`GetPendingOnly`动作被`Route`修饰，并且使用`pending-only`URL模板。这意味着如果控制器中有更多的`GET`动作可用，且请求URL为[http://www.programmerguide.net/api/todos/pending-only](http://www.programmerguide.net/api/todos/pending-only)，它将被映射到`GetPendingOnly`动作。
 - en: 'The complete source code of the `TodosController` Web API controller is as
     follows:'
   id: totrans-55
@@ -457,6 +510,8 @@
   id: totrans-83
   prefs: []
   type: TYPE_NORMAL
+  zh: 注意每个超链接都有`routerLink`属性，并分配了路由路径。这里，`routerLinkActive`属性分配了`active` CSS类，当该路由变为活动状态时，将添加到该元素上。换句话说，当用户点击`Todo`链接时，该链接将被分配`active`
+    CSS类。
 - en: TheÂ `routerLink`Â attribute enables the application to link to a specific part
     or component of the application. The next statement is the `<router-outlet/>`Â special
     tag for the component router, which is similar to the `<ng-view/>` tag in AngularJS
@@ -465,6 +520,8 @@
   id: totrans-84
   prefs: []
   type: TYPE_NORMAL
+  zh: '`routerLink`属性使应用程序能够链接到应用程序的特定部分或组件。下一条语句是组件路由的`<router-outlet/>`特殊标记，类似于AngularJS
+    1.x中的`<ng-view/>`标记，用于加载与相应路由路径相关联的模板。'
 - en: 'Run the application by pressing *F5*, and the browser will load the application
     by navigating to the **`TodoÂ `**route as we have set up a redirect to `todo`
     if it is a root path:'
@@ -472,51 +529,62 @@
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 按下*F5*运行应用程序，浏览器将通过导航到**`Todo`**路径来加载应用程序，因为我们已经设置了如果是根路径，就重定向到`todo`：
 - en: '![](img/image_07_005.png)'
   id: totrans-86
   prefs: []
   type: TYPE_IMG
+  zh: '![](img/image_07_005.png)'
 - en: The todo template is loaded and the URL has the \todo path
   id: totrans-87
   prefs: []
   type: TYPE_NORMAL
+  zh: 加载todo模板，URL为\todo路径
 - en: 'Clicking on theÂ **`About`** link will navigate to theÂ `\about` path, and
     the parsed template view of `about` will be loaded:'
   id: totrans-88
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 点击**`About`**链接将导航到\about路径，并加载`about`的解析模板视图：
 - en: '![](img/image_07_006.png)'
   id: totrans-89
   prefs: []
   type: TYPE_IMG
+  zh: '![](img/image_07_006.png)'
 - en: The about template is loaded and the URL has the \about path
   id: totrans-90
   prefs: []
   type: TYPE_NORMAL
+  zh: 加载about模板，URL为\about路径
 - en: 'Clicking on the **`Contact`** link will navigate to theÂ `\contact` path, and
     the parsed template view of about will be loaded:'
   id: totrans-91
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 点击**`Contact`**链接将导航到\contact路径，并加载about的解析模板视图：
 - en: '![](img/image_07_007.png)'
   id: totrans-92
   prefs: []
   type: TYPE_IMG
+  zh: '![](img/image_07_007.png)'
 - en: The contact template is loaded and the URL has the \contact path
   id: totrans-93
   prefs: []
   type: TYPE_NORMAL
+  zh: 加载contact模板，URL为\contact路径
 - en: Notice the address bar for the changes in route path in the URL.
   id: totrans-94
   prefs: []
   type: TYPE_NORMAL
+  zh: 注意在URL中路由路径的变化。
 - en: Moving the Angular template to the ASP.NET MVC template
   id: totrans-95
   prefs:
   - PREF_H3
   type: TYPE_NORMAL
+  zh: 将Angular模板移到ASP.NET MVC模板
 - en: 'We have almost completed the application. However, we have only used Angular
     views as templates for the Angular components. We need to serve the template via
     ASP.NET MVC. This will enable us to add Razor codes, if necessary, as these views
@@ -525,12 +593,15 @@
   id: totrans-96
   prefs: []
   type: TYPE_NORMAL
+  zh: 我们几乎完成了应用程序。但是，我们只使用了Angular视图作为Angular组件的模板。我们需要通过ASP.NET MVC提供模板。这将使我们能够根据需要添加Razor代码，因为这些视图是由ASP.NET
+    MVC提供支持的。按照以下步骤添加Razor视图并更新每个Angular组件中的`templateUrl`：
 - en: 'First, add threeÂ actions in `HomeController`, namely `About`, `Contact`, and
     `Todo`, as follows:'
   id: totrans-97
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 首先，在`HomeController`中添加三个动作，分别为`About`、`Contact`和`Todo`，如下所示：
 - en: '[PRE19]'
   id: totrans-98
   prefs: []
@@ -542,19 +613,23 @@
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 在`Views -> Home`文件夹下添加三个视图，分别是`About`、`Contact`和`Todo`，如下所示：
 - en: '![](img/image_07_008.png)'
   id: totrans-100
   prefs: []
   type: TYPE_IMG
+  zh: '![](img/image_07_008.png)'
 - en: Razor views added under Home
   id: totrans-101
   prefs: []
   type: TYPE_NORMAL
+  zh: 在Home下添加Razor视图
 - en: 'Add this HTML content to `About.cshtml`:'
   id: totrans-102
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 将以下HTML内容添加到`About.cshtml`：
 - en: '[PRE20]'
   id: totrans-103
   prefs: []
@@ -565,6 +640,7 @@
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 添加以下HTML内容到`Contact.cshtml`：
 - en: '[PRE21]'
   id: totrans-105
   prefs: []
@@ -575,6 +651,7 @@
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 然后，将`todo.component.html`的内容移动到`Todo.cshtml`：
 - en: 'Now we need to update the metadata of theÂ `templateUrl` of `AboutComponent`,
     `ContactComponent`, and `TodoComponent`Â with the URLs of the respective actions
     in HomeController:'
@@ -582,6 +659,7 @@
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 现在需要将`AboutComponent`、`ContactComponent`和`TodoComponent`的`templateUrl`的元数据更新为HomeController中相应操作的URL：
 - en: '[PRE22]'
   id: totrans-108
   prefs: []
@@ -594,6 +672,7 @@
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 现在，按下*F5*运行应用程序，并注意视图是从ASP.NET MVC提供的。现在你可以在视图中添加Razor语法，因为它们现在由ASP.NET MVC提供支持。
 - en: 'Clicking on theÂ `About` link will navigate to theÂ `\about` path and instantiate
     the matching component. Here, it is `AboutComponent` and the appropriate Razor
     view of `about` will be rendered:'
@@ -601,14 +680,17 @@
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 点击`About`链接将导航到\about路径，并实例化相应的组件。这里，它是`AboutComponent`，并且会呈现适当的`about` Razor视图：
 - en: '![](img/image_07_009.png)'
   id: totrans-111
   prefs: []
   type: TYPE_IMG
+  zh: '![](img/image_07_009.png)'
 - en: The About Razor template rendered
   id: totrans-112
   prefs: []
   type: TYPE_NORMAL
+  zh: 关于Razor模板呈现
 - en: 'Clicking on theÂ **`Contact`** link will navigate to theÂ `\contact` path and
     initiate the `ContactComponent`, which is responsible for rendering the `Contact`Â Razor
     view:'
