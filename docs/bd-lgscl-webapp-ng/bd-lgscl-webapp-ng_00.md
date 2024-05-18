@@ -118,21 +118,3 @@ ng new guessthenumber --inlineTemplate
 警告或重要说明如下显示。
 
 类似于此出现的小技巧和窍门。
-
-# 联系我们
-
-我们始终欢迎读者的反馈意见。
-
-**总体反馈**：电子邮件发送至`feedback@packtpub.com`，并在邮件主题中提及书名。如果您对这本书的任何方面有疑问，请发送电子邮件至`questions@packtpub.com`。
-
-**勘误**：尽管我们已经尽一切努力确保内容的准确性，但错误还是会发生。如果您在这本书中发现了错误，我们将不胜感激地希望您向我们报告。请访问[www.packtpub.com/submit-errata](http://www.packtpub.com/submit-errata)，选择您的书，点击勘误提交表单链接，并输入详细信息。
-
-**盗版**：如果您在互联网上发现我们作品的任何非法副本，我们将不胜感激地希望您向我们提供其位置地址或网站名。请发送电子邮件至`copyright@packtpub.com`并附上材料的链接。
-
-**如果您对成为作者感兴趣**：如果您对某个您擅长的主题感兴趣，并且有意撰写或为一本书做出贡献，请访问[authors.packtpub.com](http://authors.packtpub.com/)。
-
-# 评论
-
-请留下评论。一旦您阅读并使用了这本书，何不在购买它的网站上留下评论呢？潜在的读者可以看到并使用您的客观意见来做出购买决定，我们在 Packt 公司可以了解您对我们产品的看法，而我们的作者可以看到您对他们的书的反馈。谢谢！
-
-欲了解更多关于 Packt 的信息，请访问[packtpub.com](https://www.packtpub.com/)。
