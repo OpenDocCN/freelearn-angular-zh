@@ -126,6 +126,7 @@
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '**AngularJS提供双向绑定**：许多客户端MVC框架只提供单向绑定。这意味着其他MVC框架只会使用来自服务器的模型来更新HTML，当用户在页面上更改模型时，框架不会根据所做的更改更新模型。开发人员需要编写代码来根据用户操作更新模型。然而，AngularJS方便了双向绑定，并通过根据用户在其上的操作更新模型使开发人员的生活更轻松。'
 - en: '**AngularJS utilizes declarative views**: This means that the functionalities
     will be communicated as declarative directions in HTML to render the models and
     interact with the DOM to change the page state based on changes in the model.
@@ -135,6 +136,7 @@
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '**AngularJS利用声明性视图**：这意味着功能将以HTML中的声明性指令的形式进行通信，以渲染模型并与DOM交互，根据模型的改变改变页面状态。这大大减少了用于此目的的代码量，将其减少了约50%至75%，并简化了开发人员的工作。'
 - en: '**AngularJS supports the directive concept**: This is like writing a domain-specific
     language for the web application. Directives will extend the functionality of
     HTML and render them dynamically according to the changes in the application rather
@@ -143,6 +145,7 @@
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '**AngularJS支持指令概念**：这就像为Web应用程序编写一个特定领域的语言。指令将扩展HTML的功能，并根据应用程序的变化动态渲染它们，而不仅仅是显示HTML页面。'
 - en: '**AngularJS is highly testable**: As said earlier, one of the main mottos of
     the development of Angular is to introduce a testable client-side MVC framework.
     AngularJS is highly testable, and in fact, the Angular team has introduced two
@@ -152,11 +155,13 @@
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '**AngularJS非常易于测试**：如前所述，Angular开发的主要目标之一是引入可测试的客户端MVC框架。AngularJS非常易于测试，事实上，Angular团队已经推出了两个框架：Karma和Protractor，用于编写端到端单元测试，以确保代码的稳定性，并确保自信地重构代码。'
 - en: Angular 2
   id: totrans-20
   prefs:
   - PREF_H3
   type: TYPE_NORMAL
+  zh: Angular 2
 - en: AngularJS is a good framework. However, it is six years old, and there are a
     lot of things that have changed in these six years in the web world. To accommodate
     all these modern happenings in AngularJS, it would have to undergo many changes
@@ -165,6 +170,7 @@
   id: totrans-21
   prefs: []
   type: TYPE_NORMAL
+  zh: AngularJS是一个很好的框架。然而，它已经有六年的历史了，在这六年里，Web世界发生了很多变化。为了适应AngularJS中所有这些现代发展，它将不得不在现有的实现中进行许多改变，这使得Angular团队从头开始编写AngularJS。
 - en: At the ngEurope conference held in October 2014, Angular 2 was announced as
     a massive update to Angular 1 for building complex web applications. The ngCommunity
     was a little upset as they invested a lot of time in learning and implementing
@@ -176,6 +182,9 @@
   id: totrans-22
   prefs: []
   type: TYPE_NORMAL
+  zh: 在2014年10月举行的ngEurope大会上，宣布了Angular 2作为构建复杂Web应用的Angular 1的重大更新。ngCommunity有点不满，因为他们在学习和实施Angular
+    1上投入了很多时间，而现在他们又不得不重新学习和实施Angular。然而，谷歌在从Angular 1升级到2的迁移和升级过程中投入了大量精力，引入了ngUpgrade和ngForward。一旦开发人员开始学习并使用Angular
+    2构建产品，他们就意识到了更清洁、更快速和更容易的Angular 2的威力。
 - en: Angular 2 was rewritten from scratch. It helped us write clean and testable
     code that can run on any device and platform. Angular 2 eliminated many concepts
     from Angular 1\. Angular 2 follows the standardization of ECMAScript 2015\. With
@@ -185,15 +194,20 @@
   id: totrans-23
   prefs: []
   type: TYPE_NORMAL
+  zh: Angular 2是从零开始重写的。它帮助我们编写干净的、可测试的代码，可以在任何设备和平台上运行。Angular 2消除了Angular 1中的许多概念。Angular
+    2遵循了ECMAScript 2015的标准化。随着最近的Web标准化，影子DOM取代了传递和ECMAScript 6模块取代了Angular模块。Angular
+    2比Angular 1.x快五倍。
 - en: The benefits of Angular 2
   id: totrans-24
   prefs:
   - PREF_H3
   type: TYPE_NORMAL
+  zh: Angular 2的优势
 - en: 'The following are the features and benefits of Angular 2:'
   id: totrans-25
   prefs: []
   type: TYPE_NORMAL
+  zh: 以下是Angular 2的特性和优势：
 - en: It supports cross-platform application development, such as high performing
     apps like web apps, native apps using Ionic Framework, NativeScript, React Native,
     and creating desktop-installed apps by accessing native OS APIs using Angular
@@ -202,18 +216,21 @@
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 它支持跨平台应用程序开发，比如高性能应用程序，如使用Ionic Framework、NativeScript、React Native创建本机应用程序，并通过使用Angular方法访问本机操作系统API创建桌面安装应用程序。
 - en: Angular 2 inherits all the benefits of Angular 1\. It replaced controllers and
     directives with components.
   id: totrans-27
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: Angular 2继承了Angular 1的所有优点。它用组件取代了控制器和指令。
 - en: Angular 2 was written in TypeScript and also, it enabled developers to write
     Angular 2 applications using TypeScript.
   id: totrans-28
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: Angular 2是用TypeScript编写的，也让开发人员能够使用TypeScript编写Angular 2应用程序。
 - en: Angular 2 is significantly faster than Angular 1\. The new component router
     only loads code required to render a view that is requested. The template syntax
     enables a developer to quickly create views with the powerful template syntax.
@@ -221,6 +238,7 @@
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: Angular 2比Angular 1明显快得多。新的组件路由器只会加载渲染所请求的视图所需的代码。模板语法使开发人员能够快速创建具有强大模板语法的视图。
 - en: Angular 2 enables us to use shadow Document Object Model (DOM). Shadow DOM encapsulates
     CSS, template, and the component. This enables decoupling from the DOM of the
     main document.
@@ -228,6 +246,7 @@
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: Angular 2使我们能够使用阴影DOM（Document Object Model）。阴影DOM封装了CSS、模板和组件。这样就可以与主文档的DOM分离。
 - en: It is the simpler cognitive model. A lot of directives were removed in Angular
     2 and this means that Angular 2 has fewer pieces and fewer moving parts so that
     it is easier to build larger applications with Angular 2 than with Angular 1.
@@ -235,30 +254,37 @@
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 这是更简单的认知模型。Angular 2中删除了许多指令，这意味着Angular 2的部件更少，移动部件也更少，因此使用Angular 2比使用Angular
+    1更容易构建更大的应用程序。
 - en: The development process in Angular 2
   id: totrans-32
   prefs:
   - PREF_H3
   type: TYPE_NORMAL
+  zh: Angular 2中的开发流程
 - en: 'Angular 2 has two development processes, namely, the following:'
   id: totrans-33
   prefs: []
   type: TYPE_NORMAL
+  zh: Angular 2有两个开发过程，即以下内容：
 - en: With a transpiler
   id: totrans-34
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 使用转译器
 - en: Without a transpiler
   id: totrans-35
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 没有转译器
 - en: What is ECMAScript 6?
   id: totrans-36
   prefs:
   - PREF_H4
   type: TYPE_NORMAL
+  zh: 什么是ECMAScript 6？
 - en: ES6 is the latest version of scripting language specification. It is a JavaScript
     language used on the world wide web for client-side scripting. ECMAScript 6 is
     aÂ great update to JavaScript language and the process of implementation of these
@@ -266,22 +292,26 @@
   id: totrans-37
   prefs: []
   type: TYPE_NORMAL
+  zh: ES6是脚本语言规范的最新版本。它是世界范围内用于客户端脚本的JavaScript语言。ECMAScript 6是JavaScript语言的一个伟大更新，这些特性正在JavaScript引擎中的实现过程中。
 - en: What is a transpiler?
   id: totrans-38
   prefs:
   - PREF_H4
   type: TYPE_NORMAL
+  zh: 什么是转译器？
 - en: A transpiler basically converts any specific language to JavaScript. A good
     example of this is the Typescript transpiler, whichÂ converts Typescript code
     to JavaScript.
   id: totrans-39
   prefs: []
   type: TYPE_NORMAL
+  zh: 转译器基本上将任何特定语言转换为JavaScript。一个很好的例子就是Typescript转译器，它将Typescript代码转换为JavaScript。
 - en: What is TypeScript?
   id: totrans-40
   prefs:
   - PREF_H4
   type: TYPE_NORMAL
+  zh: 什么是TypeScript？
 - en: TypeScript is an open source programming language developed by Microsoft. It
     is a superset of JavaScript, and it enables programmers to write object-oriented
     programs in JavaScript. TypeScript is also used to develop transpiler, whichÂ converts
@@ -292,11 +322,14 @@
   id: totrans-41
   prefs: []
   type: TYPE_NORMAL
+  zh: TypeScript是由微软开发的开源编程语言。它是JavaScript的超集，它使程序员能够用JavaScript编写面向对象的程序。 TypeScript还用于开发转译器，将TypeScript转换为JavaScript。它旨在开发更大型的应用程序。
+    TypeScript是根据ECMAScript标准的提案开发的。 TypeScript具有类、模块和箭头函数语法等功能，这些功能是ECMAScript 6标准中提出的。
 - en: The development process in JavaScript
   id: totrans-42
   prefs:
   - PREF_H5
   type: TYPE_NORMAL
+  zh: JavaScript的开发流程
 - en: 'Before discussing the development process with a transpiler, let''s look at
     the development process specific to JavaScript to build a web app. We will write
     our code in **ECMAScript 5** and **Deploy** it to the **Server**. ECMAScript 5
@@ -307,19 +340,24 @@
   id: totrans-43
   prefs: []
   type: TYPE_NORMAL
+  zh: '在讨论使用转译器的开发过程之前，让我们看看特定于JavaScript构建Web应用程序的开发过程。我们将在**ECMAScript 5**中编写我们的代码并**部署**到**服务器**上。
+    ECMAScript 5是今天每个浏览器都理解的脚本。当**浏览器**发出**请求**时，服务器将提供脚本，浏览器将在客户端运行它。下面的图表显示了JavaScript的典型开发流程：:'
 - en: '![](img/image_01_001.png)'
   id: totrans-44
   prefs: []
   type: TYPE_IMG
+  zh: '![](img/image_01_001.png)'
 - en: The development process in JavaScript
   id: totrans-45
   prefs: []
   type: TYPE_NORMAL
+  zh: JavaScript的开发流程
 - en: Development with a build-time transpiler
   id: totrans-46
   prefs:
   - PREF_H5
   type: TYPE_NORMAL
+  zh: 带有构建时转译器的开发
 - en: Instead of writing scripts in the current version of JavaScript, ECMAScript
     5, we can also write scripts in **ECMAScript 6+** using Typescript and **Transpile**Â them
     into **ECMAScript 5**. Then, **Deploy** the transpiled script to the **Server**,
@@ -555,11 +593,13 @@
   id: totrans-77
   prefs: []
   type: TYPE_NORMAL
+  zh: 在编写任何代码之前要做的第一件事是设置本地开发环境。我们需要一个编辑器来编写代码，一个本地服务器来运行应用程序，包管理工具来管理外部库，编译器来编译代码等等。
 - en: Installing Visual Studio Code
   id: totrans-78
   prefs:
   - PREF_H4
   type: TYPE_NORMAL
+  zh: 安装Visual Studio Code
 - en: Visual Studio Code is one of the greatest editors used to write Angular applications.
     So, we start with installing Visual Studio Code. Navigate to [https://code.visualstudio.com/](https://code.visualstudio.com/)
     and click on **`Download Code for Windows`**. Visual Studio Code supports platforms
@@ -568,14 +608,18 @@
   id: totrans-79
   prefs: []
   type: TYPE_NORMAL
+  zh: Visual Studio Code是用于编写Angular应用程序的最佳编辑器之一。因此，我们首先安装Visual Studio Code。前往[https://code.visualstudio.com/](https://code.visualstudio.com/)，然后点击**`Download
+    Code for Windows`**。Visual Studio Code支持Windows、Linux和OS X等平台。因此，根据您的需求也可以在其他平台上下载它。
 - en: '![](img/image_01_004.png)'
   id: totrans-80
   prefs: []
   type: TYPE_IMG
+  zh: '![](img/image_01_004.png)'
 - en: The home page of Visual Studio Code
   id: totrans-81
   prefs: []
   type: TYPE_NORMAL
+  zh: Visual Studio Code的首页
 - en: Visual Studio Code is an open source and cross-platform editor that supports
     Windows, Linux, and OS X. It is one of the powerful text editors that includes
     features such as navigation, keyboard support with customizable bindings, syntax
@@ -590,6 +634,9 @@
   id: totrans-82
   prefs: []
   type: TYPE_NORMAL
+  zh: Visual Studio Code是一款开源的跨平台编辑器，支持Windows、Linux和OS X。它是一个功能强大的文本编辑器，包括诸如导航、可自定义绑定的键盘支持、语法高亮、括号匹配、自动缩进和片段等功能，支持许多编程语言。它具有内置的
+    IntelliSense代码补全、更丰富的语义代码理解和导航、代码重构支持。它提供了简化的、集成的调试体验，支持Node.js调试。它是Visual Studio的一个轻量级版本。它不包含任何内置的开发服务器，如IIS
+    Express。但是，在开发过程中，测试Web应用程序在本地Web服务器中非常重要。市场上有几种可用的方法来设置本地Web服务器。
 - en: However, I chose lite-server as it is a lightweight, development-only node server
     that serves the static content, detects changes, refreshes the browser, and offers
     many customizations. Lite-server is available as an NPM package for Node.js. First,
@@ -597,11 +644,13 @@
   id: totrans-83
   prefs: []
   type: TYPE_NORMAL
+  zh: 但是，我选择了lite-server，因为它是一个轻量级的仅用于开发的Node服务器，用于提供静态内容，检测更改，刷新浏览器，并提供许多自定义选项。Lite-server作为Node.js的NPM包可用。首先，我们将在下一节看如何安装Node.js。
 - en: Installing Node.js
   id: totrans-84
   prefs:
   - PREF_H4
   type: TYPE_NORMAL
+  zh: 安装Node.js
 - en: Node.js is used to develop server-side web applications. It is an open source
     and cross-platform runtime environment. The built-in libraries in Node.js allow
     applications to act as a standalone web server. Node.js can be used in scenarios
@@ -610,31 +659,37 @@
   id: totrans-85
   prefs: []
   type: TYPE_NORMAL
+  zh: Node.js用于开发服务器端Web应用程序。它是一个开源的跨平台运行时环境。Node.js中的内置库允许应用程序充当独立的Web服务器。Node.js可用于需要轻量级实时响应的场景，例如通讯应用程序和基于Web的游戏。
 - en: Node.js is available for various platforms, such as Windows, Linux, Mac OS X,
     Sun OS, and ARM. You can also download the source code of Node.js and customize
     it according to your needs.
   id: totrans-86
   prefs: []
   type: TYPE_NORMAL
+  zh: Node.js可用于多种平台，如Windows、Linux、Mac OS X、Sun OS和ARM。您还可以下载Node.js的源代码，并根据您的需求进行定制。
 - en: In order to install Node.js, navigate to [https://nodejs.org/en/](https://nodejs.org/en/)
     and download the mature and dependable LTS (long-term support) version for Windows.
   id: totrans-87
   prefs: []
   type: TYPE_NORMAL
+  zh: 要安装Node.js，请前往[https://nodejs.org/en/](https://nodejs.org/en/)，并下载适用于Windows的成熟可靠的LTS（长期支持）版本。
 - en: '![](img/image_01_005.png)'
   id: totrans-88
   prefs: []
   type: TYPE_IMG
+  zh: '![](img/image_01_005.png)'
 - en: The home page of Node.js
   id: totrans-89
   prefs: []
   type: TYPE_NORMAL
+  zh: Node.js的首页
 - en: 'Node.js comes with NPM, a package manager that is used to acquire and manage
     JavaScript libraries for your development. To verify that the installation of
     Node.js and NPM is successful, follow these steps:'
   id: totrans-90
   prefs: []
   type: TYPE_NORMAL
+  zh: Node.js带有NPM，一个用于获取和管理JavaScript库的软件包管理器。要验证Node.js和NPM的安装是否成功，请按照以下步骤进行检查：
 - en: Open Windows Command Prompt, type the `node -v` command, and run it. You will
     get the version of Node.js that we installed.
   id: totrans-91
@@ -816,15 +871,18 @@
   id: totrans-120
   prefs: []
   type: TYPE_NORMAL
+  zh: 到目前为止，我们已经看到了如何通过克隆GitHub上的官方QuickStart存储库来创建Angular应用程序。我们将在接下来的章节详细介绍创建Angular应用程序的步骤。请注意，脚本是使用System.js加载的。System.js是在运行时加载模块的模块加载器。
 - en: The architecture of Angular
   id: totrans-121
   prefs:
   - PREF_H2
   type: TYPE_NORMAL
+  zh: Angular的架构
 - en: '* * *'
   id: totrans-122
   prefs: []
   type: TYPE_NORMAL
+  zh: '* * *'
 - en: 'Before we jump onto our Hello World application on Angular, let me give you
     a quick overview of the Angular architecture. The architecture of Angular comprises
     of eight core building blocks: a module, component, template, metadata, data binding,
@@ -832,14 +890,17 @@
   id: totrans-123
   prefs: []
   type: TYPE_NORMAL
+  zh: 在我们跳转到Angular上的Hello World应用程序之前，请让我快速介绍一下Angular的架构。Angular的架构由八个核心构建块组成：模块，组件，模板，元数据，数据绑定，服务，指令和依赖注入。
 - en: '![](img/image_01_011.png)'
   id: totrans-124
   prefs: []
   type: TYPE_IMG
+  zh: '![](img/image_01_011.png)'
 - en: Architecture of Angular
   id: totrans-125
   prefs: []
   type: TYPE_NORMAL
+  zh: Angular的架构
 - en: An Angular application normally starts with the designing of templates with
     Angular tags or markups. Then, we write components to handle the templates. The
     application-specific logic will be added to services. Finally, the starting component
@@ -847,36 +908,43 @@
   id: totrans-126
   prefs: []
   type: TYPE_NORMAL
+  zh: 一个Angular应用程序通常是从使用Angular标签或标记设计模板开始。然后，我们编写组件来处理模板。应用程序特定的逻辑将添加到服务中。最后，起始组件或根组件将传递给Angular启动器。
 - en: When we run the application, Angular takes the responsibility of presenting
     the template to the browser and takes care of user interactions with the elements
     in the template according to the logic provided in the components and directives.
   id: totrans-127
   prefs: []
   type: TYPE_NORMAL
+  zh: 当我们运行应用程序时，Angular负责向浏览器呈现模板，并根据组件和指令中提供的逻辑处理模板中元素的用户交互。
 - en: 'Let''s see the objective of each block of Angular in the following points:'
   id: totrans-128
   prefs: []
   type: TYPE_NORMAL
+  zh: 让我们看看Angular的每个模块的目标：
 - en: Any Angular application will be comprised of a collection of components.
   id: totrans-129
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 任何Angular应用程序都将由一组组件组成。
 - en: Services will be injected into components.
   id: totrans-130
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 服务将被注入组件中。
 - en: Templates are responsible for rendering the components in the form of HTML.
   id: totrans-131
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 模板负责以HTML形式呈现组件。
 - en: Components hold an application logic that supports the views or templates.
   id: totrans-132
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 组件包含支持视图或模板的应用程序逻辑。
 - en: Angular itself is a collection of modules. In Angular 1, the main module or
     application module is bootstrapped using the `ng-app` directive. We can include
     other lists of modules that our application module or main module is dependent
@@ -890,46 +958,57 @@
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: Angular本身是一组模块。在Angular 1中，使用`ng-app`指令引导主模块或应用程序模块。我们可以包含我们的应用程序模块或主模块依赖的其他模块列表；它们将在`angular.module('myApp',
+    [])`中定义为空数组。Angular使用ES6模块，模块中定义的函数或变量应显式导出以供其他模块消费。通过使用import关键字，导出的函数或变量可在其他模块中使用，后跟函数名，然后跟随模块名。例如，`import
+    {http}` from `@angular/http`。
 - en: Each Angular library is a facade of many private modules that are logically
     related.
   id: totrans-134
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 每个Angular库实际上是许多相关的私有模块的外观。
 - en: Directives provide instructions to render the templates.
   id: totrans-135
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 指令提供指令以呈现模板。
 - en: We will see each building block of the Angular architecture in detail in the
     subsequentÂ chapters.
   id: totrans-136
   prefs: []
   type: TYPE_NORMAL
+  zh: 我们将在接下来的章节中详细介绍Angular架构的每个构建块。
 - en: Summary
   id: totrans-137
   prefs:
   - PREF_H2
   type: TYPE_NORMAL
+  zh: 总结
 - en: '* * *'
   id: totrans-138
   prefs: []
   type: TYPE_NORMAL
+  zh: '* * *'
 - en: That was easy, wasn't it? We just introduced you to the Angular framework.
   id: totrans-139
   prefs: []
   type: TYPE_NORMAL
+  zh: 很简单，不是吗？我们刚刚向您介绍了Angular框架。
 - en: We started with the history of AngularJS. Then, we discussed the benefits of
     AngularJS and the birth of AngularJS. We discussed what's new in Angular and gave
     you a brief introduction to the architecture of Angular.
   id: totrans-140
   prefs: []
   type: TYPE_NORMAL
+  zh: 我们从AngularJS的历史开始。然后，我们讨论了AngularJS的优点和AngularJS的诞生。我们讨论了Angular的新功能，并对Angular的架构进行了简要介绍。
 - en: We also saw what is needed and how to set up a development environment in order
     to write an Angular application.
   id: totrans-141
   prefs: []
   type: TYPE_NORMAL
+  zh: 我们还看到了编写Angular应用程序所需的开发环境设置。
 - en: Finally, we did a walk-through on how to create your first Angular application
     using Visual Studio Code and Node.js.
   id: totrans-142
