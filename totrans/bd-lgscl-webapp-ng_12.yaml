@@ -1949,66 +1949,80 @@
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 启动应用的`/home`路由
 - en: 'Observe the NgModules tab, as follows:'
   id: totrans-305
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 观察NgModules标签，如下所示：
 - en: '![](img/1f7e47e0-937e-41a1-9dd2-1f115597640b.png)'
   id: totrans-306
   prefs: []
   type: TYPE_IMG
+  zh: '![](img/1f7e47e0-937e-41a1-9dd2-1f115597640b.png)'
 - en: Augury NgModules
   id: totrans-307
   prefs: []
   type: TYPE_NORMAL
+  zh: Augury NgModules
 - en: You'll note that only the `AppModule` is loaded. However, since our application
     has a lazy-loaded architecture, none of our other modules are yet loaded.
   id: totrans-308
   prefs: []
   type: TYPE_NORMAL
+  zh: 您会注意到仅加载了`AppModule`。然而，由于我们的应用程序采用了延迟加载的架构，我们的其他模块尚未被加载。
 - en: Navigate to a page in the `ManagerModule`
   id: totrans-309
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 导航到`ManagerModule`中的一个页面
 - en: Then, navigate to a page in the `UserModule`
   id: totrans-310
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 然后，导航到`UserModule`中的一个页面
 - en: Finally, navigate back to the `/home` route
   id: totrans-311
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 最后，导航回`/home`路由
 - en: 'Observe the NgModules tab, as shown:'
   id: totrans-312
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 观察NgModules标签，如下所示：
 - en: '![](img/eb0747c8-e2c8-4467-a657-3e6db3ac2781.png)'
   id: totrans-313
   prefs: []
   type: TYPE_IMG
+  zh: '![](img/eb0747c8-e2c8-4467-a657-3e6db3ac2781.png)'
 - en: Augury NgModules with Three Modules
   id: totrans-314
   prefs: []
   type: TYPE_NORMAL
+  zh: 带有三个模块的Augury NgModules
 - en: Now, you'll observe that three modules have been loaded into memory.
   id: totrans-315
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 现在，您会观察到已加载进内存的三个模块。
 - en: NgModules is an important tool to visualize the impact of your design and architecture.
   id: totrans-316
   prefs: []
   type: TYPE_NORMAL
+  zh: NgModules是一个重要的工具，可以可视化设计和架构的影响。
 - en: Submodules with lazy loading
   id: totrans-317
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 具有延迟加载的子模块
 - en: Lazy loading allows the Angular build process, powered by webpack, to separate
     our web application into different JavaScript files called chunks. By separating
     out portions of the application into separate submodules, we allow these modules
@@ -2019,37 +2033,46 @@
   id: totrans-318
   prefs: []
   type: TYPE_NORMAL
+  zh: 懒加载允许由 webpack 提供支持的 Angular 构建流程将我们的 Web 应用程序分隔成不同的 JavaScript 文件，称为块。通过将应用程序的各部分分开为单独的子模块，我们允许这些模块及其依赖项捆绑到单独的块中，从而将初始
+    JavaScript 捆绑大小保持在最小限度。随着应用程序的增长，首次有意义的呈现时间保持不变，而不是随时间持续增加。懒加载对实现可扩展的应用程序架构至关重要。
 - en: We will now go over how to set up a submodule with components and routes. We
     will also use Augury to observe the effects of our various router configurations.
   id: totrans-319
   prefs: []
   type: TYPE_NORMAL
+  zh: 现在我们将介绍如何设置带有组件和路由的子模块。我们还将使用Augury来观察我们不同路由配置的效果。
 - en: Configuring submodules with components and routes
   id: totrans-320
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 配置子模块的组件和路由
 - en: 'The manager module needs a landing page, as shown in this mock-up:'
   id: totrans-321
   prefs: []
   type: TYPE_NORMAL
+  zh: 管理员模块需要一个着陆页面，如此示意图所示：
 - en: '![](img/37bfa672-ea69-4f47-bf18-0d3fb718dfab.png)'
   id: totrans-322
   prefs: []
   type: TYPE_IMG
+  zh: '![](img/37bfa672-ea69-4f47-bf18-0d3fb718dfab.png)'
 - en: Manager's Dashboard
   id: totrans-323
   prefs: []
   type: TYPE_NORMAL
+  zh: 管理员仪表板
 - en: 'Let''s start by creating the home screen for the `ManagerModule`:'
   id: totrans-324
   prefs: []
   type: TYPE_NORMAL
+  zh: 让我们先创建`ManagerModule`的主屏幕：
 - en: 'Create the `ManagerHome` component:'
   id: totrans-325
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 创建`ManagerHome`组件：
 - en: '[PRE30]'
   id: totrans-326
   prefs: []
@@ -2064,11 +2087,14 @@
   id: totrans-327
   prefs: []
   type: TYPE_NORMAL
+  zh: 为了在`manager`文件夹下创建新组件，我们必须在组件名称前加上`manager/`前缀。另外，我们指定该组件应该被`ManagerModule`导入和声明。由于这是另一个着陆页，可能不够复杂需要额外的
+    HTML 和 CSS 文件。您可以使用`--inline-style`（别名`-s`）和/或`--inline-template`（别名`-t`）来避免创建额外的文件。
 - en: 'Verify that your folder structure looks as follows:'
   id: totrans-328
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 确认您的文件夹结构如下所示：
 - en: '[PRE31]'
   id: totrans-329
   prefs: []
@@ -2080,6 +2106,7 @@
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 使用`manager-routing.module`配置`ManagerHome`组件的路由，类似于我们如何使用`app-route.module`配置`Home`组件：
 - en: '[PRE32]'
   id: totrans-331
   prefs: []
@@ -2092,22 +2119,26 @@
   id: totrans-332
   prefs: []
   type: TYPE_NORMAL
+  zh: 您会注意到`http://localhost:5000/manager`实际上并不解析为一个组件，因为我们的 Angular 应用程序不知道`ManagerModule`的存在。让我们首先尝试蛮力、饥饿加载的方法，导入`manager.module`并在我们的应用程序中注册管理器路由。
 - en: Eager loading
   id: totrans-333
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 预加载
 - en: 'This section is purely an exercise to demonstrate how the concepts we have
     learned so far in importing and registering routes doesn''t result in a scalable
     solution, regardless of eagerly or lazily loading components:'
   id: totrans-334
   prefs: []
   type: TYPE_NORMAL
+  zh: 此部分纯粹是为了演示我们迄今学到的导入和注册路由的概念，并不会产生可扩展的解决方案，无论是急切加载还是懒加载组件：
 - en: 'Import the `manager.module` to `app.module`:'
   id: totrans-335
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 将`manager.module`导入到`app.module`中：
 - en: '[PRE33]'
   id: totrans-336
   prefs: []
