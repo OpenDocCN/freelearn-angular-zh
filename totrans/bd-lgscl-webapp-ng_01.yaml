@@ -889,6 +889,7 @@
   id: totrans-131
   prefs: []
   type: TYPE_NORMAL
+  zh: '用于跟踪workout进度的模型类(`WorkoutPlan`)如下所示:'
 - en: '[PRE6]'
   id: totrans-132
   prefs: []
@@ -899,12 +900,14 @@
   id: totrans-133
   prefs: []
   type: TYPE_NORMAL
+  zh: '`totalWorkoutDuration`函数返回workout的总持续时间（以秒为单位）。'
 - en: '`WorkoutPlan` has a reference to another class in the preceding definition,
     `ExercisePlan`. It tracks the exercise and the duration of the exercise in a workout,
     which is quite apparent once we look at the definition of `ExercisePlan`:'
   id: totrans-134
   prefs: []
   type: TYPE_NORMAL
+  zh: '`WorkoutPlan`在前面的定义中有另一个类`ExercisePlan`的引用。它跟踪workout中的练习及其持续时间,这一点很明显,一旦我们查看`ExercisePlan`的定义:'
 - en: '[PRE7]'
   id: totrans-135
   prefs: []
@@ -915,11 +918,13 @@
   id: totrans-136
   prefs: []
   type: TYPE_NORMAL
+  zh: 让我为您节省一些输入时间,告诉您从哪里获取模型类,但在此之前,我们需要决定在哪里添加它们。我们已经准备好我们的第一个特性了。
 - en: First feature module
   id: totrans-137
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 第一个特性模块
 - en: The primary feature of *7 Minute Workout* is to execute a predefined set of
     exercises. Hence we are going to create a feature module now and later add the
     feature implementation to this module. We call this module `workout-runner`. Let's
@@ -927,11 +932,14 @@
   id: totrans-138
   prefs: []
   type: TYPE_NORMAL
+  zh: '*7 Minute Workout*的主要功能是执行预定义的一组练习。因此，我们现在要创建一个特性模块，并稍后将特性实现添加到这个模块中。我们把这个模块称为`workout-runner`。让我们使用Angular
+    CLI的脚手架功能初始化这个特性。'
 - en: 'From the command line, navigate to the `trainer/src/app` folder and run the
     following:'
   id: totrans-139
   prefs: []
   type: TYPE_NORMAL
+  zh: '从命令行导航到`trainer/src/app`文件夹,并运行以下命令:'
 - en: '[PRE8]'
   id: totrans-140
   prefs: []
@@ -941,25 +949,30 @@
   id: totrans-141
   prefs: []
   type: TYPE_NORMAL
+  zh: '关注控制台日志,了解生成了哪些文件。该命令基本上是:'
 - en: Creates a new Angular `WorkoutRunnerModule` module inside a new `workout-runner`
     folder
   id: totrans-142
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 在一个新的`workout-runner`文件夹内创建一个新的Angular `WorkoutRunnerModule`模块
 - en: Imports the newly created module into the main application module app (`app.module.ts`)
   id: totrans-143
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 将新创建的模块导入到主应用程序模块`app（app.module.ts）`中。
 - en: We now have a new **feature module**.
   id: totrans-144
   prefs: []
   type: TYPE_NORMAL
+  zh: 我们现在拥有一个新的**特性模块**。
 - en: Give every feature its own module.
   id: totrans-145
   prefs: []
   type: TYPE_NORMAL
+  zh: 给每个特性一个自己的模块。
 - en: Make special note of the conventions Angular CLI follows when scaffolding Angular
     artifacts. From the preceding example, the module name provided with the command
     line was `workout-runner`. While the generated folder and filenames use the same
@@ -968,6 +981,7 @@
   id: totrans-146
   prefs: []
   type: TYPE_NORMAL
+  zh: 特别注意Angular CLI在搭建Angular构件时遵循的约定。从前面的示例中,命令行提供的模块名称为`workout-runner`。虽然生成的文件夹和文件名使用相同的名称,但生成的模块的类名为`WorkoutRunnerModule`（帕斯卡大小写,带有`Module`后缀）。
 - en: Open the newly generated module definition (`workout-runner.module.ts`) and
     look at the generated content. `WorkoutRunnerModule` imports `CommonModule`, a
     module with common Angular directives such as `ngIf` and `ngFor`, allowing us
@@ -975,33 +989,39 @@
   id: totrans-147
   prefs: []
   type: TYPE_NORMAL
+  zh: 打开新生成的模块定义(`workout-runner.module.ts`)并查看生成的内容。`WorkoutRunnerModule`导入`CommonModule`，这是一个包含常用Angular指令（如`ngIf`和`ngFor`）的模块，允许我们在`WorkoutRunnerModule`中定义的任何组件/指令中使用这些常用指令。
 - en: Modules are Angular's way of organizing code. We will touch upon Angular modules
     shortly.
   id: totrans-148
   prefs: []
   type: TYPE_NORMAL
+  zh: 模块是Angular组织代码的方式。我们将很快讨论Angular模块。
 - en: Copy the `model.ts` file from [http://bit.ly/ng6be-2-1-model-ts](http://bit.ly/ng6be-2-1-model-ts) into
     the `workout-runner` folder. Shortly, we will see how these model classes are
     utilized.
   id: totrans-149
   prefs: []
   type: TYPE_NORMAL
+  zh: 将`model.ts`文件从[http://bit.ly/ng6be-2-1-model-ts](http://bit.ly/ng6be-2-1-model-ts)复制到`workout-runner`文件夹。稍后,我们将看到如何利用这些模型类。
 - en: Since we have started with a preconfigured Angular app, we just need to understand
     how the app starts.
   id: totrans-150
   prefs: []
   type: TYPE_NORMAL
+  zh: 由于我们已经启动了一个预配置的Angular应用程序，我们只需要了解应用程序如何启动。
 - en: App bootstrapping
   id: totrans-151
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 应用程序引导
 - en: 'The app bootstrapping process for *7 Minute Workout* can be carried out from
     the `src` folder. There is a `main.ts` file that bootstraps the application by
     calling the following:'
   id: totrans-152
   prefs: []
   type: TYPE_NORMAL
+  zh: '*7 Minute Workout*的应用程序引导过程可以从`src`文件夹中进行。有一个`main.ts`文件通过调用以下命令来引导应用程序:'
 - en: '[PRE9]'
   id: totrans-153
   prefs: []
@@ -1014,6 +1034,8 @@
   id: totrans-154
   prefs: []
   type: TYPE_NORMAL
+  zh: 繁重的工作由Angular CLI完成，它编译应用程序，将脚本和CSS引用包含到`index.html`中，并运行应用程序。我们不需要配置任何东西。这些配置是Angular
+    CLI默认配置（`.angular-cli.json`）的一部分。
 - en: We have created a new module and added some model classes to the `module` folder.
     Before we go any further and start implementing the feature, let's talk a bit
     about **Angular modules**.
@@ -3125,6 +3147,8 @@
   id: totrans-474
   prefs: []
   type: TYPE_NORMAL
+  zh: '`WorkoutRunnerComponent`能够使用`ExerciseDescriptionComponent`是因为它已经在`WorkoutRunnerModule`上声明了（参见`workout-runner.module.ts`中的声明属性）。Angular
+    CLI组件生成器为我们执行这项工作。'
 - en: Look back at the `abe-exercise-description` declaration in the preceding view.
     We are referring to the `description` and `steps` properties in the same manner
     as we did with the HTML element properties earlier in the chapter (`<img [src]='expression'
@@ -3132,6 +3156,7 @@
   id: totrans-475
   prefs: []
   type: TYPE_NORMAL
+  zh: 回顾前面视图中的`abe-exercise-description`声明。我们以与本章前面对HTML元素属性的引用方式相同的方式引用`description`和`steps`属性。简单、直观且非常优雅！
 - en: The Angular data binding infrastructure makes sure that whenever the `currentExercise.exercise.description`
     and `currentExercise.exercise.procedure` properties on `WorkoutRunnerComponent`
     change, the bound properties on `ExerciseDescriptionComponent`, `description`,
@@ -3139,6 +3164,7 @@
   id: totrans-476
   prefs: []
   type: TYPE_NORMAL
+  zh: Angular数据绑定基础设施确保当`WorkoutRunnerComponent`上的`currentExercise.exercise.description`和`currentExercise.exercise.procedure`属性发生变化时，`ExerciseDescriptionComponent`上绑定的属性`description`和`steps`也会被更新。
 - en: 'The `@Input` decoration can take a property alias as a parameter, which means
     the following: consider a property declaration such as: `@Input("myAwesomeProperty")
     myProperty:string`. It can be referenced in the view as follows: `<my-component
@@ -3146,6 +3172,8 @@
   id: totrans-477
   prefs: []
   type: TYPE_NORMAL
+  zh: '`@Input`装饰符可以接受一个属性别名作为参数，这意味着以下内容：考虑一个属性声明，如：`@Input("myAwesomeProperty")
+    myProperty:string`。它可以在视图中如下引用：`<my-component [myAwesomeProperty]="expression"....`'
 - en: 'The power of the Angular binding infrastructure allows us to use any component
     property as a bindable property by attaching the `@Input` decorator (and `@Output`
     too) to it. We are not limited to basic data types such as `string`, `number`,
@@ -3154,14 +3182,17 @@
   id: totrans-478
   prefs: []
   type: TYPE_NORMAL
+  zh: Angular绑定基础设施的强大之处允许我们将任何组件属性作为可绑定属性，方法是将`@Input`装饰器（和`@Output`也是）附加到它上。我们不限于基本数据类型，如`string`、`number`和`boolean`；也可以是复杂对象，接下来我们将在添加视频播放器时看到：
 - en: The `@Input` decorator can be applied to complex objects too.
   id: totrans-479
   prefs: []
   type: TYPE_NORMAL
+  zh: '`@Input`装饰器也可以应用于复杂对象。'
 - en: 'Generate a new component in the `workout-runner` directory for the video player:'
   id: totrans-480
   prefs: []
   type: TYPE_NORMAL
+  zh: 在`workout-runner`目录下为视频播放器生成一个新组件：
 - en: '[PRE62]'
   id: totrans-481
   prefs: []
@@ -3174,11 +3205,13 @@
   id: totrans-482
   prefs: []
   type: TYPE_NORMAL
+  zh: 通过从位于GitHub位置[http://bit.ly/ng6be-2-3-video-player](http://bit.ly/ng6be-2-3-video-player)的`trainer/src/components/workout-runner/video-player`目录下的`video-player.component.ts`和`video-player.component.html`复制实现，更新生成的样板代码（位于Git分支`checkpoint2.3`中）。
 - en: 'Let''s look at the implementation for the video player. Open `video-player.component.ts`
     and check out the `VideoPlayerComponent` class:'
   id: totrans-483
   prefs: []
   type: TYPE_NORMAL
+  zh: 让我们来看看视频播放器的实现。打开`video-player.component.ts`并查看`VideoPlayerComponent`类：
 - en: '[PRE63]'
   id: totrans-484
   prefs: []
@@ -3191,6 +3224,7 @@
   id: totrans-485
   prefs: []
   type: TYPE_NORMAL
+  zh: 这里的`videos`输入属性接受一个字符串数组（YouTube视频代码）。虽然我们将`videos`数组作为输入，但我们并不直接在视频播放器视图中使用该数组；相反，我们将输入数组转换成一个新的`safeVideoUrls`数组并进行绑定。这可以通过查看视图实现来确认：
 - en: '[PRE64]'
   id: totrans-486
   prefs: []
@@ -3203,6 +3237,7 @@
   id: totrans-487
   prefs: []
   type: TYPE_NORMAL
+  zh: 视图还使用了一个名为`ngFor`的新的Angular指令来绑定`safeVideoUrls`数组。`ngFor`指令属于一类名为**结构指令**的指令。该指令的作用是根据绑定集合中的元素数量重新生成HTML片段。
 - en: If you are confused about how the `ngFor` directive works with `safeVideoUrls`,
     and why we need to generate `safeVideoUrls` instead of using the `videos` input
     array, wait for a while as we are shortly going to address these queries. But,
@@ -3211,11 +3246,13 @@
   id: totrans-488
   prefs: []
   type: TYPE_NORMAL
+  zh: 如果你对`ngFor`指令如何与`safeVideoUrls`一起使用以及为什么我们需要生成`safeVideoUrls`而不是使用`videos`输入数组感到困惑，稍等片刻，因为我们很快就要解决这些问题。但是，让我们先完成`VideoPlayerComponent`与`WorkoutRunnerComponent`的集成，以查看最终结果。
 - en: 'Update the `WorkoutRunnerComponent` view by adding the component declaration
     after the `exercise-pane` div:'
   id: totrans-489
   prefs: []
   type: TYPE_NORMAL
+  zh: 在`exercise-pane` div后添加组件声明更新`WorkoutRunnerComponent`视图：
 - en: '[PRE65]'
   id: totrans-490
   prefs: []
@@ -3226,10 +3263,12 @@
   id: totrans-491
   prefs: []
   type: TYPE_NORMAL
+  zh: '`VideoPlayerComponent`的`videos`属性绑定到运动的视频集合。'
 - en: Start/refresh the app and the video thumbnails should show up on the right.
   id: totrans-492
   prefs: []
   type: TYPE_NORMAL
+  zh: 启动/刷新应用程序，视频缩略图应显示在右侧。
 - en: If you are having a problem with running the code, look at the Git branch `checkpoint2.3`
     for a working version of what we have done thus far. You can also download the
     snapshot of `checkpoint2.3` (a ZIP file) from [http://bit.ly/ng6be-checkpoint-2-3](http://bit.ly/ng6be-checkpoint-2-3).
@@ -3238,46 +3277,55 @@
   id: totrans-493
   prefs: []
   type: TYPE_NORMAL
+  zh: 如果您在运行代码时遇到问题，请查看Git分支`checkpoint2.3`，以获取迄今为止我们所做内容的可工作版本。您还可以从[http://bit.ly/ng6be-checkpoint-2-3](http://bit.ly/ng6be-checkpoint-2-3)下载`checkpoint2.3`的快照（ZIP文件）。在首次设置快照时，请参考`trainer`文件夹中的`README.md`文件。
 - en: 'Now, it''s time to go back and look at the parts of the `VideoPlayerComponent`
     implementation. We specifically need to understand:'
   id: totrans-494
   prefs: []
   type: TYPE_NORMAL
+  zh: 现在，是时候回顾并了解`VideoPlayerComponent`实现的部分。我们特别需要理解：
 - en: How the `ngFor` directive works
   id: totrans-495
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '`ngFor`指令的工作原理'
 - en: Why there is a need to transform the input `videos` array into `safeVideoUrls`
   id: totrans-496
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 为什么需要将输入的`videos`数组转换为`safeVideoUrls`
 - en: The significance of the Angular component life cycle event `OnChanges` (used
     in the video player)
   id: totrans-497
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: Angular组件生命周期事件`OnChanges`的重要性（在视频播放器中使用）
 - en: 'To start with, it''s time to formally introduce `ngFor` and the class of directives
     it belongs to: structural directives.'
   id: totrans-498
   prefs: []
   type: TYPE_NORMAL
+  zh: 首先，是时候正式介绍`ngFor`和它所属的指令类别：结构指令。
 - en: Structural directives
   id: totrans-499
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 结构指令
 - en: The third categorization of directives, structural directives, work on the components/elements
     to manipulate their layout.
   id: totrans-500
   prefs: []
   type: TYPE_NORMAL
+  zh: 指令的第三种分类，结构指令，用于操作其布局的组件/元素。
 - en: 'The Angular documentation describes structural directives in a succinct manner:'
   id: totrans-501
   prefs: []
   type: TYPE_NORMAL
+  zh: Angular文档简洁描述了结构指令：
 - en: '"Instead of defining and controlling a view like a Component Directive, or
     modifying the appearance and behavior of an element like an Attribute Directive,
     the Structural Directive manipulates the layout by adding and removing entire
@@ -3285,23 +3333,27 @@
   id: totrans-502
   prefs: []
   type: TYPE_NORMAL
+  zh: “与定义和控制视图（如组件指令）或修改元素外观和行为（如属性指令）不同，结构指令通过添加和移除整个元素子树来操纵布局。”
 - en: Since we have already touched upon component directives (such as `workout-runner`
     and `exercise-description`) and attribute directives (such as `ngClass` and `ngStyle`),
     we can very well contrast their behaviors with structural directives.
   id: totrans-503
   prefs: []
   type: TYPE_NORMAL
+  zh: 由于我们已经涉及到组件指令（例如`workout-runner`和`exercise-description`）和属性指令（例如`ngClass`和`ngStyle`），我们可以很好地将它们的行为与结构指令进行对比。
 - en: The `ngFor` directive belongs to this class. We can easily identify such directives
     by the `*` prefix. Other than `ngFor`, Angular comes with some other structural
     directives such as `ngIf` and `ngSwitch`.
   id: totrans-504
   prefs: []
   type: TYPE_NORMAL
+  zh: '`ngFor`指令属于这个类。我们可以通过`*`前缀轻松识别这类指令。除了`ngFor`，Angular还提供了一些其他结构指令，如`ngIf`和`ngSwitch`。'
 - en: The ever-so-useful NgForOf
   id: totrans-505
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 非常有用的`NgForOf`
 - en: 'Every templating language has constructs that allow the templating engine to
     generate HTML (by repetition). Angular has `NgForOf`. The `NgForOf` directive
     is a super useful directive used to duplicate a piece of an HTML fragment n number
@@ -3309,6 +3361,7 @@
   id: totrans-506
   prefs: []
   type: TYPE_NORMAL
+  zh: 每种模板语言都有构造，允许模板引擎通过重复生成HTML。Angular有`NgForOf`。`NgForOf`指令是一个非常有用的指令，用于将HTML片段的一部分复制n次。让我们再次看看我们如何在视频播放器中使用`NgForOf`：
 - en: '[PRE66]'
   id: totrans-507
   prefs: []
@@ -3320,6 +3373,7 @@
   id: totrans-508
   prefs: []
   type: TYPE_NORMAL
+  zh: '`NgForOf`的指令选择器为`{selector: ''[ngFor][ngForOf]''}`，因此我们可以在视图模板中使用`ngFor`或`ngForOf`。我们有时也将此指令称为`ngFor`。'
 - en: 'The preceding code repeats the `div` fragment for each exercise video (using
     the `safeVideoUrls` array). The `let video of safeVideoUrls` string expression
     is interpreted as follows: take each video in the `safeVideoUrls` array and assign
@@ -4061,12 +4115,16 @@
   id: totrans-623
   prefs: []
   type: TYPE_NORMAL
+  zh: 在 Angular 管道中，实现逻辑放在 `transform` 函数中。作为 `PipeTransform` 接口的一部分，前面的 `transform`
+    函数将输入的秒值转换为 *hh:mm:ss* 字符串。`transform` 函数的第一个参数是管道输入。如果提供了后续参数，那么这些参数会作为管道的参数，使用冒号分隔符
+    (`pipe:argument1:arugment2..`) 从视图中传递过来。
 - en: For `SecondsToTimePipe`, while Angular CLI generates a boilerplate argument
     (`args?:any`), we do not make use of any pipe argument as the implementation does
     not require it.
   id: totrans-624
   prefs: []
   type: TYPE_NORMAL
+  zh: 对于 `SecondsToTimePipe`，虽然 Angular CLI 生成了一个样板参数 (`args?:any`)，但我们没有使用任何管道参数，因为实现并不需要它。
 - en: The pipe implementation is quite straightforward, as we convert seconds into
     hours, minutes, and seconds. Then, we concatenate the result into a string value
     and return the value. The addition of 0 on the left for each of the `hours`, `minutes`,
@@ -4075,11 +4133,14 @@
   id: totrans-625
   prefs: []
   type: TYPE_NORMAL
+  zh: 管道实现非常直接，因为我们将秒转换为小时、分钟和秒。然后，我们将结果连接成一个字符串值并返回该值。对于 `hours`、`minutes` 和 `seconds`
+    变量，左边添加 0 是为了在小时、分钟或秒的计算值小于 10 的情况下，格式化该值为具有前导 0 的值。
 - en: 'The pipe that we just created is just a standard TypeScript class. It''s the
     Pipe decorator (`@Pipe`) that instructs Angular to treat this class as a pipe:'
   id: totrans-626
   prefs: []
   type: TYPE_NORMAL
+  zh: 我们刚刚创建的管道只是一个标准的 TypeScript 类。正是 Pipe 装饰器 (`@Pipe`) 指示 Angular 将这个类视为管道：
 - en: '[PRE87]'
   id: totrans-627
   prefs: []
@@ -4092,11 +4153,14 @@
   id: totrans-628
   prefs: []
   type: TYPE_NORMAL
+  zh: 管道定义完成，但是在 `WorkoutRunnerComponent` 中使用管道，该管道必须在 `WorkoutRunnerModule` 中声明。Angular
+    CLI 在生成时已经为我们做好了这一点（请参阅 `workout-runner.module.ts` 中的 `declaration` 部分）。
 - en: 'Now we just need to add the pipe in the view. Update `workout-runner.component.html`
     by adding the highlighted fragment:'
   id: totrans-629
   prefs: []
   type: TYPE_NORMAL
+  zh: 现在我们只需要在视图中添加管道。通过添加下面突出显示的片段来更新 `workout-runner.component.html`：
 - en: '[PRE88]'
   id: totrans-630
   prefs: []
@@ -4108,11 +4172,15 @@
   id: totrans-631
   prefs: []
   type: TYPE_NORMAL
+  zh: 令人惊讶的是，实现还没有完成！还有一步。我们已经定义了一个管道，并在视图中引用了它，但是 `workoutTimeRemaining` 需要在每秒钟更新一次才能让
+    `SecondsToTimePipe` 生效。
 - en: 'We have already initialized `WorkoutRunnerComponent`''s `workoutTimeRemaining`
     property in the `start` function with the total workout time:'
   id: totrans-632
   prefs: []
   type: TYPE_NORMAL
+  zh: 我们已经在 `start` 函数中用总的锻炼时间初始化了 `WorkoutRunnerComponent` 的 `workoutTimeRemaining`
+    属性：
 - en: '[PRE89]'
   id: totrans-633
   prefs: []
@@ -4126,11 +4194,14 @@
   id: totrans-634
   prefs: []
   type: TYPE_NORMAL
+  zh: 现在的问题是：如何在每秒钟更新 `workoutTimeRemaining` 变量？记住我们已经设置了一个 `setInterval` 来更新 `exerciseRunningDuration`。虽然我们可以为
+    `workoutTimeRemaining` 编写另一个 `setInterval` 实现，但如果一个单独的 `setInterval` 设置可以满足两个要求会更好。
 - en: 'Add a function called `startExerciseTimeTracking` to `WorkoutRunnerComponent`;
     it looks as follows:'
   id: totrans-635
   prefs: []
   type: TYPE_NORMAL
+  zh: 在 `WorkoutRunnerComponent` 中添加一个名为 `startExerciseTimeTracking` 的函数；它看起来是这样的：
 - en: '[PRE90]'
   id: totrans-636
   prefs: []
@@ -4144,49 +4215,61 @@
   id: totrans-637
   prefs: []
   type: TYPE_NORMAL
+  zh: 正如你所看到的，这个函数的主要目的是跟踪锻炼的进度，并在完成后切换锻炼。然而，它还跟踪 `workoutTimeRemaining`（它会递减这个计数器）。第一个
+    `if` 条件设置只是确保当所有锻炼完成时清除计时器。内部的 `if` 条件用于保持 `currentExerciseIndex` 与正在进行的锻炼保持同步。
 - en: This function uses a numeric instance variable called `exerciseTrackingInterval`.
     Add it to the class declaration section. We are going to use this variable later
     to implement an exercise pausing behavior.
   id: totrans-638
   prefs: []
   type: TYPE_NORMAL
+  zh: 该函数使用一个名为 `exerciseTrackingInterval` 的数值实例变量。将其添加到类声明部分。我们稍后将使用此变量来实现练习暂停行为。
 - en: 'Remove the complete `setInterval` setup from `startExercise` and replace it
     with a call to `this.startExerciseTimeTracking();`. We are all set to test our
     implementation. If required, refresh the browser and verify the implementation:'
   id: totrans-639
   prefs: []
   type: TYPE_NORMAL
+  zh: 从 `startExercise` 中删除完整的 `setInterval` 设置，并用调用 `this.startExerciseTimeTracking();`
+    替换它。我们已经准备好测试我们的实现了。如果需要的话，刷新浏览器并验证实现：
 - en: '![](img/bcfb02e4-245e-42b8-86a1-2dc661c1b3b8.png)'
   id: totrans-640
   prefs: []
   type: TYPE_IMG
+  zh: '![](img/bcfb02e4-245e-42b8-86a1-2dc661c1b3b8.png)'
 - en: The next section is about another inbuilt Angular directive, `ngIf`, and another
     small enhancement.
   id: totrans-641
   prefs: []
   type: TYPE_NORMAL
+  zh: 下一节介绍了另一个内置的 Angular 指令 `ngIf`，以及另一个小的增强。
 - en: Adding the next exercise indicator using ngIf
   id: totrans-642
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 使用 `ngIf` 添加下一个练习指示器
 - en: It will be nice for the user to be told what the next exercise is during the
     short rest period between exercises. This will help them prepare for the next
     exercise. So let's add it.
   id: totrans-643
   prefs: []
   type: TYPE_NORMAL
+  zh: 用户在短暂的休息时间内被告知下一个练习是什么会很好。这将帮助他们为下一个练习做好准备。所以让我们添加上去。
 - en: To implement this feature, we can simply output the title of the next exercise
     from the `workoutPlan.exercises` array. We show the title next to the `Time Remaining`
     countdown section.
   id: totrans-644
   prefs: []
   type: TYPE_NORMAL
+  zh: 要实现这一功能，我们可以简单地从 `workoutPlan.exercises` 数组中输出下一个练习的标题。我们将标题显示在 `Time Remaining`
+    倒计时部分旁边。
 - en: 'Change the workout div (`class="exercise-pane"`) to include the highlighted
     content, and remove existing `Time Remaining` `h1`:'
   id: totrans-645
   prefs: []
   type: TYPE_NORMAL
+  zh: 更改练习 div（`class="exercise-pane"`）以包含突出显示的内容，并移除现有的 `Time Remaining` `h1`：
 - en: '[PRE91]'
   id: totrans-646
   prefs: []
@@ -4200,6 +4283,8 @@
   id: totrans-647
   prefs: []
   type: TYPE_NORMAL
+  zh: 我们包裹现有的 `Time Remaining h1`，并在一个新的 `div` 中添加另一个 `h3` 标签，在其中显示下一个练习，并进行一些样式更新。此外，第二个
+    `h3` 中有一个新的指令 `ngIf`。`*` 前缀意味着它属于 `ngFor` 所属的同一组指令：**结构指令**。让我们稍微谈谈 `ngIf`。
 - en: 'The `ngIf` directive is used to add or remove a specific section of the DOM
     based on whether the expression provided to it returns `true` or `false`. The
     DOM element is added when the expression evaluates to `true` and is destroyed
@@ -4207,6 +4292,8 @@
   id: totrans-648
   prefs: []
   type: TYPE_NORMAL
+  zh: '`ngIf` 指令用于根据提供给它的表达式是否返回 `true` 或 `false` 来添加或移除 DOM 的特定部分。当表达式评估为 `true`
+    时，DOM 元素被添加，否则被销毁。将 `ngIf` 声明与之前的视图隔离开来:'
 - en: '[PRE92]'
   id: totrans-649
   prefs: []
@@ -4217,11 +4304,13 @@
   id: totrans-650
   prefs: []
   type: TYPE_NORMAL
+  zh: 该指令表达式检查我们当前是否处于休息阶段，并相应地显示或隐藏链接的 `h3`。
 - en: Also in the same `h3`, we have an interpolation that shows the name of the exercise
     from the `workoutPlan.exercises` array.
   id: totrans-651
   prefs: []
   type: TYPE_NORMAL
+  zh: 同样在相同的 `h3` 中，我们有一个插值，显示来自 `workoutPlan.exercises` 数组的练习名称。
 - en: 'A word of caution here: `ngIf` adds and destroys the DOM element, and hence
     it is not similar to the visibility constructs that we employed to show and hide
     elements. While the end result of `style`, `display:none` is the same as that
@@ -4229,6 +4318,8 @@
   id: totrans-652
   prefs: []
   type: TYPE_NORMAL
+  zh: 在这里需要注意：`ngIf` 添加和销毁 DOM 元素，因此它不同于我们用来显示和隐藏元素的可见性构造。虽然 `style`、`display:none`
+    的最终结果与 `ngIf` 相同，但机制完全不同：
 - en: '[PRE93]'
   id: totrans-653
   prefs: []
@@ -4238,6 +4329,7 @@
   id: totrans-654
   prefs: []
   type: TYPE_NORMAL
+  zh: 与这行相比：
 - en: '[PRE94]'
   id: totrans-655
   prefs: []
@@ -5017,10 +5109,12 @@
   id: totrans-774
   prefs: []
   type: TYPE_NORMAL
+  zh: 通常,一旦声明了模板变量,就可以访问它们所附加的视图元素/组件,并将其用于视图的其他部分,这是我们将很快讨论的。但在我们的例子中,我们将使用模板变量来引用来自父组件代码的多个`MyAudioDirective`。让我们了解如何使用它们。
 - en: 'Update the generated `workout-audio.compnent.ts` with the following outline:'
   id: totrans-775
   prefs: []
   type: TYPE_NORMAL
+  zh: '使用以下大纲更新生成的`workout-audio.compnent.ts`:'
 - en: '[PRE113]'
   id: totrans-776
   prefs: []
@@ -5037,6 +5131,7 @@
   id: totrans-777
   prefs: []
   type: TYPE_NORMAL
+  zh: 这个大纲中有趣的是五个属性上带有`@ViewChild`装饰器。`@ViewChild`装饰器允许我们将子组件/指令/元素引用注入到父组件中。传递给装饰器的参数是模板变量名,这有助于DI匹配要注入的元素/指令。当Angular实例化主`WorkoutAudioComponent`时,它会根据`@ViewChild`装饰器和传递的模板引用变量名注入相应的音频指令。在我们详细了解`@ViewChild`之前,让我们先完成基本类的实现。
 - en: Without `exportAs` set on the `MyAudioDirective` directive, the `@ViewChild` injection
     injects the related `ElementRef` instance instead of the `MyAudioDirective` instance.
     We can confirm this by removing the `exportAs` attribute from `myAudioDirective` and
@@ -5044,11 +5139,13 @@
   id: totrans-778
   prefs: []
   type: TYPE_NORMAL
+  zh: 如果没有在`MyAudioDirective`指令上设置`exportAs`,则`@ViewChild`注入会注入相关的`ElementRef`实例,而不是`MyAudioDirective`实例。我们可以通过从`myAudioDirective`中删除`exportAs`属性,然后查看`WorkoutAudioComponent`中注入的依赖项来确认这一点。
 - en: 'The remaining task is to just play the correct audio component at the right
     time. Add these functions to `WorkoutAudioComponent`:'
   id: totrans-779
   prefs: []
   type: TYPE_NORMAL
+  zh: '剩下的任务就是在正确的时间播放正确的音频组件。将这些函数添加到`WorkoutAudioComponent`:'
 - en: '[PRE114]'
   id: totrans-780
   prefs: []
@@ -5059,11 +5156,13 @@
   id: totrans-781
   prefs: []
   type: TYPE_NORMAL
+  zh: 写这些函数有困难吗?它们可以在`checkpoint3.3`Git分支中找到。
 - en: 'There are two new model classes used in the preceding code. Add their declarations
     to `model.ts`, as follows (again available in `checkpoint3.3`):'
   id: totrans-782
   prefs: []
   type: TYPE_NORMAL
+  zh: '前面代码中使用了两个新的模型类。将它们的声明添加到`model.ts`中,如下所示(也可在`checkpoint3.3`中找到):'
 - en: '[PRE115]'
   id: totrans-783
   prefs: []
@@ -5074,12 +5173,14 @@
   id: totrans-784
   prefs: []
   type: TYPE_NORMAL
+  zh: 这些是用于跟踪进度事件的模型类。`WorkoutAudioComponent`实现使用这些数据。请记得在`workout-audio.component.ts`中导入`ExerciseProgressEvent`和`ExerciseProgressEvent`的引用。
 - en: To reiterate, the audio component consumes the events by defining two event
     handlers: `onExerciseProgress` and `onExerciseChanged.` How the events are generated
     becomes clear as we move along.
   id: totrans-785
   prefs: []
   type: TYPE_NORMAL
+  zh: 重申一下,音频组件通过定义两个事件处理程序`onExerciseProgress`和`onExerciseChanged`来使用事件。事件是如何生成的将随着我们的深入而变得更加清晰。
 - en: The `start` and `resume` functions stop and resume audio whenever a workout
     starts, pauses, or completes. The extra complexity in the resume function it to
     tackle cases when the workout was paused during next up, about to complete, or
@@ -5087,6 +5188,7 @@
   id: totrans-786
   prefs: []
   type: TYPE_NORMAL
+  zh: '`start`和`resume`函数在workout开始、暂停或完成时停止和恢复音频播放。`resume`函数中的额外复杂性是为了处理workout在下一个、即将完成或中途暂停的情况。我们只想从之前停止的地方继续。'
 - en: The `onExerciseProgress` function should be called to report the workout progress.
     It's used to play the halfway audio and about-to-complete audio based on the state
     of the workout. The parameter passed to it is an object that contains exercise
@@ -5094,12 +5196,14 @@
   id: totrans-787
   prefs: []
   type: TYPE_NORMAL
+  zh: 应该调用`onExerciseProgress`函数来报告workout的进度。它用于根据workout的状态播放halfway音频和about-to-complete音频。传递给它的参数是一个包含exercise进度数据的对象。
 - en: The `onExerciseChanged` function should be called when the exercise changes.
     The input parameter contains the current and next exercise in line and helps `WorkoutAudioComponent` to
     decide when to play the next up exercise audio.
   id: totrans-788
   prefs: []
   type: TYPE_NORMAL
+  zh: 当exercise改变时应该调用`onExerciseChanged`函数。输入参数包含当前和下一个exercise,帮助`WorkoutAudioComponent`决定何时播放下一个exercise的音频。
 - en: 'We touched upon two new concepts in this section: template reference variables
     and injecting child elements/directives into the parent. It''s worth exploring
     these two concepts in more detail before we continue with the implementation.
@@ -5107,17 +5211,20 @@
   id: totrans-789
   prefs: []
   type: TYPE_NORMAL
+  zh: 在本节中我们提到了两个新概念：模板引用变量和将子元素/指令注入到父元素中。在继续实现之前，值得更详细地探讨这两个概念。我们将首先学习更多关于模板引用变量的知识。
 - en: Understanding template reference variables
   id: totrans-790
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 理解模板引用变量
 - en: '**Template reference variables** are created on the view template and are mostly
     consumed from the view. As you have already learned, these variables can be identified
     by the `#` prefix used to declare them.'
   id: totrans-791
   prefs: []
   type: TYPE_NORMAL
+  zh: '**模板引用变量**在视图模板上创建，并且大多数情况下从视图中使用。正如你已经学到的，这些变量可以通过`#`前缀声明来识别。'
 - en: 'One of the greatest benefits of template variables is that they facilitate
     cross-component communication at the view template level. Once declared, such
     variables can be referenced by sibling elements/components and their children.
@@ -5125,6 +5232,7 @@
   id: totrans-792
   prefs: []
   type: TYPE_NORMAL
+  zh: 模板变量最大的好处之一是它们便于在视图模板层面进行跨组件通信。一旦声明了这样的变量，它们就可以被同级元素/组件及其子元素引用。请查看以下代码片段：
 - en: '[PRE116]'
   id: totrans-793
   prefs: []
@@ -5135,16 +5243,19 @@
   id: totrans-794
   prefs: []
   type: TYPE_NORMAL
+  zh: 此代码片段声明了一个模板变量`emailId`，然后在插值和按钮`click`表达式中引用它。
 - en: The Angular templating engine assigns the DOM object for `input` (an instance
     of `HTMLInputElement`) to the `emailId` variable. Since the variable is available
     across siblings, we use it in a button's `click` expression.
   id: totrans-795
   prefs: []
   type: TYPE_NORMAL
+  zh: Angular模板引擎将`input`（`HTMLInputElement`的一个实例）的DOM对象分配给`emailId`变量。由于该变量在同级元素中可用，我们在按钮的`click`表达式中使用它。
 - en: 'Template variables work with components too. We can easily do this:'
   id: totrans-796
   prefs: []
   type: TYPE_NORMAL
+  zh: 模板变量也适用于组件。我们可以轻松地做到：
 - en: '[PRE117]'
   id: totrans-797
   prefs: []
@@ -5155,22 +5266,26 @@
   id: totrans-798
   prefs: []
   type: TYPE_NORMAL
+  zh: 在这种情况下，`runner`引用了`WorkoutRunnerComponent`对象，并且按钮用于启动锻炼。
 - en: The `ref-` prefix is the canonical alternative to `#`. The `#runner` variable
     can also be declared as `ref-runner`.
   id: totrans-799
   prefs: []
   type: TYPE_NORMAL
+  zh: '`ref-`前缀是`#`的规范替代品。`#runner`变量也可以声明为`ref-runner`。'
 - en: Template variable assignment
   id: totrans-800
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 模板变量赋值
 - en: 'You may not have noticed but there is something interesting about the template variable
     assignments described in the last few sections. To recap, the three examples that
     we have used are:'
   id: totrans-801
   prefs: []
   type: TYPE_NORMAL
+  zh: 你可能没有注意到，但在最近几节介绍的模板变量赋值中有一些有趣的事情。简而言之，我们使用了三个示例：
 - en: '[PRE118]'
   id: totrans-802
   prefs: []
@@ -5181,6 +5296,7 @@
   id: totrans-803
   prefs: []
   type: TYPE_NORMAL
+  zh: 变量分配的内容取决于变量声明的位置。这受Angular规则的约束：
 - en: If a directive is present on the element, such as `MyAudioDirective` in the
     first example shown previously, the directive sets the value. The `MyAudioDirective` directive
     sets the `ticks` variable to an instance of `MyAudioDirective`.
@@ -5188,28 +5304,33 @@
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 如果指令存在于元素上，例如前面显示的第一个示例中的`MyAudioDirective`，则指令设置该值。`MyAudioDirective`指令将`ticks`变量设置为`MyAudioDirective`的一个实例。
 - en: If there is no directive present, either the underlying HTML DOM element is
     assigned or a component object is assigned (as shown in the `input` and `workout-runner` examples).
   id: totrans-805
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 如果没有指令存在，变量分别分配给了底层HTML DOM元素或组件对象（如`input`和`workout-runner`示例中所示）。
 - en: We will be employing this technique to implement the workout audio component
     integration with the workout runner component. This introduction gives us the
     head start that we need.
   id: totrans-806
   prefs: []
   type: TYPE_NORMAL
+  zh: 我们将采用这种技术来实现训练音频组件与训练运行组件的集成。这个介绍给了我们需要的头部起步。
 - en: The other new concept that we promised to cover is child element/directive injection
     using the `ViewChild` and `ViewChildren` decorators.
   id: totrans-807
   prefs: []
   type: TYPE_NORMAL
+  zh: 我们答应要介绍的另一个新概念是使用`ViewChild`和`ViewChildren`装饰器进行子元素/指令注入。
 - en: Using the @ViewChild decorator
   id: totrans-808
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 使用@ViewChild装饰器
 - en: The `@ViewChild` decorator instructs the Angular DI framework to search for
     some specific child component/directive/element in the component tree and inject
     it into the parent. This allows the parent component to interact with child components/element
@@ -5217,15 +5338,18 @@
   id: totrans-809
   prefs: []
   type: TYPE_NORMAL
+  zh: '`@ViewChild`装饰器指示Angular DI框架在组件树中搜索特定的子组件/指令/元素，并将其注入到父组件中。这允许父组件使用对子组件的引用来与子组件/元素进行交互，这是一种新的通信模式！'
 - en: In the preceding code, the audio element directive (the `MyAudioDirective` class)
     is injected into the `WorkoutAudioComponent` code.
   id: totrans-810
   prefs: []
   type: TYPE_NORMAL
+  zh: 在上面的代码中，音频元素指令（`MyAudioDirective`类）被注入到`WorkoutAudioComponent`中。
 - en: 'To establish the context, let''s recheck a view fragment from `WorkoutAudioComponent`:'
   id: totrans-811
   prefs: []
   type: TYPE_NORMAL
+  zh: 为了建立上下文，让我们重新检查`WorkoutAudioComponent`的视图片段：
 - en: '[PRE119]'
   id: totrans-812
   prefs: []
@@ -5237,6 +5361,7 @@
   id: totrans-813
   prefs: []
   type: TYPE_NORMAL
+  zh: Angular会将指令（`MyAudioDirective`）注入到`WorkoutAudioComponent`的属性`ticks`中：搜索是基于传递给`@ViewChild`装饰器的选择器的。让我们再次看一下音频示例：
 - en: '[PRE120]'
   id: totrans-814
   prefs: []
@@ -5247,10 +5372,12 @@
   id: totrans-815
   prefs: []
   type: TYPE_NORMAL
+  zh: 在`ViewChild`上的选择器参数可以是一个字符串值，此时Angular会搜索匹配的模板变量，就像之前一样。
 - en: 'Or it can be a *type.* This is valid and should inject an instance of `MyAudioDirective`:'
   id: totrans-816
   prefs: []
   type: TYPE_NORMAL
+  zh: 或者可以是*类型*。这是有效的，并应该注入一个`MyAudioDirective`的实例：
 - en: '[PRE121]'
   id: totrans-817
   prefs: []
@@ -5263,21 +5390,25 @@
   id: totrans-818
   prefs: []
   type: TYPE_NORMAL
+  zh: 但是，在我们的情况下，它不起作用。为什么？因为在`WorkoutAudioComponent`视图中声明了多个`MyAudioDirective`指令，每一个都对应一个`<audio>`标签。在这种情况下，只有第一个匹配项被注入。并不是很有用。如果视图中只有一个`<audio>`标签，那么传递类型选择器就可以工作了！
 - en: Properties decorated with `@ViewChild` are sure to be set before the `ngAfterViewInit` event
     hook on the component is called. This implies such properties are `null` if accessed
     inside the constructor.
   id: totrans-819
   prefs: []
   type: TYPE_NORMAL
+  zh: 使用`@ViewChild`修饰的属性一定会在组件的`ngAfterViewInit`事件钩子被调用之前设置。这意味着如果在构造函数内部访问这些属性，它们会是`null`。
 - en: Angular also has a decorator to locate and inject multiple child components/directives: `@ViewChildren`.
   id: totrans-820
   prefs: []
   type: TYPE_NORMAL
+  zh: Angular还有一个装饰器用于定位和注入多个子组件/指令：`@ViewChildren`。
 - en: The @ViewChildren decorator
   id: totrans-821
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: '`@ViewChildren`装饰器'
 - en: '`@ViewChildren` works similarly to `@ViewChild`, except it can be used to inject
     multiple child types into the parent. Again taking the previous audio component
     above as an example, using `@ViewChildren`, we can get all the `MyAudioDirective` directive
@@ -5285,6 +5416,7 @@
   id: totrans-822
   prefs: []
   type: TYPE_NORMAL
+  zh: '`@ViewChildren`的工作原理类似于`@ViewChild`，只不过它可以把多个子类型注入到父级中。再次以上面的音频组件为例，在`WorkoutAudioComponent`中使用`@ViewChildren`，我们可以得到所有`MyAudioDirective`指令的实例，如下所示：'
 - en: '[PRE122]'
   id: totrans-823
   prefs: []
@@ -5302,6 +5434,7 @@
   id: totrans-824
   prefs: []
   type: TYPE_NORMAL
+  zh: 仔细看，`allAudios`不是标准的JavaScript数组，而是一个自定义类`QueryList<Type>`。`QueryList`类是一个不可变集合，其中包含了Angular基于传递给`@ViewChildren`装饰器的过滤条件所能定位的组件/指令的引用。这个列表的最好之处在于Angular会将这个列表与视图的状态保持同步。当动态地向视图中添加/移除指令/组件时，这个列表也会被更新。利用`ng-for`生成的组件/指令就是这种动态行为的一个典型例子。考虑上面的`@ViewChildren`使用和这个视图模板：
 - en: '[PRE123]'
   id: totrans-825
   prefs: []
@@ -5314,12 +5447,14 @@
   id: totrans-826
   prefs: []
   type: TYPE_NORMAL
+  zh: Angular创建的`MyAudioDirective`指令的数量取决于`clips`的数量。使用`@ViewChildren`时，Angular会将正确数量的`MyAudioDirective`实例注入到`allAudio`属性中，并在从`clips`数组中添加或移除项时保持同步。
 - en: While the usage of `@ViewChildren` allows us to get hold of all `MyAudioDirective` directives,
     it cannot be used to control the playback. You see, we need to get hold of individual `MyAudioDirective` instances
     as the audio playback timing varies. Hence the distinct `@ViewChild` implementation.
   id: totrans-827
   prefs: []
   type: TYPE_NORMAL
+  zh: 虽然使用`@ViewChildren`允许我们获取所有`MyAudioDirective`指令，但它不能用于控制播放。你看，我们需要获取单独的`MyAudioDirective`实例，因为音频播放的时间是变化的。因此，就有了独特的`@ViewChild`实现。
 - en: Once we get hold of the `MyAudioDirective` directive attached to each audio
     element, it is just a matter of playing the audio tracks at the right time.
   id: totrans-828
@@ -5460,32 +5595,38 @@
   id: totrans-850
   prefs: []
   type: TYPE_NORMAL
+  zh: 让我们尝试理解`@Output`装饰器和`EventEmitter`类的作用。
 - en: The @Output decorator
   id: totrans-851
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: '`@Output` 装饰器'
 - en: We covered a decent amount of Angular eventing capabilities in this chapter. Specifically,
     we learned how we can consume any event on a component, directive, or DOM element
     using the `bracketed ()` syntax. How about raising our own events?
   id: totrans-852
   prefs: []
   type: TYPE_NORMAL
+  zh: 在本章中，我们介绍了很多 Angular 事件处理的能力。我们具体学习了如何使用`[]`语法在组件、指令或 DOM 元素上消耗任何事件。那我们如何触发自己的事件呢？
 - en: In Angular, we can create and raise our own events, events that signify something
     noteworthy has happened in our component/directive. Using the `@Output` decorator
     and the `EventEmitter` class, we can define and raise custom events.
   id: totrans-853
   prefs: []
   type: TYPE_NORMAL
+  zh: 在 Angular 中，我们可以创建和触发自己的事件，这些事件表示在我们的组件/指令中发生了值得注意的事情。使用`@Output`装饰器和`EventEmitter`类，我们可以定义和触发自定义事件。
 - en: It's also a good time to refresh what we learned about events.
   id: totrans-854
   prefs: []
   type: TYPE_NORMAL
+  zh: 现在是一个恰当的时机来回顾我们学到的有关事件的知识。
 - en: 'Remember this: it is through events that components can communicate with the
     outside world. When we declare:'
   id: totrans-855
   prefs: []
   type: TYPE_NORMAL
+  zh: 记住：正是通过事件，组件才能与外部世界通信。当我们声明：
 - en: '[PRE129]'
   id: totrans-856
   prefs: []
@@ -5496,10 +5637,12 @@
   id: totrans-857
   prefs: []
   type: TYPE_NORMAL
+  zh: 这表示`WorkoutRunnerComponent`公开了一个名为`exercisePaused`的事件（在锻炼暂停时触发）。
 - en: 'To subscribe to this event, we can do the following:'
   id: totrans-858
   prefs: []
   type: TYPE_NORMAL
+  zh: 要订阅此事件，我们可以执行以下操作：
 - en: '[PRE130]'
   id: totrans-859
   prefs: []
@@ -5510,6 +5653,7 @@
   id: totrans-860
   prefs: []
   type: TYPE_NORMAL
+  zh: 这看起来与我们在锻炼运行器模板中进行 DOM 事件订阅非常相似。看看从锻炼运行者视图中摘取的这个样本：
 - en: '[PRE131]'
   id: totrans-861
   prefs: []
@@ -5521,6 +5665,7 @@
   id: totrans-862
   prefs: []
   type: TYPE_NORMAL
+  zh: '`@Output` 装饰器指示 Angular 使该事件可用于模板绑定。没有使用`@Output` 装饰器创建的事件无法在 HTML 中引用。'
 - en: 'The `@Output` decorator can also take a parameter, signifying the name of the
     event. If not provided, the decorator uses the property name: `@Output("workoutPaused")
     exercisePaused: EventEmitter<number> ...`. This declares a `workoutPaused` event
@@ -5528,16 +5673,20 @@
   id: totrans-863
   prefs: []
   type: TYPE_NORMAL
+  zh: '`@Output` 装饰器也可以带有一个参数，表示事件的名称。如果没有提供，则装饰器使用属性名称：`@Output("workoutPaused")
+    exercisePaused: EventEmitter<number> ...`。这声明了一个名为`workoutPaused`的事件，而不是`exercisePaused`。'
 - en: Like any decorator, the `@Output` decorator is there just to provide metadata
     for the Angular framework to work with. The real heavy lifting is done by the `EventEmitter` class.
   id: totrans-864
   prefs: []
   type: TYPE_NORMAL
+  zh: 像任何装饰器一样，`@Output` 装饰器只是为了提供 Angular 框架所需的元数据。真正的工作由 `EventEmitter` 类完成。
 - en: Eventing with EventEmitter
   id: totrans-865
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 使用 EventEmitter 进行事件处理
 - en: Angular embraces **reactive programming** (also dubbed **Rx**-style programming)
     to support asynchronous operations with events. If you are hearing this term for
     the first time or don't have much idea about what reactive programming is, you're
@@ -5545,6 +5694,7 @@
   id: totrans-866
   prefs: []
   type: TYPE_NORMAL
+  zh: Angular支持基于事件的**响应式编程**（也被称为**Rx**风格的编程）来支持异步操作。如果您第一次听到这个词，或者对响应式编程不是很了解，那么您并不孤单。
 - en: Reactive programming is all about programming against **asynchronous data streams**.
     Such a stream is nothing but a sequence of ongoing events ordered based on the
     time they occur. We can imagine a stream as a pipe generating data (in some manner)
@@ -5553,64 +5703,76 @@
   id: totrans-867
   prefs: []
   type: TYPE_NORMAL
+  zh: 响应式编程是关于针对**异步数据流**进行编程。这样的流实际上是根据它们发生的时间顺序排列的一系列正在进行的事件。我们可以想象流就像是生成数据的管道（以某种方式），并将其推送给一个或多个订阅者。由于这些事件被订阅者异步捕获，它们被称为异步数据流。
 - en: The data can be anything, ranging from browser/DOM element events to user input
     to loading remote data using AJAX. With *Rx* style, we consume this data uniformly.
   id: totrans-868
   prefs: []
   type: TYPE_NORMAL
+  zh: 数据可以是任何内容，从浏览器/DOM 元素事件到用户输入再到使用 AJAX 加载远程数据。使用 Rx 风格，我们统一消耗这些数据。
 - en: In the Rx world, there are Observers and Observables, a concept derived from
     the very popular **Observer design pattern**. **Observables** are streams that
     emit data. **Observers**, on the other hand, subscribe to these events.
   id: totrans-869
   prefs: []
   type: TYPE_NORMAL
+  zh: 在 Rx 世界中，有观察者和可观察对象，这是从非常流行的**观察者设计模式**派生出来的概念。**可观察对象**是发出数据的流。另一方面，**观察者**订阅这些事件。
 - en: The `EventEmitter` class in Angular is primarily responsible for providing eventing
     support. It acts both as an *observer* and *observable*. We can fire events on
     it and it can also listen to events.
   id: totrans-870
   prefs: []
   type: TYPE_NORMAL
+  zh: 在 Angular 中，`EventEmitter` 类主要负责提供事件支持。它既充当*观察者*又充当*可观察对象*。我们可以在其上触发事件，它也可以监听事件。
 - en: 'There are two functions available on `EventEmitter` that are of interest to
     us:'
   id: totrans-871
   prefs: []
   type: TYPE_NORMAL
+  zh: 在`EventEmitter`上有两个我们感兴趣的函数可用：
 - en: '`emit`: As the name suggests, use this function to raise events. It takes a
     single argument that is the event data. `emit` *is the observable side*.'
   id: totrans-872
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '`emit`：顾名思义，使用这个函数来引发事件。它接受一个事件数据作为参数。`emit`*是可观察端*。'
 - en: '`subscribe`: Use this function to subscribe to the events raised by `EventEmitter`. `subscribe` is
     the observer side.'
   id: totrans-873
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '`subscribe`：使用这个函数来订阅`EventEmitter`引发的事件。`subscribe`是观察者端。'
 - en: Let's do some event publishing and subscriptions to understand how the preceding
     functions work.
   id: totrans-874
   prefs: []
   type: TYPE_NORMAL
+  zh: 让我们进行一些事件发布和订阅，以了解前面的函数是如何工作的。
 - en: Raising events from WorkoutRunnerComponent
   id: totrans-875
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 从WorkoutRunnerComponent中引发事件
 - en: Look at the `EventEmitter` declaration. These have been declared with the `type` parameter.
     The `type` parameter on `EventEmitter` signifies the type of data emitted.
   id: totrans-876
   prefs: []
   type: TYPE_NORMAL
+  zh: 看一下`EventEmitter`的声明。这些已经用`type`参数声明了。`EventEmitter`上的`type`参数表示所发出数据的类型。
 - en: Let's add the event implementation to `workout-runner.component.ts`, starting
     from the top of the file and moving down.
   id: totrans-877
   prefs: []
   type: TYPE_NORMAL
+  zh: 让我们从文件顶部开始，逐步向下，在`workout-runner.component.ts`中添加事件实现。
 - en: 'Add this statement to the end of the `start` function:'
   id: totrans-878
   prefs: []
   type: TYPE_NORMAL
+  zh: 在`start`函数的末尾添加这个语句：
 - en: '[PRE132]'
   id: totrans-879
   prefs: []
@@ -5621,10 +5783,12 @@
   id: totrans-880
   prefs: []
   type: TYPE_NORMAL
+  zh: 我们使用`EventEmitter`的`emit`函数来引发一个带有当前锻炼计划参数的`workoutStarted`事件。
 - en: 'To `pause`, add this line to raise the `exercisePaused` event:'
   id: totrans-881
   prefs: []
   type: TYPE_NORMAL
+  zh: 要暂停，将这行代码添加到引发`exercisePaused`事件的函数中：
 - en: '[PRE133]'
   id: totrans-882
   prefs: []
@@ -5634,6 +5798,7 @@
   id: totrans-883
   prefs: []
   type: TYPE_NORMAL
+  zh: 要恢复，添加以下行：
 - en: '[PRE134]'
   id: totrans-884
   prefs: []
@@ -5644,11 +5809,13 @@
   id: totrans-885
   prefs: []
   type: TYPE_NORMAL
+  zh: 每次触发`exercisePaused`和`exerciseResumed`事件时，我们将当前练习索引作为参数传递给`emit`。
 - en: 'Inside the `startExerciseTimeTracking` function, add the highlighted code after
     the call to `startExercise`:'
   id: totrans-886
   prefs: []
   type: TYPE_NORMAL
+  zh: 在`startExerciseTimeTracking`函数中，在调用`startExercise`之后添加上面的代码：
 - en: '[PRE135]'
   id: totrans-887
   prefs: []
@@ -5659,10 +5826,12 @@
   id: totrans-888
   prefs: []
   type: TYPE_NORMAL
+  zh: 传递的参数包含即将开始的练习（`next`）和下一个练习（`this.getNextExercise()`）。
 - en: 'To the same function, add the highlighted code:'
   id: totrans-889
   prefs: []
   type: TYPE_NORMAL
+  zh: 在同一个函数中，添加上面突出显示的代码：
 - en: '[PRE136]'
   id: totrans-890
   prefs: []
@@ -5672,11 +5841,13 @@
   id: totrans-891
   prefs: []
   type: TYPE_NORMAL
+  zh: 当锻炼完成时，触发该事件。
 - en: 'In the same function, we raise an event that communicates the workout progress.
     Add this statement:'
   id: totrans-892
   prefs: []
   type: TYPE_NORMAL
+  zh: 在同一个函数中，我们会触发一个事件来传达锻炼的进度。添加这个语句：
 - en: '[PRE137]'
   id: totrans-893
   prefs: []
@@ -5686,39 +5857,47 @@
   id: totrans-894
   prefs: []
   type: TYPE_NORMAL
+  zh: 这完成了我们的事件实现。
 - en: As you may have guessed, `WorkoutAudioComponent` now needs to consume these
     events. The challenge here is how to organize these components so that they can
     communicate with each other with the minimum dependency on each other.
   id: totrans-895
   prefs: []
   type: TYPE_NORMAL
+  zh: 你可能已经猜到了，`WorkoutAudioComponent`现在需要消耗这些事件。这里的挑战是如何组织这些组件，以便它们能以最小的依赖关系互相通信。
 - en: Component communication patterns
   id: totrans-896
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 组件通信模式
 - en: 'As the implementation stands now, we have:'
   id: totrans-897
   prefs: []
   type: TYPE_NORMAL
+  zh: 目前的实现中，我们有：
 - en: A basic `WorkoutAudioComponent` implementation
   id: totrans-898
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 一个基本的`WorkoutAudioComponent`实现
 - en: Augmented `WorkoutRunnerComponent` by exposing workout life cycle events
   id: totrans-899
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 通过公开锻炼生命周期事件扩展了`WorkoutRunnerComponent`
 - en: These two components just need to talk to each other now.
   id: totrans-900
   prefs: []
   type: TYPE_NORMAL
+  zh: 这两个组件现在只需要互相交流。
 - en: 'If the parent needs to communicate with its children, it can do this by:'
   id: totrans-901
   prefs: []
   type: TYPE_NORMAL
+  zh: 如果父组件需要与其子组件通信，可以通过以下方式完成：
 - en: '**Property binding**: The parent component can set up a property binding on
     the child component to push data to the child component. For example, this property
     binding can stop the audio player when the workout is paused:'
@@ -5726,6 +5905,7 @@
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '**属性绑定**：父组件可以在子组件上建立属性绑定，向子组件推送数据。例如，当锻炼暂停时，这个属性绑定可以停止音频播放器：'
 - en: '[PRE138]'
   id: totrans-903
   prefs: []
@@ -5737,6 +5917,7 @@
   id: totrans-904
   prefs: []
   type: TYPE_NORMAL
+  zh: 属性绑定，在这种情况下，完全正常。当锻炼暂停时，音频也会停止。但并非所有情况都可以使用属性绑定来处理。播放下一个练习音频或中途音频需要更多控制。
 - en: '**Calling functions on child components**: The parent component can also call
     functions on the child component if it can get hold of the child component. We
     have already seen how to achieve this using the `@ViewChild` and `@ViewChildren` decorators
@@ -5746,6 +5927,7 @@
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '**调用子组件的函数**：如果父组件可以获取到子组件，那么父组件也可以调用子组件的函数。我们已经看到了如何在`WorkoutAudioComponent`的实现中使用`@ViewChild`和`@ViewChildren`装饰器来实现这一点。这种方法及其缺点也已经在*集成WorkoutAudioComponent*部分中简要讨论过。'
 - en: There is one more not-so-good option. Instead of the parent referencing the
     child component, the child references the parent component. This allows the child
     component to call the parent component's public functions or subscribe to parent
@@ -5753,22 +5935,26 @@
   id: totrans-906
   prefs: []
   type: TYPE_NORMAL
+  zh: 还有一种不太好的选项。而不是父引用子组件，子引用父组件。这允许子组件调用父组件的公共函数或订阅父组件的事件。
 - en: We are going to try this approach and then scrap the implementation for a better
     one! A lot of learning can be derived from the not-so-optimal solution we plan
     to implement.
   id: totrans-907
   prefs: []
   type: TYPE_NORMAL
+  zh: 我们将尝试这种方法，然后放弃实现一个更好的方案！从我们计划实施的不太优化的解决方案中可以得到很多学习。
 - en: Injecting a parent component into a child component
   id: totrans-908
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 将父组件注入到子组件中
 - en: 'Add the `WorkoutAudioComponent` to the `WorkoutRunnerComponent` view just before the
     last closing `div`:'
   id: totrans-909
   prefs: []
   type: TYPE_NORMAL
+  zh: 在最后一个闭合的`div`之前将`WorkoutAudioComponent`添加到`WorkoutRunnerComponent`的视图中：
 - en: '[PRE139]'
   id: totrans-910
   prefs: []
@@ -5779,6 +5965,7 @@
   id: totrans-911
   prefs: []
   type: TYPE_NORMAL
+  zh: 接下来，将`WorkoutRunnerComponent`注入到`WorkoutAudioComponent`中。打开`workout-audio.component.ts`并添加以下声明并更新构造函数：
 - en: '[PRE140]'
   id: totrans-912
   prefs: []
@@ -5788,6 +5975,7 @@
   id: totrans-913
   prefs: []
   type: TYPE_NORMAL
+  zh: 记得添加这些导入：
 - en: '[PRE141]'
   id: totrans-914
   prefs: []
@@ -5804,6 +5992,7 @@
   id: totrans-915
   prefs: []
   type: TYPE_NORMAL
+  zh: 在运行应用程序之前，让我们试着理解我们之前做过的事情。在构造注入中涉及一些诡计。如果我们直接尝试将`WorkoutRunnerComponent`注入到`WorkoutAudioComponent`中，Angular会抱怨找不到所有的依赖关系。仔细阅读代码，并且认真思考；潜藏着一个微妙的循环依赖问题。`WorkoutRunnerComponent`已经依赖于`WorkoutAudioComponent`，因为我们在`WorkoutRunnerComponent`视图中引用了`WorkoutAudioComponent`。现在通过将`WorkoutRunnerComponent`注入到`WorkoutAudioComponent`中，我们创建了一个依赖循环。
 - en: Cyclic dependencies are challenging for any DI framework. When creating a component
     with a cyclic dependency, the framework has to somehow resolve the cycle. In the
     preceding example, we resolve the circular dependency issue by using an `@Inject` decorator
@@ -5811,6 +6000,7 @@
   id: totrans-916
   prefs: []
   type: TYPE_NORMAL
+  zh: 循环依赖对于任何DI框架来说都是具有挑战性的。当创建具有循环依赖的组件时，框架必须以某种方式解决循环。在前面的例子中，我们使用`@Inject`装饰器并传递使用`forwardRef()`全局框架函数创建的令牌来解决循环依赖问题。
 - en: Once the injection is done correctly, inside the constructor, we attach a handler
     to the `WorkoutRunnerComponent` events, using the `subscribe` function of `EventEmitter`.
     The arrow function passed to `subscribe` is called whenever the event occurs with
@@ -5820,11 +6010,13 @@
   id: totrans-917
   prefs: []
   type: TYPE_NORMAL
+  zh: 一旦正确进行了注入，在构造函数内部，我们使用`EventEmitter`的`subscribe`函数为`WorkoutRunnerComponent`事件绑定处理程序。传递给`subscribe`的箭头函数在特定的事件参数发生时被调用。我们将所有的订阅收集到一个`subscription`数组中。当我们需要取消订阅时，这个数组会很有用，以避免内存泄漏。
 - en: 'A bit about `EventEmitter`: the `EventEmmiter` subscription (`subscribe` function)
     takes three arguments:'
   id: totrans-918
   prefs: []
   type: TYPE_NORMAL
+  zh: 关于`EventEmitter`的一点说明：`EventEmmiter`的订阅(`subscribe`函数)接受三个参数：
 - en: '[PRE142]'
   id: totrans-919
   prefs: []
@@ -5835,18 +6027,21 @@
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 第一个参数是一个回调函数，每当事件被触发时被调用
 - en: The second argument is an error callback function, invoked when the observable
     (the part that is generating events) errors out
   id: totrans-921
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 第二个参数是一个错误回调函数，在可观察对象（生成事件的部分）发生错误时被调用
 - en: The final argument takes a callback function that is called when the observable
     is done publishing events
   id: totrans-922
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 最后一个参数接受一个回调函数，该函数在可观察对象完成发布事件时被调用。
 - en: We have done enough to make audio integration work. Run the app and start the
     workout. Except for the ticking audio, all the `\` audio clips play at the right
     time. You may have to wait some time to hear the other audio clips. What is the
@@ -5854,6 +6049,7 @@
   id: totrans-923
   prefs: []
   type: TYPE_NORMAL
+  zh: 我们已经做了足够的工作，使音频集成可以工作。运行应用程序并开始锻炼。除了滴答声音以外，所有的音频剪辑都在正确的时间播放。您可能需要等一段时间才能听到其他音频剪辑。问题在哪里？
 - en: As it turns out, we never started the ticking audio clip at the start of the
     workout. We can fix it by either setting the `autoplay` attribute on the `ticks` audio
     element or using the component life cycle events to trigger the ticking sound.
@@ -5861,16 +6057,19 @@
   id: totrans-924
   prefs: []
   type: TYPE_NORMAL
+  zh: 然后，事实证明我们从未在锻炼开始时播放滴答声音。我们可以通过在`ticks`音频元素上设置`autoplay`属性或使用组件生命周期事件来触发滴答声音来修复它。我们采取第二种方法。
 - en: Using component life cycle events
   id: totrans-925
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 使用组件生命周期事件
 - en: 'The injected `MyAudioDirective` in `WorkoutAudioComponent`, shown as follows,
     is not available till the view is initialized:'
   id: totrans-926
   prefs: []
   type: TYPE_NORMAL
+  zh: 注入到`WorkoutAudioComponent`中的`MyAudioDirective`在视图初始化之前是不可用的。
 - en: '[PRE143]'
   id: totrans-927
   prefs: []
@@ -5882,6 +6081,7 @@
   id: totrans-928
   prefs: []
   type: TYPE_NORMAL
+  zh: 我们可以通过访问构造函数中的`ticks`变量来进行验证；它将为空。Angular仍然没有进行魔法，我们需要等待`WorkoutAudioComponent`的子组件初始化。
 - en: The component's life cycle hooks can help us here. The `AfterViewInit` event
     hook is called once the component's view has been initialized and hence is a safe
     place from which to access the component's child directives/elements. Let's do
@@ -5889,11 +6089,13 @@
   id: totrans-929
   prefs: []
   type: TYPE_NORMAL
+  zh: 组件的生命周期钩子现在可以帮助我们了。`AfterViewInit`事件钩子在组件视图初始化后调用，因此是从中访问组件的子指令/元素的安全位置。让我们快点做吧。
 - en: 'Update `WorkoutAudioComponent` by adding the interface implementation, and
     the necessary imports, as highlighted:'
   id: totrans-930
   prefs: []
   type: TYPE_NORMAL
+  zh: 通过添加接口实现和必要的导入，更新`WorkoutAudioComponent`，如下所示：
 - en: '[PRE144]'
   id: totrans-931
   prefs: []
@@ -5904,6 +6106,7 @@
   id: totrans-932
   prefs: []
   type: TYPE_NORMAL
+  zh: 继续测试该应用程序。该应用程序已经具备了完整的音频反馈功能。很好！
 - en: While everything looks fine and dandy on the surface, there is a memory leak
     in the application now. If, in the middle of the workout, we navigate away from
     the workout page (to the start or finish page) and again return to the workout
@@ -5911,6 +6114,7 @@
   id: totrans-933
   prefs: []
   type: TYPE_NORMAL
+  zh: 尽管一切看起来都很美好，但是现在应用程序中存在一些内存泄漏。如果在锻炼过程中，我们从锻炼页面导航到开始或完成页面，然后再返回到锻炼页面，多个音频剪辑就会在随机时间播放。
 - en: It seems that `WorkoutRunnerComponent` is not getting destroyed on route navigation,
     and due to this, none of the child components are destroyed, including `WorkoutAudioComponent`.
     The net result? A new `WorkoutRunnerComponent` is being created every time we
@@ -5919,6 +6123,7 @@
   id: totrans-934
   prefs: []
   type: TYPE_NORMAL
+  zh: 似乎`WorkoutRunnerComponent`在路由导航时没有被销毁，因此包括`WorkoutAudioComponent`在内的所有子组件都没有被销毁。结果呢？每次我们导航到锻炼页面时都会创建一个新的`WorkoutRunnerComponent`，但在导航离开时却不会从内存中删除。
 - en: The primary reason for this memory leak is the event handlers we have added
     in `WorkoutAudioComponent`. We need to unsubscribe from these events when the
     audio component unloads, or else the `WorkoutRunnerComponent` reference will never
@@ -5926,11 +6131,13 @@
   id: totrans-935
   prefs: []
   type: TYPE_NORMAL
+  zh: 此内存泄漏的主要原因是我们在`WorkoutAudioComponent`中添加的事件处理程序。当音频组件卸载时，我们需要取消订阅这些事件，否则`WorkoutRunnerComponent`的引用将永远不会被解除引用。
 - en: 'Another component lifecycle event comes to our rescue here: `OnDestroy` Add
     this implementation to the `WorkoutAudioComponent` class:'
   id: totrans-936
   prefs: []
   type: TYPE_NORMAL
+  zh: 另一个组件生命周期事件在这里为我们解决问题：`OnDestroy`。将此实现添加到`WorkoutAudioComponent`类中：
 - en: '[PRE145]'
   id: totrans-937
   prefs: []
@@ -5941,38 +6148,46 @@
   id: totrans-938
   prefs: []
   type: TYPE_NORMAL
+  zh: 另外，记得像我们为`AfterViewInit`那样为`OnDestroy`事件接口添加引用。
 - en: Hope the `subscription` array that we created during event subscription makes
     sense now. One-shot unsubscribe!
   id: totrans-939
   prefs: []
   type: TYPE_NORMAL
+  zh: 希望我们在事件订阅期间创建的`subscription`数组现在有意义了。一次性取消订阅！
 - en: This audio integration is now complete. While this approach is not an awfully
     bad way of integrating the two components, we can do better. Child components
     referring to the parent component seems to be undesirable.
   id: totrans-940
   prefs: []
   type: TYPE_NORMAL
+  zh: 此音频集成现在已经完成。虽然这种方法不是集成这两个组件的办法，但我们可以做得更好。子组件引用父组件似乎是不可取的。
 - en: Before proceeding, delete the code that we have added to `workout-audio.component.ts` from
     the *Injecting a parent component into a child component* section onward.
   id: totrans-941
   prefs: []
   type: TYPE_NORMAL
+  zh: 在继续之前，删除我们从*将父组件注入子组件*部分开始添加到`workout-audio.component.ts`的代码。
 - en: Sibling component interaction using events and template variables
   id: totrans-942
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 使用事件和模板变量进行兄弟组件交互
 - en: What if `WorkoutRunnerComponent` and `WorkoutAudioComponent` were organized
     as sibling components?
   id: totrans-943
   prefs: []
   type: TYPE_NORMAL
+  zh: 如果`WorkoutRunnerComponent`和`WorkoutAudioComponent`组织为兄弟组件会怎样？
 - en: 'If `WorkoutAudioComponent` and `WorkoutRunnerComponent` become siblings, we
     can make good use of Angular''s *eventing* and *template reference variables*.
     Confused? Well, to start with, this is how the components should be laid out:'
   id: totrans-944
   prefs: []
   type: TYPE_NORMAL
+  zh: 如果`WorkoutAudioComponent`和`WorkoutRunnerComponent`变成兄弟组件，我们可以充分利用Angular的*事件*和*模板引用变量*。
+    糊涂了吗？ 好吧，首先，组件应该这样布局：
 - en: '[PRE146]'
   id: totrans-945
   prefs: []
@@ -5983,12 +6198,14 @@
   id: totrans-946
   prefs: []
   type: TYPE_NORMAL
+  zh: 这有什么提示吗？ 从这个模板开始，你可以猜到最终的HTML模板会长什么样吗？ 在继续之前好好考虑一下。
 - en: 'Still struggling? As soon as we make them sibling components, the power of
     the Angular templating engine comes to the fore. The following template code is
     enough to integrate `WorkoutRunnerComponent` and `WorkoutAudioComponent`:'
   id: totrans-947
   prefs: []
   type: TYPE_NORMAL
+  zh: 仍然在挣扎？ 一旦我们将它们设置为兄弟组件，Angular模板引擎的强大之处就展现出来了。 以下模板代码足以集成`WorkoutRunnerComponent`和`WorkoutAudioComponent`：
 - en: '[PRE147]'
   id: totrans-948
   prefs: []
@@ -6002,6 +6219,8 @@
   id: totrans-949
   prefs: []
   type: TYPE_NORMAL
+  zh: 对`WorkoutRunnerComponent`模板变量`wa`通过在`WorkoutRunnerComponent`上的事件处理器表达式中引用该变量进行操纵。
+    相当优雅！ 我们仍然需要解决这种方法中最大的难题：前面的代码放在哪里？ 记住，`WorkoutRunnerComponent`作为路由加载的一部分加载。 在代码中，我们在没有这样的语句的地方：
 - en: '[PRE148]'
   id: totrans-950
   prefs: []
@@ -6014,11 +6233,14 @@
   id: totrans-951
   prefs: []
   type: TYPE_NORMAL
+  zh: 我们需要重新组织组件树，并引入一个可以承载`WorkoutRunnerComponent`和`WorkoutAudioComponent`的容器组件。
+    然后路由器加载此容器组件而不是`WorkoutRunnerComponent`。 让我们做吧。
 - en: 'Generate a new component code from command line by navigating to `trainer/src/app/workout-runner` and
     executing:'
   id: totrans-952
   prefs: []
   type: TYPE_NORMAL
+  zh: 通过导航到`trainer/src/app/workout-runner`并执行以下命令，从命令行生成新的组件代码：
 - en: '[PRE149]'
   id: totrans-953
   prefs: []
@@ -6029,11 +6251,13 @@
   id: totrans-954
   prefs: []
   type: TYPE_NORMAL
+  zh: 复制描述事件的HTML代码到模板文件中。 运动容器组件已经准备好了。
 - en: 'We just need to rewire the routing setup. Open `app-routing.module.ts`. Change
     the route for the workout runner and add the necessary import:'
   id: totrans-955
   prefs: []
   type: TYPE_NORMAL
+  zh: 我们只需要重构路由设置。 打开`app-routing.module.ts`。 更改运动员的路由并添加必要的导入：
 - en: '[PRE150]'
   id: totrans-956
   prefs: []
@@ -6044,31 +6268,37 @@
   id: totrans-957
   prefs: []
   type: TYPE_NORMAL
+  zh: 我们已经有一个可以工作的音频集成，清晰、简洁，色彩搭配令人愉悦！
 - en: It's time now to wrap up the chapter, but not before addressing the video player
     dialog glitch introduced in the earlier sections. The workout does not stop/pause
     when the video player dialog is open.
   id: totrans-958
   prefs: []
   type: TYPE_NORMAL
+  zh: 现在是时候结束本章了，但在解决前几节介绍的视频播放器对话框故障之前还不要结束。 当视频播放器对话框打开时，运动不会停止/暂停。
 - en: We are not going to detail the fix here, and urge the readers to give it a try
     without consulting the `checkpoint3.4` code.
   id: totrans-959
   prefs: []
   type: TYPE_NORMAL
+  zh: 我们不会在这里详细说明修复的内容，并且敦促读者在不查阅`checkpoint3.4`代码的情况下尝试一下。
 - en: Here is an obvious hint. Use the eventing infrastructure!
   id: totrans-960
   prefs: []
   type: TYPE_NORMAL
+  zh: 这里有一个明显的提示。 使用事件基础设施！
 - en: 'And another one: raise events from `VideoPlayerComponent`, one for each playback
     started and ended.'
   id: totrans-961
   prefs: []
   type: TYPE_NORMAL
+  zh: 还有一个：从`VideoPlayerComponent`触发事件，每个事件对应一个开始和结束的播放。
 - en: 'And one last hint: the `open` function on the dialog service (`Modal`) returns
     a promise, which is resolved when the dialog is closed.'
   id: totrans-962
   prefs: []
   type: TYPE_NORMAL
+  zh: 最后一个提示：对话框服务（`Modal`）上的`open`函数返回一个promise，在对话框关闭时解析。
 - en: If you are having a problem with running the code, look at the `checkpoint3.4` Git
     branch for a working version of what we have done thus far. Or if you are not
     using Git, download the snapshot of `checkpoint3.4` (a ZIP file) from [http://bit.ly/ng6be-checkpoint-3-4](http://bit.ly/ng6be-checkpoint-3-4).
@@ -6077,17 +6307,23 @@
   id: totrans-963
   prefs: []
   type: TYPE_NORMAL
+  zh: 如果您在运行代码时遇到问题，请查看到目前为止我们所做的工作的工作版本在 `checkpoint3.4` Git 分支中。或者，如果您没有使用 Git，请从
+    [http://bit.ly/ng6be-checkpoint-3-4](http://bit.ly/ng6be-checkpoint-3-4) 下载 `checkpoint3.4`
+    的快照（ZIP 文件）。第一次设置快照时，请参考 `trainer` 文件夹中的 `README.md` 文件。
 - en: Summary
   id: totrans-964
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 总结
 - en: We started this chapter with the aim of creating a complex Angular app. The
     *7 Minute Workout* app fitted the bill, and you learned a lot about the Angular
     framework while building this app.
   id: totrans-965
   prefs: []
   type: TYPE_NORMAL
+  zh: 我们开始本章的目的是创建一个复杂的 Angular 应用程序。 *7分钟健身* 应用程序符合要求，在构建这个应用程序的过程中，你学到了很多关于 Angular
+    框架的知识。
 - en: To build the app, we started off by defining the model of the app. Once the
     model was in place, we started the actual implementation by building an **Angular
     component**. Angular components are nothing but classes that are decorated with
@@ -6095,11 +6331,14 @@
   id: totrans-966
   prefs: []
   type: TYPE_NORMAL
+  zh: 为了构建应用程序，我们首先定义了应用程序的模型。一旦模型就位，我们开始通过构建一个 **Angular 组件** 来执行实际的实现。Angular 组件只不过是用特定于框架的装饰器
+    `@Component` 装饰的类。
 - en: We also learned about **Angular modules** and how Angular uses them to organize
     code artifacts.
   id: totrans-967
   prefs: []
   type: TYPE_NORMAL
+  zh: 我们还学习了关于 **Angular 模块** 以及 Angular 如何使用它们来组织代码构件。
 - en: Once we had a fully functional component, we created a supporting view for the
     app. We also explored the data binding capabilities of the framework, including
     **property**, **attribute**, **class**, **style,** and **event binding**. Plus,
@@ -6107,12 +6346,15 @@
   id: totrans-968
   prefs: []
   type: TYPE_NORMAL
+  zh: 一旦我们有了完全功能的组件，我们为应用程序创建了一个支持视图。我们还探究了框架的数据绑定能力，包括 **属性**，**属性**，**类**，**样式**
+    和 **事件绑定**。此外，我们强调了 **插值** 是属性绑定的一个特例。
 - en: Components are a special class of directives that have an attached view. We
     touched upon what directives are and the special classes of directives, including
     **attribute** and **structural directives**.
   id: totrans-969
   prefs: []
   type: TYPE_NORMAL
+  zh: 组件是具有附加视图的指令的特殊类别。我们简要介绍了指令是什么以及指令的特殊类别，包括 **属性** 和 **结构性指令**。
 - en: We learned how to perform cross-component communication using **input properties**.
     The two child components that we put together (`ExerciseDescriptionComponent`
     and `VideoPlayerComponent`) derived their inputs from the parent `WorkoutRunnerComponent`
@@ -6120,37 +6362,45 @@
   id: totrans-970
   prefs: []
   type: TYPE_NORMAL
+  zh: 我们学习了如何使用 **输入属性** 进行跨组件通信。我们组合的两个子组件（`ExerciseDescriptionComponent` 和 `VideoPlayerComponent`）使用输入属性从父组件
+    `WorkoutRunnerComponent` 获取它们的输入。
 - en: We then covered another core construct in Angular, **pipes**. We saw how to
     use pipes such as the date pipe and how to create one of our own.
   id: totrans-971
   prefs: []
   type: TYPE_NORMAL
+  zh: 然后，我们介绍了 Angular 中的另一个核心构件，**管道**。我们看到了如何使用管道，比如日期管道，以及如何创建我们自己的管道。
 - en: 'Throughout the chapter, we touched upon a number of Angular directives, including
     the following:'
   id: totrans-972
   prefs: []
   type: TYPE_NORMAL
+  zh: 在整个章节中，我们接触了许多 Angular 指令，包括以下内容：
 - en: '`ngClass/ngStyle`: For applying multiple styles and classes using Angular binding
     capabilities'
   id: totrans-973
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '`ngClass/ngStyle`: 用于使用 Angular 绑定能力应用多个样式和类'
 - en: '`ngFor`: For generating dynamic HTML content using a looping construct'
   id: totrans-974
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '`ngFor`: 用于使用循环结构生成动态 HTML 内容'
 - en: '`ngIf`: For conditionally creating/destroying DOM elements'
   id: totrans-975
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '`ngIf`: 用于有条件地创建/销毁 DOM 元素'
 - en: '`ngSwitch`: For creating/destroying DOM elements using the switch-case construct'
   id: totrans-976
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '`ngSwitch`: 用于使用 switch-case 结构创建/销毁 DOM 元素'
 - en: We now have a basic *7 Minute Workout* app. For a better user experience, we
     have added a number of small enhancements to it too, but we are still missing
     some good-to-have features that would make our app more usable. From the framework
@@ -6160,24 +6410,31 @@
   id: totrans-977
   prefs: []
   type: TYPE_NORMAL
+  zh: 我们现在有一个基本的 *7分钟健身* 应用程序。为了提供更好的用户体验，我们还添加了一些小的增强功能，但我们仍然缺少一些使我们的应用程序更易用的功能。
+    从框架的角度来看，我们有意忽略了一些核心/高级概念，如 **变更检测**，**依赖注入**，**组件路由** 和数据流模式。
 - en: 'Lastly, we touched upon an important topic: cross-component communication,
     primarily using Angular eventing. We detailed how to create custom events using
     the `@Output` decorator and `EventEmitter`.'
   id: totrans-978
   prefs: []
   type: TYPE_NORMAL
+  zh: 最后，我们接触了一个重要的话题：跨组件通信，主要使用 Angular 事件。我们详细介绍了如何使用 `@Output` 装饰器和 `EventEmitter`
+    创建自定义事件。
 - en: The `@ViewChild` and `@ViewChildren` decorators that we touched upon in this
     chapter helped us understand how a parent can get hold of a child component for
     use. Angular DI also allows injecting a parent component into a child.
   id: totrans-979
   prefs: []
   type: TYPE_NORMAL
+  zh: 在本章中，我们提到的 `@ViewChild` 和 `@ViewChildren` 装饰器帮助我们理解了父组件如何获取子组件并进行使用。Angular
+    DI 还允许将父组件注入到子组件中。
 - en: We concluded this chapter by building a `WorkoutAudioComponent` and highlighted
     how sibling-component communication can happen using Angular events and template
     variables.
   id: totrans-980
   prefs: []
   type: TYPE_NORMAL
+  zh: 我们通过构建一个 `WorkoutAudioComponent` 来结束了本章，并突出了如何使用 Angular 事件和模板变量进行兄弟组件通信。
 - en: What's next? We are going to build a new app, *Personal Trainer*. This app will
     allow us to build our own custom workouts. Once we can create our own workout,
     we are going to morph the *7-Minute Workout* app into a generic *Workout Runner* app
@@ -6185,8 +6442,11 @@
   id: totrans-981
   prefs: []
   type: TYPE_NORMAL
+  zh: 接下来呢？我们将构建一个新的应用，*个人健身教练*。这个应用将允许我们构建自定义的训练。一旦我们能够创建自己的训练，我们将把 *7 分钟训练* 应用程序改造成通用的
+    *训练运行器* 应用程序，可以运行我们使用 *个人健身教练* 构建的训练。
 - en: For the next chapter, we'll showcase Angular's form capabilities while we build
     a UI that allows us to create, update, and view our own custom workouts/exercises.
   id: totrans-982
   prefs: []
   type: TYPE_NORMAL
+  zh: 对于下一章，我们将展示 Angular 的表单功能，同时构建一个允许我们创建、更新和查看自定义训练/练习的 UI。
