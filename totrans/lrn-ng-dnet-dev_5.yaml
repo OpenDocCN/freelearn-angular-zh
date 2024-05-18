@@ -248,14 +248,17 @@
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: '你需要添加 `Microsoft.AspNetCore.StaticFiles` NuGet 软件包，如图所示，以使用这些扩展:'
 - en: '![](img/image_05_010.png)'
   id: totrans-43
   prefs: []
   type: TYPE_IMG
+  zh: '![](img/image_05_010.png)'
 - en: Adding a reference to a namespace if required
   id: totrans-44
   prefs: []
   type: TYPE_NORMAL
+  zh: 如有需要，请向命名空间添加引用
 - en: 'Now, add an `index.html` file under theÂ `wwwroot` folder and run the application
     by pressing *F5*. You will note that the application serves the `index.html` file
     as the default file for the request. Here, I have added an `h1` tag with the content
@@ -264,29 +267,36 @@
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: '现在，在 `wwwroot` 文件夹下添加一个 `index.html` 文件，并通过按下 *F5* 运行应用程序。你会注意到应用程序为请求提供了 `index.html`
+    文件作为默认文件。在这里，我已经添加了一个内容为 **`My Todo Landing Page`** 的 `h1` 标签:'
 - en: '![](img/image_05_011.png)'
   id: totrans-46
   prefs: []
   type: TYPE_IMG
+  zh: '![](img/image_05_011.png)'
 - en: The output of the application after adding index.html
   id: totrans-47
   prefs: []
   type: TYPE_NORMAL
+  zh: 在添加了 index.html 后的应用程序输出
 - en: Adding client-side packages using NPM package manager
   id: totrans-48
   prefs:
   - PREF_H2
   type: TYPE_NORMAL
+  zh: 使用 NPM 软件包管理器添加客户端软件包
 - en: '* * *'
   id: totrans-49
   prefs: []
   type: TYPE_NORMAL
+  zh: '* * *'
 - en: When we develop applications, we add references to many frameworks and libraries
     as dependencies. In Visual Studio, we have the NuGet package manager tool to manage
     all those packages in our application.
   id: totrans-50
   prefs: []
   type: TYPE_NORMAL
+  zh: 在我们开发应用程序时，我们将很多框架和库添加为依赖项的引用。在 Visual Studio 中，我们有 NuGet 软件包管理工具来管理应用程序中的所有这些软件包。
 - en: 'In the frontend web community, using Bower, Grunt, Gulp, and NPM to manage
     packages and running build tasks to develop modern web applications has become
     widely popular. As this ecosystem is very rich and widely accepted, Visual Studio
@@ -295,14 +305,18 @@
   id: totrans-51
   prefs: []
   type: TYPE_NORMAL
+  zh: '在前端网络社区中，使用 Bower、Grunt、Gulp 和 NPM 来管理软件包和运行构建任务，开发现代 Web 应用已经变得广泛流行。由于这个生态系统非常丰富并且得到了广泛接受，Visual
+    Studio 2015 已经采用了这些系统来管理客户端框架和库，如图所示。NuGet 是管理服务器端软件包的理想选择:'
 - en: '![](img/image_05_012.png)'
   id: totrans-52
   prefs: []
   type: TYPE_IMG
+  zh: '![](img/image_05_012.png)'
 - en: Various package managing tools
   id: totrans-53
   prefs: []
   type: TYPE_NORMAL
+  zh: 各种软件包管理工具
 - en: 'We saw how to manage client-side packages using NPM in Visual Studio Code.
     Similarly, we use NPM in Visual Studio 2015 or later to manage frontend frameworks
     and libraries in our project. Let''s add the Angular framework and other required
@@ -311,6 +325,8 @@
   id: totrans-54
   prefs: []
   type: TYPE_NORMAL
+  zh: 我们看到如何在 Visual Studio Code 中使用 NPM 管理客户端软件包。类似地，我们在 Visual Studio 2015 或更高版本中使用
+    NPM 来管理项目中的前端框架和库。让我们通过以下步骤使用 NPM 将 Angular 框架和其他所需的 JavaScript 库作为项目的依赖项添加到我们的项目中：
 - en: First, let's add **`NPM Configuration File`** to our project. Right-click on
     the project node and navigate to `Add` | `New Item`. Select **`General`** under
     **`Web`**Â from the left-hand side pane and **`NPM Configuration File`** from
@@ -319,37 +335,46 @@
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 首先，让我们向我们的项目添加 **`NPM 配置文件`**。右键单击项目节点，导航到 `Add` | `New Item`。从左侧窗格中选择 **`Web`**
+    下的 **`General`**，并且从中间窗格选择 **`NPM 配置文件`**。
 - en: 'Then, click on **`Add`**, leaving the default name as `package.json`:'
   id: totrans-56
   prefs: []
   type: TYPE_NORMAL
+  zh: '然后，点击 **`Add`**，将默认名称保留为 `package.json`:'
 - en: '![](img/image_05_013.png)'
   id: totrans-57
   prefs: []
   type: TYPE_IMG
+  zh: '![](img/image_05_013.png)'
 - en: The NPM configuration file named package.json
   id: totrans-58
   prefs: []
   type: TYPE_NORMAL
+  zh: 名为 package.json 的 NPM 配置文件
 - en: 'The `package.json` file will be added to your project with the following default
     JSON code:'
   id: totrans-59
   prefs: []
   type: TYPE_NORMAL
+  zh: '`package.json` 文件将被添加到您的项目中，其默认 JSON 代码如下:'
 - en: '![](img/image_05_014.png)'
   id: totrans-60
   prefs: []
   type: TYPE_IMG
+  zh: '![](img/image_05_014.png)'
 - en: The code snippet of package.json
   id: totrans-61
   prefs: []
   type: TYPE_NORMAL
+  zh: package.json 的代码片段
 - en: 'Update the `name` field with `my-todo` and add the required dependencies to
     the `package.json` file, as shown:'
   id: totrans-62
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: '将 `name` 字段更新为 `my-todo` 并将所需的依赖项添加到 `package.json` 文件中，如图所示:'
 - en: '[PRE1]'
   id: totrans-63
   prefs: []
@@ -363,14 +388,18 @@
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 当我们保存了带有所有依赖信息的 `package.json` 文件时，Visual Studio 将所需的软件包添加到我们的项目下的 `node_modules`
+    隐藏文件夹中，你可以通过导航到 `Dependencies` 节点下的 `npm` 文件夹来查看加载的依赖项列表，如下图所示：
 - en: '![](img/image_05_015.png)'
   id: totrans-65
   prefs: []
   type: TYPE_IMG
+  zh: '![](img/image_05_015.png)'
 - en: The NPM folder with dependency libraries
   id: totrans-66
   prefs: []
   type: TYPE_NORMAL
+  zh: 具有依赖库的 NPM 文件夹
 - en: We have all the client-side frameworks and libraries in our project dependency
     node that we need. However, we need to add the dependent libraries to our `wwwroot`
     folder for our application to refer and consume. We will discuss this in the next
@@ -378,15 +407,18 @@
   id: totrans-67
   prefs: []
   type: TYPE_NORMAL
+  zh: 我们的项目依赖节点中已经有了我们需要的所有客户端框架和库。但是，我们需要将依赖库添加到我们的 `wwwroot` 文件夹中，以便我们的应用程序引用和消耗。我们将在下一节中讨论这一点。
 - en: Using Gulp to run tasks
   id: totrans-68
   prefs:
   - PREF_H2
   type: TYPE_NORMAL
+  zh: 使用 Gulp 运行任务
 - en: '* * *'
   id: totrans-69
   prefs: []
   type: TYPE_NORMAL
+  zh: '* * *'
 - en: Gulp is a task runner that runs on `node.js`. Using Gulp, we can automate activities
     such as moving or copying files, and bundling and minification. In ASP.NET Core,
     Microsoft also integrated Gulp with Visual Studio as it has been widely accepted
