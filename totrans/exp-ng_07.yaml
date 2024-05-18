@@ -1241,114 +1241,142 @@
   id: totrans-199
   prefs: []
   type: TYPE_NORMAL
+  zh: fetchOneById 1
 - en: :4200/app/services/imdbapi.service.js:30 filter Object
   id: totrans-200
   prefs: []
   type: TYPE_NORMAL
+  zh: :4200/app/services/imdbapi.service.js:30 过滤对象
 - en: :4200/app/services/imdbapi.service.js:34 map Object
   id: totrans-201
   prefs: []
   type: TYPE_NORMAL
+  zh: :4200/app/services/imdbapi.service.js:34 映射对象
 - en: :4200/app/angular-observable.component.js:21 Component
   id: totrans-202
   prefs: []
   type: TYPE_NORMAL
+  zh: :4200/app/angular-observable.component.js:21 组件
 - en: 'Movie_aspect_ratio_name: " 2.35:1"_budget:'
   id: totrans-203
   prefs: []
   type: TYPE_NORMAL
+  zh: 电影宽高比名称：" 2.35:1"_预算：
 - en: '"140,000,000"_category_name: "Action"_disc_format_name: "Blu-'
   id: totrans-204
   prefs: []
   type: TYPE_NORMAL
+  zh: '"140,000,000"_类别名称："动作"_光盘格式名称："蓝光-'
 - en: 'ray"_gross: "318,298,180"_movie_id: 1_number_discs: 1_phase: "Phase'
   id: totrans-205
   prefs: []
   type: TYPE_NORMAL
+  zh: 光盘"总收入："318,298,180"_电影id：1_光盘数量：1_阶段："第
 - en: 'One: Avengers Assembled"_rating_name: "PG-13"_release_date: "May 2,'
   id: totrans-206
   prefs: []
   type: TYPE_NORMAL
+  zh: 一个：复仇者联盟成立"_评分名称："PG-13"_发布日期："5月2日，
 - en: '2008"_release_year: 2015_running_time: 126_status: 1_time_stamp:'
   id: totrans-207
   prefs: []
   type: TYPE_NORMAL
+  zh: '2008"_发布年份: 2015_播放时长: 126_状态: 1_时间戳:'
 - en: '"2015-05-03"_title: "Iron Man"_viewing_format_name:'
   id: totrans-208
   prefs: []
   type: TYPE_NORMAL
+  zh: '"2015-05-03"_标题："钢铁侠"_查看格式名称：'
 - en: '"Widescreen"aspect_ratio_name: (...)budget: (...)category_name:'
   id: totrans-209
   prefs: []
   type: TYPE_NORMAL
+  zh: '"宽屏"宽高比名称：(...)预算：(...)类别名称：'
 - en: '(...)disc_format_name: (...)gross: (...)movie_id: (...)number_discs:'
   id: totrans-210
   prefs: []
   type: TYPE_NORMAL
+  zh: (...)光盘格式名称：(...)总收入：(...)电影id：(...)光盘数量：
 - en: '(...)phase: (...)rating_name: (...)release_date: (...)release_year:'
   id: totrans-211
   prefs: []
   type: TYPE_NORMAL
+  zh: (...)阶段：(...)评分名称：(...)发布日期：(...)发布年份：
 - en: '(...)running_time: (...)status: (...)time_stamp: (...)title:'
   id: totrans-212
   prefs: []
   type: TYPE_NORMAL
+  zh: (...)播放时长：(...)状态：(...)时间戳：(...)标题：
 - en: '(...)toString: ()viewing_format_name: (...)__proto__: Object'
   id: totrans-213
   prefs: []
   type: TYPE_NORMAL
+  zh: (...)ToString：()查看格式名称：(...)__proto__：对象
 - en: :4200/app/services/imdbapi.service.js:30 filter Object
   id: totrans-214
   prefs: []
   type: TYPE_NORMAL
+  zh: :4200/app/services/imdbapi.service.js:30 过滤对象
 - en: :4200/app/services/imdbapi.service.js:30 filter Object
   id: totrans-215
   prefs: []
   type: TYPE_NORMAL
+  zh: :4200/app/services/imdbapi.service.js:30 过滤对象
 - en: :4200/app/services/imdbapi.service.js:30 filter Object
   id: totrans-216
   prefs: []
   type: TYPE_NORMAL
+  zh: :4200/app/services/imdbapi.service.js:30 过滤对象
 - en: :4200/app/services/imdbapi.service.js:30 filter Object
   id: totrans-217
   prefs: []
   type: TYPE_NORMAL
+  zh: :4200/app/services/imdbapi.service.js:30 过滤对象
 - en: :4200/app/services/imdbapi.service.js:30 filter Object
   id: totrans-218
   prefs: []
   type: TYPE_NORMAL
+  zh: :4200/app/services/imdbapi.service.js:30 过滤对象
 - en: :4200/app/services/imdbapi.service.js:30 filter Object
   id: totrans-219
   prefs: []
   type: TYPE_NORMAL
+  zh: :4200/app/services/imdbapi.service.js:30 过滤对象
 - en: :4200/app/services/imdbapi.service.js:30 filter Object
   id: totrans-220
   prefs: []
   type: TYPE_NORMAL
+  zh: :4200/app/services/imdbapi.service.js:30 过滤对象
 - en: :4200/app/services/imdbapi.service.js:30 filter Object
   id: totrans-221
   prefs: []
   type: TYPE_NORMAL
+  zh: :4200/app/services/imdbapi.service.js:30 过滤对象
 - en: :4200/app/services/imdbapi.service.js:30 filter Object
   id: totrans-222
   prefs: []
   type: TYPE_NORMAL
+  zh: :4200/app/services/imdbapi.service.js:30 过滤对象
 - en: :4200/app/services/imdbapi.service.js:30 filter Object
   id: totrans-223
   prefs: []
   type: TYPE_NORMAL
+  zh: :4200/app/services/imdbapi.service.js:30 过滤对象
 - en: :4200/app/services/imdbapi.service.js:30 filter Object
   id: totrans-224
   prefs: []
   type: TYPE_NORMAL
+  zh: :4200/app/services/imdbapi.service.js:30 过滤对象
 - en: :4200/app/services/imdbapi.service.js:30 filter Object
   id: totrans-225
   prefs: []
   type: TYPE_NORMAL
+  zh: :4200/app/services/imdbapi.service.js:30 过滤对象
 - en: :4200/app/services/imdbapi.service.js:30 filter Object
   id: totrans-226
   prefs: []
   type: TYPE_NORMAL
+  zh: :4200/app/services/imdbapi.service.js:30 过滤对象
 - en: '[PRE23]'
   id: totrans-227
   prefs: []
@@ -1358,98 +1386,115 @@
   id: totrans-228
   prefs: []
   type: TYPE_NORMAL
+  zh: public fetchByField(field:电影字段, value:任意){
 - en: console.log('fetchByField', field, value);
   id: totrans-229
   prefs: []
   type: TYPE_NORMAL
+  zh: console.log('fetchByField', field, value);
 - en: return this.http.get(this.moviesUrl)
   id: totrans-230
   prefs: []
   type: TYPE_NORMAL
+  zh: 返回 this.http.get(this.moviesUrl)
 - en: .flatMap(res => res.json().movies)
   id: totrans-231
   prefs:
   - PREF_IND
   - PREF_IND
   type: TYPE_NORMAL
+  zh: .flatMap(res => res.json().movies)
 - en: /**
   id: totrans-232
   prefs:
   - PREF_IND
   - PREF_IND
   type: TYPE_NORMAL
+  zh: /**
 - en: '* Filters movies by their field'
   id: totrans-233
   prefs:
   - PREF_IND
   - PREF_IND
   type: TYPE_NORMAL
+  zh: '* 根据它们的字段过滤电影'
 - en: '*/'
   id: totrans-234
   prefs:
   - PREF_IND
   - PREF_IND
   type: TYPE_NORMAL
+  zh: '*/'
 - en: .filter((movie:any)=>{
   id: totrans-235
   prefs:
   - PREF_IND
   - PREF_IND
   type: TYPE_NORMAL
+  zh: .filter((电影:任意)=>{
 - en: console.log("filter", movie);
   id: totrans-236
   prefs:
   - PREF_IND
   - PREF_IND
   type: TYPE_NORMAL
+  zh: console.log("过滤", 电影);
 - en: return (movie[MovieFields[field]] === value)
   id: totrans-237
   prefs:
   - PREF_IND
   - PREF_IND
   type: TYPE_NORMAL
+  zh: 返回 (电影[电影字段[field]] === value)
 - en: '})'
   id: totrans-238
   prefs:
   - PREF_IND
   - PREF_IND
   type: TYPE_NORMAL
+  zh: '})'
 - en: /**
   id: totrans-239
   prefs:
   - PREF_IND
   - PREF_IND
   type: TYPE_NORMAL
+  zh: /**
 - en: '* Map the JSON movie item to the Movie Model'
   id: totrans-240
   prefs:
   - PREF_IND
   - PREF_IND
   type: TYPE_NORMAL
+  zh: '* 将JSON电影项目映射到电影模型'
 - en: '*/'
   id: totrans-241
   prefs:
   - PREF_IND
   - PREF_IND
   type: TYPE_NORMAL
+  zh: '*/'
 - en: .map((movie:any) => {
   id: totrans-242
   prefs:
   - PREF_IND
   - PREF_IND
   type: TYPE_NORMAL
+  zh: .map((电影:任意) => {
 - en: console.log("map", movie);
   id: totrans-243
   prefs:
   - PREF_IND
   - PREF_IND
   type: TYPE_NORMAL
+  zh: console.log("映射", 电影);
 - en: return new Movie(
   id: totrans-244
   prefs:
   - PREF_IND
   - PREF_IND
   type: TYPE_NORMAL
+  zh: 返回新电影(
 - en: movie.movie_id,
   id: totrans-245
   prefs:
@@ -1457,6 +1502,7 @@
   - PREF_IND
   - PREF_IND
   type: TYPE_NORMAL
+  zh: 电影电影id,
 - en: movie.title,
   id: totrans-246
   prefs:
@@ -1464,6 +1510,7 @@
   - PREF_IND
   - PREF_IND
   type: TYPE_NORMAL
+  zh: 电影标题,
 - en: movie.phase,
   id: totrans-247
   prefs:
@@ -1471,6 +1518,7 @@
   - PREF_IND
   - PREF_IND
   type: TYPE_NORMAL
+  zh: 电影阶段,
 - en: movie.category_name,
   id: totrans-248
   prefs:
@@ -1478,6 +1526,7 @@
   - PREF_IND
   - PREF_IND
   type: TYPE_NORMAL
+  zh: 电影类别名称,
 - en: movie.release_year,
   id: totrans-249
   prefs:
@@ -1485,6 +1534,7 @@
   - PREF_IND
   - PREF_IND
   type: TYPE_NORMAL
+  zh: 电影发布年份,
 - en: movie.running_time,
   id: totrans-250
   prefs:
@@ -1492,6 +1542,7 @@
   - PREF_IND
   - PREF_IND
   type: TYPE_NORMAL
+  zh: 电影播放时长,
 - en: movie.rating_name,
   id: totrans-251
   prefs:
@@ -1499,6 +1550,7 @@
   - PREF_IND
   - PREF_IND
   type: TYPE_NORMAL
+  zh: 电影评分名称,
 - en: movie.disc_format_name,
   id: totrans-252
   prefs:
@@ -1506,6 +1558,7 @@
   - PREF_IND
   - PREF_IND
   type: TYPE_NORMAL
+  zh: 电影光盘格式名称,
 - en: movie.number_discs,
   id: totrans-253
   prefs:
@@ -1513,6 +1566,7 @@
   - PREF_IND
   - PREF_IND
   type: TYPE_NORMAL
+  zh: 电影光盘数量,
 - en: movie.viewing_format_name,
   id: totrans-254
   prefs:
@@ -1520,6 +1574,7 @@
   - PREF_IND
   - PREF_IND
   type: TYPE_NORMAL
+  zh: 电影查看格式名称，
 - en: movie.aspect_ratio_name,
   id: totrans-255
   prefs:
@@ -1527,6 +1582,7 @@
   - PREF_IND
   - PREF_IND
   type: TYPE_NORMAL
+  zh: 电影宽高比名称,
 - en: movie.status,
   id: totrans-256
   prefs:
@@ -1534,6 +1590,7 @@
   - PREF_IND
   - PREF_IND
   type: TYPE_NORMAL
+  zh: 电影状态,
 - en: movie.release_date,
   id: totrans-257
   prefs:
@@ -1541,6 +1598,7 @@
   - PREF_IND
   - PREF_IND
   type: TYPE_NORMAL
+  zh: 电影发布日期,
 - en: movie.budget,
   id: totrans-258
   prefs:
@@ -1548,6 +1606,7 @@
   - PREF_IND
   - PREF_IND
   type: TYPE_NORMAL
+  zh: 电影预算,
 - en: movie.gross,
   id: totrans-259
   prefs:
@@ -1555,6 +1614,7 @@
   - PREF_IND
   - PREF_IND
   type: TYPE_NORMAL
+  zh: 电影总收入,
 - en: movie.time_stamp
   id: totrans-260
   prefs:
@@ -1562,22 +1622,26 @@
   - PREF_IND
   - PREF_IND
   type: TYPE_NORMAL
+  zh: 电影时间戳
 - en: );
   id: totrans-261
   prefs:
   - PREF_IND
   - PREF_IND
   type: TYPE_NORMAL
+  zh: );
 - en: '});'
   id: totrans-262
   prefs:
   - PREF_IND
   - PREF_IND
   type: TYPE_NORMAL
+  zh: '});'
 - en: '}'
   id: totrans-263
   prefs: []
   type: TYPE_NORMAL
+  zh: '}'
 - en: '[PRE24]'
   id: totrans-264
   prefs: []
@@ -1587,62 +1651,76 @@
   id: totrans-265
   prefs: []
   type: TYPE_NORMAL
+  zh: (function (电影字段) {
 - en: MovieFields[MovieFields["movie_id"] = 0] = "movie_id";
   id: totrans-266
   prefs: []
   type: TYPE_NORMAL
+  zh: 电影字段[电影字段["电影id"] = 0] = "电影id";
 - en: MovieFields[MovieFields["title"] = 1] = "title";
   id: totrans-267
   prefs: []
   type: TYPE_NORMAL
+  zh: 电影字段[电影字段["标题"] = 1] = "标题";
 - en: MovieFields[MovieFields["phase"] = 2] = "phase";
   id: totrans-268
   prefs: []
   type: TYPE_NORMAL
+  zh: 电影字段[电影字段["阶段"] = 2] = "阶段";
 - en: MovieFields[MovieFields["category_name"] = 3] = "category_name";
   id: totrans-269
   prefs: []
   type: TYPE_NORMAL
+  zh: 电影字段[电影字段["类别名称"] = 3] = "类别名称";
 - en: MovieFields[MovieFields["release_year"] = 4] = "release_year";
   id: totrans-270
   prefs: []
   type: TYPE_NORMAL
+  zh: 电影字段[电影字段["发布年份"] = 4] = "发布年份";
 - en: MovieFields[MovieFields["running_time"] = 5] = "running_time";
   id: totrans-271
   prefs: []
   type: TYPE_NORMAL
+  zh: 电影字段[电影字段["播放时长"] = 5] = "播放时长";
 - en: MovieFields[MovieFields["rating_name"] = 6] = "rating_name";
   id: totrans-272
   prefs: []
   type: TYPE_NORMAL
+  zh: 电影字段[电影字段["评分名称"] = 6] = "评分名称";
 - en: MovieFields[MovieFields["disc_format_name"] = 7] =
   id: totrans-273
   prefs: []
   type: TYPE_NORMAL
+  zh: 电影字段[电影字段["光盘格式名称"] = 7] =
 - en: '"disc_format_name";'
   id: totrans-274
   prefs:
   - PREF_IND
   - PREF_IND
   type: TYPE_NORMAL
+  zh: '"光盘格式名称";'
 - en: MovieFields[MovieFields["number_discs"] = 8] = "number_discs";
   id: totrans-275
   prefs: []
   type: TYPE_NORMAL
+  zh: 电影字段[电影字段["光盘数量"] = 8] = "光盘数量";
 - en: MovieFields[MovieFields["viewing_format_name"] = 9] =
   id: totrans-276
   prefs: []
   type: TYPE_NORMAL
+  zh: 电影字段[电影字段["查看格式名称"] = 9] =
 - en: '"viewing_format_name";'
   id: totrans-277
   prefs:
   - PREF_IND
   - PREF_IND
   type: TYPE_NORMAL
+  zh: '"查看格式名称";'
 - en: MovieFields[MovieFields["aspect_ratio_name"] = 10] =
   id: totrans-278
   prefs: []
   type: TYPE_NORMAL
+  zh: 电影字段[电影字段["宽高比名称"] = 10] =
 - en: '"aspect_ratio_name";'
   id: totrans-279
   prefs:
