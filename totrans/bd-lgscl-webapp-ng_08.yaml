@@ -843,6 +843,8 @@
   id: totrans-111
   prefs: []
   type: TYPE_NORMAL
+  zh: 以上代码的输出是值`1`被发出了四次，然后是我们的错误。发生的情况是我们的流值在订阅中错误回调被命中之前重试了三次。使用`retry()`操作符延迟了什么时候错误实际被视为错误。然而，上面的例子不合理的地方在于重试是没有意义的，因为错误总是会发生。因此，让我们举个更好的例子
+    – 一个网络连接可能出现忽然消失的AJAX调用：
 - en: '[PRE29]'
   id: totrans-112
   prefs: []
@@ -853,10 +855,12 @@
   id: totrans-113
   prefs: []
   type: TYPE_NORMAL
+  zh: 在这里，我们正在尝试向一个似乎不存在的文件发送一个AJAX请求。看看控制台，我们面临以下结果：
 - en: '![](img/e4df4109-8dd2-41ee-bbf7-5a7a99832bd4.png)'
   id: totrans-114
   prefs: []
   type: TYPE_IMG
+  zh: '![](img/e4df4109-8dd2-41ee-bbf7-5a7a99832bd4.png)'
 - en: 'What we see in the above logging are four failed AJAX requests that lead to
     an error. We have essentially just switched our simple stream to a more credible
     AJAX request stream, with the same behavior. Should the file suddenly start to
@@ -870,6 +874,7 @@
   id: totrans-115
   prefs: []
   type: TYPE_NORMAL
+  zh: 在上述日志中我们看到了四次失败的AJAX请求，导致了一个错误。我们基本上仅仅是将我们的简单流切换为了一个更可信的AJAX请求流，具有相同的行为。如果文件突然开始存在，可能会出现两次失败尝试和一次成功尝试的情况。然而，我们的方法有一个缺陷：我们进行AJAX尝试的次数太多了。如果我们实际上正在处理间歇性的网络连接，我们需要在尝试之间设置一定的延迟。合理的做法是在尝试之间设置至少30秒或更长的延迟。我们可以通过使用一种稍微不同的重试操作符来实现这一点，它以毫秒而不是尝试次数作为参数。它看起来像下面这样：
 - en: '[PRE30]'
   id: totrans-116
   prefs: []
@@ -883,17 +888,20 @@
   id: totrans-117
   prefs: []
   type: TYPE_NORMAL
+  zh: 这里我们使用了操作符`retryWhen()`。`retryWhen()`操作符的使命是返回一个流。在这一点上，你可以通过添加一个`.delay()`操作符来延迟它返回的流，以便能够操纵它。这样做的结果是，它将永远重试AJAX调用，这可能不是你想要的。
 - en: Advanced Retry
   id: totrans-118
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 高级重试
 - en: 'What we most likely want is to combine the delay between retry attempts with
     being able to specify how many times we want to retry the stream. Let''s have
     a look at how we can accomplish that:'
   id: totrans-119
   prefs: []
   type: TYPE_NORMAL
+  zh: 我们最有可能想要的是将重试尝试之间的延迟与能够指定我们想要重试流的次数结合起来。让我们看看如何实现这一点：
 - en: '[PRE31]'
   id: totrans-120
   prefs: []
@@ -910,6 +918,7 @@
   id: totrans-121
   prefs: []
   type: TYPE_NORMAL
+  zh: 这里有趣的部分是我们使用了操作符`.take()`。我们指定了我们想要从这个内部Observable中发出的值的数量。我们现在实现了一种不错的方法，可以控制重试次数和重试之间的延迟。还有一个方面我们还没有尝试到，即当最终放弃时我们想要重试全部重试的方式。在之前的代码中，当流在尝试了*x*次后没有成功结果时，流就会直接完成。然而，我们可能希望流出现错误。我们只需在代码中添加一个操作符，就可以实现这一点，像这样：
 - en: '[PRE32]'
   id: totrans-122
   prefs: []
@@ -922,6 +931,7 @@
   id: totrans-123
   prefs: []
   type: TYPE_NORMAL
+  zh: 在这里，我们添加了一个`concat()`操作符，它将一个仅仅会失败的流添加进来。因此，在三次失败尝试之后一定会发生一个错误。这通常比在*x*次失败尝试之后默默地完成流更好。
 - en: This isn't a perfect approach, though; imagine that you want to investigate
     what type of error you get back. In the case of AJAX requests being made, it matters
     whether we get a 400-something error or a 500-something error back as HTTP status
@@ -935,11 +945,13 @@
   id: totrans-124
   prefs: []
   type: TYPE_NORMAL
+  zh: 不过这并不是一个完美的方法；想象一下你想调查你得到了什么类型的错误。对于进行的 AJAX 请求的情况来说，获得一个以400开头的错误和以500开头的错误作为HTTP状态码是有关系的。它们有不同的含义。500错误意味着后端出了非常严重的问题，我们可能要立即放弃。然而，404错误意味着资源不存在，但在与断断续续的网络连接的情况下，这意味着由于我们的连接离线而无法到达资源。因此，重新尝试404错误可能是值得的。为了在代码中解决这个问题，我们需要检查发出的值以确定要做什么。我们可以使用`do()`操作符来检查值。
 - en: 'In the following code, we investigate the type of HTTP status of the response
     and determine how to handle it:'
   id: totrans-125
   prefs: []
   type: TYPE_NORMAL
+  zh: 在下面的代码中，我们调查响应的HTTP状态类型并确定如何处理它：
 - en: '[PRE33]'
   id: totrans-126
   prefs: []
@@ -950,6 +962,7 @@
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 大理石测试
 - en: Testing asynchronous code can be challenging. For one, we have the time factor.
     The way we specify what operators to use for our crafted algorithm leads to the
     algorithm taking anywhere from 2 seconds to 30 minutes to execute. Therefore,
@@ -960,6 +973,8 @@
   id: totrans-128
   prefs: []
   type: TYPE_NORMAL
+  zh: 测试异步代码可能是具有挑战性的。首先，我们有时间因素。我们指定用于我们精心设计的算法的操作符的方式导致算法执行的时间从2秒到30分钟不等。因此，一开始会感觉没有必要进行测试，因为在合理的时间内无法完成。不过，我们有一种测试
+    RxJS 的方法；它被称为大理石测试，它允许我们控制时间的流逝速度，这样我们就可以在毫秒内执行测试。
 - en: The idea of a Marble is known to us. We can represent one or many streams and
     the effect an operator has one two or more streams. We do this by drawing the
     streams as a line and values as circles on the lines. The operator is shown as
@@ -971,30 +986,36 @@
   id: totrans-129
   prefs: []
   type: TYPE_NORMAL
+  zh: 大理石的概念为我们所知。我们可以表示一个或多个流以及操作符对两个或多个流产生的影响。我们通过在线上画出流并将值表示为线上的圆圈来做到这一点。操作符显示为输入流下面的动词。操作符后面是第三个流，这是取得输入流并应用操作符得到的结果，即所谓的大理石图。线表示一个连续的时间线。我们将这个概念带到测试中。这意味着我们可以将我们的传入值表示为一个图形表达，并对其应用我们的算法，然后对结果进行断言。
 - en: Set up
   id: totrans-130
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 设置
 - en: 'Let''s set up our environment correctly so we can write marble tests. We need
     the following:'
   id: totrans-131
   prefs: []
   type: TYPE_NORMAL
+  zh: 让我们正确设置环境，以便我们可以编写大理石测试。我们需要以下内容：
 - en: The NPM library jasmine-marbles
   id: totrans-132
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: NPM库jasmine-marbles
 - en: A scaffolded Angular application
   id: totrans-133
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 一个已经脚手架化的Angular应用
 - en: 'With that we scaffold our Angular project, like so:'
   id: totrans-134
   prefs: []
   type: TYPE_NORMAL
+  zh: 有了这些，我们脚手架化我们的Angular项目，就像这样：
 - en: '[PRE34]'
   id: totrans-135
   prefs: []
@@ -1005,6 +1026,7 @@
   id: totrans-136
   prefs: []
   type: TYPE_NORMAL
+  zh: 项目脚手架完成后，现在是时候添加我们的 NPM 库了，就像这样：
 - en: '[PRE35]'
   id: totrans-137
   prefs: []
@@ -1014,16 +1036,19 @@
   id: totrans-138
   prefs: []
   type: TYPE_NORMAL
+  zh: 现在我们已经完成了设置，所以是时候编写测试了。
 - en: Writing your first marble test
   id: totrans-139
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 编写你的第一个大理石测试
 - en: 'Let''s create a new file `marble-testing.spec.ts`. It should look like the
     following:'
   id: totrans-140
   prefs: []
   type: TYPE_NORMAL
+  zh: 让我们创建一个新的文件`marble-testing.spec.ts`。它应该看起来像这样：
 - en: '[PRE36]'
   id: totrans-141
   prefs: []
@@ -1036,6 +1061,7 @@
   id: totrans-142
   prefs: []
   type: TYPE_NORMAL
+  zh: 这里发生了很多有趣的事情。我们从NPM库marble-testing中导入`cold()`函数。然后我们通过调用`describe()`来设置一个测试套件，接着通过调用`it()`来设置一个测试规范。然后我们调用我们的`cold()`函数并提供一个字符串。让我们仔细看看那个函数调用：
 - en: '[PRE37]'
   id: totrans-143
   prefs: []
@@ -1049,10 +1075,12 @@
   id: totrans-144
   prefs: []
   type: TYPE_NORMAL
+  zh: 上面的代码设置了一个流，期望在流结束前发出两个值。我们怎么知道呢？现在该解释`x-x|`的含义了。`x`只是任意值，短横线`-`表示时间过去了。竖线`|`表示我们的流已结束。冷函数中的第二个参数是一个映射对象，告诉我们x代表什么。在这种情况下，它意味着值是1。
 - en: 'Moving on, let''s have a look at the next line:'
   id: totrans-145
   prefs: []
   type: TYPE_NORMAL
+  zh: 接下来，让我们看一下下一行：
 - en: '[PRE38]'
   id: totrans-146
   prefs: []
@@ -1064,6 +1092,7 @@
   id: totrans-147
   prefs: []
   type: TYPE_NORMAL
+  zh: 上述代码应用了`.map()`运算符，并且对流中发出的每个值加了一。然后，我们调用了`.toBeObservable()`辅助方法并根据预期条件进行验证，
 - en: '[PRE39]'
   id: totrans-148
   prefs: []
@@ -1075,17 +1104,20 @@
   id: totrans-149
   prefs: []
   type: TYPE_NORMAL
+  zh: 前面的条件说明我们期望流应该发出两个值，但这些值应该有数字2。这是有道理的，因为我们的`map()`函数就是做这个。
 - en: Fleshing out with more tests
   id: totrans-150
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 补充更多测试
 - en: 'Let''s write one more test. This time we will be testing the `filter()` operator.
     This one is interesting, as it filters away values that does not fulfill a certain
     condition. Our test file should now look like the following:'
   id: totrans-151
   prefs: []
   type: TYPE_NORMAL
+  zh: 让我们再写一个测试。这次我们将测试`filter()`运算符。这个很有意思，因为它过滤掉不满足特定条件的值。我们的测试文件现在应该看起来像这样：
 - en: '[PRE40]'
   id: totrans-152
   prefs: []
@@ -1096,6 +1128,7 @@
   id: totrans-153
   prefs: []
   type: TYPE_NORMAL
+  zh: 这个测试设置方式几乎和我们的第一个测试一样。这次我们使用`filter()`运算符，但值得注意的是我们的预期流：
 - en: '[PRE41]'
   id: totrans-154
   prefs: []
@@ -1108,16 +1141,19 @@
   id: totrans-155
   prefs: []
   type: TYPE_NORMAL
+  zh: '`--y`，表示我们的第一个值被移除了。根据过滤条件的定义，我们不感到意外。然而，双短横线`-`的原因是时间仍在流逝，但是一个短横线取代了一个发出的值。'
 - en: To learn more about Marble testing, have a look at the following link from the
     official documentation, [https://github.com/ReactiveX/rxjs/blob/master/doc/writing-marble-tests.md](https://github.com/ReactiveX/rxjs/blob/master/doc/writing-marble-tests.md)
   id: totrans-156
   prefs: []
   type: TYPE_NORMAL
+  zh: 要了解更多关于Marble测试的信息，请查看官方文档中的以下链接，[https://github.com/ReactiveX/rxjs/blob/master/doc/writing-marble-tests.md](https://github.com/ReactiveX/rxjs/blob/master/doc/writing-marble-tests.md)
 - en: Pipeable operators
   id: totrans-157
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 可管道的运算符
 - en: 'We haven''t mentioned it much so far, but the RxJS library weighs in quite
     heavily when used in an app. In today''s world of mobile first, every kilobyte
     counts when it comes to libraries that you include in your app. They count because
@@ -1128,22 +1164,26 @@
   id: totrans-158
   prefs: []
   type: TYPE_NORMAL
+  zh: 到目前为止，我们没有提及太多，但是当在应用中使用RxJS库时，它会占据相当大的空间。在如今的移动优先世界中，每个库在你的应用中包含的千字节都很重要。这很重要，因为用户可能在3G连接上，如果加载时间过长，用户可能离开，或者可能不喜欢你的应用，因为它感觉加载很慢，这可能导致你得到不好的评论或失去用户。到目前为止，我们已经使用了两种不同的导入RxJS的方式：
 - en: Importing the whole library; this one is quite costly in terms of size
   id: totrans-159
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 导入整个库；这在体积上是相当昂贵的
 - en: Importing only the operators we need; this ensures that the bundle decreases
     significantly
   id: totrans-160
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 只导入我们需要的运算符；这可以显著减少捆绑包的大小
 - en: 'The different options have looked like this, for importing the whole library
     and all its operators:'
   id: totrans-161
   prefs: []
   type: TYPE_NORMAL
+  zh: 不同的选项看起来像这样，导入整个库和所有它的运算符：
 - en: '[PRE42]'
   id: totrans-162
   prefs: []
@@ -1153,6 +1193,7 @@
   id: totrans-163
   prefs: []
   type: TYPE_NORMAL
+  zh: 或者这样，只导入我们需要的内容：
 - en: '[PRE43]'
   id: totrans-164
   prefs: []
@@ -1163,6 +1204,7 @@
   id: totrans-165
   prefs: []
   type: TYPE_NORMAL
+  zh: 这看起来不错，是吗？是的，但这是一个有缺陷的方法。让我们解释一下当你输入时会发生什么：
 - en: '[PRE44]'
   id: totrans-166
   prefs: []
@@ -1173,6 +1215,7 @@
   id: totrans-167
   prefs: []
   type: TYPE_NORMAL
+  zh: 通过输入上述内容，我们会添加到`Observable`的原型中。查看RxJS的源代码，它是这样的：
 - en: '[PRE45]'
   id: totrans-168
   prefs: []
@@ -1199,6 +1242,9 @@
   id: totrans-169
   prefs: []
   type: TYPE_NORMAL
+  zh: 从上面的代码中可以看出，我们导入了`Observable`以及相关的操作符，并且通过将它们分配到原型的`map`属性上，将操作符添加到了原型上。你可能会想这有什么毛病？问题在于摇树优化，这是我们用来摆脱未使用代码的过程。摇树优化在确定你使用和不使用的代码时会出现问题。事实上，你可能导入了一个`map()`操作符并将其添加到
+    Observable 上。随着代码随着时间的推移而改变，你可能最终不再使用它。你可能会争辩说此刻应该移除导入，但你可能的代码量很大，很容易忽略。最好的方式应该是只有使用的操作符包含在最终的包中。正如我们之前提到的，摇树优化的过程很难知道当前方法中使用了什么，没有使用什么。因此，在
+    RxJS 中进行了一次大规模的重写，添加了一种称为可管道化操作符的东西，它帮助我们解决了上述问题。对原型进行补丁还有另一个不足之处，那就是它创建了一个依赖。如果库发生改变并且我们在进行补丁时不再添加操作符（调用导入），那么我们就有了一个问题。我们只有在运行时才会发现这个问题。我们宁愿得到一个消息，告诉我们操作符已经过我们导入和明确使用，就像这样：
 - en: '[PRE46]'
   id: totrans-170
   prefs: []
@@ -1209,12 +1255,14 @@
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 使用 `let()` 创建可重用的操作符
 - en: 'The `let()` operator lets you have the whole operator and operate on it, rather
     than just manipulating the values as you would do with the `map()` operator, for
     example. Using the `let()` operator could look like this:'
   id: totrans-172
   prefs: []
   type: TYPE_NORMAL
+  zh: '`let()`操作符允许你拥有整个操作符并对其进行操作，而不仅仅像`map()`操作符那样操作值。使用`let()`操作符可能像这样：'
 - en: '[PRE47]'
   id: totrans-173
   prefs: []
@@ -1227,17 +1275,20 @@
   id: totrans-174
   prefs: []
   type: TYPE_NORMAL
+  zh: 在上面的例子中，我们能够定义一组操作符，比如`addAndFilter`和`sub3`，并且使用`let()`操作符在流上使用它们。这使我们能够创建可组合和可重用的操作符。正是基于这种知识，我们现在转向可管道化操作符的概念。
 - en: Shifting to pipeable operators
   id: totrans-175
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 转向可管道化操作符
 - en: 'As we mentioned already, pipeable operators are here, and you can find them
     by importing the respective operators from the `rxjs/operators` directory, like
     so:'
   id: totrans-176
   prefs: []
   type: TYPE_NORMAL
+  zh: 正如我们之前提到的，可管道化操作符已经出现了，通过从`rxjs/operators`目录中导入相应的操作符，你就能找到它们，就像这样：
 - en: '[PRE48]'
   id: totrans-177
   prefs: []
@@ -1249,6 +1300,7 @@
   id: totrans-178
   prefs: []
   type: TYPE_NORMAL
+  zh: 要使用它，我们现在依赖于`pipe()`操作符，它就像父操作符一样。因此，使用上述操作符将如下所示：
 - en: '[PRE49]'
   id: totrans-179
   prefs: []
@@ -1259,6 +1311,7 @@
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 总结
 - en: This chapter has taken us deep into RxJS by covering topics such as hot, cold,
     and warm Observables, and what that generally means in terms of when to subscribe
     to a stream and how they share their Producer under certain conditions. Next up,
@@ -1269,6 +1322,9 @@
   id: totrans-181
   prefs: []
   type: TYPE_NORMAL
+  zh: 本章内容深入介绍了 RxJS，涉及了诸如热、冷、温暖的 Observables 等主题，并且解释了在何时订阅流以及在特定条件下它们如何共享生产者的含义。接下来，我们介绍了
+    Subject，并且 Observable 并不是你唯一可以订阅的东西。Subject 也允许我们随时向流中添加值，并且我们也了解到根据具体情况存在不同类型的
+    Subject。
 - en: We ventured deeper into an important topic, testing, and tried to explain the
     difficulty in testing asynchronous code. We talked about the current state of
     the testing situation and what libraries to use here and now for your testing

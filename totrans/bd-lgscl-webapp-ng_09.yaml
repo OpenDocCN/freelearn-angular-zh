@@ -1,59 +1,85 @@
 - en: Create a Local Weather Web Application
+  id: totrans-0
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 创建本地天气 web 应用程序
 - en: We will be designing and building a simple Local Weather app with Angular and
     a third-party web API, using an iterative development methodology. You will focus
     on delivering value first while learning about the nuances and optimal ways of
     using Angular, TypeScript, Visual Studio Code, Reactive Programming, and RxJS.
+  id: totrans-1
   prefs: []
   type: TYPE_NORMAL
+  zh: 我们将设计并构建一个简单的使用 Angular 和第三方 web API 的本地天气应用程序，使用迭代式开发方法。您将专注于首先提供价值，同时学习如何使用
+    Angular、TypeScript、Visual Studio Code、响应式编程和 RxJS 的微妙之处和最佳方式。
 - en: 'In this chapter, you will learn the following:'
+  id: totrans-2
   prefs: []
   type: TYPE_NORMAL
+  zh: 在本章中，您将学习以下内容：
 - en: Planning out your roadmap using Waffle as a GitHub-connected Kanban board
+  id: totrans-3
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 使用 Waffle 作为连接到 GitHub 的看板进行路线规划
 - en: Crafting a new UI element to display current weather information using components
     and interfaces
+  id: totrans-4
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 制作新的 UI 元素来显示当前天气信息，使用组件和接口。
 - en: Using Angular Services and HttpClient to retrieve data from OpenWeatherMap APIs
+  id: totrans-5
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 使用 Angular 服务和 HttpClient 从 OpenWeatherMap API 检索数据
 - en: Leveraging observable streams to transform data using RxJS
+  id: totrans-6
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 利用可观察流使用 RxJS 转换数据
 - en: 'The code samples provided in this book require Angular version 5 and 6\. Angular
     5 code is runtime compatible with Angular 6\. Angular 6 will be supported in LTS
     until October 2019\. The most up-to-date versions of the code repositories may
     be found at the following:'
+  id: totrans-7
   prefs: []
   type: TYPE_NORMAL
+  zh: 本书提供的代码示例需要 Angular 5 和 6\. Angular 5 代码与 Angular 6 兼容。 Angular 6 将在 2019 年
+    10 月之前得到长期支持。最新版本的代码存储库可以在以下找到：
 - en: LocalCast Weather, at: [Github.com/duluca/local-weather-app](https://github.com/duluca/local-weather-app)
+  id: totrans-8
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: LocalCast 天气，位置：[Github.com/duluca/local-weather-app](https://github.com/duluca/local-weather-app)
 - en: LemonMart, at: [Github.com/duluca/lemon-mart](https://github.com/duluca/lemon-mart)
+  id: totrans-9
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: LemonMart，位置：[Github.com/duluca/lemon-mart](https://github.com/duluca/lemon-mart)
 - en: Planning a feature road map using Waffle
+  id: totrans-10
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 使用 Waffle 规划功能路线图
 - en: Building a rough plan of action before you start coding is very important so
     that you and your colleagues or clients are aware of the road map you're planning
     to execute. Whether you're building an app for yourself or for someone else, a
     living backlog of features will always serve as a great reminder when you get
     back to a project after a break or serve as an information radiator that prevents
     constant requests for status updates.
+  id: totrans-11
   prefs: []
   type: TYPE_NORMAL
+  zh: 在开始编码之前，制定一个粗略的行动计划非常重要，这样您和您的同事或客户就知道您计划执行的路线图。无论您是为自己还是为别人构建应用程序，功能的实时备用库将始终作为在休息之后重返项目时的良好提醒，或作为信息辐射器，防止不断请求状态更新。
 - en: In Agile development, you may have used various ticketing systems or tools that
     surface or Kanban boards. My favorite tool is Waffle.io, [https://waffle.io/](https://waffle.io/),
     because it directly integrates with your GitHub repository's issues and keeps
@@ -61,132 +87,194 @@
     of your choice to interact with your repository and still, effortlessly, radiate
     information. In the next section, you will set up a Waffle project to achieve
     this goal.
+  id: totrans-12
   prefs: []
   type: TYPE_NORMAL
+  zh: 在敏捷开发中，您可能已经使用过各种票务系统或工具，例如看板或看板。我的最爱工具是 Waffle.io，[https://waffle.io/](https://waffle.io/)，因为它直接集成了您的
+    GitHub 存储库的问题，并通过标签跟踪问题的状态。这样，您可以继续使用您选择的工具与您的存储库进行交互，并且轻松地发布信息。在接下来的部分中，您将设置一个
+    Waffle 项目以实现这个目标。
 - en: Setting up a Waffle project
+  id: totrans-13
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 设置一个 Waffle 项目
 - en: 'We will now set up our Waffle project:'
+  id: totrans-14
   prefs: []
   type: TYPE_NORMAL
+  zh: 现在我们将设置我们的 Waffle 项目：
 - en: Go to Waffle.io [https://waffle.io/](https://waffle.io/).
+  id: totrans-15
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 转到 Waffle.io [https://waffle.io/](https://waffle.io/)。
 - en: Click on Login or Get Started for Free.
+  id: totrans-16
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 点击登录或免费开始。
 - en: Select Public & Private Repos to allow access to all of your repositories.
+  id: totrans-17
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 选择公共和私有存储库，以允许访问您的所有存储库。
 - en: Click on Create Project.
+  id: totrans-18
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 点击创建项目。
 - en: Search for the local-weather-app repository and select it.
+  id: totrans-19
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 搜索本地天气应用程序存储库并选择它。
 - en: Hit Continue.
+  id: totrans-20
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 点击继续。
 - en: 'You will get two starter layout templates, as shown in the following image:'
+  id: totrans-21
   prefs: []
   type: TYPE_NORMAL
+  zh: 你将获得两个初始布局模板，如下图所示：
 - en: '![](img/81040eee-bfed-4822-8449-2037e1cbe44e.png)'
+  id: totrans-22
   prefs: []
   type: TYPE_IMG
+  zh: '![](img/81040eee-bfed-4822-8449-2037e1cbe44e.png)'
 - en: Waffle.io Default Board Layouts
+  id: totrans-23
   prefs: []
   type: TYPE_NORMAL
+  zh: Waffle.io 默认的看板布局
 - en: For this simple project, you will be selecting Basic. However, the Advanced
     layout demonstrates how you can modify the default setup of Waffle, by adding
     additional columns such as Review, to account for testers or product owners participating
     in the process. You can further customize any board to fit your existing process.
+  id: totrans-24
   prefs: []
   type: TYPE_NORMAL
+  zh: 对于这个简单的项目，您将选择基本。但是，高级布局演示了如何修改 Waffle 的默认设置，通过添加额外的列，如审查，以便测试人员或产品所有者参与过程。您可以进一步定制任何看板以适应您现有的流程。
 - en: Select the Basic layout and click on Create Project.
+  id: totrans-25
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 选择基本布局并点击创建项目。
 - en: You will see a new board created for you.
+  id: totrans-26
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 您将看到为您创建的新看板。
 - en: '![](img/ae7f8ef6-e282-4468-a474-71e05feab25b.png)'
+  id: totrans-27
   prefs: []
   type: TYPE_IMG
+  zh: '![](img/ae7f8ef6-e282-4468-a474-71e05feab25b.png)'
 - en: Empty Waffle Board
+  id: totrans-28
   prefs: []
   type: TYPE_NORMAL
+  zh: 空的Waffle看板
 - en: By default, Waffle will serve as a Kanban board. Allowing you to move a task
     from one state to another. However, the default view will show all the issues
     that are present on the repository. To use Waffle as a Scrum board, you need to
     assign issues to GitHub milestones that will represent sprints. You can then use
     the filtering functionality to only display issues from that milestone, or put
     another way from the current sprint.
+  id: totrans-29
   prefs: []
   type: TYPE_NORMAL
+  zh: 默认情况下，Waffle将作为看板服务。它允许你将一个任务从一个状态移动到另一个状态。然而，默认视图将显示存储库中存在的所有问题。要将Waffle用作Scrum板，您需要为GitHub里程碑分配问题，这些里程碑将代表迭代。然后，您可以使用过滤功能仅显示来自该里程碑的问题，或者说来自当前迭代。
 - en: On Waffle, you can attach story points to issues by clicking on the ![](img/98c10b6b-b94d-4cca-b7aa-8992281c2ce6.jpg) scale
     icon. The columns will automatically show totals and card orders, which represent
     priority, and they will be retained from session to session. Furthermore, you
     can switch to the Metrics view to get Milestone Burndown and Throughput graphs
     and statistics.
+  id: totrans-30
   prefs: []
   type: TYPE_NORMAL
+  zh: 在Waffle上，您可以通过点击 ![](img/98c10b6b-b94d-4cca-b7aa-8992281c2ce6.jpg) 比例图标给问题附上故事点。列将自动显示总数和卡片顺序，表示优先级，并且将从一个会话保留到另一个会话。此外，您可以切换到度量视图以获取里程碑燃尽图和吞吐量图表和统计信息。
 - en: Creating issues for your Local Weather app
+  id: totrans-31
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 为您的Local Weather应用程序创建问题
 - en: We will now create a backlog of issues that you will use to keep track of your
     progress as you implement the design of your application. When creating issues,
     you should focus on delivering functional iterations that bring some value to
     the user. The technical hurdles you must clear to achieve those results are of
     no interest to your users or clients.
+  id: totrans-32
   prefs: []
   type: TYPE_NORMAL
+  zh: 现在，我们将创建问题的积压，您将使用这些问题来跟踪在实现应用程序设计时的进度。在创建问题时，您应该专注于提供一些价值给用户的功能迭代。您必须克服的技术障碍对您的用户或客户来说没有任何意义。
 - en: 'Here are the features we plan to be building in our first release:'
+  id: totrans-33
   prefs: []
   type: TYPE_NORMAL
+  zh: 以下是我们计划在我们的第一个发布版本中构建的功能：
 - en: Display Current Location weather information for the current day
+  id: totrans-34
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 显示当前位置的当天天气信息
 - en: Display forecast information for current location
+  id: totrans-35
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 显示当前位置的天气预报信息
 - en: Add city search capability so that users can see weather information from other
     cities
+  id: totrans-36
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 添加城市搜索功能，使用户可以查看其他城市的天气信息
 - en: Add a preferences pane to store the default city for the user
+  id: totrans-37
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 添加一个首选项窗格，用于存储用户的默认城市
 - en: Improve the UX of the app with Angular Material
+  id: totrans-38
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 使用Angular Material改善应用程序的用户体验
 - en: 'Go ahead with creating your issues on Waffle or on GitHub; whichever you prefer
     is fine. While creating the scope for Sprint 1, I had some other ideas for features,
     so I just added those issues, but I did not assign them to a person or a milestone.
     I also went ahead and added story points to the issues I intended to work on.
     The following is what the board looks like, as I''m to begin working on the first
     story:'
+  id: totrans-39
   prefs: []
   type: TYPE_NORMAL
+  zh: 随意在Waffle或GitHub上创建问题；无论你喜欢哪种方式都可以。在创建第一个迭代的范围时，我对功能有一些其他想法，所以我只是添加了这些问题，但没有指定给某个人或一个里程碑。我还继续为我打算处理的问题添加了故事点。以下是看起来像的看板，因为我将开始处理第一个故事：
 - en: '![](img/c0baf628-599c-43ba-92f0-fb70250dff89.png)'
+  id: totrans-40
   prefs: []
   type: TYPE_IMG
+  zh: '![](img/c0baf628-599c-43ba-92f0-fb70250dff89.png)'
 - en: A snapshot of the initial state of the board at [https://waffle.io/duluca/local-weather-app](https://waffle.io/duluca/local-weather-app)
+  id: totrans-41
   prefs: []
   type: TYPE_NORMAL
+  zh: 板的初始状态快照位于 [https://waffle.io/duluca/local-weather-app](https://waffle.io/duluca/local-weather-app)
 - en: Ultimately, Waffle provides an easy-to-use GUI so that non-technical people
     can easily interact with GitHub issues. By allowing non-technical people to participate
     in the development process on GitHub, you unlock the benefit of GitHub becoming
@@ -199,6 +287,7 @@
     cost. For private repositories and on-premise Enterprise installations, GitHub
     has a very reasonable cost. If you're sticking with open source, as we are in
     this chapter, all these tools are free.
+  id: totrans-42
   prefs: []
   type: TYPE_NORMAL
 - en: As a bonus, I created a rudimentary wiki page on my repository at [https://github.com/duluca/local-weather-app/wiki](https://github.com/duluca/local-weather-app/wiki).
@@ -207,49 +296,61 @@
     copy and paste the URL for it to embed images to `README.md` or wiki pages. In
     the sample wiki, I followed this technique to embed the wireframe design into
     the page.
+  id: totrans-43
   prefs: []
   type: TYPE_NORMAL
 - en: With a concrete road map in place, you're now ready to start implementing your
     application.
+  id: totrans-44
   prefs: []
   type: TYPE_NORMAL
 - en: Crafting UI elements using components and interfaces
+  id: totrans-45
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
 - en: You will be leveraging Angular components, interfaces, and services to build
     the current weather feature in a decoupled, cohesive, and encapsulated manner.
+  id: totrans-46
   prefs: []
   type: TYPE_NORMAL
 - en: The landing page of an Angular app, by default, resides in `app.component.html`.
     So, start by editing the template of `AppComponent` with rudimentary HTML, laying
     out the initial landing experience for the application.
+  id: totrans-47
   prefs: []
   type: TYPE_NORMAL
 - en: We are now beginning the development of Feature 1: Display Current Location
     weather information for the current day, so, you can move the card in Waffle to
     the In Progress column.
+  id: totrans-48
   prefs: []
   type: TYPE_NORMAL
 - en: 'We will add a header as an `h1` tag, followed by the tagline of our app as
     a `div` and placeholders for where we may want to display the current weather,
     as demonstrated as shown in the following code block:'
+  id: totrans-49
   prefs: []
   type: TYPE_NORMAL
 - en: '[PRE0]'
+  id: totrans-50
   prefs: []
   type: TYPE_PRE
+  zh: '[PRE0]'
 - en: At this point, you should run `npm start` and navigate to `http://localhost:5000` on your
     browser so that you can observe the changes you're making in real time.
+  id: totrans-51
   prefs: []
   type: TYPE_NORMAL
 - en: Adding an Angular component
+  id: totrans-52
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
 - en: We need to display the current weather information, where `<div>current weather</div>`
     is located. In order to achieve this, you need to build a component that will
     be responsible for displaying the weather data.
+  id: totrans-53
   prefs: []
   type: TYPE_NORMAL
 - en: 'The reason behind creating a separate component is an architectural best practice
@@ -258,100 +359,146 @@
     majority of web-based code written circa 2005-2015 has been written following
     the MVC pattern. MVVM differs, in important ways, from the MVC pattern. As I have
     explained in my 2013 article on DevPro:'
+  id: totrans-54
   prefs: []
   type: TYPE_NORMAL
+  zh: 创建单独组件的原因是一个在**模型-视图-ViewModel**（**MVVM**）设计模式中被规范化的架构最佳实践。你可能之前听说了**模型-视图-控制器**（**MVC**）模式。大部分于2005年至2015年之间编写的基于
+    web 的代码都是按照 MVC 模式编写的。MVVM 与 MVC 模式在重要方面有所不同。正如我在 2013 年的 DevPro 文章中所解释的：
 - en: '[An effective implementation of MVVM] inherently enforces proper separation
     of concerns. Business logic is clearly separated from presentation logic. So when
     a View is developed, it stays developed, because fixing a bug in one View''s functionality
     doesn''t impact other views. On the flip side, if [you use] visual inheritance
     effectively and [create] reusable user controls, fixing a bug in one place can
     fix issues throughout the application.'
+  id: totrans-55
   prefs: []
   type: TYPE_NORMAL
+  zh: '[MVVM 的高效实现](https://wiki.example.org/mvvm_implementation) 自然强制实现了良好的关注点分离。业务逻辑与呈现逻辑清晰地分开。因此，当一个视图被开发时，它就会保持开发完成，因为修复一个视图功能中的错误不会影响其他视图。另一方面，如果您有效地使用可视化继承并创建可重用的用户控件，修复一个地方的错误可以解决整个应用程序中的问题。'
 - en: Angular provides an effective implementation of MVVM.
+  id: totrans-56
   prefs: []
   type: TYPE_NORMAL
+  zh: Angular 提供了 MVVM 的有效实现。
 - en: ViewModels neatly encapsulate any presentation logic and allow for simpler View
     code by acting as a specialized version of the model. The relationship between
     a View and ViewModel is straightforward, allowing for more natural ways to wrap
     UI behavior in reusable user controls.
+  id: totrans-57
   prefs: []
   type: TYPE_NORMAL
+  zh: ViewModels 精巧地封装了任何呈现逻辑，并充当模型的专门版本，通过分隔逻辑，使视图代码更简单。视图和 ViewModel 之间的关系很直接，允许将
+    UI 行为以更自然的方式封装在可重用的用户控件中。
 - en: You can read further about the architectural nuance, with illustrations, at [http://bit.ly/MVVMvsMVC](http://bit.ly/MVVMvsMVC).
+  id: totrans-58
   prefs: []
   type: TYPE_NORMAL
+  zh: 您可以在[http://bit.ly/MVVMvsMVC](http://bit.ly/MVVMvsMVC)上阅读更多关于架构细微差别的内容，包含插图。
 - en: 'Next, you will create your very first Angular component, which will include
     the View and the ViewModel, using Angular CLI''s `ng generate` command:'
+  id: totrans-59
   prefs: []
   type: TYPE_NORMAL
+  zh: 接下来，您将使用 Angular CLI 的 `ng generate` 命令创建您的第一个 Angular 组件，其中将包括视图和 ViewModel：
 - en: In the terminal, execute `npx ng generate component current-weather`
+  id: totrans-60
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 在终端中，执行 `npx ng generate component current-weather`
 - en: Ensure that you are executing `ng` commands under the `local-weather-app` folder,
     and not under the `root` project folder. In addition, note that `npx ng generate
     component current-weather` can be rewritten as `ng g c current-weather`. Going
     forward, this book will utilize the shorthand format and expect you to prepend `npx`,
     if necessary.
+  id: totrans-61
   prefs: []
   type: TYPE_NORMAL
+  zh: 确保您在`local-weather-app`文件夹下执行 `ng` 命令，而不是在`根`项目文件夹下。另外，注意 `npx ng generate component
+    current-weather` 可以重写为 `ng g c current-weather`。今后，本书将使用简写格式，并期望您必要时在前面加上 `npx`。
 - en: 'Observe the new files created in your `app` folder:'
+  id: totrans-62
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 观察您的 `app` 文件夹中创建的新文件：
 - en: '[PRE1]'
+  id: totrans-63
   prefs: []
   type: TYPE_PRE
+  zh: '[PRE1]'
 - en: 'A generated component has four parts:'
+  id: totrans-64
   prefs: []
   type: TYPE_NORMAL
+  zh: 一个生成的组件由四个部分组成：
 - en: '`current-weather.component.css` contains any CSS that is specific to the component
     and is an optional file'
+  id: totrans-65
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '`current-weather.component.css` 包含任何特定于组件的 CSS，是一个可选的文件'
 - en: '`current-weather.component.html` contains the HTML template that defines the
     look of the component and rendering of the bindings, and can be considered the
     View, in combination with any CSS styles used'
+  id: totrans-66
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '`current-weather.component.html` 包含了定义组件外观和绑定渲染的 HTML 模板，可以被视为与任何使用的 CSS 样式结合起来的视图'
 - en: '`current-weather.component.spec.ts` contains Jasmine-based unit tests that
     you can extend to test your component functionality'
+  id: totrans-67
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '`current-weather.component.spec.ts` 包含了基于 Jasmine 的单元测试，您可以扩展以测试组件的功能'
 - en: '`current-weather.component.ts` contains the `@Component` decorator above the class
     definition and is the glue that ties together the CSS, HTML, and JavaScript code
     together. The class itself can be considered the ViewModel, pulling data from
     services and performing any necessary transformations to expose sensible bindings
     for the View, as shown as follows:'
+  id: totrans-68
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '`current-weather.component.ts` 中包含了 `@Component` 装饰器，位于类定义的顶部，它是将 CSS、HTML
+    和 JavaScript 代码绑定在一起的粘合剂。这个类本身可以被视为 ViewModel，从服务中获取数据并执行必要的转换，以公开视图的合理绑定，如下所示：'
 - en: '[PRE2]'
+  id: totrans-69
   prefs: []
   type: TYPE_PRE
+  zh: '[PRE2]'
 - en: If the component you're planning to write is a simple one, you can rewrite it
     using inline styles and an inline template, to simplify the structure of your
     code.
+  id: totrans-70
   prefs: []
   type: TYPE_NORMAL
+  zh: 如果你计划编写的组件很简单，可以使用内联样式和内联模板重写它，以简化代码的结构。
 - en: 'Update `CurrentWeatherComponent` with an inline template and styles:'
+  id: totrans-71
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 用内联模板和样式更新`CurrentWeatherComponent`：
 - en: '[PRE3]'
+  id: totrans-72
   prefs: []
   type: TYPE_PRE
+  zh: '[PRE3]'
 - en: 'When you executed the generate command, in addition to creating the component,
     the command also added the new module you created to `app.module.ts`, avoiding
     an otherwise tedious task of wiring up components together:'
+  id: totrans-73
   prefs: []
   type: TYPE_NORMAL
+  zh: 当你执行生成命令时，除了创建组件外，命令还将新创建的模块添加到`app.module.ts`，避免了繁琐的组件连接任务：
 - en: '[PRE4]'
+  id: totrans-74
   prefs: []
   type: TYPE_PRE
+  zh: '[PRE4]'
 - en: The bootstrap process of Angular is, admittedly, a bit convoluted. This is the
     chief reason Angular CLI exists. `index.html` contains an element named `<app-root>`.
     When Angular begins execution, it first loads `main.ts`, which configures the
@@ -360,92 +507,136 @@
     [Chapter 12](b49e4716-d083-4c8c-a083-bcf6cf182a6f.xhtml), *Create a Router-First
     Line-of-Business App*, when we build a line-of-business app, we will create our
     own feature modules to take advantage of the scalability features of Angular.
+  id: totrans-75
   prefs: []
   type: TYPE_NORMAL
+  zh: Angular的引导过程，不可否认，有点复杂。这也是Angular CLI存在的主要原因。`index.html`包含一个名为`<app-root>`的元素。当Angular开始执行时，首先加载`main.ts`，它配置了用于浏览器的框架并加载应用程序模块。然后应用程序模块加载所有依赖项并在上述的`<app-root>`元素内呈现。在[第12章](b49e4716-d083-4c8c-a083-bcf6cf182a6f.xhtml)，*创建一个路由优先的业务应用程序*，当我们构建一个业务应用程序时，我们将创建自己的特性模块以利用Angular的可扩展性功能。
 - en: 'Now, we need to display our new component on the initial `AppComponent` template,
     so it is visible to the end user:'
+  id: totrans-76
   prefs: []
   type: TYPE_NORMAL
+  zh: 现在，我们需要在初始`AppComponent`模板上显示我们的新组件，以便最终用户看到：
 - en: 'Add the `CurrentWeatherComponent` to `AppComponent` by replacing `<div>current
     weather</div>` with `<app-current-weather></app-current-weather>`:'
+  id: totrans-77
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 将`CurrentWeatherComponent`添加到`AppComponent`中，用`<app-current-weather></app-current-weather>`替换`<div>current
+    weather</div>`：
 - en: '[PRE5]'
+  id: totrans-78
   prefs: []
   type: TYPE_PRE
+  zh: '[PRE5]'
 - en: 'If everything worked correctly, you should see this:'
+  id: totrans-79
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 如果一切正常工作，你应该看到这个：
 - en: '![](img/73cfd796-6a00-4c6a-b790-4a736c7fa508.png)'
+  id: totrans-80
   prefs: []
   type: TYPE_IMG
+  zh: '![](img/73cfd796-6a00-4c6a-b790-4a736c7fa508.png)'
 - en: Initial render of your local weather app
+  id: totrans-81
   prefs: []
   type: TYPE_NORMAL
+  zh: 本地天气应用程序的初始渲染
 - en: Note the icon and name in the tab of the browser window. As a web development
     norm, in the `index.html` file, update the `<title>` tag and the `favicon.ico`
     file with the name and icon of your application to customize the browser tab information.
     If your favicon doesn't update, append the `href` attribute with a unique version
     number, such as `href="favicon.ico?v=2"`. As a result, your app will start looking
     like a real web app, instead of a CLI-generated starter project.
+  id: totrans-82
   prefs: []
   type: TYPE_NORMAL
+  zh: 注意浏览器窗口标签中的图标和名称。作为 Web 开发的惯例，在`index.html`文件中，使用应用程序的名称和图标更新`<title>`标签和`favicon.ico`文件，以自定义浏览器标签信息。如果您的网站图标没有更新，请向`href`属性附加一个唯一版本号，例如`href="favicon.ico?v=2"`。因此，您的应用程序将开始看起来像一个真正的
+    Web 应用程序，而不是一个由 CLI 生成的初学者项目。
 - en: Define your model using interfaces
+  id: totrans-83
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 使用接口定义您的模型
 - en: 'Now that your `View` and `ViewModel` are in place, you need to define your
     `Model`. If you look back on the design, you will see that the component needs
     to display:'
+  id: totrans-84
   prefs: []
   type: TYPE_NORMAL
+  zh: 现在，您的`View`和`ViewModel`就位了，您需要定义您的`Model`。如果回顾设计，您将看到组件需要显示：
 - en: City
+  id: totrans-85
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 城市
 - en: Country
+  id: totrans-86
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 国家
 - en: Current date
+  id: totrans-87
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 当前日期
 - en: Current image
+  id: totrans-88
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 当前图片
 - en: Current temperature
+  id: totrans-89
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 当前温度
 - en: Current weather description
+  id: totrans-90
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 当前天气描述
 - en: 'You will first create an interface that represents this data structure:'
+  id: totrans-91
   prefs: []
   type: TYPE_NORMAL
+  zh: 首先创建一个表示这个数据结构的接口：
 - en: In the terminal, execute `npx ng generate interface ICurrentWeather`
+  id: totrans-92
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 在终端执行`npx ng generate interface ICurrentWeather`
 - en: 'Observe a newly generated file named `icurrent-weather.ts` with an empty interface
     definition that looks like this:'
+  id: totrans-93
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 观察一个新生成的名为`icurrent-weather.ts`的文件，其中包含一个空接口定义，看起来像这样：
 - en: '[PRE6]'
+  id: totrans-94
   prefs: []
   type: TYPE_PRE
+  zh: '[PRE6]'
 - en: This is not an ideal setup, since we may add numerous interfaces to our app
     and it can get tedious to track down various interfaces. Over time, as you add
     concrete implementations of these interfaces as classes, then it will make sense
     to put classes and their interfaces in their own files.
+  id: totrans-95
   prefs: []
   type: TYPE_NORMAL
+  zh: 这不是一个理想的设置，因为我们可能会向我们的应用程序添加许多接口，跟踪各种接口可能会变得繁琐。随着时间的推移，当你将这些接口的具体实现作为类添加时，将有意义地将类和它们的接口放在自己的文件中。
 - en: Why not just call the interface `CurrentWeather`? This is because later on we
     may create a class to implement some interesting behavior for `CurrentWeather`.
     Interfaces establish a contract, establishing the list of available properties
@@ -454,86 +645,111 @@
     follow the best practice to always start your interface names with a capital `I`,
     you will always be conscious of what type of an object you are passing around.
     Hence, the interface is named `ICurrentWeather`.
+  id: totrans-96
   prefs: []
   type: TYPE_NORMAL
 - en: Rename `icurrent-weather.ts` to `interfaces.ts`
+  id: totrans-97
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
 - en: Correct the capitalization of the interface name to `ICurrentWeather`
+  id: totrans-98
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
 - en: 'Also, implement the interface as follows:'
+  id: totrans-99
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
 - en: '[PRE7]'
+  id: totrans-100
   prefs: []
   type: TYPE_PRE
+  zh: '[PRE7]'
 - en: This interface and its eventual concrete representation as a class is the Model
     in MVVM. So far, I have highlighted how various parts of Angular fit the MVVM
     pattern; going forward, I will be referring to these parts with their actual names.
+  id: totrans-101
   prefs: []
   type: TYPE_NORMAL
 - en: Now, we can import the interface into the component and start wiring up the
     bindings in the template of `CurrentWeatherComponent`.
+  id: totrans-102
   prefs: []
   type: TYPE_NORMAL
 - en: Import `ICurrentWeather`
+  id: totrans-103
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
 - en: Switch back to the `templateUrl` and ``styleUrls``
+  id: totrans-104
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
 - en: Define a local variable called `current` with type `ICurrentWeather`
+  id: totrans-105
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
 - en: '[PRE8]'
+  id: totrans-106
   prefs: []
   type: TYPE_PRE
+  zh: '[PRE8]'
 - en: 'If you just type `current: ICurrentWeather`, you can use the auto-fixer to
     automatically insert the import statement.'
+  id: totrans-107
   prefs: []
   type: TYPE_NORMAL
 - en: In the constructor, you will temporarily populate the current property with
     dummy data to test your bindings.
+  id: totrans-108
   prefs: []
   type: TYPE_NORMAL
 - en: 'Implement dummy data as a JSON object and declare its adherence to `ICurrentWeather`
     using the as operator:'
+  id: totrans-109
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
 - en: '[PRE9]'
+  id: totrans-110
   prefs: []
   type: TYPE_PRE
+  zh: '[PRE9]'
 - en: In the `src/assets` folder, create a subfolder named `img` and place an image
     of your choice to reference in your dummy data.
+  id: totrans-111
   prefs: []
   type: TYPE_NORMAL
 - en: 'You may forget the exact properties in the interface you created. You can get
     a quick peek at them by holding *Ctrl* + hover-over the interface name with your
     mouse, as shown:'
+  id: totrans-112
   prefs: []
   type: TYPE_NORMAL
 - en: '![](img/e15b7ab5-9e57-4aff-a18d-c38830c6e75a.png)*Ctrl* + hover-over the interface'
+  id: totrans-113
   prefs: []
   type: TYPE_NORMAL
 - en: Now you update the template to wire up your bindings with a rudimentary HTML-based
     layout.
+  id: totrans-114
   prefs: []
   type: TYPE_NORMAL
 - en: 'Implement the template:'
+  id: totrans-115
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
 - en: '[PRE10]'
+  id: totrans-116
   prefs: []
   type: TYPE_PRE
+  zh: '[PRE10]'
 - en: To change the display formatting of `current.date`, we used the `DatePipe` above,
     passing in `'fullDate'` as the format option. In Angular, various out-of-the-box
     and custom pipe `|` operators can be used to change the appearance of data without
@@ -544,139 +760,198 @@
     on various `DatePipe` options, refer to the documentation at [https://angular.io/api/common/DatePipe](https://angular.io/api/common/DatePipe). To
     format `current.temperature` so that no fractional values are shown, you can use
     `DecimalPipe`. The documentation is at [https://angular.io/api/common/DecimalPipe](https://angular.io/api/common/DecimalPipe).
+  id: totrans-117
   prefs: []
   type: TYPE_NORMAL
+  zh: 要更改 `current.date` 的显示格式，我们使用了上面的 `DatePipe` ，将`'fullDate'`作为格式选项传入。在Angular中，可以使用各种内置和自定义`|`操作符来更改数据的外观，而不改变实际的数据。这是一个非常强大、方便和灵活的系统，可以在不编写重复代码的情况下共享用户界面逻辑。在上面的示例中，如果我们想要以更紧凑的形式表示当前日期，我们可以传入`'shortDate'`。有关各种`DatePipe`选项的更多信息，请参阅[https://angular.io/api/common/DatePipe](https://angular.io/api/common/DatePipe)的文档。要格式化`current.temperature`，以便不显示小数值，您可以使用`DecimalPipe`。文档在[https://angular.io/api/common/DecimalPipe](https://angular.io/api/common/DecimalPipe)中。
 - en: Note that you can render ℃ and ℉ using their respective HTML codes: ![](img/b5a76f73-bb93-4f1a-a344-5f20edef7312.png) for
     ℃ and ![](img/a4b2101d-64f9-4302-a885-efa078718e12.png) for ℉.
+  id: totrans-118
   prefs: []
   type: TYPE_NORMAL
+  zh: 请注意，您可以使用其各自的HTML代码来呈现℃和℉： ![](img/b5a76f73-bb93-4f1a-a344-5f20edef7312.png) 代表℃， ![](img/a4b2101d-64f9-4302-a885-efa078718e12.png) 代表 ℉。
 - en: 'If everything worked correctly, you app should be looking similar to this screenshot:'
+  id: totrans-119
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 如果一切正常，您的应用应该看起来类似于该截图：
 - en: '![](img/b0c66fef-99c4-4b07-b2e6-0040f481527b.png)'
+  id: totrans-120
   prefs: []
   type: TYPE_IMG
+  zh: '![](img/b0c66fef-99c4-4b07-b2e6-0040f481527b.png)'
 - en: App after wiring up bindings with dummy data
+  id: totrans-121
   prefs: []
   type: TYPE_NORMAL
+  zh: 绑定到虚拟数据的 App
 - en: Congratulations, you have successfully wired up your first component.
+  id: totrans-122
   prefs: []
   type: TYPE_NORMAL
+  zh: 恭喜，您已成功连接了第一个组件。
 - en: Using Angular Services and HttpClient to retrieve data
+  id: totrans-123
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 使用 Angular 服务和 HttpClient 获取数据
 - en: 'Now you need to connect your `CurrentWeather` component to the `OpenWeatherMap`
     APIs. In the upcoming sections, we will go over the following steps to accomplish
     this goal:'
+  id: totrans-124
   prefs: []
   type: TYPE_NORMAL
+  zh: 现在您需要将您的`CurrentWeather`组件连接到`OpenWeatherMap` APIs。在接下来的章节中，我们将重点介绍以下步骤以实现这个目标：
 - en: Create a new Angular Service
+  id: totrans-125
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 创建一个新的 Angular 服务
 - en: Import `HttpClientModule` and inject it into the service
+  id: totrans-126
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 导入 `HttpClientModule` 并将其注入服务中
 - en: Discover the `OpenWeatherMap` API
+  id: totrans-127
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 发现`OpenWeatherMap` API
 - en: Create a new interface that conforms to the shape of the API
+  id: totrans-128
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 创建符合 API 结构的新接口
 - en: Write a `get` request
+  id: totrans-129
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 编写一个`get`请求
 - en: Inject the new service into the `CurrentWeather` component
+  id: totrans-130
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 将新服务注入到`CurrentWeather`组件中
 - en: Call the service from the `init` function of the `CurrentWeather` component
+  id: totrans-131
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 在 `CurrentWeather` 组件的`init`函数中调用该服务
 - en: Finally, map the API data to the local `ICurrentWeather` type using RxJS functions
     so that it can be consumed by your component
+  id: totrans-132
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 最后，使用RxJS函数将API数据映射到本地的`ICurrentWeather`类型，以便组件可以使用
 - en: Creating a new Angular Service
+  id: totrans-133
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 创建一个新的 Angular 服务
 - en: Any code that touches outside of the boundaries of a component should exist
     in a service; this includes inter-component communication, unless there's a parent-child
     relationship, and API calls of any kind and any code that cache or retrieve data
     from a cookie or the browser's localStorage. This is a critical architectural
     pattern that keeps your application maintainable in the long term. I expand upon
     this idea in my DevPro MVVM article at [http://bit.ly/MVVMvsMVC](http://bit.ly/MVVMvsMVC).
+  id: totrans-134
   prefs: []
   type: TYPE_NORMAL
+  zh: 任何超出组件边界的代码应存在于服务中；这包括组件间通信，除非存在父子关系，并且任何类型的API调用，以及缓存或从cookie或浏览器的localStorage中检索数据的任何代码。这是一个在长期内保持您的应用可维护性的重要架构模式。我在我的DevPro
+    MVVM文章中详细介绍了这个想法，链接在[http://bit.ly/MVVMvsMVC](http://bit.ly/MVVMvsMVC)。
 - en: 'To create an Angular service, do this:'
+  id: totrans-135
   prefs: []
   type: TYPE_NORMAL
+  zh: 要创建 Angular 服务，请执行以下操作：
 - en: In the terminal, execute `npx ng g s weather --flat false`
+  id: totrans-136
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 在终端中，执行`npx ng g s weather --flat false`
 - en: 'Observe the new `weather` folder created:'
+  id: totrans-137
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 观察新创建的`weather`文件夹：
 - en: '[PRE11]'
+  id: totrans-138
   prefs: []
   type: TYPE_PRE
+  zh: '[PRE11]'
 - en: 'A generated service has two parts:'
+  id: totrans-139
   prefs: []
   type: TYPE_NORMAL
+  zh: 生成的服务有两个部分：
 - en: '`weather.service.spec.ts` contains Jasmine-based unit tests that you can extend
     to test your service functionality.'
+  id: totrans-140
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '`weather.service.spec.ts`包含基于Jasmine的单元测试，您可以扩展以测试服务功能。'
 - en: '`weather.service.ts` contains the `@Injectable` decorator above the class definition,
     which makes it possible to inject this service into other components, leveraging
     Angular''s provider system. This will ensure that our service will be a singleton,
     meaning only instantiated once, no matter how many times it is injected elsewhere.'
+  id: totrans-141
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
 - en: 'The service is generated, but it''s not automatically provided. To do this,
     follow these steps:'
+  id: totrans-142
   prefs: []
   type: TYPE_NORMAL
 - en: Open `app.module.ts`
+  id: totrans-143
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
 - en: Type in `WeatherService` inside the providers array
+  id: totrans-144
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
 - en: 'Use the auto-fixer to import the class for you:'
+  id: totrans-145
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
 - en: '[PRE12]'
+  id: totrans-146
   prefs: []
   type: TYPE_PRE
+  zh: '[PRE12]'
 - en: If you installed the recommended extension TypeScript Hero, the import statement
     will be automatically added for you. You won't have to use the auto-fixer to do
     it. Going forward, I will not call out the need to import modules.
+  id: totrans-147
   prefs: []
   type: TYPE_NORMAL
 - en: Inject dependencies
+  id: totrans-148
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
 - en: 'In order to make API calls, you will be leveraging the `HttpClient` module
     in Angular. The official documentation ([https://angular.io/guide/http](https://angular.io/guide/http))
     explains the benefits of this module succinctly:'
+  id: totrans-149
   prefs: []
   type: TYPE_NORMAL
 - en: '"With HttpClient, @angular/common/http provides a simplified API for HTTP functionality
@@ -684,154 +959,214 @@
     exposed by browsers. Additional benefits of HttpClient include testability support,
     strong typing of request and response objects, request and response interceptor
     support, and better error handling via APIs based on Observables."'
+  id: totrans-150
   prefs: []
   type: TYPE_NORMAL
 - en: 'Let''s start with importing the `HttpClientModule` in to our app, so we can
     inject the `HttpClient` within the module into the `WeatherService`:'
+  id: totrans-151
   prefs: []
   type: TYPE_NORMAL
 - en: 'Add `HttpClientModule` to `app.module.ts`, as follows:'
+  id: totrans-152
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
 - en: '[PRE13]'
+  id: totrans-153
   prefs: []
   type: TYPE_PRE
+  zh: '[PRE13]'
 - en: 'Inject `HttpClient` provided by the `HttpClientModule` in the  `WeatherService`, as
     follows:'
+  id: totrans-154
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
 - en: '[PRE14]'
+  id: totrans-155
   prefs: []
   type: TYPE_PRE
+  zh: '[PRE14]'
 - en: Now, `httpClient` is ready for use in your service.
+  id: totrans-156
   prefs: []
   type: TYPE_NORMAL
 - en: Discover OpenWeatherMap APIs
+  id: totrans-157
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
 - en: Since `httpClient` is strongly typed, we need to create a new interface that
     conforms to the shape of the API we'll call. To be able to do this, you need to
     familiarize yourself with the Current Weather Data API.
+  id: totrans-158
   prefs: []
   type: TYPE_NORMAL
 - en: 'Read documentation by navigating to [http://openweathermap.org/current](http://openweathermap.org/current):'
+  id: totrans-159
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
 - en: '![](img/771e0150-f856-43e5-9da5-0704544cd618.png)'
+  id: totrans-160
   prefs: []
   type: TYPE_IMG
 - en: OpenWeatherMap Current Weather Data API Documentation
+  id: totrans-161
   prefs: []
   type: TYPE_NORMAL
 - en: 'You will be using the API named By city name, which allows you to get current
     weather data by providing the city name as a parameter. So, your web request will
     look like this:'
+  id: totrans-162
   prefs: []
   type: TYPE_NORMAL
 - en: '[PRE15]'
+  id: totrans-163
   prefs: []
   type: TYPE_PRE
+  zh: '[PRE15]'
 - en: 'On the documentation page, click on the link under Example of API calls, and
     you will see a sample response like the following:'
+  id: totrans-164
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
 - en: '[PRE16]'
+  id: totrans-165
   prefs: []
   type: TYPE_PRE
+  zh: '[PRE16]'
 - en: Given the existing `ICurrentWeather` interface that you have already created,
     this response contains more information than you need. So you will write a new
     interface that conforms to the shape of this response, but only specify the pieces
     of data you will use. This interface will only exist in the `WeatherService` and
     we won't export it, since the other parts of the application don't need to know
     about this type.
+  id: totrans-166
   prefs: []
   type: TYPE_NORMAL
 - en: Create a new interface named `ICurrentWeatherData` in `weather.service.ts` between
     the `import` and `@Injectable` statements
+  id: totrans-167
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 在`weather.service.ts`中的`import`语句和`@Injectable`语句之间创建一个名为`ICurrentWeatherData`的新接口
 - en: 'The new interface should like this:'
+  id: totrans-168
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 新接口应该像这样：
 - en: '[PRE17]'
+  id: totrans-169
   prefs: []
   type: TYPE_PRE
+  zh: '[PRE17]'
 - en: With the `ICurrentWeatherData` interface, we are defining new anonymous types
     by adding children objects to the interface with varying structures. Each of these
     objects can be individually extracted out and defined as their own named interface.
     Especially, note that `weather` will be an array of the anonymous type that has
     the `description` and `icon` properties.
+  id: totrans-170
   prefs: []
   type: TYPE_NORMAL
+  zh: 通过`ICurrentWeatherData`接口，我们通过向接口添加具有不同结构的子对象来定义新的匿名类型。这些对象中的每一个都可以被单独提取出来并定义为它们自己的命名接口。特别要注意的是，`weather`将是一个具有`description`和`icon`属性的匿名类型数组。
 - en: Storing environment variables
+  id: totrans-171
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 存储环境变量
 - en: 'It''s easy to miss, but the sample URL from previous sections contains a required `appid` parameter.
     You must store this key in your Angular app. You can store it in the weather service,
     but in reality, applications need to be able to target different sets of resources
     as they move from development to testing, staging, and production environments.
     Out of the box, Angular provides two environments: one `prod` and the other one
     as the default.'
+  id: totrans-172
   prefs: []
   type: TYPE_NORMAL
+  zh: 很容易被忽视的是，之前章节示例的URL包含一个必需的`appid`参数。你必须在你的Angular应用中存储这个键。你可以将它存储在天气服务中，但实际上，应用程序需要能够在从开发到测试、分段和生产环境的移动过程中针对不同的资源集。Angular
+    提供了两个环境：一个为`prod`，另一个为默认。
 - en: Before you can continue, you need to sign up for a free `OpenWeatherMap` account
     and retrieve your own `appid`. You can read the documentation for `appid` at [http://openweathermap.org/appid ](http://openweathermap.org/appid)for
     more detailed information.
+  id: totrans-173
   prefs: []
   type: TYPE_NORMAL
+  zh: 在继续之前，你需要注册一个免费的`OpenWeatherMap`账户并获取自己的`appid`。你可以阅读[http://openweathermap.org/appid ](http://openweathermap.org/appid)上`appid`的文档以获取更详细的信息。
 - en: Copy your `appid`, which will have a long string of characters and numbers
+  id: totrans-174
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 复制你的`appid`，它将有一长串字符和数字
 - en: Store your `appid `in `environment.ts`
+  id: totrans-175
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 将你的`appid`存储在`environment.ts`中
 - en: 'Configure `baseUrl` for later use:'
+  id: totrans-176
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 为后续使用配置`baseUrl`：
 - en: '[PRE18]'
+  id: totrans-177
   prefs: []
   type: TYPE_PRE
+  zh: '[PRE18]'
 - en: In code, we use a camel-case `appId` to keep our coding style consistent. Since
     URL parameters are case-insensitive, `appId` will work as well as `appid`.
+  id: totrans-178
   prefs: []
   type: TYPE_NORMAL
+  zh: 在代码中，我们使用驼峰写法`appId`以保持我们的编码风格一致。由于 URL 参数是大小写不敏感的，`appId`和`appid`都可以使用。
 - en: Implementing an HTTP GET operation
+  id: totrans-179
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 实现一个 HTTP GET 操作
 - en: 'Now, we can implement the GET call in the Weather service:'
+  id: totrans-180
   prefs: []
   type: TYPE_NORMAL
+  zh: 现在，我们可以在天气服务中实现 GET 调用：
 - en: Add a new function to the `WeatherService` class named `getCurrentWeather`
+  id: totrans-181
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 在`WeatherService`类中添加一个名为`getCurrentWeather`的新函数
 - en: Import the `environment` object
+  id: totrans-182
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 导入`environment`对象
 - en: Implement the `httpClient.get` function
+  id: totrans-183
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 实现`httpClient.get`函数
 - en: 'Return the results of the HTTP call:'
+  id: totrans-184
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 返回 HTTP 调用的结果：
 - en: '[PRE19]'
+  id: totrans-185
   prefs: []
   type: TYPE_PRE
+  zh: '[PRE19]'
 - en: Note the use of ES2015's String Interpolation feature. Instead of building your
     string by appending variables to one another like `environment.baseUrl + 'api.openweathermap.org/data/2.5/weather?q='
     + city + ',' + country + '&appid=' + environment.appId`, you can use the backtick
@@ -842,44 +1177,58 @@
     in your code, you may add a backslash `\`, but then the next line of your code
     can have no indentation. It is easier to just concatenate multiple templates,
     as shown in the preceding code sample.
+  id: totrans-186
   prefs: []
   type: TYPE_NORMAL
+  zh: 请注意使用 ES2015 的字符串插值功能。不必像`environment.baseUrl + 'api.openweathermap.org/data/2.5/weather?q='
+    + city + ',' + country + '&appid=' + environment.appId`那样将变量追加到一起来构建字符串，你可以使用反引号语法包裹``你的字符串``。在反引号内，你可以有换行，还可以直接使用`${dollarbracket}`语法将变量嵌入到字符串的流中。但是，在代码中引入换行时，它将被解释为字面换行—`\n`。为了在代码中分割字符串，你可以添加一个反斜杠`\`，但接下来的代码行不能有缩进。如前面的代码示例所示，将多个模板连接起来会更容易些。
 - en: Note the use TypeScript Generics with the get function using the caret syntax
     like `<TypeName>`. Using generics is development-time quality of life feature.
     By providing the type information to the function, input and/or return variables
     types of that function will be displayed as you write your code and validated
     during development and also at compile time.
+  id: totrans-187
   prefs: []
   type: TYPE_NORMAL
 - en: Retrieving service data from a component
+  id: totrans-188
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
 - en: 'To be able to use the `getCurrentWeather` function in the `CurrentWeather`
     component, you need to inject the service into the component:'
+  id: totrans-189
   prefs: []
   type: TYPE_NORMAL
 - en: Inject the `WeatherService` into the constructor of the `CurrentWeatherComponent`
     class
+  id: totrans-190
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
 - en: 'Remove the existing code that created the dummy data in the constructor:'
+  id: totrans-191
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
 - en: '[PRE20]'
+  id: totrans-192
   prefs: []
   type: TYPE_PRE
+  zh: '[PRE20]'
 - en: 'Call the `getCurrentWeather` function inside the `ngOnInit` function:'
+  id: totrans-193
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
 - en: '[PRE21]'
+  id: totrans-194
   prefs: []
   type: TYPE_PRE
+  zh: '[PRE21]'
 - en: Fair warning, do not expect this code to be working just yet. You should see
     an error, so let's understand what's going in the next segment.
+  id: totrans-195
   prefs: []
   type: TYPE_NORMAL
 - en: Angular components have a rich collection of lifecycle hooks that allow you
@@ -888,38 +1237,48 @@
     It is only called once when a component is first instantiated or visited. This
     is where you will want to perform your service calls. For a deeper understanding
     of component lifecycle hooks, check out the documentation at [https://angular.io/guide/lifecycle-hooks](https://angular.io/guide/lifecycle-hooks).
+  id: totrans-196
   prefs: []
   type: TYPE_NORMAL
 - en: Note that the anonymous function you have passed to `subscribe` is an ES2015
     arrow function. If you're not familiar with arrow functions, it may be confusing
     at first. Arrow functions are actually quite elegant and simple.
+  id: totrans-197
   prefs: []
   type: TYPE_NORMAL
 - en: 'Consider the following arrow function:'
+  id: totrans-198
   prefs: []
   type: TYPE_NORMAL
 - en: '`(data) => { this.current = data }`'
+  id: totrans-199
   prefs: []
   type: TYPE_NORMAL
 - en: 'You can rewrite it simply as:'
+  id: totrans-200
   prefs: []
   type: TYPE_NORMAL
 - en: '`function(data) { this.current = data }`'
+  id: totrans-201
   prefs: []
   type: TYPE_NORMAL
 - en: 'There''s a special condition—when you write an arrow function that simply transforms
     a piece of data, such as this:'
+  id: totrans-202
   prefs: []
   type: TYPE_NORMAL
 - en: '`(data) => { data.main.temp }`'
+  id: totrans-203
   prefs: []
   type: TYPE_NORMAL
 - en: 'This function effectively takes `ICurrentWeatherData` as an input and returns
     the temp property. The return statement is implicit. If you rewrite it as a regular
     function, it will look like this:'
+  id: totrans-204
   prefs: []
   type: TYPE_NORMAL
 - en: '`function(data) { return data.main.temp }`'
+  id: totrans-205
   prefs: []
   type: TYPE_NORMAL
 - en: When the `CurrentWeather` component loads, `ngOnInit` will fire once, which
@@ -930,6 +1289,7 @@
     The `Observable` object by itself is benign and will not cause a network event
     to be fired unless it is being listened to. You can read more about Observables
     at [reactivex.io/rxjs/class/es6/Observable.js~Observable.html](http://reactivex.io/rxjs/class/es6/Observable.js~Observable.html).
+  id: totrans-206
   prefs: []
   type: TYPE_NORMAL
 - en: By calling `.subscribe` on the Observable, you're essentially attaching a listener
@@ -942,6 +1302,7 @@
     though `ngOnInit` executes only once, the subscription to the Observable persists.
     So whenever there's new data, the current variable will be updated and the view
     will re-render to display the latest data.
+  id: totrans-207
   prefs: []
   type: TYPE_NORMAL
 - en: The root cause of the error at hand is that the data that is being emitted is
@@ -949,6 +1310,7 @@
     is shaped as described by the `ICurrentWeather` interface. In the next section,
     you will need to dig deeper into RxJS to understand how best to accomplish that
     task.
+  id: totrans-208
   prefs: []
   type: TYPE_NORMAL
 - en: 'Beware, VS Code and CLI sometimes stop working. As previously noted, as you
@@ -963,26 +1325,32 @@
     and everything will work. However, under certain scenarios, you will note that
     VS Code will fail to pick typing changes in the IDE, so you won''t get autocompletion
     help or the CLI tool will get stuck with message saying webpack: Failed to compile.'
+  id: totrans-209
   prefs: []
   type: TYPE_NORMAL
 - en: 'You have two main strategies to recover from such conditions:'
+  id: totrans-210
   prefs: []
   type: TYPE_NORMAL
 - en: Click on the terminal and hit *Ctrl* + *C*to stop running the CLI task and restart
     by executing `npm start`
+  id: totrans-211
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
 - en: If **#1** doesn't work, quit VS Code with *Alt* + *F4* for Windows or ⌘ + *Q*
     for macOS and restart it
+  id: totrans-212
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
 - en: Given Angular and VS Code's monthly releases cycles, I'm confident that in time
     the tooling can only improve.
+  id: totrans-213
   prefs: []
   type: TYPE_NORMAL
 - en: Transform data using RxJS
+  id: totrans-214
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
@@ -991,9 +1359,11 @@
     allows for manipulation of data streams through transformation, filtering, and
     control functions. You can think of reactive programming as an evolution of event-based
     programming.
+  id: totrans-215
   prefs: []
   type: TYPE_NORMAL
 - en: Understanding Reactive programming
+  id: totrans-216
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
@@ -1002,19 +1372,27 @@
     an `onClick` event, you would implement a `confirmSave` function, which when triggered,
     would show a popup to ask the user Are you sure?. Look at the following figure
     for a visualization of this process.
+  id: totrans-217
   prefs: []
   type: TYPE_NORMAL
+  zh: 在事件驱动编程中，您将定义一个事件处理程序并将其附加到事件源。更具体地说，如果您有一个保存按钮，该按钮公开`onClick`事件，您将实现一个`confirmSave`函数，当触发时，会显示一个弹出窗口询问用户“您确定吗？”。查看以下图示可可视化此过程。
 - en: '![](img/1958996b-696a-4b00-971d-12e7f8537bf2.png)'
+  id: totrans-218
   prefs: []
   type: TYPE_IMG
+  zh: '![](img/1958996b-696a-4b00-971d-12e7f8537bf2.png)'
 - en: Event-Driven Implementation
+  id: totrans-219
   prefs: []
   type: TYPE_NORMAL
+  zh: 事件驱动实现
 - en: In short, you would have an event firing once per user action. If the user clicks
     on the save button many times, this pattern would gladly render as many popups
     as there are clicks, which doesn't make much sense.
+  id: totrans-220
   prefs: []
   type: TYPE_NORMAL
+  zh: 简而言之，您将有一个事件在每次用户操作时触发。如果用户多次点击保存按钮，此模式将乐意呈现与点击次数相同的弹出窗口，这并没有太多意义。
 - en: The publish-subscribe (pub/sub) pattern is a different type of event-driven
     programming. In this case, we can write multiple handlers to act on the result
     of a given event all simultaneously. Let's say that your app just received some
@@ -1027,14 +1405,20 @@
     however, the `fetchDetails` and `showToastMessage` functions will be receiving
     more data than they really need, and it can get really convoluted to try to compose
     these events in different ways to modify application behavior.
+  id: totrans-221
   prefs: []
   type: TYPE_NORMAL
+  zh: 发布-订阅（pub/sub）模式是一种不同类型的事件驱动编程。在这种情况下，我们可以编写多个处理程序来同时对给定事件的结果进行操作。假设您的应用刚刚收到了一些更新的数据。发布者将遍历其订阅者列表，并将更新的数据传递给每个订阅者。参考以下图表，更新的数据事件如何触发`updateCache`函数，该函数可以使用新数据更新您的本地缓存，`fetchDetails`函数可以从服务器检索有关数据的更多详细信息，并且`showToastMessage`函数可以通知用户应用程序刚刚收到了新数据。所有这些事件都可以异步发生;但是，`fetchDetails`和`showToastMessage`函数将收到比他们实际需要的更多数据，尝试以不同方式组合这些事件以修改应用程序行为可能会变得非常复杂。
 - en: '![](img/3526531c-0a8d-4901-887b-2128cf2c4451.png)'
+  id: totrans-222
   prefs: []
   type: TYPE_IMG
+  zh: '![](img/3526531c-0a8d-4901-887b-2128cf2c4451.png)'
 - en: Pub/Sub Pattern Implementation
+  id: totrans-223
   prefs: []
   type: TYPE_NORMAL
+  zh: 发布-订阅模式实现
 - en: In reactive programming, everything is treated as a stream. A stream will contain
     events that happen over time and these events can contain some data or no data.
     The following diagram visualizes a scenario where your app is listening for mouse
@@ -1045,8 +1429,11 @@
     may try to extract some data from each click event, but in this case, you're only
     interested in the number of click events that happened. We can shape the raw event
     data into number of clicks using the `map` function.
+  id: totrans-224
   prefs: []
   type: TYPE_NORMAL
+  zh: 在响应式编程中，一切都被视为流。一个流将包含随时间发生的事件，这些事件可以包含一些数据或没有数据。下图可视化了一个场景，您的应用正在监听用户的鼠标点击。不受控的用户点击流是毫无意义的。通过将`throttle`函数应用于它，您可以对此流施加一些控制，以便每250
+    **毫秒**（**ms**）仅获得更新。如果订阅此新事件，则每250毫秒，您将收到一系列点击事件。您可以尝试从每次点击事件中提取一些数据，但在这种情况下，您只对发生的点击事件数量感兴趣。我们可以使用`map`函数将原始事件数据转化为点击次数。
 - en: Further down the stream, we may only be interested in listening for events with
     two or more clicks in it, so we can use the `filter` function to only act on what
     is essentially a double-click event. Every time our filter event fires, it means
@@ -1056,15 +1443,19 @@
     and filter functions. You can choose to display click data on an HTML list using
     `*ngFor` and Angular's `async` pipe, so the user can monitor the types of click
     data being captured every 250ms.
+  id: totrans-225
   prefs: []
   type: TYPE_NORMAL
 - en: '![](img/c16581a0-78ed-4c3c-87a6-903d7bca41d0.png)'
+  id: totrans-226
   prefs: []
   type: TYPE_IMG
 - en: A Reactive Data Stream Implementation
+  id: totrans-227
   prefs: []
   type: TYPE_NORMAL
 - en: Implementing Reactive transformations
+  id: totrans-228
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
@@ -1072,28 +1463,36 @@
     service, you need to update the `getCurrentWeather` function to define the return
     type to be `Observable<ICurrentWeather>` and import the `Observable` type, as
     shown:'
+  id: totrans-229
   prefs: []
   type: TYPE_NORMAL
 - en: '[PRE22]'
+  id: totrans-230
   prefs: []
   type: TYPE_PRE
+  zh: '[PRE22]'
 - en: 'Now, VS Code will let you know that Type `Observable<ICurrentWeatherData>` is
     not assignable to type `Observable<ICurrentWeather>`:'
+  id: totrans-231
   prefs: []
   type: TYPE_NORMAL
 - en: Write a transformation function named `transformToICurrentWeather` that can
     convert `ICurrentWeatherData` to `ICurrentWeather`
+  id: totrans-232
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
 - en: 'Also, write a helper function named `convertKelvinToFahrenheit` that converts
     the API provided Kelvin temperature to Fahrenheit:'
+  id: totrans-233
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
 - en: '[PRE23]'
+  id: totrans-234
   prefs: []
   type: TYPE_PRE
+  zh: '[PRE23]'
 - en: Note that you need to be converting the icon property to an image URL at this
     stage. Doing this in the service helps preserve encapsulation, binding the icon
     value to the URL in the view template will break the **Separation of concerns**
@@ -1101,6 +1500,7 @@
     components, you must remain vigilant and strict in terms of enforcing SoC. The
     documentation for Weather Icons and details of how the URL should be formed, including
     all the available icons can be found at [http://openweathermap.org/weather-conditions](http://openweathermap.org/weather-conditions).
+  id: totrans-235
   prefs: []
   type: TYPE_NORMAL
 - en: On a separate note, the argument can be made that Kelvin to Fahrenheit conversion
@@ -1113,9 +1513,11 @@
     apply it in the template. A pipe can easily bind with the planned toggle button
     as well. However, at this time, we only need to display in Fahrenheit and I would
     err on the side of *not*over-engineering a solution.
+  id: totrans-236
   prefs: []
   type: TYPE_NORMAL
 - en: Update `ICurrentWeather.date` to the `number` type
+  id: totrans-237
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
@@ -1131,74 +1533,94 @@
     transforming massive amounts of data, but that concern is not applicable here. There's
     one caveat—JavaScript's timestamp is in milliseconds, but the server value is
     in seconds, so a simple multiplication during the transformation is still required.
+  id: totrans-238
   prefs: []
   type: TYPE_NORMAL
 - en: 'Import the RxJS `map` operator right below the other import statements:'
+  id: totrans-239
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
 - en: '[PRE24]'
+  id: totrans-240
   prefs: []
   type: TYPE_PRE
+  zh: '[PRE24]'
 - en: It may seem odd to have to manually import the `map` operator. RxJS is a very
     capable framework with a wide API surface. Observable alone has over 200 methods
     attached to it. Including all of these methods by default creates development
     time issues with too many functions to choose from and also, it negatively impacts
     the size of the final deliverable, including app performance and memory use. So
     you must add each operator you intend to use individually.
+  id: totrans-241
   prefs: []
   type: TYPE_NORMAL
 - en: Apply the `map` function to data stream returned by  `httpClient.get` method
     through a `pipe`
+  id: totrans-242
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
 - en: 'Pass the `data` object into the `transformToICurrentWeather` function:'
+  id: totrans-243
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
 - en: '[PRE25]'
+  id: totrans-244
   prefs: []
   type: TYPE_PRE
+  zh: '[PRE25]'
 - en: Now incoming data can be transformed as it flows through the stream, ensuring
     that the `OpenWeatherMap` Current Weather API data is in the correct shape, so
     it can be consumed by the `CurrentWeather` component.
+  id: totrans-245
   prefs: []
   type: TYPE_NORMAL
 - en: Ensure that your app compiles successfully
+  id: totrans-246
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
 - en: 'Inspect the results in the browser:'
+  id: totrans-247
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
 - en: '![](img/9d3b92ed-4580-464f-ba40-4eb4f8b2121d.png)'
+  id: totrans-248
   prefs: []
   type: TYPE_IMG
 - en: Displaying Live Data from OpenWeatherMap
+  id: totrans-249
   prefs: []
   type: TYPE_NORMAL
 - en: Finally, you should see that your app is able to pull live data from `OpenWeatherMap`
     and correctly transform server data into the format you expect.
+  id: totrans-250
   prefs: []
   type: TYPE_NORMAL
 - en: You have completed the development of Feature 1: Display Current Location weather
     information for the current day. Commit your code and move the card in Waffle
     to the Done column.
+  id: totrans-251
   prefs: []
   type: TYPE_NORMAL
 - en: 'Finally, we can move this task to the Done column:'
+  id: totrans-252
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
 - en: '![](img/fa81e672-d175-49db-a89c-67b6acb67a98.png)'
+  id: totrans-253
   prefs: []
   type: TYPE_IMG
 - en: Waffle.io Kanban Board Status
+  id: totrans-254
   prefs: []
   type: TYPE_NORMAL
 - en: Summary
+  id: totrans-255
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
@@ -1207,18 +1629,21 @@
     because we first built a road map and codified it in a Kanban board that is visible
     to your peers and colleagues. We stayed focused on implementing the first feature
     we put in progress and didn't deviate from the plan.
+  id: totrans-256
   prefs: []
   type: TYPE_NORMAL
 - en: You can now use Angular CLI and an optimized VS Code development environment
     to help you reduce the amount of coding you need to do. You can leverage TypeScript
     anonymous types and observable streams to accurately reshape complicated API data
     into a simple format without having to create one-use interfaces.
+  id: totrans-257
   prefs: []
   type: TYPE_NORMAL
 - en: You learned to avoid coding mistakes by proactively declaring input and return
     types of functions and working with generic functions. You used the date and decimal
     pipes to ensure that the data is formatted as desired, while keeping formatting-related
     concerns mostly in the template, where this kind of logic belongs.
+  id: totrans-258
   prefs: []
   type: TYPE_NORMAL
 - en: Finally, you used interfaces to communicate between components and services
@@ -1227,11 +1652,13 @@
     allowed us to do, you have ensured proper separation of concerns and encapsulation.
     As a result, the `CurrentWeather` component is now a truly reusable and composable
     component; this is not an easy feat to achieve.
+  id: totrans-259
   prefs: []
   type: TYPE_NORMAL
 - en: If you don't ship it, it never happened. In the next chapter, we will prepare
     this Angular app for a production release by troubleshooting application errors,
     and containerizing the Angular app with Docker, so it can be published on the
     web.
+  id: totrans-260
   prefs: []
   type: TYPE_NORMAL
