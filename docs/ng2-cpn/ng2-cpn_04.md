@@ -36,7 +36,19 @@ Angular 2 如何知道如何处理我们的类作为组件？我们需要向类�
 
 让我们逐行探索组件代码，这是`app.component.ts`的代码
 
-[PRE0]
+```ts
+[app.component.ts]
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  title = 'app works!';
+}
+```
 
 在第一行，我们从 Angular 核心模块导入`Component`装饰器
 
@@ -76,7 +88,19 @@ Angular 2 如何知道如何处理我们的类作为组件？我们需要向类�
 
 以下代码来自`main.ts`文件：
 
-[PRE1]
+```ts
+import './polyfills.ts';
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { enableProdMode } from '@angular/core';
+import { environment } from './environments/environment';
+import { AppModule } from './app/';
+
+if (environment.production) {
+  enableProdMode();
+}
+
+platformBrowserDynamic().bootstrapModule(AppModule);
+```
 
 其余的代码对使用根模块引导 Angular 没有任何影响。`enableProdMode`方法是 Angular 核心中的一个方法，它在生产模式下运行应用程序。环境只是一个常量，它保存一个布尔值，指示我们是否在生产环境中运行。
 
@@ -88,7 +112,20 @@ Angular 2 如何知道如何处理我们的类作为组件？我们需要向类�
 
 在这种情况下，在预编译应用程序之后，您需要在`main.ts`文件中使用`platform-browser-dynamic`模块的`platformBrowserDynamic`方法：
 
-[PRE2]
+```ts
+import './polyfills.ts';
+import { platformBrowser } from '@angular/platform-browser';
+import { enableProdMode } from '@angular/core';
+import { environment } from './environments/environment';
+import { AppModuleNgFactory } from './app/app.module.ng.factory';
+
+if (environment.production) {
+  enableProdMode();
+
+}
+
+platformBrowser().bootstrapModuleFactory(AppModuleNgFactory);
+```
 
 # 组件选择器
 
@@ -100,7 +137,30 @@ Angular 2 如何知道如何处理我们的类作为组件？我们需要向类�
 
 在项目根目录的`src/app`目录下，找到并打开`app.module.ts`文件。这个文件包含了应用程序的根模块的定义：
 
-[PRE3]
+```ts
+[app.module.ts]
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
+import { AppComponent } from './app.component';
+
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+
+  imports: [
+    BrowserModule,
+    FormsModule,
+    HttpModule
+  ],
+
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+```
 
 `app.module.ts` 负责实例化组件类。当这发生时，Angular 会在`index.html`文件中搜索我们在组件装饰器中定义的选择器。我们需要放置在`index.html`中的唯一组件是在`app.module.ts`中的根模块的`bootstrap`属性中定义的根组件。
 
@@ -108,7 +168,17 @@ Angular 2 如何知道如何处理我们的类作为组件？我们需要向类�
 
 打开`index.html`，它位于`main.ts`旁边，检查代码：
 
-[PRE4]
+```ts
+[index.html]
+<html>
+  <head>
+    <!-- other code related to the page head -->
+  </head>
+  <body>
+    <app-root>Loading...</app-root>
+  </body>
+</html>
+```
 
 我们看到的第一件事是，在我们的`html`文件中，我们将选择器用作元素。这是 Angular 的默认行为。
 
@@ -122,43 +192,75 @@ Angular 2 如何知道如何处理我们的类作为组件？我们需要向类�
 
 +   按 CSS 类名选择：
 
-[PRE5]
+```ts
+    @Component({
+      selector: '.app-root'
+    })
+    ```
 
 在标记中使用：
 
-[PRE6]
+```ts
+    <div class="app-root">Loading...</div>
+    ```
 
 +   按属性名选择：
 
-[PRE7]
+```ts
+    @Component({
+      selector: '[app-root]'
+    })
+    ```
 
 在标记中使用：
 
-[PRE8]
+```ts
+    <div app-root>Loading...</div>
+    ```
 
 +   按属性名和值选择：
 
-[PRE9]
+```ts
+    @Component({
+      selector: 'div[app=components]'
+    })
+    ```
 
 在标记中使用：
 
-[PRE10]
+```ts
+    <div app="components">Loading...</div>
+    ```
 
 +   仅在元素不匹配选择器时选择：
 
-[PRE11]
+```ts
+    @Component({
+      selector: 'div:not(.widget)'
+    })
+    ```
 
 在标记中使用：
 
-[PRE12]
+```ts
+    <div class="app">Loading...</div>
+    ```
 
 +   如果其中一个选择器匹配，则选择：
 
-[PRE13]
+```ts
+    @Component({
+      selector: 'app-root, .app, [ng=app]'
+    })
+    ```
 
 在标记中使用：
 
-[PRE14]
+```ts
+    <app-root>Loading...</app-root>
+    <div class="app">Loading...</div>
+    <div ng="app">Loading...</div>
+    ```
 
 大多数情况下，保留默认值——即组件选择器——正是我们在构建常见组件时想要的。在后面的章节中，我们还将看到其他用法。
 
@@ -174,106 +276,202 @@ Angular 2 如何知道如何处理我们的类作为组件？我们需要向类�
 
 由`angular-cli`创建的`app-root`包含外部模板。它是用`templateUrl`属性定义的：
 
-[PRE15]
+```ts
+[app.component.ts]
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html'
+})
+```
 
 我们可以在`app.component.ts`旁边找到模板，它是一个与`app.component.html`同名的 HTML 文件。让我们打开它来检查代码：
 
-[PRE16]
+```ts
+[app.component.html]
+<h1>
+  {{title}}
+</h1>
+```
 
 现在我们知道`<h1>`是从哪里来的。你可以猜到，双大括号会从组件类中渲染标题。
 
 如果我们想要内联声明我们的模板，我们应该使用模板属性。幸运的是，在 ES6 中，我们有一种简单创建多行字符串的方法。这个功能称为**模板字符串**，并且用反引号（`` ` ``）字符。 在以下示例中，我们演示了如何声明内联模板：
 
-[PRE17]
+```ts
+[app.component.ts]
+@Component({
+  selector: 'app-root',
+  template: `
+    <h1>
+      {{title}}
+    </h1>
+  `
+})
+```
 
-Keeping the template inline is comfortable as we can see both the template and the component class in the same file.
+将模板保持内联是方便的，因为我们可以在同一个文件中看到模板和组件类。
 
-## Embedding styles in component template
+## 在组件模板中嵌入样式
 
-We will probably want to use some CSS in our component's template. Like templates, we have two options—specifying our CSS classes inline or supplying a URL for external style sheets. Currently, our component uses one external CSS file, by declaring a path in the `styleUrls` array.
+我们可能会想要在组件的模板中使用一些 CSS。与模板一样，我们有两个选择——内联指定我们的 CSS 类或为外部样式表提供 URL。目前，我们的组件使用一个外部 CSS 文件，通过在`styleUrls`数组中声明路径。
 
-As the property name suggests, we can supply more than one URL to pull the CSS from. The styles defined on those CSS files are now available for use within our template. First let's take a look at the current component declaration:
+如属性名称所示，我们可以提供多个 URL 以从中提取 CSS。这些 CSS 文件上定义的样式现在可以在我们的模板中使用。首先让我们看一下当前的组件声明：
 
-[PRE18]
+```ts
+[app.component.ts]
+@Component({
+  selector: 'app-root',
+  template: `
+    <h1>
+      {{title}}
+    </h1>
+  `,
+  styleUrls: ['./app.component.css']
+})
+```
 
-Alternatively, we can define styles inline, just like the template, by using the **styles** property instead. **styles** is an array of strings where we can write our CSS rules. The following example demonstrates how to style the `<h1>` tag using inline styles:
+或者，我们可以使用**styles**属性以内联方式定义样式，就像模板一样。**styles**是一个字符串数组，我们可以在其中编写我们的 CSS 规则。下面的示例演示了如何使用内联样式来为`<h1>`标签设定样式：
 
-[PRE19]
+```ts
+[app.component.ts]
+@Component({
+  selector: 'app-root',
+  template: `
+    <h1>
+      {{title}}
+    </h1>
+  `,
+  styles: [`
+    h1 { color: darkblue }
+  `]
+})
+```
 
-Let's explore the element in Chrome DevTool. Right-click on the `title` and choose inspect from the pop up menu. The Chrome DevTool will launch:
+让我们在 Chrome DevTool 中探索该元素。右键单击`title`并从弹出菜单中选择检查。Chrome DevTool 将启动：
 
-![Embedding styles in component template](img/image00101.jpeg)
+![在组件模板中嵌入样式](img/image00101.jpeg)
 
-Looking at the element through the DevTool, we expose some facts about component styling:
+通过 DevTool 查看元素，可以暴露一些关于组件样式的事实：
 
-*   The style that we defined is transformed into an inline style tag on the `head` section on top of the `html` document
-*   The style definition is changed and now includes a property next to it, which makes it specific and almost impossible to override
++   我们定义的样式被转换为一个内联样式标签，位于文档的`head`部分的顶部
 
-Angular protects the component styling from overriding by generating a unique property and attaches it to the original CSS selector that we defined. This behavior tries to mimic the way that the shadow DOM works. So, before we can move forward, we need to understand what the shadow DOM is.
++   样式定义已更改，现在包括其旁边的一个属性，这使其具体化并几乎不可能被覆盖
 
-# The shadow DOM
+Angular 通过生成一个唯一的属性并将其附加到我们定义的原始 CSS 选择器来保护组件的样式不被覆盖。这种行为试图模仿阴影 DOM 的工作方式。因此，在继续之前，我们需要了解什么是阴影 DOM。
 
-When we are creating a component in Angular 2, a shadow DOM is created and our template gets loaded into it (not by default). What is a shadow DOM? Shadow DOM refers to a subtree of DOM elements that renders as part of the document, but not into the main document DOM tree.
+# 阴影 DOM
 
-Let's see a well-known example of a shadow DOM, an HTML `select`, in action. Create a plain HTML file in your favorite text editor and create a `select` element in its body:
+当我们在 Angular 2 中创建一个组件时，会创建一个阴影 DOM，并且我们的模板会被加载到其中（默认情况下）。什么是阴影 DOM？阴影 DOM 指的是 DOM 元素的子树，它作为文档的一部分呈现，但不在主文档 DOM 树中。
 
-[PRE20]
+让我们看一个众所周知的阴影 DOM 的示例，一个 HTML `select` 它是如何运作的。在您喜欢的文本编辑器中创建一个普通的 HTML 文件，然后在其 body 中创建一个 `select` 元素：
 
-Next, open it up in Chrome and right-click on the element, then choose **Inspect Element** from the pop-up menu:
+```ts
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+  </head>
+  <body>
+    <select>
+      <option>ONE</option>
+      <option>TWO</option>
+      <option>THREE</option>
+    </select>
+  </body>
+</html>
+```
 
-![The shadow DOM](img/image00102.jpeg)
+接下来，在 Chrome 中打开它，在元素上右键单击，然后从弹出菜单中选择**检查元素**：
 
-The Chrome DevTool will pop up, and we can inspect the `select` element in the **Elements** tab:
+![阴影 DOM](img/image00102.jpeg)
 
-![The shadow DOM](img/image00103.jpeg)
+Chrome DevTool 将弹出，我们可以在**Elements**标签中检查`select`元素：
 
-If you have ever tried to customize the appearance of a native `html select` element with CSS, you know that you need to hack and develop a workaround to make it work. The `select` element has styling structure, and even a built-in behavior, but we can't see it. It's encapsulated inside the element.
+![阴影 DOM](img/image00103.jpeg)
 
-If you are not familiar with the term encapsulation here is a quick definition taken from Wikipedia:
+如果您曾经尝试过使用 CSS 定制原生`html select`元素的外观，您就会知道需要进行破解和开发一种解决方案来使其工作。`select`元素有样式结构，甚至有内置的行为，但我们看不到它。它被封装在元素内部。
 
-**Encapsulation** is an Object Oriented Programming concept that binds together the data and functions that manipulate the data, and that keeps both safe from outside interference and misuse.
+如果您对封装这个术语不熟悉，这里有一个从维基百科摘取的快速定义：
 
-So, where does the select appearance come from? Chrome DevTool has a feature that can rival the shadow DOM of this element. To enable this, go to the Settings menu of Chrome DevTool:
+**封装**是一种面向对象编程的概念，它将数据和操纵数据的函数绑定在一起，并且保护它们免受外部干扰和误用。
 
-![The shadow DOM](img/image00104.jpeg)
+那么，`select`元素的外观是从哪里来的？Chrome DevTool 有一个可以与该元素的影子 DOM 相媲美的功能。要启用此功能，请转到 Chrome DevTool 的设置菜单：
 
-Scroll down and find the **Elements** section. Check the checkbox **Show user agent shadow DOM**:
+![影子 DOM](img/image00104.jpeg)
 
-![The shadow DOM](img/image00105.jpeg)
+向下滚动并找到**Elements**部分。勾选复选框**显示用户代理影子 DOM**：
 
-Now, let's inspect the `select` element again:
+![影子 DOM](img/image00105.jpeg)
 
-![The shadow DOM](img/image00106.jpeg)
+现在，让我们再次检查`select`元素：
 
-Now we clearly see that the `select` element hides a secret DOM tree. Under the `select` element, a new root is created (the `#shadow-root`) and a content element renders right under it. The hidden content tag has an attribute called `select`, which defines some internal behavior. This is same for the option tag. If you would like to explore one more popular HTML element that creates a shadow DOM, you can repeat those steps using `<input type='file' />`.
+![影子 DOM](img/image00106.jpeg)
 
-This powerful ability to create a native element, which encapsulates its own styling, behavior, and even data, is also possible with Angular 2.
+现在我们清楚地看到，`select`元素隐藏了一个秘密的 DOM 树。在`select`元素下面，创建了一个新的根（`#shadow-root`），并且一个内容元素就在其下面渲染。隐藏的内容标签具有一个名为`select`的属性，它定义了一些内部行为。对于 option 标签也是一样的。如果你想探索另一个创建影子 DOM 的流行 HTML 元素，可以使用`<input type='file' />`重复这些步骤。
 
-# Encapsulation modes
+这种强大的能力来创建一个封装自身样式、行为甚至数据的本地元素，在 Angular 2 中也是可能的。
 
-By default, as we have seen, our component won't encapsulate its structure and styling. This means that CSS classes from outside of the component can override and affect the embedded CSS styles that we defined, and the HTML structure of the component is accessible as well.
+# 封装模式
 
-Angular will generate a unique property for our `selector` to protect our styling, but this can be overridden with a CSS `!important` statement.
+默认情况下，正如我们所见，我们的组件不会封装其结构和样式。这意味着来自组件外部的 CSS 类可以覆盖并影响我们定义的嵌入式 CSS 样式，以及组件的 HTML 结构也是可访问的。
 
-To change this, we need to define an encapsulation mode. Angular 2 provides us three options to choose from:
+Angular 将为我们的`selector`生成一个独特的属性来保护我们的样式，但这可以通过 CSS 的`!important`语句来覆盖。
 
-*   **Emulated** (the default): Angular will add a special attribute to the class `selector` to avoid affecting other styles outside of the components.
-*   **Native**: This is the native encapsulation mechanism of the renderer that will be applied. In our case, it's the browser. Angular will create a shadow DOM for this component, which means that external CSS can't affect our component.
-*   **None**: No encapsulation will be applied.
+要更改这一点，我们需要定义一个封装模式。Angular 2 为我们提供了三个选择：
 
-To define encapsulation options, we need to import the `ViewEncapsulation` from Angular core and use one of the options to define the component encapsulation property. The following example demonstrates how to set the component encapsulation model to `None`:
++   **模拟**（默认）：Angular 将向类`selector`添加一个特殊属性，以避免影响组件之外的其他样式。
 
-[PRE21]
++   **本地**：这是渲染器应用的本地封装机制。在我们的情况下，它是浏览器。Angular 将为该组件创建一个影子 DOM，这意味着外部 CSS 无法影响我们的组件。
 
-Most of the time, leaving the default emulate mode is fine. In the future chapters, we will encounter some situations where setting the mode to `None` is crucial.
++   **None**：不会应用任何封装。
 
-# Data bindings
+要定义封装选项，我们需要从 Angular 核心中导入`ViewEncapsulation`并使用其中一个选项来定义组件的封装属性。以下示例演示了如何将组件封装模型设置为`None`：
 
-To fully understand the component code that was generated for us by angular-cli, we need to talk about data bindings. In other words, the way that we were able to render the **title** declared on the component class to component template.
+```ts
+[app.component.ts]
+@Component({
+  selector: 'app-root',
+  encapsulation: ViewEncapsulation.None,
+  template: `
+    <h1>
+      {{title}}
+    </h1>
+  `,
+  styles: [`
+    h1 { color: darkblue }
+  `]
+})
+```
 
-First, let's take a look at the entire component code:
+大多数情况下，保留默认的模拟模式就可以了。在未来的章节中，我们会遇到一些必须将模式设置为`None`的情况。
 
-[PRE22]
+# 数据绑定
+
+要完全了解由 angular-cli 为我们生成的组件代码，我们需要讨论数据绑定。换句话说，我们能够将在组件类中声明的**title**呈现到组件模板的方法。
+
+首先，让我们看一下整个组件代码：
+
+```ts
+[app.component.ts]
+import { Component, ViewEncapsulation } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  encapsulation: ViewEncapsulation.None,
+  template: `
+    <h1>
+      {{title}}
+    </h1>
+  `,
+  styles: [`
+    h1 { color: darkblue }
+  `]
+})
+export class AppComponent {
+  title = 'app works!';
+}
+```
 
 很容易在模板中发现双大括号。这是 Angular 模板语法的一部分，负责从组件类进行单向数据绑定。在这种情况下，我们将 title 属性（字符串）绑定到`<h1>`标签之间呈现。
 
