@@ -390,6 +390,7 @@
   id: totrans-57
   prefs: []
   type: TYPE_NORMAL
+  zh: 我们利用了Typescript语法，并使用装饰符功能将类附加元数据。为了使一个类成为组件，我们添加`@Component`装饰符，如下所示：
 - en: '[PRE7]'
   id: totrans-58
   prefs: []
@@ -400,6 +401,7 @@
   id: totrans-59
   prefs: []
   type: TYPE_NORMAL
+  zh: 现在，让我们使用装饰符语法为`FirstComponent`类附加元数据：
 - en: '[PRE8]'
   id: totrans-60
   prefs: []
@@ -411,6 +413,7 @@
   id: totrans-61
   prefs: []
   type: TYPE_NORMAL
+  zh: 在这里，我们已经添加了诸如选择器和`templateUrl`之类的元数据。组件中配置的选择器元数据告诉Angular在遇到`<first-controller>`标记时创建该组件的实例：
 - en: '[PRE9]'
   id: totrans-62
   prefs: []
@@ -424,21 +427,25 @@
   id: totrans-63
   prefs: []
   type: TYPE_NORMAL
+  zh: '`templateUrl`提供了组件渲染的模板文件的URL。当您运行应用程序时，`<first-controller>`标记将被`templateUrl`中引用的模板内容替换。此元数据实际上是`@Component`装饰符的一个参数，而装饰符是一个函数。'
 - en: By adding metadata via decorators, we are actually telling Angular what to do
     with the defined class. The component, template, and metadata together constitute
     a view.
   id: totrans-64
   prefs: []
   type: TYPE_NORMAL
+  zh: 通过装饰符添加元数据，我们实际上告诉Angular如何处理定义的类。组件、模板和元数据一起构成一个视图。
 - en: Templates
   id: totrans-65
   prefs:
   - PREF_H2
   type: TYPE_NORMAL
+  zh: 模板
 - en: '* * *'
   id: totrans-66
   prefs: []
   type: TYPE_NORMAL
+  zh: '* * *'
 - en: You willÂ have noted that we have added inline markups for a view or template
     when annotating the component. We can also add a template URL isolating the view,
     or template markups in a separate HTML file, instead of having it as an inline
@@ -446,12 +453,14 @@
   id: totrans-67
   prefs: []
   type: TYPE_NORMAL
+  zh: 当对组件进行注解时，您可能已经注意到我们为视图或模板添加了内联标记。我们还可以添加一个模板URL，将视图或模板标记隔离在一个单独的HTML文件中，而不是将其作为内联视图或模板。
 - en: 'A template comprises HTML tags that provide information to Angular on rendering
     the components. A simple template content is given in the following lines of code.
     It renders the name of the book and publisher:'
   id: totrans-68
   prefs: []
   type: TYPE_NORMAL
+  zh: 模板由HTML标记组成，向Angular提供有关呈现组件的信息。以下代码行中给出了一个简单的模板内容。它呈现了书名和出版商：
 - en: '[PRE10]'
   id: totrans-69
   prefs: []
@@ -462,12 +471,14 @@
   prefs:
   - PREF_H3
   type: TYPE_NORMAL
+  zh: 内联模板
 - en: 'An inline template is used when there is a need to render very simple content,
     such as a one-liner, for example. In such cases, inline views or templates will
     be defined directly in the annotation:'
   id: totrans-71
   prefs: []
   type: TYPE_NORMAL
+  zh: 内联模板在需要呈现非常简单内容（例如一行）时使用。在这种情况下，内联视图或模板将直接在注释中定义：
 - en: '[PRE11]'
   id: totrans-72
   prefs: []
@@ -478,6 +489,7 @@
   prefs:
   - PREF_H3
   type: TYPE_NORMAL
+  zh: 隔离模板
 - en: 'Isolated templates are used mostly when the template contains more contents.
     In such cases, rather than assigning the larger content as an inline view, the
     content will be moved to a separate file and the HTML file URL will be assigned
@@ -485,6 +497,7 @@
   id: totrans-74
   prefs: []
   type: TYPE_NORMAL
+  zh: 隔离模板主要用于模板包含更多内容的情况。在这种情况下，内容将被移到一个单独的文件中，并将HTML文件的URL分配给`templateUrl`，如下所示：
 - en: '[PRE12]'
   id: totrans-75
   prefs: []
@@ -495,11 +508,13 @@
   prefs:
   - PREF_H3
   type: TYPE_NORMAL
+  zh: 本地模板变量
 - en: 'Angular permitsÂ creating template-scoped variables to move data across the
     elements in a template:'
   id: totrans-77
   prefs: []
   type: TYPE_NORMAL
+  zh: Angular允许创建模板作用域变量，在模板中移动数据：
 - en: '[PRE13]'
   id: totrans-78
   prefs: []
@@ -511,12 +526,14 @@
   id: totrans-79
   prefs: []
   type: TYPE_NORMAL
+  zh: 在前面的模板标记中，我们使用let关键字声明了一个本地变量todo。然后，我们遍历todos集合变量；每个todo项目都被分配给todo，并且可以在`<todo-item>`中使用。
 - en: 'A local template variable can also be used to hold the DOM element. The following
     code shows that the author will hold the input element itself, and the value of
     the element can be accessed using author.value:'
   id: totrans-80
   prefs: []
   type: TYPE_NORMAL
+  zh: 也可以使用本地模板变量来保存DOM元素。以下代码显示了作者将保存输入元素本身，并且可以使用author.value访问元素的值：
 - en: '[PRE14]'
   id: totrans-81
   prefs: []
@@ -527,10 +544,12 @@
   prefs:
   - PREF_H2
   type: TYPE_NORMAL
+  zh: 绑定
 - en: '* * *'
   id: totrans-83
   prefs: []
   type: TYPE_NORMAL
+  zh: '* * *'
 - en: The binding technique will enable you to bind data to a template and will allow
     users to interact with the bound data. The Angular binding framework takes care
     of rendering the data to a view and updating itÂ as per user actions over the
@@ -538,15 +557,18 @@
   id: totrans-84
   prefs: []
   type: TYPE_NORMAL
+  zh: 绑定技术将使您能够将数据绑定到模板，并允许用户与绑定的数据进行交互。Angular绑定框架负责将数据呈现到视图，并根据用户在视图上的操作进行更新。
 - en: 'The following screenshot gives you a quick glimpseÂ of the various binding
     techniques in Angular. We will go through each binding technique in detail:'
   id: totrans-85
   prefs: []
   type: TYPE_NORMAL
+  zh: 以下截图让您快速了解了Angular中各种绑定技术。我们将逐个详细介绍每种绑定技术：
 - en: '![](img/image_02_004.png)'
   id: totrans-86
   prefs: []
   type: TYPE_IMG
+  zh: '![](img/image_02_004.png)'
 - en: Various binding syntaxes
   id: totrans-87
   prefs: []
