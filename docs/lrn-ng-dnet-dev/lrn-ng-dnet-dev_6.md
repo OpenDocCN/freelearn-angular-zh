@@ -1,4 +1,4 @@
-## 第六章 创建 ASP.NET Core Web API 服务用于 Angular
+## 第六章：创建 ASP.NET Core Web API 服务用于 Angular
 
 本章将指引您创建 ASP.NET Web API 服务用于上一章中创建的 Angular 应用程序。
 

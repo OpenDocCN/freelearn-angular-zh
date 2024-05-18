@@ -1,4 +1,4 @@
-## 第八章。测试 Angular 应用
+## 第八章：测试 Angular 应用
 
 本章讨论使用**Jasmine**框架测试 Angular 组件和服务。
 

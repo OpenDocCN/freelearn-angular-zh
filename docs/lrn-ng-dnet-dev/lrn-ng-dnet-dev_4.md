@@ -1,4 +1,4 @@
-## 第四章. 使用 TypeScript 与 Angular
+## 第四章：使用 TypeScript 与 Angular
 
 本章讨论了 TypeScript 的基本原理以及使用 TypeScript 编写 Angular 应用程序的好处。
 

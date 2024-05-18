@@ -1,4 +1,4 @@
-## 第一章 使用 Angular 入门
+## 第一章：使用 Angular 入门
 
 如果您正在阅读本书，那是因为您是.NET 开发人员，想了解如何将 Angular 与.NET Framework 技术一起使用，如 ASP.NET **Model View Controller**（MVC）和 Web API，以及诸如 Web Forms 和 Web Services 之类的传统技术。它使开发人员能够开发由 Angular 驱动的更丰富和动态的.NET Web 应用程序。Angular 是一个帮助创建动态 Web 应用程序的开源 JavaScript 框架。
 

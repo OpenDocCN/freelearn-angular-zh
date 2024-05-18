@@ -1,4 +1,4 @@
-## 第九章. Angular 和 ASP.NET Core 中的新功能
+## 第九章：Angular 和 ASP.NET Core 中的新功能
 
 我们从讨论 Angular、构建一个 Hello World 应用程序和 Angular 的核心架构开始了本书。然后，我们深入了解了 Angular 的构建块。接下来，我们讨论了 TypeScript 的基础知识以及如何在编写 Angular 应用程序时使用 TypeScript。之后，我们在 Visual Studio 中逐步创建了一个 Angular 单页面应用，并学习了 RESTful 服务以及如何使用 Web API 为 Angular 应用创建 RESTful 服务。之后，我们通过使用 Angular、ASP.NET MVC 和 Web API 在 Visual Studio 中逐步创建了一个应用程序。最后，我们学习了如何使用 Karma 和 Jasmine 测试 Angular 应用。
 

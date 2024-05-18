@@ -1,4 +1,4 @@
-## 第五章。在 Visual Studio 中创建 Angular 单页应用程序
+## 第五章：在 Visual Studio 中创建 Angular 单页应用程序
 
 本章将指导您通过使用 Visual Studio 创建 Angular **单页应用程序** （**SPA**）的过程。
 

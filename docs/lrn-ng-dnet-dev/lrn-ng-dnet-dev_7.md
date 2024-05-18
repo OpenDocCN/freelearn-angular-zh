@@ -1,4 +1,4 @@
-## 第七章。在 Visual Studio 中使用 Angular，ASP.NET MVC 和 Web API 创建应用程序
+## 第七章：在 Visual Studio 中使用 Angular，ASP.NET MVC 和 Web API 创建应用程序
 
 本章将指导您通过将 Angular 应用程序与 ASP.NET MVC 和 ASP.NET Web API 集成的过程。在上一章中，我们使用 Angular 应用程序消耗了 ASP.NET Web API 服务。所有视图都由 Angular 渲染。在本章中，我们将从 ASP.NET MVC 提供视图。因此，它提供了许多机会，比如使用 Razor 语法，因为 Angular 视图将由 ASP.NET MVC 提供动力。
 
