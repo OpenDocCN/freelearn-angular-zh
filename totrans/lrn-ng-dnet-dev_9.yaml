@@ -3,6 +3,7 @@
   prefs:
   - PREF_H2
   type: TYPE_NORMAL
+  zh: 第9章. Angular 和 ASP.NET Core 中的新功能
 - en: We started this book with a discussion on Angular, building a hello world application,
     and the core architecture of Angular. Then, we dived into the building blocks
     of Angular. Next, we discussed the basics of TypeScript and how to use TypeScript
@@ -15,70 +16,88 @@
   id: totrans-1
   prefs: []
   type: TYPE_NORMAL
+  zh: 我们从讨论 Angular、构建一个 Hello World 应用程序和 Angular 的核心架构开始了本书。然后，我们深入了解了 Angular 的构建块。接下来，我们讨论了
+    TypeScript 的基础知识以及如何在编写 Angular 应用程序时使用 TypeScript。之后，我们在 Visual Studio 中逐步创建了一个
+    Angular 单页面应用，并学习了 RESTful 服务以及如何使用 Web API 为 Angular 应用创建 RESTful 服务。之后，我们通过使用
+    Angular、ASP.NET MVC 和 Web API 在 Visual Studio 中逐步创建了一个应用程序。最后，我们学习了如何使用 Karma
+    和 Jasmine 测试 Angular 应用。
 - en: 'This chapter will discuss what is new in Angular and ASP.NET Core. We will
     cover the following topics:'
   id: totrans-2
   prefs: []
   type: TYPE_NORMAL
+  zh: 本章将讨论 Angular 和 ASP.NET Core 中的新功能。我们将涵盖以下话题：
 - en: Ahead-of-Time compilation
   id: totrans-3
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 预编译
 - en: Update on Templates
   id: totrans-4
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 模板更新
 - en: Introducing titlecase pipes
   id: totrans-5
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 引入标题大小写管道
 - en: Simplified parameter passing in HTTP
   id: totrans-6
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 简化 HTTP 参数传递
 - en: Overriding templates in testing
   id: totrans-7
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 在测试中覆盖模板
 - en: Introducing the Meta service
   id: totrans-8
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: Meta 服务的引入
 - en: New form validators
   id: totrans-9
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 新的表单验证器
 - en: Introducing ParamMap in a router
   id: totrans-10
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 在路由器中引入 ParamMap
 - en: Introducing .NET Core 1.0
   id: totrans-11
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 引入 .NET Core 1.0
 - en: Cross-platform development with the .NET Execution Environment
   id: totrans-12
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: .NET 执行环境下的跨平台开发
 - en: What's new in Angular
   id: totrans-13
   prefs:
   - PREF_H2
   type: TYPE_NORMAL
+  zh: Angular 的新功能
 - en: '* * *'
   id: totrans-14
   prefs: []
   type: TYPE_NORMAL
+  zh: '* * *'
 - en: 'The Angular team has dropped Angular 3 and proceeded with Angular 4 as they
     have decided to follow semantic versioning. This helps standardize the version
     for major, minor, and patch releases. The semantic version will have three segments
@@ -90,19 +109,23 @@
   id: totrans-15
   prefs: []
   type: TYPE_NORMAL
+  zh: Angular 团队已经放弃了 Angular 3，并决定遵循语义化版本控制推进Angular 4。这有助于标准化主要、次要和补丁版本的版本号。语义化版本控制的版本号将分为三个段。在语法或概念上的任何破坏性变化将被视为主要，第一个段的版本号将会递增。任何新增功能都将被视为次要，第二个段的版本号将会递增，并且对于任何bug修复，第三个段的版本号会递增，视它们为补丁：
 - en: '![](img/image_09_001.png)'
   id: totrans-16
   prefs: []
   type: TYPE_IMG
+  zh: '![](img/image_09_001.png)'
 - en: 'Fig 01: Semantic versioning'
   id: totrans-17
   prefs: []
   type: TYPE_NORMAL
+  zh: 图01：语义化版本控制
 - en: Ahead-of-Time compilation
   id: totrans-18
   prefs:
   - PREF_H3
   type: TYPE_NORMAL
+  zh: 预编译
 - en: Angular introduces a major change that generates JavaScript code when building
     your application. This enables you to know whether there are any errors in templates
     when building rather than being notified at runtime. Also, it enables the application
@@ -112,17 +135,22 @@
   id: totrans-19
   prefs: []
   type: TYPE_NORMAL
+  zh: Angular 引入了一个重大改变，即在构建应用程序时生成 JavaScript 代码。这样可以在构建时了解模板中是否存在任何错误，而不是在运行时被通知。此外，它还可以让应用程序运行得更快，因为在构建阶段已经完成了代码生成。新的
+    Angular 视图引擎在使用 **预编译**（**AoT**）时生成更少的代码。
 - en: Update on templates
   id: totrans-20
   prefs:
   - PREF_H3
   type: TYPE_NORMAL
+  zh: 模板更新
 - en: 'As the template is a real HTML tag for the web component, Angular introduced
     a new `ng-template` tag for templates. Angular enabled us to use `else` in `ngIf`
     in templates, as follows:'
   id: totrans-21
   prefs: []
   type: TYPE_NORMAL
+  zh: 由于模板是 Web 组件的真实 HTML 标签，Angular 引入了一个新的 `ng-template` 标签来作为模板。Angular 允许我们在模板中使用
+    `ngIf` 的 `else`，如下所示：
 - en: '[PRE0]'
   id: totrans-22
   prefs: []
@@ -133,12 +161,14 @@
   id: totrans-23
   prefs: []
   type: TYPE_NORMAL
+  zh: 如果 `isOld` 为 true，则会显示旧模板的内容。否则，将显示新模板的内容。
 - en: 'Next, let''s discuss the `as` keyword added to the template syntax. It is introduced
     to simplify the syntax of `let`. It enables us to store the results in a template
     variable:'
   id: totrans-24
   prefs: []
   type: TYPE_NORMAL
+  zh: 接下来让我们讨论模板语法中新增的 `as` 关键字。它被引入以简化 `let` 的语法，使我们能够将结果存储在模板变量中：
 - en: '[PRE1]'
   id: totrans-25
   prefs: []
@@ -499,6 +529,8 @@
   id: totrans-75
   prefs: []
   type: TYPE_NORMAL
+  zh: CLR负责加载程序集、检查类型和垃圾回收。因此，在应用程序运行的机器上安装.NET Framework是必要的。大量的类和其他类型可用。它包含了所有Windows
+    Forms、WCF、WPF、web forms所需的类型，以及在这些框架中可用的类型，例如文件处理、读取和操作XML、绘图和密码。所有应用程序都使用其中的一些类。
 - en: 'The CLR is specifically designed to run on Windows. Also, some of the classes
     in the FCL are specifically for Windows. `System.web` is an assembly containing
     classes that are tied to IIS and therefore Windows. building blocks of legacy
@@ -506,19 +538,24 @@
   id: totrans-76
   prefs: []
   type: TYPE_NORMAL
+  zh: CLR专门设计用于在Windows上运行。此外，FCL中的一些类专为Windows设计。`System.web`是一个包含与IIS和因此Windows相关联的类的程序集。传统.NET
+    Framework的构建模块包括以下内容：
 - en: '![](img/image_09_003.png)'
   id: totrans-77
   prefs: []
   type: TYPE_IMG
+  zh: '![](img/image_09_003.png)'
 - en: 'Fig 03: Building blocks of legacy .NET Framework'
   id: totrans-78
   prefs: []
   type: TYPE_NORMAL
+  zh: 图03：传统.NET Framework的构建模块
 - en: Mono Cross-platform .NET Framework
   id: totrans-79
   prefs:
   - PREF_H3
   type: TYPE_NORMAL
+  zh: Mono跨平台.NET Framework
 - en: Mono is an open source version of the .NET Framework developed by the community.
     It uses the exact same principles that Microsoft .NET Framework uses. It's compatible
     with the Microsoft .NET Framework. Even if you don't use ASP.NET 5, you can create
@@ -530,11 +567,15 @@
   id: totrans-80
   prefs: []
   type: TYPE_NORMAL
+  zh: Mono是由社区开发的.NET Framework的开源版本。它使用了与Microsoft .NET Framework相同的原理。它与Microsoft
+    .NET Framework兼容。即使你不使用ASP.NET 5，你也可以在Windows机器上使用Microsoft .NET Framework和Visual
+    Studio创建程序集，然后在Linux机器上使用Mono运行它们。所以，与Microsoft .NET Framework的一个重要区别是它是跨平台的。版本适用于Windows、macOS和Linux。它还被用作Xamarin的基础，该基础在Android和iOS上运行.NET。
 - en: NuGet package manager
   id: totrans-81
   prefs:
   - PREF_H3
   type: TYPE_NORMAL
+  zh: NuGet软件包管理器
 - en: Microsoft has introduced NuGet to manage packages and download them easily for
     development. NuGet is a central place to get the libraries. Developers of these
     libraries and frameworks can easily apply new versions or bug fixes to NuGet.
@@ -549,11 +590,15 @@
   id: totrans-82
   prefs: []
   type: TYPE_NORMAL
+  zh: Microsoft引入了NuGet来管理包并方便地下载它们用于开发。NuGet是获取库的中心位置。这些库和框架的开发人员可以轻松地向NuGet应用新版本或bug修复。Microsoft开始在FCL中通常会出现的程序集中使用NuGet。MVC安装为应用程序中的NuGet包，而不像FCL那样在整个机器上安装。这使不同的应用程序可以使用不同版本的MVC而无需安装不同版本的.NET
+    Framework。通过NuGet分发MVC使Microsoft能够在.NET Framework之外"越分频"地更新MVC，从而使MVC能够更快地演进并得到更频繁的更新。这是一个完全模块化的框架类库与.NET
+    Core的乐观预示。
 - en: CoreFx and CoreCLR in .NET Core
   id: totrans-83
   prefs:
   - PREF_H3
   type: TYPE_NORMAL
+  zh: .NET Core中的CoreFx和CoreCLR
 - en: Through the years, .NET has been reinvented multiple times. There is a .NET
     Framework for Windows Desktop, Windows Store apps, and Windows Phone. We also
     have the framework we used all along for ASP.NET 4 and earlier apps. Microsoft
