@@ -1,4 +1,4 @@
-# 第三章 TypeScript Crash Course
+# 第三章：TypeScript Crash Course
 
 在本章中，我们将开始使用 TypeScript，这是 Angular 2 推荐的脚本语言。ECMAScript 2015 和 ECMAScript 2016 提供的所有功能，如函数、类、模块和装饰器，已经在 TypeScript 中实现或添加到路线图中。由于额外的类型注解，与 JavaScript 相比，有一些语法上的补充。
 

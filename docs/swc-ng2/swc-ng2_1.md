@@ -1,4 +1,4 @@
-# 第一章. 开始使用 Angular 2
+# 第一章：开始使用 Angular 2
 
 2014 年 9 月 18 日，第一个公共提交被推送到 Angular 2 存储库。几周后，在 ng-europe 上，核心团队的 Igor 和 Tobias 简要概述了 Angular 2 的预期。当时的愿景远非最终；然而，有一件事是确定的——新版本的框架将与 AngularJS 1.x 完全不同。
 

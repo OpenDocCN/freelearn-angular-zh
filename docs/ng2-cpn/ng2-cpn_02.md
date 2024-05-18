@@ -1,4 +1,4 @@
-# 第二章。使用 angular-cli 设置 Angular 2 开发环境
+# 第二章：使用 angular-cli 设置 Angular 2 开发环境
 
 Angular 2 利用现代 Web 技术和工具，这意味着开发环境变得更加复杂，需要一些工具和对它们的理解。
 

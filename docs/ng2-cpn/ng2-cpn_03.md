@@ -1,4 +1,4 @@
-# 第三章 TypeScript 入门
+# 第三章：TypeScript 入门
 
 Angular 2 是用 TypeScript 编写的，但这并不意味着我们必须用 TypeScript 编写我们的应用程序。Angular 2 应用程序可以用 ES6（JavaScript 2015）甚至 ES5（JavaScript 1.5）编写。在本书中，我们将主要使用 TypeScript，主要是因为装饰器的实现可以使我们的 Angular 2 代码比 ES6 和 ES5 更清晰。
 

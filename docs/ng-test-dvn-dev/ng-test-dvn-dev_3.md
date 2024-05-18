@@ -1,4 +1,4 @@
-# 第三章。Karma 的方式
+# 第三章：Karma 的方式
 
 由于 Karma，JavaScript 测试已经成为主流。Karma 使 JavaScript 测试变得无缝。Angular 是围绕测试创建的。
 

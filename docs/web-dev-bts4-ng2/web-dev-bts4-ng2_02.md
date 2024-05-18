@@ -1,4 +1,4 @@
-# 第二章。使用 Bootstrap 组件
+# 第二章：使用 Bootstrap 组件
 
 在网页设计和开发领域，我们听说过很多关于**Twitter Bootstrap 3**。我们今天的英雄是**Bootstrap 4**，这是一个 CSS 框架，最终帮助设计网页应用更容易更快。
 
