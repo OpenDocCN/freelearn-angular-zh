@@ -674,16 +674,16 @@ export class Movie {
 
 在这里，电影 JSON 定义的每个字段都使用构造函数属性声明映射到`Movie`类的私有成员
 
-of TypeScript. We also override the `toString` method so that it prints every field. In the `toString` method, we take advantage of multi-line strings provided by the backtick (`` ` ``) and the `${}` syntax that allows the concatenation of strings and different variables. Then, we have an enumerator called `MovieFields` that will allow us to restrict the searchable field.
+TypeScript。我们还覆盖了`toString`方法，以便打印每个字段。在`toString`方法中，我们利用反引号(` `)提供的多行字符串和`${}`语法，允许我们连接字符串和不同的变量。然后，我们有一个名为`MovieFields`的枚举器，它将允许我们限制可搜索的字段。
 
-Moving on, we need to generate the `IMDBAPI` class. As the `IMDBAPI` class will be potentially used everywhere in our program, we will make it a service. The advantage is that services can be injected into any component or directive. Moreover, we can choose if we want Angular 2 to create an instance of the `IMDBAPI` per injection or always inject the same instance. If the provider for the `IMDBAPI` is created at the application level, then the same instance of the `IMDBAPI` will be served to anyone requesting it. At the component level, however, a new instance of the `IMDBAPI` will be created and served to the component each time the said component is instantiated. In our case, it makes more sense to have only one instance of the `IMDBAPI`, as it will not have any particular states that are susceptible to change from component to component. Let's generate the `IMDBAPI` service (`ng g s` `services/IMDBAPI`) and implement the two methods we defined earlier:
+接下来，我们需要生成`IMDBAPI`类。由于`IMDBAPI`类可能会在程序的任何地方使用，我们将其定义为服务。其优势在于服务可以被注入到任何组件或指令中。此外，我们可以选择是否让 Angular 2 在每次注入时创建`IMDBAPI`的实例，或者始终注入相同的实例。如果为`IMDBAPI`创建的提供者是在应用程序级别的话，那么请求它的任何人都会得到同一个`IMDBAPI`的实例。然而，在组件级别，每次实例化该组件时都会创建新的`IMDBAPI`实例并提供给该组件。在我们的情况下，只有一个`IMDBAPI`实例更合理，因为它不会有任何特定于从一个组件到另一个组件可能会发生变化的状态。让我们生成`IMDBAPI`服务(`ng g s``services/IMDBAPI`)，并实现我们之前定义的两个方法：
 
 ```ts
 IMDBAPI.fetchOneById(1);
  IMDBAPI.fetchByFields(MovieFields.release_date, 2015);
 ```
 
-Here's the IMDAPI service with the `fetchOneById` method:
+这是带有`fetchOneById`方法的 IMDAPI 服务：
 
 ```ts
 import { Injectable } from '@angular/core';
@@ -755,9 +755,9 @@ import { Injectable } from '@angular/core';
  }
 ```
 
-# Understanding the implementation
+# 理解实现
 
-Let's break it down chunk by chunk. First, the declaration of the service is pretty standard:
+让我们一步步来分解。首先，服务的声明非常标准：
 
 ```ts
 import { Injectable } from '@angular/core'; 
@@ -773,13 +773,13 @@ import 'rxjs/Rx';
   constructor(private http: Http) { }
 ```
 
-Services are injectable. Consequently, we need to import and add the `@Injectable` annotation. We also import `Http`, `Movie`, `MovieFields`, `Observable`, and the operators of `Rxjs`. **RxJS** stands for **reactive extensions for JavaScript**. It is an API to perform observer, iterator, and functional programming. When it comes to asynchronism in Angular 2, you rely on RxJS for the most part.
+服务是可注入的。因此，我们需要导入并添加`@Injectable`注解。我们还导入`Http`，`Movie`，`MovieFields`，`Observable`以及`Rxjs`的操作符。**RxJS**代表**JavaScript 的响应式扩展**。它是用于执行观察者、迭代器和函数式编程的 API。当涉及到 Angular 2 中的异步操作时，大部分情况下会依赖于 RxJS。
 
-One important thing to note is that we use RxJS 5.0, which is a complete rewrite, based on the same concept of RxJS 4.0.
+值得注意的是，我们使用的是 RxJS 5.0，它是一次完整的重写，基于相同概念的 RxJS 4.0。
 
-`IMDBAPIService` also has a reference to the path of our JSON file and a constructor to receive an injection of the HTTP service. On the implementation of the `fetchOneById` method, we can see four distinct operations chained to each other: `get`, `flatMap`, `filter`, and `map`. `Get` returns an observable on the body of the HTTP request. `flatMap` transforms the `get Observable` by applying a function that you specify for each item emitted by the source `Observable`, where that function returns an `Observable` that emits items. `FlatMap` then merges the emissions of these resultant`Observables`, emitting these merged results as its sequence. In our case, it means that we will apply the next two operations (filter and map) on all the items received from the HTTP get. The filter checks if the ID of the current movie is the one we are looking to Map transform the JSON representation of a movie into the typeScript representation of a movie (such as the `Movie` class).
+`IMDBAPIService`还有一个对我们的 JSON 文件路径的引用，以及一个接收 HTTP 服务注入的构造函数。在`fetchOneById`方法的实现中，我们可以看到四个不同的操作链接在一起：`get`， `flatMap`，`filter`和`map`。 `Get`返回 HTTP 请求的主体上的 observable。 `flatMap`通过应用您指定的每个发射项目的 observable 函数来转换`get observable`，其中该函数返回发出项目的`observable`。然后，`flatMap`合并这些结果的发射，将这些合并的结果作为其序列发射。在我们的情况下，这意味着我们将对从 HTTP 获取的所有项目应用接下来的两个操作（filter 和 map）。筛选器检查当前电影的 ID 是否是我们要查找的 ID，Map 将电影的 JSON 表示转换为电影的 TypeScript 表示（例如`Movie`类）。
 
-This last operation, while counter-intuitive, is mandatory. Indeed, one could think that the JSON representation and the TypeScript representation are identical as they own the same fields. However, the TypeScript representation, as well as its properties, define functions such as `toString`, the getters, and the setters. Removing the map would return an `Object` instance containing all the fields of`Movie` without being one. Also, a typecast will not help you there. Indeed, the TypeScript transpiler will allow you to cast an `Object` into a `Movie`, but it still won't have the methods defined in the `Movie` class as the concept of static typing disappears when the TypeScript is transpiled into JavaScript. The following would  fail to transpile at execution time:
+最后一个操作虽然反直觉，但却是必须的。事实上，人们可能会认为 JSON 表示和 TypeScript 表示是相同的，因为它们拥有相同的字段。然而，TypeScript 表示以及其属性定义了`toString`，getter 和 setter 等函数。移除`map`将返回一个包含`Movie`所有字段的`Object`实例，而不是`Movie`。此外，类型转换也无济于事。事实上，TypeScript 转换器将允许您将`Object`转换为`Movie`，但它仍然不会包含`Movie`类中定义的方法，因为当 TypeScript 转换为 JavaScript 时，静态类型概念消失。以下情况将无法在执行时转换：
 
 ```ts
 movie.movie_id(25) TypeError: movie.movie_id is not a function at Object.<anonymous>
@@ -804,7 +804,7 @@ movie: Movie = JSON.parse(`{
  Console.log(movie.movie_id(25));
 ```
 
-Now, if we want to use our `IMDB` service, further modifications of the code that was generated by the Angular CLI is required. First, we need to modify `main.ts` so that it looks like this:
+现在，如果我们想要使用我们的`IMDB`服务，则需要进一步修改由 Angular CLI 生成的代码。首先，我们需要修改`main.ts`，使其看起来像这样：
 
 ```ts
 import{ bootstrap } from '@angular/platform-browser-dynamic';
@@ -824,9 +824,9 @@ import{ bootstrap } from '@angular/platform-browser-dynamic';
 );
 ```
 
-The lines in bold represent what has been added. We import our `IMDBService` and the `HTTP_PROVIDERS`. Both providers are declared at the application level, meaning that the instance that will be injected into the controller or directive will always be the same.
+粗体的行表示新增内容。我们导入我们的`IMDBService`和`HTTP_PROVIDERS`。这两个提供者在应用程序级别声明，这意味着将被注入到控制器或指令中的实例始终是相同的。
 
-Then, we modify the `angular-observable.component.ts` file that was generated and add the following:
+然后，我们修改了生成的`angular-observable.component.ts`文件，并添加了以下内容：
 
 ```ts
 import { Component } from '@angular/core';
@@ -855,13 +855,15 @@ import { Movie } from './models/movie';
  }
 ```
 
-We have added several properties to `AngularObservableAppComponent`: `movies`, `error`, and `finished`. The first property is an array of `Movie` that will store the result of our queries, and the second and the third properties flag for `error` and `termination`. In the constructor, we have an injection of `IMDBAPIService`, and we subscribe to the result of the `fetchOneById` method. The `subscribe` method expects three callbacks:
+我们将几个属性添加到`AngularObservableAppComponent`：`movies`，`error`和`finished`。第一个属性是存储我们查询结果的`Movie`数组，而第二个和第三个属性是`error`和`termination`的标志。在构造函数中，我们注入了`IMDBAPIService`，并订阅了`fetchOneById`方法的结果。`subscribe`方法期望三个回调函数：
 
-*   **Observer:** Receives the value yield by the observed method. It is the RxJS equivalent of the notifying method we saw earlier in this chapter.
-*   **Error** (**Optional**): Triggered in the case that the observed object yields an error.
-*   **Complete** (**Optional**): Triggered on completion. 
++   **观察者**：接收被观察方法产生的值。这是本章前面看到的通知方法的 RxJS 等效物。
 
-Finally, we can modify the `angular-ob``servable.component.html` file to map the`movie` property of the `AngularObservableAppComponent` array:
++   **错误**（**可选**）：在观察到对象产生错误的情况下触发。
+
++   **Complete**（**可选**）：完成时触发。
+
+最后，我们可以修改`angular-ob``servable.component.html`文件来映射`AngularObservableAppComponent`数组的`movie`属性：
 
 ```ts
 <h1>
@@ -873,13 +875,13 @@ Finally, we can modify the `angular-ob``servable.component.html` file to map the
 </ul>
 ```
 
-We can see that the first movie item has been correctly inserted into our `ul`/`li` HTML structure. What's really interesting about this code is the order in which things execute. Analyzing the log helps us to grasp the true power of asynchronism in Angular with RxJS. Here's what the console looks like after the execution of our code:
+我们可以看到，第一个电影条目已经被正确插入到我们的`ul`/`li` HTML 结构中。关于这段代码真正有趣的地方在于事物执行的顺序。分析日志有助于我们掌握 Angular 与 RxJS 中异步性的真正力量。我们的代码执行后，控制台如下所示：
 
 ```ts
 javascript fetchOneById 1 :4200/app/services/imdbapi.service.js:30 filter Object :4200/app/services/imdbapi.service.js:34 map Object :4200/app/angular-observable.component.js:21 Component Movie_aspect_ratio_name: " 2.35:1"_budget: "140,000,000"_category_name: "Action"_disc_format_name: "Blu-ray"_gross: "318,298,180"_movie_id: 1_number_discs: 1_phase: "Phase One: Avengers Assembled"_rating_name: "PG-13"_release_date: "May 2, 2008"_release_year: 2015_running_time: 126_status: 1_time_stamp: "2015-05-03"_title: "Iron Man"_viewing_format_name: "Widescreen"aspect_ratio_name: (...)budget: (...)category_name: (...)disc_format_name: (...)gross: (...)movie_id: (...)number_discs: (...)phase: (...)rating_name: (...)release_date: (...)release_year: (...)running_time: (...)status: (...)time_stamp: (...)title: (...)toString: ()viewing_format_name: (...)__proto__: Object :4200/app/services/imdbapi.service.js:30 filter Object :4200/app/services/imdbapi.service.js:30 filter Object :4200/app/services/imdbapi.service.js:30 filter Object :4200/app/services/imdbapi.service.js:30 filter Object :4200/app/services/imdbapi.service.js:30 filter Object :4200/app/services/imdbapi.service.js:30 filter Object :4200/app/services/imdbapi.service.js:30 filter Object :4200/app/services/imdbapi.service.js:30 filter Object :4200/app/services/imdbapi.service.js:30 filter Object :4200/app/services/imdbapi.service.js:30 filter Object :4200/app/services/imdbapi.service.js:30 filter Object :4200/app/services/imdbapi.service.js:30 filter Object :4200/app/services/imdbapi.service.js:30 filter Object
 ```
 
-As you can see, `AngularObservableAppComponent` was notified that a movie matching the query was found before the filter function analyzed all the items. As a reminder, the order of operations inside `fetchOneById` by ID was: `get`, `flatMap`, `filter`, and `map`, and we have a logging statement in the `filter` and `map` method as well. So, here, the `filter` operation analyzes the first item, which happens to be the one we look for (`movie_id===1`), and forwards it to the map operations that transform it into a `Movie`. This `Movie` is sent right away to`AngularObservableAppComponent`. We can clearly see that the received object in the `AngularObservableAppComponent` component is from the `Movie` type as the console gives us our overriding of the `toString` method. Then, the filter operation continues with the rest of the items. None of them match. Consequently, we do not have any more notifications. Let's test this further with a second method, `IMDBAPI.fetchByField`:
+如你所见，`AngularObservableAppComponent`在过滤函数分析所有项之前就收到了匹配查询的电影的通知。提醒一下，在按 ID 获取时，`fetchOneById`方法的操作顺序是：`get`、`flatMap`、`filter`和`map`，而且`filter`和`map`方法也有日志记录语句。因此，这里的`filter`操作分析了第一项，恰好是我们寻找的那一项（`movie_id===1`），并将其转发给将其转化为`Movie`的`map`操作。这个`Movie`被立刻发送给了`AngularObservableAppComponent`。我们清楚地看到，在`AngularObservableAppComponent`组件中收到的对象是`Movie`类型，因为控制台给出了我们对`toString`方法的覆盖。然后，`filter`操作继续处理剩下的项。它们中没有一个匹配。因此，我们不会再收到任何通知了。让我们更进一步地用第二种方法`IMDBAPI.fetchByField`进行测试：
 
 ```ts
 
@@ -923,13 +925,13 @@ As you can see, `AngularObservableAppComponent` was notified that a movie match
 }
 ```
 
-For the `fetchByField` method, we use the same mechanisms as the `fetchById`. Unsurprisingly, the operations stay the same: `get`, `flatMap`, `filter`, and `map`. The only change is in the filter operation, where we now have to filter on a field that's received as a parameter:
+对于`fetchByField`方法，我们使用与`fetchById`相同的机制。毫不奇怪，操作仍然是一样的：`get`、`flatMap`、`filter`和`map`。唯一的变化在于过滤操作，这里我们现在必须根据作为参数接收的字段进行过滤：
 
 ```ts
 return (movie[MovieFields[field]] === value).
 ```
 
-This statement can be a bit overwhelming to the TypeScript or JavaScript newcomer. First, the `MovieFields[field]` part is explained by the fact that `enum` will be transpiled into the following JavaScript function:
+对于 TypeScript 或 JavaScript 初学者来说，这个声明可能有点令人困惑。首先，`MovieFields[field]`部分的解释是`enum`将被转译为以下 JavaScript 函数：
 
 ```ts
 (function(MovieFields) {
@@ -953,9 +955,9 @@ This statement can be a bit overwhelming to the TypeScript or JavaScript newcome
  var MovieFields = exports.MovieFields;
 ```
 
-Consequently, the value of `MovieFields.release_year` is, in fact, 4, and `MovieFields` is a static array. Consequently, requesting the fourth index of the `MovieFields` array gives me the string `release_year is`. So, `movie[MovieFields[field]]` is interpreted as a `movie["release_year is"]` in our current example.
+结果，`MovieFields.release_year`的值实际上是 4，而`MovieFields`是一个静态数组。因此，请求`MovieFields`数组的第四个索引会使我得到字符串`release_year is`。因此，在我们当前的示例中，`movie[MovieFields[field]]`被解释为`movie["release_year is"]`。
 
-Now, we have five matches instead of one. Upon analysis of the console, we can see that the notifications still come as soon as a suitable object is found and not when they have all been filtered:
+现在我们有了五个匹配项而不是一个。分析控制台，我们可以看到通知仍然在找到合适的对象时立即出现，而不是在所有被过滤完后出现：
 
 ```ts
 fetchByField 4 2015
@@ -985,7 +987,7 @@ fetchByField 4 2015
 imdbapi.service.js:43 filter Object {movie_id: 14, title: "Doctor Strange", phase: "Phase Two", category_name: "Science Fiction", release_year: 2016...}
 ```
 
-Now, the other strength of this design pattern is the ability to unsubscribe yourself. To do so, you only have to acquire a reference to your subscription and call the `unsubscribe()` method, as follows:
+现在，这种设计模式的另一个优势是能够自行取消订阅。要这样做，你只需获取对订阅的引用并调用`unsubscribe()`方法，如下所示：
 
 ```ts
 constructor(private IMDBAPI:IMDBAPIService{ 
@@ -1003,7 +1005,7 @@ constructor(private IMDBAPI:IMDBAPIService{
  }
 ```
 
-Here, we unsubscribe after the third notification. To add to all this, the observable object will even detect that nobody's observing it anymore and will stop whatever it was doing. Indeed, the previous code with `unsubscribe` produces:
+在这里，我们在第三个通知后取消订阅。除此之外，可观察对象甚至会检测到没有人再观察它，然后停止它正在做的任何事情。事实上，上一个带有`unsubscribe`的代码产生了：
 
 ```ts
 fetchByField 4 2015
@@ -1022,13 +1024,13 @@ fetchByField 4 2015
  angular-observable.component.js:24 Component Movie {_movie_id: 7, _title: "Iron Man 3", _phase: "Phase Two", _category_name: "Action", _release_year: 2015...}
 ```
 
-Everything stops after the third notification.
+所有事情在第三次通知后停止了。
 
 # Promises
 
-The promise is another useful asynchronous concept that has been provided by Angular 2\. It promises to provide the same feature as `Observer`: process something and, asynchronously, notify the caller that an answer is available. So, why bother having two concepts that do the same thing? Well, the verbosity of `Observer` allows one thing that the `Promise`does not: unsubscribe. Consequently, if you never plan on using the unsubscribe capacity of the observer pattern, you are better off using `Promises`, which are, in my opinion, more intuitive in their writing and understanding. To emphasize the differences between observers and promises, we will take the same example as before—fetching movies from a JSON API. `AngularObservableAppComponent` will make an asynchronous call to`IMDBAPIService` and, upon the answer, will update the HTML view.
+Promise 是 Angular 2 提供的另一个有用的异步概念。它承诺提供与`Observer`相同的功能：处理某些事情，并且异步地通知调用者答案已经准备好了。那么，为什么要同时存在两个做相同事情的概念呢？嗯，`Observer`的冗长使得`Promise`无法实现的一件事情是：取消订阅。因此，如果你永远不打算使用观察者模式的取消订阅功能，那么最好使用`Promises`，在我看来，它们在书写和理解上更直观。为了强调观察者和 Promise 之间的差异，我们将采用与之前相同的例子——从 JSON API 获取电影。`AngularObservableAppComponent`将向`IMDBAPIService`发出异步调用，并在答案到来时更新 HTML 视图。
 
-Here's the `fetchOneById` method using `Promise` instead of `Observable`:
+这是使用`Promise`而不是`Observable`的`fetchOneById`方法：
 
 ```ts
 
@@ -1082,7 +1084,7 @@ Here's the `fetchOneById` method using `Promise` instead of `Observable`:
  }
 ```
 
-As shown by this code, we went from `flatMap`, `filter`, `map`, to `flatMap`, `filter`, to `Promise`, `then`. The new operations, `toPromise` and `then`, are creating a `Promise` object that will contain the result of the `filter`operation and, on completion of the `filter` operation, the `then` operation will be executed. The `then` operation can be thought of as a map; it does the same thing. To use this code, we also have to change the way we call `IMDBAPIService` in `AngularObservableAppComponent` to the following:
+如此代码所示，我们从`flatMap`，`filter`，`map`变为了`flatMap`，`filter`，`Promise`，`then`。新的操作`toPromise`和`then`将创建一个包含`filter`操作结果的`Promise`对象，在`filter`操作完成时，`then`操作将被执行。`then`操作可以被视为一个 map；它做的事情是一样的。为了使用这段代码，我们还需要修改在`AngularObservableAppComponent`中调用`IMDBAPIService`的方式如下：
 
 ```ts
 
@@ -1096,7 +1098,7 @@ As shown by this code, we went from `flatMap`, `filter`, `map`, to `flatMap`, `f
  );
 ```
 
-Once again, we can see a `then` operation that will be executed when the promise from `IMDBAPIService.FetchOneById` has completed. The `then` operation accepts two callbacks: `onCompletion` and `onError`. The second callback, `onError`, is optional. Now, the `onCompletion` callback will only be executed once, when the Promise has completed, as shown in the console:
+一次又一次，我们可以看到一个`then`操作，该操作将在`IMDBAPIService.FetchOneById`的 promise 完成时执行。`then`操作接受两个回调函数：`onCompletion`和`onError`。第二个回调函数`onError`是可选的。现在，`onCompletion`回调函数仅在 Promise 完成时执行一次，如控制台所示：
 
 ```ts
 imdbapi.service.js:30 filter Object {movie_id: 2, title: "The Incredible Hulk", phase: "Phase One: Avengers Assembled", category_name: "Action", release_year: 2008...}
@@ -1116,7 +1118,7 @@ imdbapi.service.js:30 filter Object {movie_id: 2, title: "The Incredible Hulk", 
  angular-observable.component.js:23 Component Movie {_movie_id: 1, _title: "Iron Man", _phase: "Phase One: Avengers Assembled", _category_name: "Action",  _release_year: 2015...}
 ```
 
-While the modification of `IMDBAPIService` was minimal for the `fetchOneById` method, we will have to change `fetchByField` more significantly. Indeed, the `onComplete` callback will only be executed once, so we need to return an array of `Movie` and not only one `Movie`. Here's the implementation of the `fetchByField` method:
+虽然对于`fetchOneById`方法，对`IMDBAPIService`的修改很小，但我们需要更显著地修改`fetchByField`。实际上，`onComplete`回调函数只会执行一次，所以我们需要返回一个`Movie`数组而不仅仅是一个`Movie`。以下是`fetchByField`方法的实现：
 
 ```ts
 public fetchByField(field: MovieFields, value: any) :Promise<Movie[]>{
@@ -1161,7 +1163,7 @@ public fetchByField(field: MovieFields, value: any) :Promise<Movie[]>{
  }
 ```
 
-To implement this, I trade `flatMap` for a classical map as the first operation. In the map, I directly acquire the reference to the JSON `movie` array and apply the filed filter. The result is transformed into a promise and processed in `then`. The `then` operation receives an array of JSON `movies` and transforms it into an array of `Movie`. This produces an array of `Movie` which is returned, as the promised result, to the caller. The call in  `AngularObservableAppComponent` is also a bit different, as we now expect an array:
+为了实现这一点，我将`flatMap`替换为了一个经典的 map 作为第一个操作。在 map 中，我直接获取 JSON `movie`数组的引用并应用字段过滤。结果被转换为 promise 并在`then`中处理。`then`操作接收到一个 JSON `movies`数组并将其转换为一个`Movie`数组。这产生了一个被承诺的结果返回给调用者的`Movie`数组。在`AngularObservableAppComponent`中的调用也有些不同，因为我们现在期望一个数组：
 
 ```ts
 
@@ -1174,7 +1176,7 @@ To implement this, I trade `flatMap` for a classical map as the first operation
  )
 ```
 
-Another way to use `Promise` is through the fork/join paradigm. Indeed, it is possible to launch many processes (fork) and wait for all the promises to complete before sending the aggregated result to the caller (join). It is therefore relatively easy to supercharge the `fetchByField` method, as it can run in many fields with logic or. Here are the three very short methods we need to implement to logic or:
+使用 `Promise` 的另一种方式是通过 fork/join 范式。实际上，可以启动许多进程(fork)，并等待所有 promise 完成后再将聚合结果发送给调用者(join)。因此，相对来说很容易增强 `fetchByField` 方法,因为它可以使用逻辑 or 在多个字段中运行。以下是我们需要实现这个逻辑 or 的三个非常简短的方法:
 
 ```ts
 
@@ -1235,7 +1237,7 @@ public fetch():Promise<Movie[]>{
 }
 ```
 
-Here, I provide two convenient methods, `field` and `or`, that take a `MovieField` and a value as an argument and create a new promise. They both return `this` for chaining. The `fetch` method joins all the promises together and merges their respective results. In `AngularObservableAppComponent`, we now have the following:
+这里我提供了两种便捷的方法 `field` 和 `or`，它们以 `MovieField` 和一个值作为参数，创建一个新的 promise。它们都返回 `this` 以支持链式调用。`fetch` 方法将所有 promise 连接在一起，并合并它们各自的结果。在 `AngularObservableAppComponent` 中，我们现在有以下内容:
 
 ```ts
 
