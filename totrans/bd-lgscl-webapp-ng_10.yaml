@@ -3,6 +3,7 @@
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 准备 Angular 应用程序进行生产发布
 - en: If you don't ship it, it never happened. In the previous chapter, you created
     a local weather application that can retrieve current weather data. You have created
     some amount of value; however, if you don't put your app on the web, you end up
@@ -12,6 +13,7 @@
   id: totrans-1
   prefs: []
   type: TYPE_NORMAL
+  zh: 如果你没有上线它，那就好像它从来没有发生过。在前一章中，你创建了一个可以检索当前天气数据的本地天气应用程序。你已经创造了一定的价值；然而，如果你不将你的应用程序上线，最终你将得不到任何价值。交付某物很困难，将其投入生产甚至更加困难。你希望遵循一个能够产生可靠、高质量和灵活发布的策略。
 - en: The app we created in [Chapter 9](7c897af2-bc94-4c2f-a5ad-8ae0b4bc0508.xhtml), *Create
     a Local Weather Web Application*, is fragile. We need to be able to deliver the
     frontend app separately from the backend app, which is a very important decoupling
@@ -22,76 +24,92 @@
   id: totrans-2
   prefs: []
   type: TYPE_NORMAL
+  zh: 我们在[第 9 章](7c897af2-bc94-4c2f-a5ad-8ae0b4bc0508.xhtml)中创建的应用程序，*创建本地天气 Web 应用程序*，比较脆弱。我们需要能够单独交付前端应用程序，而不必与后端应用程序一起处理，这是保持灵活性的重要解耦，以便能够推送独立的应用程序和服务器更新。此外，解耦将确保当应用程序堆栈中的各种工具和技术不可避免地不受支持或不受欢迎时，您将能够替换前端或后端，而无需全面重写系统。
 - en: 'In this chapter, you will learn to do the following:'
   id: totrans-3
   prefs: []
   type: TYPE_NORMAL
+  zh: 在这一章中，你将学习以下内容：
 - en: Guard against null data
   id: totrans-4
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 防范空数据
 - en: Containerize the app using Docker
   id: totrans-5
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 使用 Docker 容器化应用程序
 - en: Deploy the app on the web using Zeit Now
   id: totrans-6
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 使用 Zeit Now 将应用程序上线到 Web 上
 - en: 'Required software is as listed:'
   id: totrans-7
   prefs: []
   type: TYPE_NORMAL
+  zh: 所需软件列举如下：
 - en: Docker Community Edition Version 17.12
   id: totrans-8
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: Docker 社区版版本 17.12
 - en: Zeit Now Account
   id: totrans-9
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: Zeit Now 账户
 - en: Null guarding in Angular
   id: totrans-10
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 在 Angular 中进行空值保护
 - en: 'In JavaScript, the `undefined` and `null` values are a persistent issue that
     must be proactively dealt with every step of the way. There are multiple ways
     to guard against `null` values in Angular:'
   id: totrans-11
   prefs: []
   type: TYPE_NORMAL
+  zh: 在 JavaScript 中，`undefined` 和 `null` 值是必须主动处理的持久问题。在 Angular 中，有多种方法可以防范 `null`
+    值：
 - en: Property Initialization
   id: totrans-12
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 属性初始化
 - en: Safe Navigation Operator `?.`
   id: totrans-13
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 安全导航操作符 `?.`
 - en: Null Guarding with `*ngIf`
   id: totrans-14
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 使用 `*ngIf` 进行空值保护
 - en: Property initialization
   id: totrans-15
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 属性初始化
 - en: 'In statically-typed languages such as Java, it is drilled into you that proper
     variable initialization/instantiation is the key to error free operation. So let''s
     try that in `CurrentWeatherComponent` by initializing current with default values:'
   id: totrans-16
   prefs: []
   type: TYPE_NORMAL
+  zh: 在诸如 Java 等静态类型语言中，正确的变量初始化/实例化是无误操作的关键。因此，让我们在 `CurrentWeatherComponent` 中尝试通过使用默认值来初始化当前值：
 - en: '[PRE0]'
   id: totrans-17
   prefs: []
@@ -103,14 +121,17 @@
   id: totrans-18
   prefs: []
   type: TYPE_NORMAL
+  zh: 这些更改的结果将将控制台错误从 12 个减少到 3 个，此时您将只看到 API 调用相关的错误。但是，应用程序本身不会处于可展示状态，如下所示：
 - en: '![](img/1f84089f-b267-456c-880f-f229a904a8e2.png)'
   id: totrans-19
   prefs: []
   type: TYPE_IMG
+  zh: '![](img/1f84089f-b267-456c-880f-f229a904a8e2.png)'
 - en: Results of Property Initialization
   id: totrans-20
   prefs: []
   type: TYPE_NORMAL
+  zh: 属性初始化的结果
 - en: To make this view presentable to user, we will have to code for default values
     on every property on the template. So by fixing the null guarding issue by initialization,
     we created a default value handling issue. Both the initialization and the default
@@ -120,17 +141,21 @@
   id: totrans-21
   prefs: []
   type: TYPE_NORMAL
+  zh: 要使此视图对用户呈现，我们必须对模板上的每个属性编写默认值的代码。因此，通过初始化解决了空保护问题，我们创建了一个默认值处理问题。对于开发人员来说，初始化和默认值处理都是
+    *O(n)* 规模的任务。在最好的情况下，这种策略将令人厌烦，而在最坏的情况下，效果极差且容易出错，最低要求每个属性的工作量达到 *O(2n)*。
 - en: Safe navigation operator
   id: totrans-22
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 安全导航操作符
 - en: 'Angular implements the safe navigation operation `?.` to prevent unintended
     traversals of undefined objects. So, instead of writing initialization code and
     having to deal with template values, let''s just update the template:'
   id: totrans-23
   prefs: []
   type: TYPE_NORMAL
+  zh: Angular 实现了安全导航操作 `?.` 以防止意外遍历未定义的对象。因此，我们不需要撰写初始化代码并处理模板数值，而是只需更新模板：
 - en: '[PRE1]'
   id: totrans-24
   prefs: []
@@ -144,41 +169,49 @@
   id: totrans-25
   prefs: []
   type: TYPE_NORMAL
+  zh: 这一次，我们不必设置默认值，让Angular处理显示未定义的绑定。你会注意到，就像初始化修复一样，错误从12个减少到3个。应用本身的状态也稍微好了一些。不再显示混乱的数据；但现在还不是一个可以展示的状态，如下所示：
 - en: '![](img/cf719932-a5c2-4a64-ba10-861ad126010e.png)'
   id: totrans-26
   prefs: []
   type: TYPE_IMG
+  zh: '![](img/cf719932-a5c2-4a64-ba10-861ad126010e.png)'
 - en: Results of Safe Navigation Operator
   id: totrans-27
   prefs: []
   type: TYPE_NORMAL
+  zh: 安全导航操作符的结果
 - en: You can probably imagine ways where the safe navigation operator can come in
     handy, in far more complicated scenarios. However, when deployed at scale, this
     type of coding still requires, at minimum, *O(n)* level of effort to implement.
   id: totrans-28
   prefs: []
   type: TYPE_NORMAL
+  zh: 你可能能想象出在更复杂的情况下安全导航操作符可以派上用场。然而，当规模化部署时，这种类型的编码仍然需要至少*O(n)*级别的工作量来实现。
 - en: Null guarding with *ngIf
   id: totrans-29
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 使用*ngIf进行null值保护。
 - en: The idea strategy will be to use `*ngIf`, which is a structural directive, meaning
     Angular will stop traversing DOM tree elements beyond a falsy statement.
   id: totrans-30
   prefs: []
   type: TYPE_NORMAL
+  zh: 理想策略是使用`*ngIf`，这是一个结构性指令，意味着Angular会在假语句之后停止遍历DOM树元素。
 - en: 'In the `CurrentWeather` component, we can easily check to see whether the `current`
     variable is null or undefined before attempting to render the template:'
   id: totrans-31
   prefs: []
   type: TYPE_NORMAL
+  zh: 在`CurrentWeather`组件中，我们可以在尝试渲染模板之前轻松地检查`current`变量是否为null或undefined：
 - en: 'Update the topmost `div` element with `*ngIf` to check whether `current` is
     an object, as shown:'
   id: totrans-32
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 更新顶层的`div`元素，用`*ngIf`来检查`current`是否为对象，如下所示：
 - en: '[PRE2]'
   id: totrans-33
   prefs: []
@@ -193,16 +226,20 @@
   id: totrans-34
   prefs: []
   type: TYPE_NORMAL
+  zh: 现在观察控制台日志，没有错误报告。你必须确保你的Angular应用程序不会报告任何控制台错误。如果您仍然在控制台日志中看到错误，请确保已经正确恢复了`OpenWeather`网址到其正确的状态，或者关闭并重新启动`npm
+    start`进程。我强烈建议你在继续之前解决任何控制台错误。一旦您解决了所有错误，请确保再次提交您的代码。
 - en: Commit your code.
   id: totrans-35
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 提交你的代码。
 - en: Containerizing the app using Docker
   id: totrans-36
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 使用Docker容器化应用程序
 - en: 'Docker [docker.io](http://docker.io) is an *open platform* for developing,
     shipping, and running applications. Docker combines a *lightweight* container
     virtualization platform with workflows and tooling that help manage and deploy
@@ -216,6 +253,7 @@
   id: totrans-37
   prefs: []
   type: TYPE_NORMAL
+  zh: Docker [docker.io](http://docker.io) 是一个用于开发、部署和运行应用程序的*开放平台*。Docker结合了*轻量级*的容器虚拟化平台和用于管理和部署应用程序的工作流程和工具。**虚拟机**（**VMs**）和Docker容器之间最明显的区别在于，VMs通常占用数十GB的空间并且需要GB级别的内存，而容器仅需要MB级别的磁盘和内存空间。此外，Docker平台将主机**操作系统**（**OS**）级别的配置设置抽象掉，所以成功运行应用程序所需的每个配置设置都被编码在易读的Dockerfile格式中，如下所示：
 - en: '[PRE3]'
   id: totrans-38
   prefs: []
@@ -230,18 +268,22 @@
   id: totrans-39
   prefs: []
   type: TYPE_NORMAL
+  zh: 前面的文件描述了一个继承自名为`duluca/minimal-node-web-server`的容器的新容器，将工作目录更改为`/usr/src/app`，然后将开发环境中`dist`文件夹的内容复制到容器的`public`文件夹中。在这种情况下，父镜像配置了一个Express.js服务器，充当Web服务器以提供`public`文件夹中的内容。
 - en: 'Refer to the following diagram for a visual representation of what''s happening:'
   id: totrans-40
   prefs: []
   type: TYPE_NORMAL
+  zh: 参考下图，以可视化表示正在发生的事情：
 - en: '![](img/e85a11d3-ea47-4e80-804d-ae9267b23407.jpg)'
   id: totrans-41
   prefs: []
   type: TYPE_IMG
+  zh: '![](img/e85a11d3-ea47-4e80-804d-ae9267b23407.jpg)'
 - en: Context of a Docker Image
   id: totrans-42
   prefs: []
   type: TYPE_NORMAL
+  zh: Docker镜像的上下文
 - en: At the base layer is our host OS, such as Windows or macOS that runs the Docker
     runtime, which will be installed in the next section. The Docker runtime is capable
     of running self-contained Docker images, which is defined by the aforementioned
