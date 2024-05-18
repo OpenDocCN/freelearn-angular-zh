@@ -3,6 +3,7 @@
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 函数式响应式编程
 - en: 'According to Wikipedia, **Functional Reactive Programming** (**FRP**) is a
     programming paradigm for reactive programming, which uses the building blocks
     of functional programming. OK, that sounds fancy, but what does it mean? To understand
@@ -10,6 +11,7 @@
   id: totrans-1
   prefs: []
   type: TYPE_NORMAL
+  zh: 根据维基百科，**函数式响应式编程** (**FRP**) 是用于响应式编程的一种编程范式，它使用函数式编程的构建模块。好的，这听起来挺高大尚的，但是它是什么意思呢？要理解整个句子，我们需要把它拆开来。让我们试着定义以下内容：
 - en: A **programming paradigm** is an overarching theory, or way of working, centered
     around how a program should be organized and structured. Object-oriented programming
     and functional programming are examples of programming paradigms.
@@ -17,6 +19,7 @@
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '**编程范式** 是围绕程序应该如何组织和结构化的总体理论或工作方式。面向对象编程和函数式编程就是编程范式的例子。'
 - en: '**Reactive programming**, in short, is programming with asynchronous data streams.
     Asynchronous data streams are streams of data whose values can arrive at any point
     in time.'
@@ -24,6 +27,7 @@
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '**响应式编程** 简单来说是利用异步数据流进行编程。异步数据流是值可以在任何时间到达的数据流。'
 - en: '**Functional programming** is a programming paradigm that takes a more mathematical
     approach, in that it sees a functional call as a mathematical computation and
     thereby avoids changing states or dealing with mutable data.'
@@ -31,6 +35,7 @@
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '**函数式编程** 是一种采用更数学化方法的编程范式，它将函数调用视为数学计算，从而避免更改状态或处理可变数据。'
 - en: So, in short, our Wikipedia definition means we have a functional programming
     approach to values that might arrive at any point in time. That doesn't really
     mean much, but hopefully things will have been cleared up a bit by the end of
@@ -38,47 +43,56 @@
   id: totrans-5
   prefs: []
   type: TYPE_NORMAL
+  zh: 总的来说，我们的维基百科定义意味着我们对可能在任何时间到达的值采取了一种函数式编程方法。这并不意味着太多，但希望在本章结束时事情会有所明朗。
 - en: 'In this chapter, we will learn about:'
   id: totrans-6
   prefs: []
   type: TYPE_NORMAL
+  zh: 在本章中，我们将学习以下内容：
 - en: Asynchronous data streams
   id: totrans-7
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 异步数据流
 - en: How these streams can be manipulated
   id: totrans-8
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 如何操作这些流
 - en: Recursion
   id: totrans-9
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 递归
 - en: '"To understand the word recursion see the word recursion."'
   id: totrans-10
   prefs: []
   type: TYPE_NORMAL
+  zh: “要理解递归这个词，请参见递归这个词。”
 - en: 'This is a standing joke at most engineering schools and it explains what it
     is in a very short way. Recursion is a mathematical concept. Let''s explain it
     a bit more. The official definition says the following:'
   id: totrans-11
   prefs: []
   type: TYPE_NORMAL
+  zh: 这在大多数工程学校都是一个笑话，并且以一种非常简短的方式解释了这是什么。递归是一个数学概念。让我们稍微解释一下。官方定义如下：
 - en: Recursion is the process a procedure goes through when one of the steps of the
     procedure involves invoking the procedure itself. A procedure that goes through
     recursion is said to be 'recursive'.
   id: totrans-12
   prefs: []
   type: TYPE_NORMAL
+  zh: 当过程的一个步骤涉及到调用过程本身时，递归是过程通过的过程。进行递归的过程被称为“递归的”。
 - en: 'Ok, what does that mean in human speak? It says that at some point in running
     our function, we will call ourselves. This means we have a function that looks
     something like this:'
   id: totrans-13
   prefs: []
   type: TYPE_NORMAL
+  zh: 好的，那用人话怎么说？这意味着在运行我们的函数的某个时刻，我们会调用自己。这意味着我们有一个看起来像这样的函数：
 - en: '[PRE0]'
   id: totrans-14
   prefs: []
@@ -89,16 +103,19 @@
   id: totrans-15
   prefs: []
   type: TYPE_NORMAL
+  zh: 我们可以看到函数`something()` 在其体内的某个时刻调用了自身。递归函数应该遵守以下规则：
 - en: Should call itself
   id: totrans-16
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 应该调用自身
 - en: Should eventually meet an exit condition
   id: totrans-17
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 最终应该满足退出条件
 - en: 'If a recursive function doesn''t have an exit condition, we will run out of
     memory as the function will call itself for all eternity. There are certain types
     of problems that are more suitable than others to apply recursive programming
@@ -106,26 +123,31 @@
   id: totrans-18
   prefs: []
   type: TYPE_NORMAL
+  zh: 如果递归函数没有退出条件，我们将耗尽内存，因为函数将永远调用自身。有某些类型的问题比其他更适合应用递归编程。这些类型的问题的例子有：
 - en: Traversing trees
   id: totrans-19
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 遍历树结构
 - en: Compiling code
   id: totrans-20
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 编译代码
 - en: Writing algorithms for compression
   id: totrans-21
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 为压缩编写算法
 - en: Sort lists
   id: totrans-22
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 对列表进行排序
 - en: 'There are many more examples, but it''s important to remember that, although
     it''s a great tool, it shouldn''t be used everywhere. Let''s look at an example
     where recursion really shines. Our example is a linked list. A linked list consists
@@ -134,6 +156,7 @@
   id: totrans-23
   prefs: []
   type: TYPE_NORMAL
+  zh: 还有许多其他例子，但重要的是要记住，尽管递归是一个很好的工具，但不应该随处使用。让我们看一个递归真正闪耀的例子。我们的例子是一个链接列表。链接列表由了解他们连接到的节点的节点组成。`Node`结构的代码如下：
 - en: '[PRE1]'
   id: totrans-24
   prefs: []
@@ -589,11 +612,13 @@
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 已发生多次点击事件
 - en: That the click events have occurred with a certain delay in between events
   id: totrans-95
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 点击事件之间存在一定的延迟
 - en: Here, we can see that the two first clicks seem to happen very close together
     in time; when two events happen very close in time, this will be interpreted as
     a double-click. Therefore, our image above thus tells us about the events that
@@ -602,12 +627,14 @@
   id: totrans-96
   prefs: []
   type: TYPE_NORMAL
+  zh: 在这里，我们可以看到前两次点击事件发生的时间非常接近；当两个事件发生的时间非常接近时，这将被解释为双击。因此，上面的图告诉我们发生的事件；它还告诉我们发生的时间和频率。通过查看前面的图表，很容易区分单击和双击。
 - en: We can assign different actions to each click behavior. A double-click might
     mean that we want to zoom-in, whereas a single-click might mean we want to select
     something; exactly what is up to the application you are writing.
   id: totrans-97
   prefs: []
   type: TYPE_NORMAL
+  zh: 我们可以为每种点击行为分配不同的动作。双击可能意味着我们想要放大，而单击可能意味着我们想要选择某些内容；确切的行为取决于您正在编写的应用程序。
 - en: 'A third example is that of input. What if we have a situation where the user
     is typing and stops typing after a while? After a certain amount of time has passed,
     the user expects the UI to react. This is the case with a search field. In that
@@ -619,27 +646,32 @@
   id: totrans-98
   prefs: []
   type: TYPE_NORMAL
+  zh: 第三个例子是输入。如果我们遇到一种情况，用户正在输入并在一段时间后停止了输入呢？在一定时间过去后，用户期望UI有所反应。这就是搜索字段的情况。在这种情况下，用户可能会在搜索字段中输入内容，并且在完成后按下搜索按钮。在UI中模拟这种情况的另一种方法是仅提供一个搜索字段，并等待用户停止输入，作为何时开始搜索用户想要的内容的信号。最后的例子被称为**自动完成**行为。可以以以下方式对其进行模拟：
 - en: '![](img/7aa371c4-cb52-409d-8c11-fbc31f79ad3c.png)'
   id: totrans-99
   prefs: []
   type: TYPE_IMG
+  zh: '![](img/7aa371c4-cb52-409d-8c11-fbc31f79ad3c.png)'
 - en: The first three characters entered seem to belong to the same search query,
     whereas the fourth character entered occurs a lot later and probably belongs to
     another query.
   id: totrans-100
   prefs: []
   type: TYPE_NORMAL
+  zh: 输入的前三个字符似乎属于同一个搜索查询，而输入的第四个字符则出现得晚得多，可能属于另一个查询。
 - en: The point of this section has been to highlight that different things lend themselves
     to being modeled as streams, and that the time axis and the placement of the emitted
     values on it can come to mean something.
   id: totrans-101
   prefs: []
   type: TYPE_NORMAL
+  zh: 本节的重点在于突出不同事物适合被建模为流，并且时间轴以及发出值的放置在时间轴上的意义。
 - en: Comparing lists to async streams – preparing for RxJS
   id: totrans-102
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 将列表与异步流进行比较 - 为使用 RxJS 做准备
 - en: We have discussed so far how we can model asynchronous events as a continuous
     stream of data on a time axis, or stream modeling. Events can be AJAX data, mouse
     clicks, or some other type of event. Modeling things this way makes for an interesting
@@ -651,6 +683,7 @@
   id: totrans-103
   prefs: []
   type: TYPE_NORMAL
+  zh: 到目前为止，我们已经讨论了如何将异步事件建模为时间轴上的连续数据流，或者说是流建模。事件可以是 AJAX 数据，鼠标点击，或其他类型的事件。通过这种方式对事物进行建模，会产生一种有趣的视角，但是，例如，仅仅看双击的情况，并不能让我们深入了解这个数据。还有另一种情况，我们需要过滤掉一些数据。我们在这里讨论的是如何操作数据流。如果没有这个能力，流建模本身就没有实际价值。
 - en: 'There are different ways to manipulate data: sometimes we want to change the
     data emitted to some other data and sometimes we might want to change how often
     the data is being emitted to a listener. Sometimes, we want our stream of data
@@ -658,21 +691,25 @@
   id: totrans-104
   prefs: []
   type: TYPE_NORMAL
+  zh: 有不同的方法来操作数据：有时我们想要将发出的数据更改为其他数据，有时我们可能想更改将数据发送给监听器的频率。有时，我们希望我们的数据流变成完全不同的流。我们将尝试模拟以下情况：
 - en: '**Projection**: Changing the data of the value being emitted'
   id: totrans-105
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '**投影**：改变正在发出的值的数据'
 - en: '**Filtering**: Changing what gets emitted'
   id: totrans-106
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '**过滤**：改变发出的内容'
 - en: Combining the functional programming paradigm with streams
   id: totrans-107
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 将函数式编程范式与流相结合
 - en: This chapter has covered functional programming and asynchronous data streams.
     Working with RxJS doesn't require a deep understanding of functional programming,
     but you do need to understand what declarative means, in order to focus on the
@@ -681,6 +718,7 @@
   id: totrans-108
   prefs: []
   type: TYPE_NORMAL
+  zh: 本章涵盖了函数式编程和异步数据流。使用RxJS并不需要对函数式编程有深入的理解，但是你需要理解声明式的意思，以期聚焦在正确的事情上。你的重点应该是要做什么，而不是如何做。作为一个库，RxJS会负责如何实现需要的功能。
 - en: These might seem like two different topics. Combining the two, however, gives
     us the ability to manipulate streams. A stream can be seen as a list of data,
     where the data is available at a certain point in time. If we start treating our
@@ -691,15 +729,18 @@
   id: totrans-109
   prefs: []
   type: TYPE_NORMAL
+  zh: 这两个可能看起来像是两个不同的主题。但是，将它们结合起来，我们就能够操纵流了。流可以被看作是一系列数据的列表，其中数据在某个时间点可用。如果我们开始将我们的流视为列表，特别是不可变的列表，那么就会有一些随列表一起的操作来通过对其应用操作符来操纵列表。操纵的结果是一个新的列表，而不是一个变异的列表。因此，让我们开始将我们的列表哲学及其操作符应用到以下情况中。
 - en: Projection
   id: totrans-110
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 投影
 - en: '![](img/fd4ecfc2-02b0-436b-946e-0e42628f3d38.png)'
   id: totrans-111
   prefs: []
   type: TYPE_IMG
+  zh: '![](img/fd4ecfc2-02b0-436b-946e-0e42628f3d38.png)'
 - en: 'Here, we can see that our stream is emitting the values **1**, **2**, **3**,
     and **4**, and then a manipulation happens that changes every value by incrementing
     it by one. This is quite a simple situation. If we consider this as a list, we
@@ -708,6 +749,7 @@
   id: totrans-112
   prefs: []
   type: TYPE_NORMAL
+  zh: 在这里，我们可以看到我们的流正在发出值 **1**、**2**、**3** 和 **4**，然后进行了一次变换，将每个值增加了一。这是一个相当简单的情况。如果我们将其视为一个列表，我们可以看到这里所做的只是一个简单的投影，我们会将其编码为：
 - en: '[PRE15]'
   id: totrans-113
   prefs: []
@@ -718,6 +760,7 @@
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 过滤
 - en: 'There might be some items in a list, as well as in a stream, that you do not
     want. What you do to fix that is to create a filter that filters out the unwanted
     data. Modeling our initial array, the manipulation, and the resulting array, we
@@ -725,14 +768,17 @@
   id: totrans-115
   prefs: []
   type: TYPE_NORMAL
+  zh: 列表中可能存在一些项，以及流中可能存在一些你不想要的项。为了解决这个问题，你需要创建一个过滤器来过滤掉不想要的数据。模拟我们初始的数组，经过处理和得到的数组，我们得到以下结果：
 - en: '![](img/ce0ec1ee-e3f3-4327-879c-80d0a271abd2.png)'
   id: totrans-116
   prefs: []
   type: TYPE_IMG
+  zh: '![](img/ce0ec1ee-e3f3-4327-879c-80d0a271abd2.png)'
 - en: 'In JavaScript, we can accomplish this by writing the following code:'
   id: totrans-117
   prefs: []
   type: TYPE_NORMAL
+  zh: 在JavaScript中，我们可以通过编写以下代码来实现这一点：
 - en: '[PRE16]'
   id: totrans-118
   prefs: []
@@ -743,6 +789,7 @@
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 结合心态
 - en: So, what are we trying to say with this section. Clearly, we have shown examples
     of how to manipulate lists. Well, what we have done is shown how we can display
     items on an axis. In that sense, we can see how it is easy to think of asynchronous
@@ -753,11 +800,13 @@
   id: totrans-120
   prefs: []
   type: TYPE_NORMAL
+  zh: 那么，我们在这一节想要表达什么呢。显然，我们已经展示了如何操纵列表的例子。好吧，我们所做的是展示我们如何在轴上显示项。从这个意义上说，我们可以看到，以图形方式将异步事件和值列表想成一样的方式，这样思考起来是很容易的。问题是，为什么我们要这样做呢？原因是这是RxJS库希望你在开始操纵和构建流时拥有的心态。
 - en: Summary
   id: totrans-121
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 摘要
 - en: This chapter has established that we can model asynchronous events as values
     on a time axis. We introduced the idea of comparing these streams to lists and
     thereby applying functional methods to them that would not change the lists themselves
@@ -769,8 +818,10 @@
   id: totrans-122
   prefs: []
   type: TYPE_NORMAL
+  zh: 本章已经建立了我们可以将异步事件建模为时间轴上的值。我们介绍了将这些流与列表进行比较的想法，并因此对它们应用不会改变列表本身而只会创建一个新列表的函数方法。应用函数范式的好处是，我们可以专注于想要*实现*的内容，而不是如何实现它，从而采用了一种声明式方法。我们意识到要将异步和列表组合，从中创建可读的代码并不容易。幸运的是，这正是RxJS库为我们做的事情。
 - en: It is this realization that prepares us for [Chapter 8](1cd60ce6-607e-40aa-a87b-84370191f92e.xhtml),
     *RxJS Advanced*, which will cover more operators, and some more advanced concepts.
   id: totrans-123
   prefs: []
   type: TYPE_NORMAL
+  zh: 这一认识让我们为[第8章](1cd60ce6-607e-40aa-a87b-84370191f92e.xhtml)做准备，*RxJS高级*，将涵盖更多的操作符和一些更高级的概念。
