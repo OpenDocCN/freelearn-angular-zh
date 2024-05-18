@@ -1939,11 +1939,14 @@
   id: totrans-274
   prefs: []
   type: TYPE_NORMAL
+  zh: 让我们看一下服务的一些相关部分。
 - en: '`WorkoutBuilderService` needs the type definitions for `WorkoutPlan`, `ExercisePlan`,
     and `WorkoutService`, so we import these into the component:'
   id: totrans-275
   prefs: []
   type: TYPE_NORMAL
+  zh: '`WorkoutBuilderService` 需要 `WorkoutPlan`、`ExercisePlan` 和 `WorkoutService`
+    的类型定义，因此我们将这些导入到组件中。'
 - en: '[PRE27]'
   id: totrans-276
   prefs: []
@@ -1955,6 +1958,8 @@
   id: totrans-277
   prefs: []
   type: TYPE_NORMAL
+  zh: '`WorkoutBuilderService` 依赖于 `WorkoutService` 来提供持久性和查询功能。我们通过将 `WorkoutService`
+    注入到 `WorkoutBuilderService` 的构造函数中来解决这个依赖**：**'
 - en: '[PRE28]'
   id: totrans-278
   prefs: []
@@ -1966,6 +1971,8 @@
   id: totrans-279
   prefs: []
   type: TYPE_NORMAL
+  zh: '`WorkoutBuilderService` 还需要跟踪正在构建的训练。我们使用 `buildingWorkout` 属性来进行跟踪。当我们在服务上调用
+    `startBuilding` 方法时，跟踪开始：'
 - en: '[PRE29]'
   id: totrans-280
   prefs: []
@@ -1981,17 +1988,22 @@
   id: totrans-281
   prefs: []
   type: TYPE_NORMAL
+  zh: 这个跟踪函数的基本思想是设置一个 `WorkoutPlan` 对象 (`buildingWorkout`)，以便让组件可以操作训练细节。`startBuilding`
+    方法以训练名作为参数。如果没有提供名称，那么意味着我们正在创建一个新的训练，因此会创建并分配一个新的 `WorkoutPlan` 对象；如果有提供名称，则通过调用
+    `WorkoutService.getWorkout(name)` 加载训练细节。无论如何，`buildingWorkout` 对象都有正在进行的训练。
 - en: The `newWorkout` object signifies whether the workout is new or an existing
     one. It is used to differentiate between save and update situations when the `save`
     method on this service is called.
   id: totrans-282
   prefs: []
   type: TYPE_NORMAL
+  zh: '`newWorkout` 对象表示训练是新的还是已经存在。在调用该服务的 `save` 方法时，它用于区分保存和更新情况。'
 - en: The rest of the methods, `removeExercise`, `addExercise`, and `moveExerciseTo`, are
     self-explanatory and affect the exercise list that is part of the workout (`buildingWorkout`).
   id: totrans-283
   prefs: []
   type: TYPE_NORMAL
+  zh: 其余的方法 `removeExercise`、`addExercise` 和 `moveExerciseTo` 是不言自明的，并影响训练的练习列表 (`buildingWorkout`)。
 - en: '`WorkoutBuilderService` is calling a new method, `getWorkout`, on `WorkoutService`,
     which we have not added yet. Go ahead and copy the `getWorkout` implementation
     from the `workout-service.ts` file in the `services` folder under `trainer/src`
@@ -2000,21 +2012,27 @@
   id: totrans-284
   prefs: []
   type: TYPE_NORMAL
+  zh: '`WorkoutBuilderService` 调用了 `WorkoutService` 上的一个新方法 `getWorkout`，我们还没有添加这个方法。继续复制`checkpooint
+    4.5`下`trainer/src`文件夹中`services`文件夹中的`workout-service.ts`文件中的`getWorkout`实现。我们不会深究新的服务代码，因为实现相当简单。'
 - en: Let's get back to left nav and implement the remaining functionality.
   id: totrans-285
   prefs: []
   type: TYPE_NORMAL
+  zh: 让我们回到左侧导航并实现剩余的功能。
 - en: Adding exercises using ExerciseNav
   id: totrans-286
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 使用 ExerciseNav 添加练习
 - en: 'To add exercises to the workout we are building, we just need to import `WorkoutBuilderService`
     and `ExercisePlan`, inject `WorkoutBuilderService` into the `LeftNavExercisesComponent`,
     and call its `addExercise` method, passing the selected exercise as a parameter:'
   id: totrans-287
   prefs: []
   type: TYPE_NORMAL
+  zh: 要向我们正在构建的训练中添加练习，我们只需要导入 `WorkoutBuilderService` 和 `ExercisePlan`，将 `WorkoutBuilderService`
+    注入 `LeftNavExercisesComponent` 中，并调用其 `addExercise` 方法，传递所选练习作为参数：
 - en: '[PRE30]'
   id: totrans-288
   prefs: []
@@ -2025,6 +2043,7 @@
   id: totrans-289
   prefs: []
   type: TYPE_NORMAL
+  zh: 内部，`WorkoutBuilderService.addExercise` 使用新的练习更新 `buildingWorkout` 模型数据。
 - en: The preceding implementation is a classic case of sharing data between independent
     components. The shared service exposes the data in a controlled manner to any
     component that requests it. While sharing data, it is always a good practice to
@@ -2036,6 +2055,8 @@
   id: totrans-290
   prefs: []
   type: TYPE_NORMAL
+  zh: 前面的实现是共享数据在独立组件之间的经典案例。共享服务以受控的方式向任何请求数据的组件提供数据。在共享数据时，最好的做法始终是使用方法来暴露状态/数据，而不是直接暴露数据对象。我们也可以在组件和服务的实现中看到这一点。`LeftNavExercisesComponent`
+    不直接更新训练数据；事实上，它没有直接访问正在构建的训练。相反，它依赖于服务方法 `addExercise` 来改变当前训练的练习列表。
 - en: Since the service is shared, there are pitfalls to be aware of. As services
     are injectable through the system, we cannot stop any component from taking dependency
     on any service and calling its functions in an inconsistent manner, leading to
@@ -4354,6 +4375,7 @@
   id: totrans-632
   prefs: []
   type: TYPE_NORMAL
+  zh: 正如我们所希望的那样，响应式表单使我们能够以简单的方式向我们的表单添加自定义验证器，这样我们就可以在代码中维护验证逻辑，并将其轻松地集成到我们的模板中。
 - en: You may have noticed that in this chapter, we have not covered how to use custom
     validators in template-driven forms. That is because implementing them requires
     the additional step of building a custom directive. We'll cover that in [Chapter
@@ -4361,11 +4383,14 @@
   id: totrans-633
   prefs: []
   type: TYPE_NORMAL
+  zh: 你可能已经注意到，在本章中，我们没有涵盖如何在模板驱动的表单中使用自定义验证器。因为实现它们需要额外的步骤，即构建一个自定义指令。我们将在[第四章](c3725f08-81b4-4bd5-a50f-6173510dd9c6.xhtml)中进行介绍，《深入理解
+    Angular 指令》。
 - en: Configuration options for running validation
   id: totrans-634
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 运行验证的配置选项
 - en: Before we move on from validation, there is one more topic to cover and that
     is configuration options for running the validations. So far, we have been using
     the default option, which runs validation checks on every input event. However,
@@ -4375,6 +4400,7 @@
   id: totrans-635
   prefs: []
   type: TYPE_NORMAL
+  zh: 在我们从验证中离开之前，还有一个话题要覆盖，那就是运行验证的配置选项。到目前为止，我们一直使用默认选项，即在每次输入事件上运行验证检查。然而，你可以选择将它们配置为在“blur”（即用户离开输入控件时）或在表单提交时运行。你可以在表单级别或逐个控件的基础上进行配置。
 - en: 'For example, we might decide that to avoid the complexity of handling missing
     exercises in the workout form, we will set that form to validate only upon submit.
     We can set this by adding the following highlighted assignment of `NgFormOptions`
@@ -4382,6 +4408,7 @@
   id: totrans-636
   prefs: []
   type: TYPE_NORMAL
+  zh: 例如，我们可能决定为避免在锻炼表单中处理缺少的锻炼的复杂性，我们将该表单设置为仅在提交时进行验证。我们可以通过向表单标签添加以下高亮显示的`NgFormOptions`来设置：
 - en: '[PRE97]'
   id: totrans-637
   prefs: []
@@ -4395,6 +4422,7 @@
   id: totrans-638
   prefs: []
   type: TYPE_NORMAL
+  zh: 这将指示 Angular 仅在`submit`时进行验证。尝试一下，你会发现当你在表单中输入时，不会出现任何验证。留空表单并按保存按钮，你会看到验证信息出现。当然，采用这种方法意味着用户在按保存按钮之前不会收到关于验证的任何视觉提示。
 - en: There are also a couple of other unintended side effects to using this approach
     in our form. The first is that the title no longer updates at the top of the screen
     as we type into the title input box. That value will only be updated when we press
@@ -4405,6 +4433,7 @@
   id: totrans-639
   prefs: []
   type: TYPE_NORMAL
+  zh: 在我们的表单中使用这种方法的时候也会有一些意想不到的副作用。首先是，当我们在标题输入框中输入时，标题不会再在屏幕顶部更新。只有在按保存按钮时，该值才会更新。其次，如果你添加一个或多个锻炼然后移除所有的锻炼，你还会看到一个验证信息出现。这是因为我们为这个控件设置了特殊的条件，导致它在常规验证流程之外触发。
 - en: 'So, maybe we should take a different approach. Angular provides the option
     of implementing more fine-grained control of the validation flow by allowing us
     to make such configurations at the control level using `ngModelOptions`. For example,
@@ -4413,6 +4442,7 @@
   id: totrans-640
   prefs: []
   type: TYPE_NORMAL
+  zh: 所以，也许我们应该采取一种不同的方法。Angular 提供了一种更细粒度地控制验证流程的选项，即允许我们在控件级别上做这样的配置，使用`ngModelOptions`。例如，让我们从表单标签中移除`ngFormOptions`的赋值，并修改标题输入控件以添加`ngModelOptions`，如下所示：
 - en: '[PRE98]'
   id: totrans-641
   prefs: []
@@ -4424,16 +4454,19 @@
   id: totrans-642
   prefs: []
   type: TYPE_NORMAL
+  zh: 当你在输入框里输入标题时，你会注意到直到你移开它（触发`updateOn`事件），标题才更新到屏幕上：
 - en: '![](img/b8ffe1dc-c01d-4c0d-a100-d45672b67cfe.png)'
   id: totrans-643
   prefs: []
   type: TYPE_IMG
+  zh: '![](img/b8ffe1dc-c01d-4c0d-a100-d45672b67cfe.png)'
 - en: As you will remember, the default option caused the title to update with every
     keystroke. This is a contrived example but it illustrates how the differences
     in these configurations work.
   id: totrans-644
   prefs: []
   type: TYPE_NORMAL
+  zh: 正如你记得的，将标题更新为每次按键都会造成默认选项。这是一个刻意的例子，但它说明了这些配置的差异如何工作。
 - en: 'You probably don’t see the need to use the on blur setting here. But, in case
     where you may be doing validation by calling an external data store, this approach
     could be helpful in limiting the number of calls that are being made. And making
