@@ -1090,6 +1090,7 @@
   id: totrans-181
   prefs: []
   type: TYPE_NORMAL
+  zh: 类装饰器是在类声明之前声明的。类装饰器可以通过应用于该类的构造函数来观察、修改和替换类的定义。TypeScript中`ClassDecorator`的签名如下所示：
 - en: '[PRE46]'
   id: totrans-182
   prefs: []
@@ -1100,12 +1101,14 @@
   id: totrans-183
   prefs: []
   type: TYPE_NORMAL
+  zh: 假设有一个`Customer`类，我们希望该类被冻结。其现有属性不应被移除，也不应添加新属性。
 - en: 'We can create a separate class that can take any object and freeze it. We can
     then decorate the customer class with `@freezed` to prevent adding new properties
     or removing the existing properties from the class:'
   id: totrans-184
   prefs: []
   type: TYPE_NORMAL
+  zh: 我们可以创建一个单独的类，可以接受任何对象并将其冻结。然后，我们可以使用`@freezed`装饰器来装饰`Customer`类，以防止从类中添加新属性或移除现有属性：
 - en: '[PRE47]'
   id: totrans-185
   prefs: []
@@ -1121,11 +1124,13 @@
   id: totrans-187
   prefs: []
   type: TYPE_NORMAL
+  zh: 在这里，`freezed`装饰器获取`target`，即正在被装饰的`Customer`类，并在执行时将其冻结。
 - en: Method decorators
   id: totrans-188
   prefs:
   - PREF_H3
   type: TYPE_NORMAL
+  zh: 方法装饰器
 - en: 'Method decorators are declared before the method declaration. This decorator
     is used to modify, observe, or replace a method definition and is applied to the
     property descriptor for the method. The following code snippet shows a simple
@@ -1133,6 +1138,7 @@
   id: totrans-189
   prefs: []
   type: TYPE_NORMAL
+  zh: 方法装饰器是在方法声明之前声明的。此装饰器用于修改、观察或替换方法定义，并且应用于方法的属性描述符。下面的示例代码显示了一个应用了方法装饰器的简单类：
 - en: '[PRE49]'
   id: totrans-190
   prefs: []
@@ -1150,17 +1156,20 @@
   id: totrans-192
   prefs: []
   type: TYPE_NORMAL
+  zh: 方法装饰器函数接受三个参数：`target`，`key`和`value`。`target`参数保存了正在被装饰的方法；`key`保存了被装饰方法的名称，`value`是指定对象上存在的特定属性的属性描述符。
 - en: When the `increment` method is called, the `logging` decorator is invoked and
     the `values` parameters are passed to it. The `logging` method will log details
     about the arguments passed to the console.
   id: totrans-193
   prefs: []
   type: TYPE_NORMAL
+  zh: 当调用`increment`方法时，`logging`装饰器被调用，并且`values`参数被传递给它。`logging`方法将在控制台上记录有关传递的参数的详细信息。
 - en: Accessor decorators
   id: totrans-194
   prefs:
   - PREF_H3
   type: TYPE_NORMAL
+  zh: 访问器装饰器
 - en: 'Accessor decorators are prefixed before the accessor declaration. These decorators
     are used to observe, modify, or replace an accessor definition and are applied
     to the property descriptor. The following code snippet shows a simple class with
@@ -1168,6 +1177,10 @@
   id: totrans-195
   prefs: []
   type: TYPE_NORMAL
+  zh: 'Accessor decorators are prefixed before the accessor declaration. These decorators
+    are used to observe, modify, or replace an accessor definition and are applied
+    to the property descriptor. The following code snippet shows a simple class with
+    the accessor decorator applied:'
 - en: '[PRE51]'
   id: totrans-196
   prefs: []
@@ -1182,16 +1195,19 @@
   id: totrans-198
   prefs: []
   type: TYPE_NORMAL
+  zh: '`logging`函数将`Boolean`值设置为`logging`属性描述符。'
 - en: Property decorators
   id: totrans-199
   prefs:
   - PREF_H3
   type: TYPE_NORMAL
+  zh: 属性装饰器
 - en: 'Property decorators are prefixed to property declarations. The signature of
     `PropertyDecorator` in the TypeScript source code is this:'
   id: totrans-200
   prefs: []
   type: TYPE_NORMAL
+  zh: 属性装饰器是前缀到属性声明。在TypeScript源代码中，`PropertyDecorator`的签名是这样的：
 - en: '[PRE53]'
   id: totrans-201
   prefs: []
@@ -1217,17 +1233,20 @@
   id: totrans-204
   prefs: []
   type: TYPE_NORMAL
+  zh: '`_value`变量保存了被装饰的属性的值。`getter`和`setter`函数都可以访问`_value`变量，在这里，我们可以通过添加额外行为来操纵`_value`变量。我在`getter`中连接了`#`来返回标记的名字。然后，使用`delete`操作符从类原型中删除原始属性。然后，一个新属性将会被创建，拥有原始属性名和额外的行为。'
 - en: Parameter decorators
   id: totrans-205
   prefs:
   - PREF_H3
   type: TYPE_NORMAL
+  zh: 参数装饰器
 - en: 'Parameter decorators are prefixed to parameter declarations, and they are applied
     to a function for a class constructor or method declaration. This is the signature
     of `ParameterDecorator`:'
   id: totrans-206
   prefs: []
   type: TYPE_NORMAL
+  zh: 参数装饰器是前缀到参数声明，并且它们应用于类构造函数或方法声明的函数。这是`ParameterDecorator`的签名：
 - en: '[PRE56]'
   id: totrans-207
   prefs: []
@@ -1239,6 +1258,7 @@
   id: totrans-208
   prefs: []
   type: TYPE_NORMAL
+  zh: 现在，让我们定义`Customer`类，并使用参数装饰器来装饰一个参数，以使其必需，并验证其是否被提供：
 - en: '[PRE57]'
   id: totrans-209
   prefs: []
