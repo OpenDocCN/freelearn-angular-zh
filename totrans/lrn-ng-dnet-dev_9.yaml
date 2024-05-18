@@ -1,0 +1,811 @@
+- en: Chapter 9. What s New in Angular and ASP.NET Core
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+- en: We started this book with a discussion on Angular, building a hello world application,
+    and the core architecture of Angular. Then, we dived into the building blocks
+    of Angular. Next, we discussed the basics of TypeScript and how to use TypeScript
+    in writing Angular applications. Later, we walked through creating an Angular
+    single-page application in Visual Studio and learned about RESTful services and
+    creating a RESTful service using Web API for Angular applications. After that,
+    we did a complete step-by-step walk-through on creating an application using Angular,
+    ASP.NET MVC, and Web API in Visual Studio. Finally, we learned about testing Angular
+    applications using Karma and Jasmine.
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'This chapter will discuss what is new in Angular and ASP.NET Core. We will
+    cover the following topics:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: Ahead-of-Time compilation
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Update on Templates
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Introducing titlecase pipes
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Simplified parameter passing in HTTP
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Overriding templates in testing
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Introducing the Meta service
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: New form validators
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Introducing ParamMap in a router
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Introducing .NET Core 1.0
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Cross-platform development with the .NET Execution Environment
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: What's new in Angular
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+- en: '* * *'
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'The Angular team has dropped Angular 3 and proceeded with Angular 4 as they
+    have decided to follow semantic versioning. This helps standardize the version
+    for major, minor, and patch releases. The semantic version will have three segments
+    in the version numbering. Any breaking change in syntax or concept will be considered
+    as major and the first segment version number will be incremented. Any new features
+    added will be considered as minor and the second segment version number will be
+    incremented, and for any bug fixes, the third segment version number will be incremented,
+    considering them as patch:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '![](img/image_09_001.png)'
+  prefs: []
+  type: TYPE_IMG
+- en: 'Fig 01: Semantic versioning'
+  prefs: []
+  type: TYPE_NORMAL
+- en: Ahead-of-Time compilation
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: Angular introduces a major change that generates JavaScript code when building
+    your application. This enables you to know whether there are any errors in templates
+    when building rather than being notified at runtime. Also, it enables the application
+    to run faster as the code generation has already been completed during the build
+    phase. The new Angular view engine generates less code when using **Ahead**-**of**-**Time**
+    (**AoT**).
+  prefs: []
+  type: TYPE_NORMAL
+- en: Update on templates
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: 'As the template is a real HTML tag for the web component, Angular introduced
+    a new `ng-template` tag for templates. Angular enabled us to use `else` in `ngIf`
+    in templates, as follows:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE0]'
+  prefs: []
+  type: TYPE_PRE
+- en: Here, if `isOld` is true, the content of the old template will be displayed.
+    Otherwise, the content of the new template will be displayed.
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'Next, let''s discuss the `as` keyword added to the template syntax. It is introduced
+    to simplify the syntax of `let`. It enables us to store the results in a template
+    variable:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE1]'
+  prefs: []
+  type: TYPE_PRE
+- en: Here, we used the `as` keyword to store the result of slice in the `topTenBooks`
+    variable and further referenced it in theÂ `li` tag. Note that we also gave an
+    alias name, `i`, to index, which is the short form of the `let i = index` syntax.
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'We can also use the `as` keyword and `async` together, as shown:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE2]'
+  prefs: []
+  type: TYPE_PRE
+- en: 'Here, we have made our `books` collection as Observable. So, we have iterated
+    through the array of books returned from Observable. Note that we also display
+    the number of books returned from the Observable. However, this leads to a performance
+    overhead as the async pipe used will rerun if there are changes. Further improvement,
+    as follows, avoids such performance overhead:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE3]'
+  prefs: []
+  type: TYPE_PRE
+- en: Here, we used the `as` keyword to store a piped value in a parent component.
+    Note that we used async only once.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Introducing titlecase pipes
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: 'A titlecase pipe changes the first letter of a word to uppercase. We can use
+    titlecase as follows:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE4]'
+  prefs: []
+  type: TYPE_PRE
+- en: Simplified parameter passing inÂ HTTP
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: '[PRE5]'
+  prefs: []
+  type: TYPE_PRE
+- en: '[PRE6]'
+  prefs: []
+  type: TYPE_PRE
+- en: Overriding templates in testing
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: 'Sometimes it is necessary to override templates during testing. Angular has
+    now simplified overriding templates, as follows:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE7]'
+  prefs: []
+  type: TYPE_PRE
+- en: Before that, we need to build JSON and pass it.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Introducing the Meta service
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+- en: '* * *'
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'Angular has introduced a new service called the Meta service that simplifies
+    updating or getting the `meta` tags:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE8]'
+  prefs: []
+  type: TYPE_PRE
+- en: New form validators
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: 'New validator combines the existing validators such as `required`, `minLength`,
+    `maxLength`, `email`, and `pattern`. Also, a new directive, `compareWith`, is
+    introduced to compare options from a `select` control, as shown:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE9]'
+  prefs: []
+  type: TYPE_PRE
+- en: Introducing ParamMap in router
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: 'Angular has introduced a new interface, `ParamMap`, to map the parameters in
+    a URL. We can use `paramMap` or `queryParamMap` to access parameters of a URL.
+    `ParamMap` has methods such as `get()` to get a value or `getAll()` to get all
+    the values of the query parameters, as follows:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE10]'
+  prefs: []
+  type: TYPE_PRE
+- en: 'In an observable, we need to use `ParamMap` as illustrated:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE11]'
+  prefs: []
+  type: TYPE_PRE
+- en: Introducing .NET Core 1.0
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+- en: '* * *'
+  prefs: []
+  type: TYPE_NORMAL
+- en: In this section, we will cover the basics of .NET Core 1.0 as a platform and
+    the components involved in it.
+  prefs: []
+  type: TYPE_NORMAL
+- en: The .NET Core 1.0 platform was reinvented for various reasons. The web stack
+    of ASP.NET was pretty old and was started back in .NET Framework 1.0\. ASP.NET
+    was overweighed with a lot of old and unused code. Even the code it not used as
+    it becomes unavoidable from loading them. The biggest one is `System.Web`, which
+    is a linkage between the old ASP.NET and today's ASP.NET. MVC and Web API are
+    trying to isolate themselves from `System.Web`.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Self-hosting of ASP.NET, MVC, and Web API is one of the objectives so that they
+    can be hosted independently of the server platform. However, it was tied to the
+    Windows platform on IIS. This becomes an issue when an application needs to be
+    retested for any new bugs that were introduced due to the newer version of .NET
+    when updated to servers as these depend on machine-level versions of .NET, and
+    it is not possible to isolate the version of .NET from your application so that
+    it can run independently of the newer version of .NET.
+  prefs: []
+  type: TYPE_NORMAL
+- en: The ASP.NET team had decided to rewrite the code from the ground up as the time
+    frame was vulnerable by the amount of code that had to be loaded in, compiled,
+    written to disk, loaded back into memory, and then executed. For good, a lot of
+    things have been changed in .NET Core 1.0, and it is incredibly different from
+    every other version of ASP.NET. That's why it is good to call it with a new name
+    and new version as it is not an incremental change.
+  prefs: []
+  type: TYPE_NORMAL
+- en: A key difference is that .NET Core 1.0 is cross-platform and open source. .NET
+    Core 1.0 is a single platform that combines both the concepts of MVC and Web API
+    into one solid set of APIs and all the legacy code is gone. Everything is a dependency
+    in .NET Core 1.0\. We can develop a .NET application as small as we want it to
+    be. Some parts of .NET Core are now a NuGet. So, you can load only the required
+    assemblies from NuGet, and this leads to a small memory footprint compared to
+    the previous versions of ASP.NET.
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'Multiple deployment support is possible today in .NET Core 1.0, and this enables
+    us to deploy to clouds, such as Azure, AWS, and other cloud services. You can
+    host it in IIS, or it can be self-hosted, which enables us to execute from the
+    command line. .NET Core 1.0 supports true cross-platform, and it can be hosted
+    on both Windows and OSX or Linux:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '![](img/image_09_002.png)'
+  prefs: []
+  type: TYPE_IMG
+- en: 'Fig 02: Building blocks of ASP.NET Core 1.0'
+  prefs: []
+  type: TYPE_NORMAL
+- en: As shown in the preceding figure, .NET Core includes a new CLR that is supported
+    on both OSX/Linux and Windows. ASP.NET can also run on top of Mono. Using the
+    native IIS loader, we can load and host our applications in IIS. This native IIS
+    loader routes requests directly to ASP.NET without the need to go through ISAPI
+    filters and others. On the Windows platform, you can also self-host the application
+    from the command line using a tool called `dotnet.exe`. .NET Core 1.0 also supports
+    self-hosting on Linux and OSX and can be done using some sort of tool, such as
+    `dotnet.exe`, so that the application can be run just with a command line.
+  prefs: []
+  type: TYPE_NORMAL
+- en: The self-hosted solutions are similar to Node. Running Node and then the root
+    of your application is very similar to the way that self-hosting works in .NET
+    Core with the `dotnet.exe` tool. So, being cross-platform supported, the code
+    you write will not necessarily care about where it's being hosted.
+  prefs: []
+  type: TYPE_NORMAL
+- en: .NET Core is the new cross-platform and a subset of the .NET Framework. The
+    .NET Core is meant to be as small as possible. The CoreCLR or .NET Core Framework
+    is a subset of the .NET Framework. So, all functionalities will not be available
+    in .NET Core. For example, sending a mail is achieved by the mail subsystem inside
+    the .NET Framework in the System.Net namespace. However, this functionality doesn't
+    exist, and it can be accomplished using some open source solutions.
+  prefs: []
+  type: TYPE_NORMAL
+- en: The .NET Core team wanted to compose everything via NuGet packages. So, everything
+    precedingÂ the CLR and C# and VB compilers is a NuGet package. The .NET Core 1.0
+    is really the bootstrap and the CLR is not a whole. The code knows how to load
+    up an application and get it started, and then the CLR actually manages the execution
+    of that code. Everything else will be a NuGet package. MVC looks at static files
+    doing logging, configuration, and identity; they're all just packages that can
+    be added to a project. So, as you talk about creating thicker or thinner applications,
+    you can make decisions about what to include in your project. Everything in ASP.NET
+    is optional.
+  prefs: []
+  type: TYPE_NORMAL
+- en: The ASP.NET 5 team has tried to embrace the Node package manager for different
+    sorts of tooling support, using npm or Bower for client-side library support,
+    using Grunt and Gulp for build automation, and NuGet for .NET packages.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Cross-platform development with the .NET Execution Environment
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+- en: '* * *'
+  prefs: []
+  type: TYPE_NORMAL
+- en: In this section, we will discuss what the roles of the full .NET Framework,
+    the Core CLR, and the DNX are. We will start by explaining how the .NET Framework
+    developers have usedÂ the Execution Environment since the beginning of .NET. Also,
+    we will see Mono and .NET Core. Then, we will see some guidelines to decide which
+    framework to use. Finally, we will see how the DNX binds everything together.
+  prefs: []
+  type: TYPE_NORMAL
+- en: The traditional .NET Framework
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: Since the beginnings of .NET, the desktop and console applications have been
+    bootstrapped by executable files and the traditional ASP.NET applications are
+    bootstrapped by IIS using an ISAPI DLL. The applications written in any language
+    supported by .NET are compiled to an assembly. An assembly is an EXE or DLL file
+    containing **Intermediate Language** (**IL**). This IL file needs to be compiled
+    to native code as the operating systems and CPUs don't understand IL, and this
+    is called **just-in-time** (**JIT**) compiling.
+  prefs: []
+  type: TYPE_NORMAL
+- en: JIT compiles the IL code to native code just before it executes on the machine
+    where the assemblies are deployed. The JIT functionality is part of the .NET CLR
+    or common language runtime.
+  prefs: []
+  type: TYPE_NORMAL
+- en: The CLR is responsible for loading assemblies, checking types, and garbage collection.
+    So, it is necessary to install the .NET Framework on the machine application runs.
+    The big stack of classes and other types are available. It contains all types
+    needed for Windows Forms, WCF, WPF, web forms, and types usable across these frameworks,
+    such as file handling, reading, and manipulating XML, drawing, and cryptography.
+    All applications use some of these classes.
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'The CLR is specifically designed to run on Windows. Also, some of the classes
+    in the FCL are specifically for Windows. `System.web` is an assembly containing
+    classes that are tied to IIS and therefore Windows. building blocks of legacy
+    .NET Framework are as follows:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '![](img/image_09_003.png)'
+  prefs: []
+  type: TYPE_IMG
+- en: 'Fig 03: Building blocks of legacy .NET Framework'
+  prefs: []
+  type: TYPE_NORMAL
+- en: Mono Cross-platform .NET Framework
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: Mono is an open source version of the .NET Framework developed by the community.
+    It uses the exact same principles that Microsoft .NET Framework uses. It's compatible
+    with the Microsoft .NET Framework. Even if you don't use ASP.NET 5, you can create
+    assemblies on a Windows machine using the Microsoft .NET Framework and Visual
+    Studio and run them on Mono on a Linux machine. So, an important difference with
+    Microsoft .NET Framework is that it is cross-platform. Versions are available
+    for Windows, macOS, and Linux. It's also used as the basis for Xamarin, which
+    runs .NET on Android and iOS.
+  prefs: []
+  type: TYPE_NORMAL
+- en: NuGet package manager
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: Microsoft has introduced NuGet to manage packages and download them easily for
+    development. NuGet is a central place to get the libraries. Developers of these
+    libraries and frameworks can easily apply new versions or bug fixes to NuGet.
+    Microsoft began to use NuGet for assemblies that would normally be in the FCL.
+    MVC is installed as a NuGet package in the application and not machine-wide like
+    the FCL. This enables different applications to use different versions of MVC
+    without the need to install different versions of the .NET Framework. Distributing
+    MVC via NuGet gave Microsoft the ability to update MVC "out of band" with the
+    .NET Framework, which enabled MVC to evolve much faster with more frequent updates.
+    This was the upbeat of a completely modular framework class library with .NET
+    Core.
+  prefs: []
+  type: TYPE_NORMAL
+- en: CoreFx and CoreCLR in .NET Core
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: Through the years, .NET has been reinvented multiple times. There is a .NET
+    Framework for Windows Desktop, Windows Store apps, and Windows Phone. We also
+    have the framework we used all along for ASP.NET 4 and earlier apps. Microsoft
+    invented a way to share code between all the different platforms with portable
+    class libraries and with the concept of universal apps. However, wouldn't it be
+    a lot easier if we had a version of .NET for all platforms? Not only for Microsoft
+    that has to keep all these stacks up to date, but also for us developers who have
+    to learn and maintain all these versions. The purpose of .NET Core is to be the
+    one .NET version that rules them all, and it all starts with ASP.NET! Another
+    motivation for .NET Core is the need to reduce the overall footprint. From an
+    ASP.NET perspective, using `system.web` isn't really an option anymore. Also,
+    having a huge .NET Framework on a machine that causes versioning problems and
+    contains lots of stuff you don't need is cumbersome. In this cloud-driven world,
+    being fixed to Windows isn't of this time anymore. The most exciting feature of
+    .NET Core is that it can run across operating systems using a new DNX.
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'Just like the full .NET Framework, .NET Core also consists of two parts: a
+    common language runtime, which is now portable and goes by the name CoreCLR, and
+    a class library called CoreFX. CoreFX contains a set of types common across every
+    .NET application. It doesn''t include complete frameworks such as WPF or web forms
+    like the FCL in the full .NET Framework. There are, for example, classes to manipulate
+    files and classes that are collections like a list. The different assemblies of
+    CoreFX are individually distributed via NuGet. You have to get everything else
+    you need outside of CoreFX, such as the MVC framework, from NuGet. Not only is
+    CoreFX distributed in a NuGet package, the CoreCLR is as well. The .NET Core is
+    what Microsoft calls cloud optimized. That basically means that it''s lightweight.
+    It is not only much smaller than the full .NET Framework, it also contains optimizations:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '![](img/image_09_004.png)'
+  prefs: []
+  type: TYPE_IMG
+- en: 'Fig 04: Building blocks of .NET Core'
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'Just like any NuGet package, .NET Core can be restored from NuGet per project.
+    When you publish your app to a server, you can also publish the CoreCLR with your
+    app. So, there is no machine-wide installation necessary anymore. Each app on
+    the server can have its own .NET Core version without affecting other applications.
+    It''s also great that the .NET Core as well as the DNX are open source software.
+    This means that besides Microsoft, the community is working on it, and you can
+    also work on it. It also ensures that the projects will be continued should Microsoft
+    decide to cease working on them:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '![](img/image_09_005.png)'
+  prefs: []
+  type: TYPE_IMG
+- en: 'Fig 05: .NET applications framework'
+  prefs: []
+  type: TYPE_NORMAL
+- en: Choosing a Framework
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: How do you make a choice on which framework to use? Where the right version
+    of the .NET Framework or Mono has to be installed machine-wide to support your
+    app, you can have applications using different versions of .NET Core on one server.
+    You can also update one application to use a newer version of .NET Core without
+    affecting the others. With the .NET Framework or Mono, you have the best chance
+    to use the existing code. It offers a huge selection of classes and other types.
+    CoreFX is a different class library, and you will probably have to refactor when
+    using the existing code. Also, CoreFX has a much smaller choice of usable types,
+    and not everything you're used to is available using extra packages. It is an
+    ecosystem that still has to evolve where the FCL is very complete, and it is proven
+    technology. However, it contains a lot you probably don't need. Using Mono or
+    .NET Core are your choices if your app has to run cross-platform. The .NET Framework
+    runs on Windows only. Targeting multiple frameworks makes sense if you're developing
+    component libraries for use in your own business or if you want to distribute
+    them commercially. Your libraries can be used by applications using all the chosen
+    frameworks.
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'Alternatively, maybe you have to write an app now and decide the framework
+    it has to run on later. In the next section, we''ll see the role that DNX plays
+    in all this:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '![](img/image_09_006.png)'
+  prefs: []
+  type: TYPE_IMG
+- en: 'Fig 06: Criteria of Choosing the Frameworks'
+  prefs: []
+  type: TYPE_NORMAL
+- en: The Dotnet Execution Environment- DNX
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: The primary role of DNX is to run the .NET applications by hosting the CLR in
+    the framework. The newly introduced command-line interface dotnet cli has the
+    executable part of the DNX. Dotnet cli helps run applications and restore packages
+    that are specified in the `project.json`.
+  prefs: []
+  type: TYPE_NORMAL
+- en: The DNX command-line application has its own process to execute an application
+    instead of Windows or IIS executing the app; the DNX hosts the CLR instead of
+    the operating system. The DNX will look for an entry point in the form of a `Main`
+    method and run the application from there. As a separate process runs the app
+    and thus there is no dependency on the operating system anymore, the DNX command-line
+    application can be developed for multiple operating systems, such as Windows,
+    Linux, and macOS. Now, the app you developed in Visual Studio can run cross-platform.
+    There is a DNX version available for each .NET Framework per operating system.
+    There can also be versions supporting different CPU architectures. For the full
+    .NET Framework, for example, there is an x86 version and an x64 version.
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'Different versions of the DNX can coexist on one machine. You can either install
+    them in a central location for the whole machine, or you can choose to make the
+    DNX part of the deployment of your application. No machine-wide installation is
+    needed at all using that method. If you publish the app in Visual Studio, you
+    have to choose for what version of the DNX configured in the framework section
+    of the `project.json` you want to publish. That version of the DNX will then be
+    distributed with the deployed app:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '![](img/image_09_007.png)'
+  prefs: []
+  type: TYPE_IMG
+- en: 'Fig 07: Building blocks of DNX'
+  prefs: []
+  type: TYPE_NORMAL
+- en: The DNX is part of dotnet cli that exposes its functionality in the dotnet command-line
+    application. When you run a DNX app in Visual Studio, all Visual Studio does is
+    to execute a command line. When you run, for example, it will execute `dotnet
+    run`, which will put the DNX to work. While running the app, the DNX also supports
+    debugging. When you add NuGet packages to the `project.json` file, it will just
+    execute `dotnet restore`. Also, there are commands for compiling and publishing
+    the app among others. Dotnet cli is just a command given on the command line,
+    so it doesn't need Visual Studio to execute. You can execute it directly by just
+    typing in the commands or use some other tool to invoke it. An example of such
+    a tool is Visual Studio Code, which also runs cross-platform. The `dotnet` command
+    will be used in ASP.NET 5 versions RC2 and higher. The different command-line
+    applications, such as DNX and DNU, are united in the dotnet command-line. When
+    you execute dotnet restore, for example, it will read the `project.json` file
+    and download and install packages where needed. So, the DNX is not only a runtime
+    environment, it is also an SDK. The runtime part kicks in when you execute `dotnet
+    run` in an app's folder.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Deployment options
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+- en: '* * *'
+  prefs: []
+  type: TYPE_NORMAL
+- en: There are four options for deployment. All the options are supported by the
+    dotnet command-line interface. You can choose to copy over the app's project,
+    let the DNX restore the packages, and run the app. A compatible DNX version has
+    to be preinstalled; use the CLI command dotnet run for this one.
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'You can also let the CLI compile the project on your development machine. Copy
+    over the assemblies and run:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '![](img/image_09_008.png)'
+  prefs: []
+  type: TYPE_IMG
+- en: 'Fig 08: Deployment Options'
+  prefs: []
+  type: TYPE_NORMAL
+- en: There is also the option to natively compile an app using a command-line switch.
+    This means that instead of assemblies with IL, native binaries that can be directly
+    executed without the help of the DNX or any .NET Framework are generated.
+  prefs: []
+  type: TYPE_NORMAL
+- en: There is also an option to package your application into a NuGet package to
+    easily share your project using dotnet pack. The package will contain support
+    for all the configured frameworks in the `project.json` file. You can then upload
+    it to a NuGet feed either globally or for your company only.
+  prefs: []
+  type: TYPE_NORMAL
+- en: The final option is to let dotnet cli publish the app for you using dotnet publish.
+  prefs: []
+  type: TYPE_NORMAL
+- en: All the required assemblies and the DNX itself is included in the deployment.
+    As the deployed DNX is OS-specific, this option won't work without extra effort
+    if you're deploying across operating systems.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Publishing with Visual Studio
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: 'We will learn to deploy an application using Visual Studio. If we right-click
+    on the web node of our project, we can pick Publish, and Publish will allow us
+    to pick a target. Visual Studio will ask you to provide the name of the publishing
+    profile to create and store the publishing profile for future use:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '![](img/image_09_009.png)'
+  prefs: []
+  type: TYPE_IMG
+- en: 'Fig 09: Creating a publishingÂ profile'
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'We can choose Azure Web Apps, filesystem, and other mode of deployment. InÂ **`Settings`**,
+    we can also pick which configuration we will use and which of the DNX versions
+    to use. Here, you will only see options that match what you specified in the `project.json`
+    file under the frameworks section. Finally, we can Publish the application:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '![](img/image_09_010.png)'
+  prefs: []
+  type: TYPE_IMG
+- en: 'Fig 10: Choosing DNX version'
+  prefs: []
+  type: TYPE_NORMAL
+- en: When published, it first runs the `prepare` statement and then the `prepublish`Â in
+    order to package it all up in the temporary folder, and then it literally copies
+    it out to the filesystem. Once the publishing is successful, open the command-line
+    interface and navigate to the publish folder.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Note that the folder includes the commands and shell scripts that are defined
+    in the project file. Also, note that the `approot` folder contains the packages
+    and the runtimes necessary for the application.
+  prefs: []
+  type: TYPE_NORMAL
+- en: If you are on the Windows platform, we can use the web command to start the
+    application. You can simply open a browser and navigate to `localhost` with the
+    `5000` port, and we can see our application actually running. The application
+    is running directly from theÂ command shell and not under IIS.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Publishing with dotnet command-line interface
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: 'Let''s see how we can publish using dotnet command-line interface. From Visual
+    Studio, open up a command shell directly in the project folder of our application.
+    If we look at the `DOTNET` command, we can see that it has a number of commands
+    where you can build your projects and install dependencies, especially NuGet-based
+    dependencies. You can handle packages and publish the application. The followingÂ is
+    the command that shows the Windows result that shows various options and arguments
+    in the command:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '`C:\Rajesh\Packt\Angular2>dotnet`.NET Command Line Interface Usage: dotnet
+    [common-options] [command] [arguments]'
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'Arguments: [command]: The command to execute [arguments]: Arguments to pass
+    to the command'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: 'Common Options: (passed before the command):`-v|--verbose` Enable verbose output'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: 'Common Commands:`new`: Initialize a basic .NET project`restore`: Restore dependencies
+    specified in the .NET project`compile`: Compiles a .NET project`publish`: Publishes
+    a .NET project for deployment (including the `runtime)run`: Compiles and immediately
+    executes a .NET project`repl`: Launch an interactive session (read, eval, print,
+    loop)`pack`: Creates a NuGet package'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: The dotnet command-line interface is useful in that you can actually script
+    all these processes, you can have it install the dependencies, run the build,
+    and then publish it. So, it provides an easy way to automate a lot of these tasks.
+    In fact, Visual Studio is just automating this using the Dotnet tool.
+  prefs: []
+  type: TYPE_NORMAL
+- en: The published folder contains the code of the application, all the dependencies,
+    both the client dependencies, the tooling dependencies, and the NuGet dependencies,
+    and contains the entire version of the runtime that's required. We can take this
+    folder and put on any box and run. If you want to package this up for Linux or
+    OS 10, you'll need a version of the runtime that is appropriate for those platforms,
+    like CoreCLR would be. This folder has the self-contained application and can
+    run on any browser. This doesn't use any framework that's installed on the machine;
+    it's all within that one folder, completely portable.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Deploying to IIS
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: We need to ensure that theÂ `HttpPlatformHandler` module that acts as a reverse
+    proxy is installed when you deploy to an IIS server. When the request comes in,
+    IIS forwards it to another process, which is typically a command-line application.
+    IIS will start and stop the process when needed and take care of concurrency.
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'In the IIS management application, our application is considered as another
+    website, and can be configured in IIS. We need to inform IIS to execute the DNX
+    when our application gets a request. We can achieve it using the `web.config`
+    present in the project''s folder. IIS still uses `web.config` for `HttpPlatformHandler`:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '![](img/image_09_011.png)'
+  prefs: []
+  type: TYPE_IMG
+- en: 'Fig 11: Configuring HttpPlatformHandler in the web.config file'
+  prefs: []
+  type: TYPE_NORMAL
+- en: The `HttpPlatformHandler` extension is registered with IIS and is instructed
+    to execute the batch file starting the DNX process when it gets a request. So,
+    let's configure the app in IIS.
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'To configure our application, start the IIS manager. Right-click on the root
+    server node and choose **`Add Website`**, type the application name, and an application
+    pool will automatically be generated for our application:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '![](img/image_09_012.png)'
+  prefs: []
+  type: TYPE_IMG
+- en: 'Fig 12: Adding a website to IIS'
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'Set the path to the `wwwroot` folder of the published application in the physical
+    path textbox and click on **`OK`**. As the CLR is running in the exclusive process,
+    we need to set **`No Managed Code`** under **`.NET CLR version`** on the application
+    pool:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '![](img/image_09_013.png)'
+  prefs: []
+  type: TYPE_IMG
+- en: 'Fig 13: Setting No Managed Code in .NET CLR for App Pool'
+  prefs: []
+  type: TYPE_NORMAL
+- en: We are doing this because we don't need IIS to host the CLR for our application.
+    Clicking on **`OK`** and browsing to theÂ `localhost` port `8080` will launch
+    our application. In this way, we can use the features of IIS to power DNX application
+    similar to any other web application hosted in IIS.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Deploying to Microsoft Azure
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: Azure deployment using its app service is very smooth. When an application is
+    published to Azure, a new virtual machine is created, or it is hosted on an existing
+    virtual machine that runs IIS, with `HttpPlatformHandler` installed. The deployment
+    process is the same as deploying to IIS on a local server.
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'A new website has to be created in IIS and the published content has to be
+    uploaded to the server. All this can be done by creating a publish profile in
+    Visual Studio, choosing **`Microsoft Azure App Service`**. We may need to log
+    in to an Azure account, choose a subscription, and create a new app in Azure by
+    giving a name. The URL will be `yourappname.azurewebsites.net`. Under **`Settings`**,
+    we need to choose the DNX and click on **`Publish`**. Browsing to `yourappname.azurewebsites.net`
+    will bring your application running from Azure:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '![](img/image_09_014.png)'
+  prefs: []
+  type: TYPE_IMG
+- en: 'Fig 14: Selecting publish target'
+  prefs: []
+  type: TYPE_NORMAL
+- en: Deploying to Linux and macOS
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: Let's look at deploying apps from Visual Studio to Linux or macOS. We can also
+    develop the application in the Linux or macOS platform using Visual Studio Code.
+  prefs: []
+  type: TYPE_NORMAL
+- en: First, install a DNX for the framework, .NET Core or Mono. Next, copy the whole
+    Visual Studio project, including source code and `project.json` and no assemblies.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Then, use the dotnet cli to restore all the NuGet packages. This will include
+    the assemblies the DNX needs to host the CLR in .NET Core. However, NuGet packages
+    can have dependencies on other packages, so there has to be some kind of list
+    of all packages needed before a restore can occur. The compilation of such a list
+    takes time because all packages have to be inspected to see what their dependencies
+    are. The lock file contains this compiled list, so the figuring out has to be
+    done only once. All the subsequent restores use the lock file, provided that the
+    list of packages in `project.json` hasn't changed.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Finally, instruct the DNX to run the program using Kestrel as the web server.
+    The DNX will use Kestrel as an entry point, and Kestrel will then host the app.
+    Kestrel gives me a notification that the app is running on port `5000`. Browsing
+    to `localhost` as the domain name with port `5000` launches our application in
+    Linux or macOS.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Summary
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+- en: '* * *'
+  prefs: []
+  type: TYPE_NORMAL
+- en: That's all, folks! We discussed what's new in Angular and .NET Core 1.0\. We
+    started with the new features introduced in Angular.Â We explored the improvements
+    done on the various existing approaches in Angular.Â Finally, we looked at .NET
+    Core 1.0 and the cross-platform development with the .NET Execution Environment
+    in detail. We learned the difference between the full .NET Framework, .NET Core,
+    and Mono. Also, we covered what DNX is and its role in developing .NET apps in
+    a completely new way.
+  prefs: []
+  type: TYPE_NORMAL

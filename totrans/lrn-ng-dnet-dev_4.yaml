@@ -1,0 +1,922 @@
+- en: Chapter 4. Using TypeScript with Angular
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+- en: This chapter discusses the fundamentals of TypeScript and the benefits of using
+    TypeScript to write Angular applications.
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'In this chapter, we will cover the following topics:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: What is TypeScript?
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Basic types
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Interfaces
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Classes
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Modules
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Functions
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Generics
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Decorators
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: TypeScript and Angular
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: What is TypeScript?
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+- en: '* * *'
+  prefs: []
+  type: TYPE_NORMAL
+- en: TypeScript is an open source programming language developed and maintained by
+    Microsoft. It is a superset of JavaScript, and facilitates writing object-oriented
+    programming. It should be compiled with JavaScript to run on any browser.
+  prefs: []
+  type: TYPE_NORMAL
+- en: TypeScript provides the greatest tooling and advanced autocompletion, navigation,
+    and refactoring. It is used to develop the JavaScript application for the client
+    side and server side. With classes, modules, and interfaces, we can build robust
+    components using TypeScript.
+  prefs: []
+  type: TYPE_NORMAL
+- en: The main advantage it provides over JavaScript is that it enables compile time
+    type checking for errors. Unexpected runtime errors can be avoided due to casting
+    issues. Also, it provides syntactic sugar for writing object-oriented programming.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Basic types
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+- en: '* * *'
+  prefs: []
+  type: TYPE_NORMAL
+- en: In a programming language, we deal with various small units of data, such as
+    `numbers`, `sting`, andÂ `Boolean` values. TypeScript supports these types of
+    data, as in JavaScript, with enumeration and structure types.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Boolean
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: 'The `boolean` data type can hold either `true` or `false`. Declaring and initializing
+    this data type is quite easy and is illustrated as follows:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE0]'
+  prefs: []
+  type: TYPE_PRE
+- en: Here, the `isSaved` variable is declared asÂ `boolean` and is assigned with
+    the valueÂ `false`. If the developer assigns a string value to theÂ `isSaved`
+    variable by mistake, the TypeScript will show an error and highlight the statement.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Number
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: 'The number data type holds floating-point values. Similar to JavaScript, TypeScript
+    considers all numbers as floating-point values. Declaring and initializing the
+    number data type variable can be done as follows:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE1]'
+  prefs: []
+  type: TYPE_PRE
+- en: 'Here, the `price` variable is declared asÂ `number` and is assigned the value
+    101\. Number type can hold values such as decimal, binary, hexadecimal, and octal
+    literals, as shown:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE2]'
+  prefs: []
+  type: TYPE_PRE
+- en: String
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: 'The string data type can hold a sequence of characters. Declaring and initializing
+    the `string` variable is very simple, as illustrated:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE3]'
+  prefs: []
+  type: TYPE_PRE
+- en: Here, we declared a variable named `authorName` as `string`, and assigned it
+    the "`Rajesh Gunasundaram`" value. TypeScript supports the `string` value surrounded
+    either byÂ double quotes (") or single quotes (').
+  prefs: []
+  type: TYPE_NORMAL
+- en: Array
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: 'The array data type is meant to hold the collection of values of specific types.
+    In TypeScript, we can define `array` in two ways, which are as follows:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE4]'
+  prefs: []
+  type: TYPE_PRE
+- en: 'This statement declares an array variable of the `number` type using square
+    brackets ([]) after the `number`Â data type, and it is assigned a series of even
+    numbers from 2 to 10\. The second way to define array is this:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE5]'
+  prefs: []
+  type: TYPE_PRE
+- en: This statement uses the generic array type that uses the `Array` keyword followed
+    by angle brackets (<>) that wrap the `number` data type.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Enum
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: 'The enum data type will have a named set of values. We use enumerators to give
+    friendly names to constants that identify certain values:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE6]'
+  prefs: []
+  type: TYPE_PRE
+- en: Here, we have the `enum` type `Day` variable that holds the series of values
+    representing each day of a week. The second statement shows how to access a particular
+    `enum` value in a day and assign the same to another variable.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Any
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: 'The `Any` data type is a dynamic data type that can hold `Any` value. TypeScript
+    throws compile time errors if you assign a string-type variable to an integer-type
+    variable. If you are unsure about what value a variable willÂ hold, and you would
+    like to opt out of compiler checking for the type in the assignment, you can use
+    the `Any` data type:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE7]'
+  prefs: []
+  type: TYPE_PRE
+- en: Here, we used an array of the any type so that it can hold any type, such as
+    `number`, `string`, and `boolean`.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Void
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: 'The void is actually nothing. It can be used as the return type of a function
+    to declare that this function will not return any value:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE8]'
+  prefs: []
+  type: TYPE_PRE
+- en: Interfaces
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+- en: '* * *'
+  prefs: []
+  type: TYPE_NORMAL
+- en: An interface is an abstract type that defines the behavior of a class. ItÂ provides
+    a type definition for an object that can be exchanged between clients. This enables
+    the client to only exchange an object that is compiledÂ with the interface type
+    definition; otherwise, we get a compile time error.
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'In TypeScript, interfaces define contracts of an object within your code and
+    the code outside your project. Let''s see how to use TypeScript with an example:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE9]'
+  prefs: []
+  type: TYPE_PRE
+- en: The type-checker verifies the `addCustomer` method call and examines its parameter.
+    The `addCustomer` expects an object with the `name` property of the `string` type.
+    However, the client that calls `addCustomer` passed an object with two parameters:Â `id`
+    and `name`, respectively.
+  prefs: []
+  type: TYPE_NORMAL
+- en: However, the compiler ignores checkingÂ the `id` property as it is not available
+    in the parameter type of the `addCustomer` method. WhatÂ matters for the compiler
+    is that the required properties are present.
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'Let''s rewrite the method applying `interface` as a parameter type, as demonstrated:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE10]'
+  prefs: []
+  type: TYPE_PRE
+- en: Optional properties
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: 'In some scenarios, we may want to pass values only for minimal parameters.
+    In such cases, we can define the properties in an interface as optional properties,
+    as follows:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE11]'
+  prefs: []
+  type: TYPE_PRE
+- en: Here, the `bonus` property has been defined as an optional property by concatenating
+    a question mark (?) at the end of the `name` property.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Function type interfaces
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: 'We just saw how to define properties in interfaces. Similarly, we can also
+    define function types in interfaces. We can define function types in interfaces
+    just by giving the signature of the function with the return type. Note that in
+    the following code snippet, we have not added the function name:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE12]'
+  prefs: []
+  type: TYPE_PRE
+- en: 'Now, `AddCustomerFunc`Â is ready. Let''s define a function type variable,Â `AddCustomerFunc`,
+    and assign a function of the same signature to it as follows:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE13]'
+  prefs: []
+  type: TYPE_PRE
+- en: 'The parameter name in the function signature can vary but not the data type.
+    For example, we can alter the `fn` and `ln` function parameters of the string
+    type, as follows:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE14]'
+  prefs: []
+  type: TYPE_PRE
+- en: So, if we change the data type of the parameter or the return type of the function
+    here, the compiler will throw an error about the parameter not matching or the
+    return type not matching with the `AddCustomerFunc` interface.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Array type interfaces
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: 'We can also define an interface for array types. We can specify the data type
+    for the `index` array and the data type to the array item, as shown:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE15]'
+  prefs: []
+  type: TYPE_PRE
+- en: TypeScript supports two types of `index`, namely `number`, and `string`. This
+    array type interface also enforces that the return type of the array should match
+    the declaration.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Class type interfaces
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: 'Class type interfaces define the contract for classes. A class that implements
+    an interface should meet the requirements of the interface:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE16]'
+  prefs: []
+  type: TYPE_PRE
+- en: The class type interface only deals with public members of the class. So, it
+    is not possible to add private members to the interface.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Extending interfaces
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: 'Interfaces can be extended; extending an interface makes it share the properties
+    of another interface, as follows:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE17]'
+  prefs: []
+  type: TYPE_PRE
+- en: Here, the `Employee` interface extends the `Manager` interface and shares its
+    `hasPower` with the `Employee` interface.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Hybrid type interface
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: 'Hybrid type interfaces are used when we want to use anÂ object both as a function
+    and as an object. We can call an object like a function if it implements a hybrid
+    type interface, or we can use it as an object and access its properties. This
+    type of interface enables you to use an interface as an object and a function,
+    as illustrated:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE18]'
+  prefs: []
+  type: TYPE_PRE
+- en: Classes
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+- en: '* * *'
+  prefs: []
+  type: TYPE_NORMAL
+- en: A class is an extensible template that is used to create objects with member
+    variables to hold the state of the object and member functions that deal with
+    the behavior of the object.
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'The current version of JavaScript supports only function-based and prototype-based
+    inheritance to build reusable components. The next version of JavaScript ECMAScript
+    6 supports object-oriented programming by adding the syntactic sugar for prototype-based
+    class definitions and inheritance. However, TypeScript enabled developers to write
+    code using object-oriented programming techniques, and it compiles the code down
+    to JavaScript, which is compatible with all browsers and platforms:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE19]'
+  prefs: []
+  type: TYPE_PRE
+- en: 'This `Customer` class has three members: a `name` property, a constructor,
+    and a `logCustomer` method. The last statement outside the `Customer` class creates
+    an instance of the `customer` class using the `new` keyword.'
+  prefs: []
+  type: TYPE_NORMAL
+- en: Inheritance
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+- en: '* * *'
+  prefs: []
+  type: TYPE_NORMAL
+- en: Inheritance is the concept of inheriting some behaviors of another class or
+    object. It helps achieve code reusability and build hierarchy in relationships
+    of classes or objects. Also, inheritance helps you cast similar classes.
+  prefs: []
+  type: TYPE_NORMAL
+- en: JavaScript of ES5 standard doesn't support classes, and so, class inheritance
+    is not possible in JavaScript. However, we can implement prototype inheritance
+    instead of class inheritance. Let's see inheritance in ES5 with examples.
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'First, create a function named `Animal`, as follows. Here, we create a function
+    named `Animal` with two methods: `sleep` and `eat`:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE20]'
+  prefs: []
+  type: TYPE_PRE
+- en: 'Now, let''s extend this `Animal` function using the prototype, as shown:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE21]'
+  prefs: []
+  type: TYPE_PRE
+- en: 'Now, we can create an instance of `Animal` and call the extended function bark,
+    as demonstrated:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE22]'
+  prefs: []
+  type: TYPE_PRE
+- en: 'We can use the `Object.Create` method to clone a prototype of the parent and
+    create a child object. Then, we can extend the child object by adding methods.
+    Let''s create an object named `Dog` and inherit it from `Animal`:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE23]'
+  prefs: []
+  type: TYPE_PRE
+- en: 'Now, let''s clone the prototype of `Animal` and inherit all the behavior in
+    the `Dog` function. Then, we can call the `Animal` method using the `Dog` instance,
+    as follows:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE24]'
+  prefs: []
+  type: TYPE_PRE
+- en: Inheritance in TypeScript
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: We just saw how to implement an inheritance in JavaScript using a prototype.
+    Now, we will see how an inheritance can be implemented in TypeScript.
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'In TypeScript, similar to extending interfaces, we can also extend a class
+    by inheriting another class, as illustrated:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE25]'
+  prefs: []
+  type: TYPE_PRE
+- en: Here, we are able to access the methods of `SimpleCalculator` using the instance
+    of `ComplexCalculator` as it extends `SimpleCalculator`.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Private/Public modifiers
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: 'In TypeScript, all members in a class are `public` by default. We have to add
+    the `private` keyword explicitly to control the visibility of the members:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE26]'
+  prefs: []
+  type: TYPE_PRE
+- en: Note that in the `SimpleCalculator` class, we defined `x` and `y` as `private`
+    properties, which will not be visible outside the class. In `ComplexCalculator`,
+    we defined `x` and `y` using parameter properties. These parameter properties
+    will enable us to create and initialize the member in one statement. Here, `x`
+    and `y` are created and initialized in the constructor itself without writing
+    any further statements inside it. Also,Â `x` and `y` are private in order to hide
+    themÂ from exposure to consuming classes or modules.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Accessors
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: 'We can also implement `getters` and `setters` to the properties to control
+    accessing them from the client. We can intercept some process before setting a
+    value to a property variable or before getting a value of the property variable:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE27]'
+  prefs: []
+  type: TYPE_PRE
+- en: Here, the `setter` for the `name` property ensures that the customer `name`
+    can be updated. Otherwise, it will show an alert message that it is not possible.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Static properties
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: 'These type of properties are not instance specific and are accessed by a class
+    name instead of using the `this` keyword:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE28]'
+  prefs: []
+  type: TYPE_PRE
+- en: Here, we declared a `static` variable,Â `bonusPercentage`, accessed using the
+    `Customer` class name in the `calculateBonus` method. The `bonusPercentage` property
+    is not instance specific.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Modules
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+- en: '* * *'
+  prefs: []
+  type: TYPE_NORMAL
+- en: JavaScript is a powerful and dynamic language. Due to the liberty of dynamic
+    programming in JavaScript as per ES5 and earlier standards, it is our duty to
+    structure and organize code. It will make the maintainability of code easier and
+    also enable us to easily locate the code of a specific functionality we need.
+    We can organize code by applying a modular pattern. Code can be separated into
+    various modules, and the relevant code can be put in each module.
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'TypeScript made it easier to implement modular programming using the keyword
+    module as per ECMAScript 6 specifications. Modules enable you to control the scope
+    of variables, code reusability, and encapsulation. TypeScript supports two types
+    of modules: internal and external.'
+  prefs: []
+  type: TYPE_NORMAL
+- en: Namespaces
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: 'We can create namespaces in TypeScript using the namespace keyword, as illustrated.
+    All the classes defined under namespace will be scoped under that particular namespace
+    and will not be attached to the global scope:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE29]'
+  prefs: []
+  type: TYPE_PRE
+- en: 'To make the `Product` class available outside the namespace, we need to add
+    an `export` keyword when defining the `Product` class, as follows:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE30]'
+  prefs: []
+  type: TYPE_PRE
+- en: 'We can also share the namespace across files by adding a `reference` statement
+    at the beginning of the code in the referring files, as shown:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE31]'
+  prefs: []
+  type: TYPE_PRE
+- en: Modules
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: 'TypeScript also supports modules. As we deal with a large number of external
+    JavaScript libraries, this module will really help us refer and organize our code.
+    Using the `import` statement, we can import external modules, as illustrated:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE32]'
+  prefs: []
+  type: TYPE_PRE
+- en: Here, we just imported the previously created module, `Inventory`, and created
+    an instance of `Product`Â assigned to the `p`Â variable.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Functions
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: JavaScript that follows ES5 specificaitons does not support classes and modules.
+    However, we tried to achieve the scoping of variables and modularity using functional
+    programming in JavaScript. Functions are the building blocks of an application
+    in JavaScript.
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'Though TypeScript supports classes and modules, functions play a key role in
+    defining a specific logic. We can define both theÂ `function` and `Anonymous`
+    functions in JavaScript as shown:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE33]'
+  prefs: []
+  type: TYPE_PRE
+- en: 'In TypeScript, we define functions with the type of the parameters and the
+    return type using function arrow notation, which is also supported in ES6; it''sÂ done
+    like this:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE34]'
+  prefs: []
+  type: TYPE_PRE
+- en: Optional and default parameters
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: 'Consider thatÂ we have a function with three parameters, and sometimes, we
+    may only pass values for the first two parameters in the function. In TypeScript,
+    we can handle such scenarios using the optional parameter. We can define the first
+    two parameters as normal and theÂ third parameter as optional, as given in the
+    following code snippet:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE35]'
+  prefs: []
+  type: TYPE_PRE
+- en: Here, `middleName` is the optional parameter, and it can be ignored when calling
+    the function.
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'Now, let''s see how to set default parameters in a function. If a value is
+    not supplied to a parameter in the `function`, we can define it to take the default
+    value that is configured:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE36]'
+  prefs: []
+  type: TYPE_PRE
+- en: Here, `middleName` is the default parameter that will have `'No Middle Name'`
+    by default if the value is not supplied by the caller.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Rest parameters
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: 'Using the rest parameter, you can pass an array of values to the function.
+    This can be used in scenarios where you are unsure about how many values will
+    be supplied to the function:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE37]'
+  prefs: []
+  type: TYPE_PRE
+- en: Here, note that the `restOfClient` rest parameter is prefixed with an ellipsis
+    (...), and it can hold an array of strings. In the caller of the function, only
+    the value of the first parameter that is supplied will be assigned to the `firstClient`
+    parameter, and the remaining values will be assigned to `restOfClient` as array
+    values.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Generics
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+- en: '* * *'
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'Generics come inÂ very handy whenÂ developing reusable components that can
+    work against any data type. So, the client that consumes this component will decide
+    what type of data it should act upon. Let''s create a simple function that returns
+    whatever data is passed to it:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE38]'
+  prefs: []
+  type: TYPE_PRE
+- en: 'As you can see, we need individual methods to process each data type. We can
+    implement the same in a single function using the `any` data type, as follows:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE39]'
+  prefs: []
+  type: TYPE_PRE
+- en: This is similar to generics. However, we don't have control over the return
+    type. If we pass a number and we can't predict whether the number will be returned
+    or not by the function, The return type can be of any type.
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'Generics offer a special variable of the `T`Â type. Applying this type to the
+    function, as shown, enables the client to pass the data type they would like this
+    function to process:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE40]'
+  prefs: []
+  type: TYPE_PRE
+- en: 'So, the client can call this function for various data types, as shown:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE41]'
+  prefs: []
+  type: TYPE_PRE
+- en: Note that the data type to be processed is passed by wrapping it in angle brackets
+    (`<>`) in the function call.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Generic interfaces
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: 'We can also define generic interfaces using the type variable `T`, as follows:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE42]'
+  prefs: []
+  type: TYPE_PRE
+- en: Here, we defined a generic interface and the `myFunc` variable of the `GenericFunc`
+    type, passing the number data type for the type variable `T`. Then, this variable
+    is assigned with a function named `func`.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Generic classes
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: 'Similar to generic interfaces, we can also define generic classes. We define
+    classes with a generic type in angle brackets (`<>`), as shown:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE43]'
+  prefs: []
+  type: TYPE_PRE
+- en: Here, the generic class is instantiated by passing the generic data type as
+    `number`. So, the `add` function will process and add two numbers passed as parameters.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Decorators
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+- en: '* * *'
+  prefs: []
+  type: TYPE_NORMAL
+- en: Decorators enable us to extend a class or object by adding behaviors without
+    modifying the code. Decorators wrap the class with extra functionality. TheyÂ can
+    be attached to a class, property, method, parameter, and accessor. In ECMAScript
+    2016, decorators are proposed to modify the behavior of a class. Decorators are
+    prefixed with the `@` symbol and a decorator name that resolves to a function
+    called at `runtime`.
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE44]'
+  prefs: []
+  type: TYPE_PRE
+- en: '[PRE45]'
+  prefs: []
+  type: TYPE_PRE
+- en: Class decorators
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: 'Class decorators are declared before the class declaration. Class decorators
+    can observe, modify, and replace the definition of a class by applying to the
+    constructor of that class. The signature of `ClassDecorator` in TypeScript is
+    as illustrated:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE46]'
+  prefs: []
+  type: TYPE_PRE
+- en: Consider a `Customer` class, and we would like that class to be freezed. Its
+    existing properties should not be removed andÂ new properties should not be added.
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'We can create a separate class that can take any object and freeze it. We can
+    then decorate the customer class with `@freezed` to prevent adding new properties
+    or removing the existing properties from the class:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE47]'
+  prefs: []
+  type: TYPE_PRE
+- en: '[PRE48]'
+  prefs: []
+  type: TYPE_PRE
+- en: Here, the freezed decorator takes the `target`, that is, the `Customer` class
+    that is being decorated and freezes it when it is executed.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Method decorators
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: 'Method decorators are declared before the method declaration. This decorator
+    is used to modify, observe, or replace a method definition and is applied to the
+    property descriptor for the method. The following code snippet shows a simple
+    class with an applied method decorator:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE49]'
+  prefs: []
+  type: TYPE_PRE
+- en: '[PRE50]'
+  prefs: []
+  type: TYPE_PRE
+- en: 'The method decorator function takes three arguments: `target`, `key`, and `value`.
+    The `target`Â argument holds the method that is being decorated; `key` holds the
+    name of the method being decorated, and `value` is the property descriptor of
+    the specified property if it exists on the object.'
+  prefs: []
+  type: TYPE_NORMAL
+- en: When the `increment` method is called, the `logging` decorator is invoked and
+    the `values` parameters are passed to it. The `logging` method will log details
+    about the arguments passed to the console.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Accessor decorators
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: 'Accessor decorators are prefixed before the accessor declaration. These decorators
+    are used to observe, modify, or replace an accessor definition and are applied
+    to the property descriptor. The following code snippet shows a simple class with
+    the accessor decorator applied:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE51]'
+  prefs: []
+  type: TYPE_PRE
+- en: '[PRE52]'
+  prefs: []
+  type: TYPE_PRE
+- en: The `logging` function sets the `Boolean` value to the `logging` property descriptor.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Property decorators
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: 'Property decorators are prefixed to property declarations. The signature of
+    `PropertyDecorator` in the TypeScript source code is this:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE53]'
+  prefs: []
+  type: TYPE_PRE
+- en: '[PRE54]'
+  prefs: []
+  type: TYPE_PRE
+- en: '[PRE55]'
+  prefs: []
+  type: TYPE_PRE
+- en: The `_value`Â variable holds the value of the property that is being decorated.
+    Both theÂ `getter` and `setter` functions will have access to the `_value` variable,
+    and here, we can manipulate the `_value`Â variableÂ by adding extra behaviors.
+    I have concatenated `#` in `getter` to return hash tagged first name. Then, we
+    delete the original property from the class prototype using the `delete` operator.
+    A new property will be created with the original property name andÂ the extra
+    behavior.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Parameter decorators
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: 'Parameter decorators are prefixed to parameter declarations, and they are applied
+    to a function for a class constructor or method declaration. This is the signature
+    of `ParameterDecorator`:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE56]'
+  prefs: []
+  type: TYPE_PRE
+- en: 'Now, let''s define the `Customer` class and use a parameter decorator to decorate
+    a parameter in order to make it required, and validate whether the value has been
+    served:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE57]'
+  prefs: []
+  type: TYPE_PRE
+- en: 'Here, the name parameter has been decorated with `@logging`. The parameter
+    decorator implicitly takes three inputs, namelyÂ `prototype` of the class that
+    has this decorator, `name` of the method that has this decorator, and `index`
+    of the parameter that is being decorated. The `logging` function implementation
+    of the parameter decorator is as illustrated:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE58]'
+  prefs: []
+  type: TYPE_PRE
+- en: Here, `target` is the class that has the decorator, `key` is the function name,
+    and `index` contains the parameter index. This code just logs `target`, `key`,
+    and `index` to the console.
+  prefs: []
+  type: TYPE_NORMAL
+- en: TypeScript and Angular
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+- en: '* * *'
+  prefs: []
+  type: TYPE_NORMAL
+- en: As you have seen in this chapter, TypeScript comes with strong type-checking
+    capabilities and supports object-oriented programming. Due to such advantages,
+    the Angular team has chosen TypeScript to build Angular. Angular was completely
+    rewritten from the core using TypeScript, and its architecture and coding pattern
+    was completely changed, as you saw in [Chapter 2](Learning%20Angular%20for%20.NET%20Developers_split_000.html#),
+    *Angular building blocks part 1*, and [Chapter 3](Learning%20Angular%20for%20.NET%20Developers_split_000.html#),
+    *Angular building blocks part 2*. So, writing an Angular app using TypeScript
+    is the best choice.
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'We can implement modules in Angular similar to modules in TypeScript. Components
+    in an Angular application are actually a TypeScript class decorated with `@Component`.
+    Modules can be imported to the current class file using import statements. The
+    `export` keyword is used to indicate that this component can be imported and accessed
+    in another module. The sample component code that is developed using TypeScript
+    is as follows:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE59]'
+  prefs: []
+  type: TYPE_PRE
+- en: Summary
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+- en: '* * *'
+  prefs: []
+  type: TYPE_NORMAL
+- en: Voila! Now you've learned the fundamentals of the TypeScript language. We started
+    by discussing what is TypeScript and itsÂ advantages. Then, you learned about
+    the various data types in TypeScript with examples. We also walked through object-oriented
+    programming in TypeScript and interfaces, classes, modules, functions, and generics
+    with examples. Next, you learned about the various types of decorators andÂ their
+    implementation withÂ examples. Finally, we sawÂ why we shouldÂ use TypeScript
+    for Angular and the benefit of using TypeScript to write Angular applications.
+  prefs: []
+  type: TYPE_NORMAL
+- en: In the next chapter, we will discuss how to create an Angular single-page application
+    using Visual Studio.
+  prefs: []
+  type: TYPE_NORMAL

@@ -1,0 +1,842 @@
+- en: Chapter 6. Creating ASP.NET Core Web API Services for Angular
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+- en: This chapter takes you through the process of creating ASP.NET Web API services
+    for Angular applications that we created in the last chapter.
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'In this chapter, we will cover the following topics:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: RESTful Web Services
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: ASP.NET Web API overview
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Creating ASP.NET Web API services
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Integrating the ASP.NET Web API with Angular applications
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: RESTful Web Services
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+- en: '* * *'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '**Representational State Transfer** (**REST**) is an architectural style or
+    design principle that can be applied to implement RESTful services. REST ensures
+    that the communication between clients and services is improved by having a limited
+    number of operations. REST helps you organize these communications between independent
+    systems in a simple way.'
+  prefs: []
+  type: TYPE_NORMAL
+- en: In REST, each resource is identified by its own **Universal Resource Identifier**
+    (**URI**). It uses HTTP under the hood and utilizes HTTP verbs, such as `GET`,
+    `POST`, `PUT`, and `DELETE`, to control or access the resources.
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'RESTful web services are stateless in nature and are easy to scale. They work
+    under the HTTP protocol and can be accessed from any device that supports HTTP.
+    A client need not worry about anything other than the data format:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '![](img/image_06_001.png)'
+  prefs: []
+  type: TYPE_IMG
+- en: A RESTful service
+  prefs: []
+  type: TYPE_NORMAL
+- en: ASP.NET Web API Overview
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+- en: '* * *'
+  prefs: []
+  type: TYPE_NORMAL
+- en: The ASP.NET Web API is a framework that can be used to build RESTful services
+    on the .NET framework. The ASP.NET Web API is based on the HTTP protocol, and
+    it exposes the HTTP verbs/actions in the form of a URI, allowing client applications
+    to interact with data using HTTP verbs. Any client application or device that
+    supports HTTP communications can easily access Web API services.
+  prefs: []
+  type: TYPE_NORMAL
+- en: As discussed in the preceding section, the RESTful service will identify resources
+    through a URI. For example, we have [http://www.programmerguide.net/api/todos/101](http://www.programmerguide.net/api/todos/101),
+    and an Angular application applies a GET request. The C# method that responds
+    to this GET request will be on a web API controller class. The routing technique
+    will take care of mapping the request URI with the respective controller and methods
+    based on the route configured or annotated in the respective classes and methods.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Here, the request will be handled by a `Get` method in `TodosController` according
+    to the default configurations. The `Get` method will retrieve the `Todo` item
+    based on the ID value 101 from the database and return it as a `Todo` object.
+    The returned `Todo` object will be serialized to JSON or XML.
+  prefs: []
+  type: TYPE_NORMAL
+- en: In case of the `Post` method, a newly posted `Todo` object will be received
+    from the request body in the form of JSON and will be deserialized into the `Todo`
+    object in order to use it inside the `Post` method of `TodosController`.
+  prefs: []
+  type: TYPE_NORMAL
+- en: We can create HTTP-based services through the powerful ASP.NET **Model-View-Controller**
+    (**MVC**) programming model in the ASP.NET Web API. Features such as routing,
+    model binding, and validation provide greater flexibility in developing RESTful
+    web services using the ASP.NET Web API.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Why the ASP.NET Web API is a great fit for Angular
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: The ASP.NET Web API is a framework that can be used to build HTTP services.
+    It is built with very lightweight architecture, and it can be accessed asynchronously
+    using an HTTP service in Angular in a RESTful way. Using the ASP.NET Web API,
+    we can easily synchronize data in Angular applications.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Creating ASP.NET Web API services
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+- en: '* * *'
+  prefs: []
+  type: TYPE_NORMAL
+- en: Let's create or add ASP.NET Web API services to our My Todo application that
+    we created in the last chapter. Our My Todo application was created using the
+    Empty ASP.NET 5 template in Visual Studio 2015\. When an empty project is created,
+    it creates a lean web application. It does not include assemblies related to MVC
+    or the Web API. So, we need to explicitly add the required assemblies or modules
+    to implement the Web API in our application.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Adding and configuring an MVC service to the ASP.NET project
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: 'Since ASP.NET Core, the Web API, was merged with MVC, we need to add an MVC
+    service to implement a Web API in our application:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: Install theÂ `NuGet` package `Microsoft.AspNetCore.MVC`.
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: Open the `Startup.cs` file from the root folder of the project in Visual Studio.
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: Add the following statement under the `ConfigureServices` method to add the
+    MVC service to our project
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: '[PRE0]'
+  prefs: []
+  type: TYPE_PRE
+- en: 'We just enabled MVC in our project. Next, we will wire up MVC with our request
+    pipeline by adding the following statement in the `Configure` method:'
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: '[PRE1]'
+  prefs: []
+  type: TYPE_PRE
+- en: Adding Web API Controller to an ASP.NET application
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: 'We just enabled and wired up the MVC service to our application. Now, let''s
+    add a Web API controller by following these steps:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'Right-click on the `My Todo` project, navigate to `Add` | `New Folder`, and
+    name the folder `Controllers`:'
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: '![](img/image_06_002.png)'
+  prefs: []
+  type: TYPE_IMG
+- en: Create a new folder for controllers under the My Todo project
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'Now, right-click on the `Controllers` folder that we just created and go to
+    `Add` | `New Item`:'
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: '![](img/image_06_003.png)'
+  prefs: []
+  type: TYPE_IMG
+- en: Add the Web API controller to the Controllers folder
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'Select **`Minimal Dependencies`** and click onÂ **`Add`** if you get an Add
+    MVC Dependencies popup:'
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: '![](img/image_06_004.png)'
+  prefs: []
+  type: TYPE_IMG
+- en: Add minimal MVC dependencies
+  prefs: []
+  type: TYPE_NORMAL
+- en: Visual Studio 2017 has added a `ScaffoldingReadMe.txt` readme file with the
+    following instructions to enable scaffolding in our application; follow and update
+    your project code accordingly.
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'ASP.NET MVC core dependencies have been added to the project. However, you
+    may still need to make these changes to your project:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'Add `Scaffolding``CLI` tool to the project:'
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: '[PRE2]'
+  prefs: []
+  type: TYPE_PRE
+- en: 'These are the suggested changes to the `Startup` class:'
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: '[PRE3]'
+  prefs: []
+  type: TYPE_PRE
+- en: 'Again, right-click on the `Controllers` folder, go to **`Add`** | **`Controllers`**,
+    select **`API Controller with read/write actions`**, and name it as `TodosController`:'
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: '![](img/image_06_005.png)'
+  prefs: []
+  type: TYPE_IMG
+- en: Name the controller TodosController
+  prefs: []
+  type: TYPE_NORMAL
+- en: Note
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: If you get the error in the following screenshot, you need to add the given
+    XML tag by editing your `csproj` file and then, add the controller again.
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'This is the error:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '![](img/image_06_006.png)'
+  prefs: []
+  type: TYPE_IMG
+- en: 'The following is the code for the XML tag:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE4]'
+  prefs: []
+  type: TYPE_PRE
+- en: 'This will create the `TodosController`Â Web API controller with the following
+    template code for us to modify according to our needs:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE5]'
+  prefs: []
+  type: TYPE_PRE
+- en: Press *F5* to run the application and navigate to `http://localhost:2524/api/todos`
+    from the browser.
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: Note
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: You may have a different port in your system.
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'You will see the following output from `TodosController` as per the default
+    code in the `Get` method. As you can see in the following screenshot, it just
+    returned an array of string:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '![](img/image_06_007.png)'
+  prefs: []
+  type: TYPE_IMG
+- en: The output of the default Get action in TodoController
+  prefs: []
+  type: TYPE_NORMAL
+- en: Adding models to an ASP.NET application
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: 'We configured our application to use MVC services and added the Web API controller.
+    Now, let''s add the models needed for our My Todo application. Follow these steps
+    to add a model named `Todo`:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'Right-click on the `My``Todo` project, navigate to **`Add`** | **`New Folder`**,
+    and name the folder `Models`:'
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: '![](img/image_06_008.png)'
+  prefs: []
+  type: TYPE_IMG
+- en: Add a new folder for Models under the My Todo project
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'Now, right-click on the `Models` folder that we just created and go to **`Add`**
+    | **`Class`**....:'
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: '![](img/image_06_009.png)'
+  prefs: []
+  type: TYPE_IMG
+- en: Add a class for the Todo object under the Models folder
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'Name the class `Todo` and add the following code snippet to it:'
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: '[PRE6]'
+  prefs: []
+  type: TYPE_PRE
+- en: '`Todo` is a C# POCO class that represents a `Todo` item. It has properties
+    such as an `Id` that holds the primary key value of the `Todo` item, the `Title`
+    property that holds the title of the `Todo` item, and the `Completed` property
+    that holds the Boolean flag to indicate whether the item is completed.'
+  prefs: []
+  type: TYPE_NORMAL
+- en: Adding DBContext to an ASP.NET application
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: 'We just added the `Todo` model. Now, let''s add `DBContext` to manage and persist
+    `Todo` in the database. `DBContext` acts as a bridge between your classes and
+    database. To add it, follow these steps:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'Right-click on the `Models` folder and navigate to **`Add`** | **`Class`**:'
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: '![](img/image_06_010.png)'
+  prefs: []
+  type: TYPE_IMG
+- en: Add a class for DBContext under the Models folder
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'Name the class asÂ `TodoContext` and add the following code snippet to it:'
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: '[PRE7]'
+  prefs: []
+  type: TYPE_PRE
+- en: '`TodoContext` helps you interact with the database and commits the changes
+    as a single unit of work. `TodoContext` is configured to use the SQL Server, and
+    the connection string is read from the `config.json` file that we will add in
+    the next step.'
+  prefs: []
+  type: TYPE_NORMAL
+- en: Add using statement to import `Microsoft.EntityFrameworkCore` in `Startup.cs`.
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: 'Configure the SQL service by adding the following code snippet to theÂ `ConfigureServices`
+    method:'
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: '[PRE8]'
+  prefs: []
+  type: TYPE_PRE
+- en: 'Add an `appsettings.json` file to hold the value of the connection string and
+    update it with this content:'
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: '[PRE9]'
+  prefs: []
+  type: TYPE_PRE
+- en: In this `JSON` file, we added the connect string under the `data` item.
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE10]'
+  prefs: []
+  type: TYPE_PRE
+- en: '[PRE11]'
+  prefs: []
+  type: TYPE_PRE
+- en: In the `Startup.cs` constructor, we built the configuration to read from the
+    `config.json` file. In the `ConfigureServices` method, we added Entity Framework
+    and hooked the SQL Server and `TodoContext` to it.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Using DB Migration
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+- en: '* * *'
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'DB migration in Entity Framework helps you create a database or update a database
+    schema during the application''s development phase. We now have the required model
+    and database context in place. We need to create the database now. Let''s create
+    the database in SQL Server Compact using the feature called database migration
+    in Entity Framework. Follow these steps to do so:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'First, add the following XML tags to the `csproj` file by editing it:'
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: '[PRE12]'
+  prefs: []
+  type: TYPE_PRE
+- en: Open Command Prompt and navigate to the project folder.
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: 'Execute the following command to initialize the database for migration:'
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: '![](img/image_06_011.png)'
+  prefs: []
+  type: TYPE_IMG
+- en: Execute the command to add migration
+  prefs: []
+  type: TYPE_NORMAL
+- en: This command creates the `Migration` folder under the **`My`****`Todo`** project
+    and adds two classes to create tables and update the schema.
+  prefs: []
+  type: TYPE_NORMAL
+- en: '![](img/image_06_012.png)'
+  prefs: []
+  type: TYPE_IMG
+- en: Files related to database migration
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'Execute the following command to update the database:'
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: '![](img/image_06_013.png)'
+  prefs: []
+  type: TYPE_IMG
+- en: Execute the command to update database
+  prefs: []
+  type: TYPE_NORMAL
+- en: This command creates the `database` for our application as per the context and
+    model.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Using Database Context in a Web API controller
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: 'Now that we have the database context in place and the migration is also set
+    up, let''s update the `TodosController` Web API controller to use `TodoContext`
+    that we created earlier. Follow these steps to do so:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: Open `TodosController.cs`.
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: 'Declare the `_db` private variable of the `TodoContext` type:'
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: '[PRE13]'
+  prefs: []
+  type: TYPE_PRE
+- en: 'Define `constructor` that takes a `context` argument of the `TodoContext` type
+    and assign the `context` value to `_db`:'
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: '[PRE14]'
+  prefs: []
+  type: TYPE_PRE
+- en: 'Introduce a `GET` action method that returns the collection of all `Todo` items
+    from the database using the `_db` database context:'
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: '[PRE15]'
+  prefs: []
+  type: TYPE_PRE
+- en: 'Introduce another `GET` action method that removes the completed `Todo` items
+    from the database and returns all the pending `Todo` items using the `_db` database
+    context:'
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: '[PRE16]'
+  prefs: []
+  type: TYPE_PRE
+- en: 'Introduce a `POST` action method that inserts a new `Todo` item in the `TodoContext``_db`
+    database:'
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: '[PRE17]'
+  prefs: []
+  type: TYPE_PRE
+- en: 'Introduce a `PUT` action method that updates the existing `Todo` item that
+    has the matching ID using `TodoContext``_db`:'
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: '[PRE18]'
+  prefs: []
+  type: TYPE_PRE
+- en: 'Introduce a `DELETE` action method that deletes an existing `Todo` item that
+    has the matching ID using `TodoContext``_db`:'
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: '[PRE19]'
+  prefs: []
+  type: TYPE_PRE
+- en: '[PRE20]'
+  prefs: []
+  type: TYPE_PRE
+- en: Integrating ASP.NET Core Web API with Angular application
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+- en: '* * *'
+  prefs: []
+  type: TYPE_NORMAL
+- en: In the preceding section, we added and modified the Web API controller and introduced
+    methods for HTTP verbs to deal with the `Todo` items. Now, let's modify our Angular
+    code to consume all the Web API methods to manage the `Todo` items.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Updating a model in an Angular app
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: 'First, we need to add the `id` property to `Todo.ts` in an Angular app to hold
+    the IDÂ of the `Todo` item received from the API. So, the updated `Todo.ts` will
+    look as follows:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE21]'
+  prefs: []
+  type: TYPE_PRE
+- en: 'The `constructor` takes three arguments: `id`, `title`, and `completed`, and
+    assigns them to the `id`, `title`, and `completed`Â properties respectively, accessing
+    them using theÂ `this` keyword. The `Todo` class also sets an accessor for the
+    `completed` property.'
+  prefs: []
+  type: TYPE_NORMAL
+- en: Preparing Angular application
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: 'The following are the steps for preparing Angular application:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'Add theÂ `@angular/http` module to dependencies in `package.json`. The HTTP
+    module is required to consume Web API services. The updated `package.json` is
+    given here:'
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: '[PRE22]'
+  prefs: []
+  type: TYPE_PRE
+- en: 'Update `systemjs.config.js` with the mapping for `@angular/http`. The updated
+    `systemjs.config.js` is as shown:'
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: '[PRE23]'
+  prefs: []
+  type: TYPE_PRE
+- en: 'Import theÂ `HttpModule` in `AppModule`, as illustrated:'
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: '[PRE24]'
+  prefs: []
+  type: TYPE_PRE
+- en: 'Update model `Todo`, as shown:'
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: '[PRE25]'
+  prefs: []
+  type: TYPE_PRE
+- en: Consuming Web API GET Action in TodoService
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: 'First, let''s update the `TodoService` that consumes Web API service to fetch
+    a list of `Todo` items. We will use the `Http` service to communicate with Web
+    API service:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: Open the `todoService.ts` file in an app folder.
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: 'Add the following `import` statements to import modules such as `Injectable`,
+    `Http`, `headers`, `Response`, `Observable`, `map`, and `Todo`:'
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: '[PRE26]'
+  prefs: []
+  type: TYPE_PRE
+- en: 'Modify `constructor` to inject the `Http` service by adding the parameter for
+    the `Http` service:'
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: '[PRE27]'
+  prefs: []
+  type: TYPE_PRE
+- en: 'Add the `getTodos` method to consume the Web API service to get the list of
+    `Todo` items using the `Http`Â tag:'
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: '[PRE28]'
+  prefs: []
+  type: TYPE_PRE
+- en: Here, the `toPromise` method converts the `Observable` sequence returned by
+    theÂ `Get` method of `http`. Then, we call the `then` method or theÂ `catch` method
+    on the returned promise. We convert theÂ `JSON` received in response into an array
+    of `Todo`.
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'We just added the `getTodos` method. Next, let''s add the `getPendingTodos`
+    method to consume the `GET` method that is configured with the `pending-only`
+    route in the Web API that removes the completed `Todo` items from the database
+    and returns only the pending `Todo` items. The code snippet of `GetPendingTodos`
+    is as follows:'
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: '[PRE29]'
+  prefs: []
+  type: TYPE_PRE
+- en: '[PRE30]'
+  prefs: []
+  type: TYPE_PRE
+- en: 'The updated `todo.service.ts` with the code that consumes both the `GET` methods
+    of the Web API is as follows:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE31]'
+  prefs: []
+  type: TYPE_PRE
+- en: Posting to the Web API from TodoService
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: 'We just updated `todo.Services.ts` to call the Web API''s `GET` action and
+    fetch `Todo` items. Now, let''s add code to post a new `Todo` item to the Web
+    API. Follow the given steps to do so:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: Open `todo.service.ts`.
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: 'Add the `postTodo` function that posts a new `Todo` item to the Web API controller:'
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: '[PRE32]'
+  prefs: []
+  type: TYPE_PRE
+- en: This function accepts a `Todo` item as an argument. It defines the `header`
+    section with the `JSON` content type and posts the `Todo` item using the `http`
+    service to a Web API asynchronously. The response is converted to `Promise` and
+    the `then` method returns a `Promise<Todo>`.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Calling the PUT action of the Web API to update a Todo item
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: 'We just added code to consume the Web API GET action and also added code to
+    `POST` a new `Todo` item to the Web API. Now, let''s consume the `PUT` action
+    in the Web API to update an existing Todo item. Follow these steps to do so:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: Open `todo.service.ts`.
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: 'Add the `putTodo` function with the following code snippet to update the existing
+    `Todo` item by calling the `PUT` action in the Web API:'
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: '[PRE33]'
+  prefs: []
+  type: TYPE_PRE
+- en: This code defines the header with the `JSON` content type and calls the `PUT`
+    action method along with the `JSON` stringified `Todo` item and theÂ `id` of that
+    `Todo` item. The Web API's `PUT` action method will update the matching `Todo`
+    item in the database.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Calling the DELETE action of the Web API to delete a Todo item
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: 'We added code to get, add, and edit a `Todo` item by calling various Web API
+    actions, such as `GET`, `POST`, and `PUT`, respectively. Now, let''s consume the
+    `DELETE` action in the Web API to delete a matching `Todo` item. Follow the given
+    steps to do so:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: Open `todo.service.ts`.
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: 'Add the `deleteTodo` function with the following code snippet to delete a matching
+    `Todo` item by calling the `DELETE` action in the Web API:'
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: '[PRE34]'
+  prefs: []
+  type: TYPE_PRE
+- en: This code calls the `DELETE` action along with the `id` of the `Todo` item being
+    deleted. The Web API's `DELETE` action method will retrieve the matching `Todo`
+    item from the database and delete it.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Updating the wrapper functions in TodoService
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: 'We have functions such as `getTodos`, `getPendingTodos`, `postTodos`, `putTodo`,
+    and `deleteTodo` that interact with the `GET`, `POST`, `PUT`, and `DELETE`Â Web
+    API actions respectively. Now, let''s update or replace the code of the `remove`,
+    `add`, `toggleCompletion`, and `removeCompleted` functions that serve as wrappers
+    that will be consumed from `app.component.ts`. Update or replace the code of the
+    functions, as shown in the following code snippet:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE35]'
+  prefs: []
+  type: TYPE_PRE
+- en: '[PRE36]'
+  prefs: []
+  type: TYPE_PRE
+- en: Updating AppComponent
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: '[PRE37]'
+  prefs: []
+  type: TYPE_PRE
+- en: '[PRE38]'
+  prefs: []
+  type: TYPE_PRE
+- en: Updating the AppComponent template
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: 'The updated content of `app.component.html` is as illustrated in the following
+    code snippet:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE39]'
+  prefs: []
+  type: TYPE_PRE
+- en: The `TexBox` input is applied with two-way binding using `ngModel` to bind the
+    new `Todo` item, `title`. The `Add` button-click event is wired up with the `addTodo`
+    method in `AppComponent`. The available `Todo` items will be listed in the `<li>`
+    tag using `ngFor` that iterates each `Todo` item in `TodoService`. The checkbox
+    rendered for each `Todo` item has its `click` event and the `checked` property
+    mapped with the `toggleCompletion` method and a `completed` property of the `Todo`
+    item, respectively. Next, the remove button has its `click` event mapped with
+    the `remove` method in `AppComponent`.
+  prefs: []
+  type: TYPE_NORMAL
+- en: The `footer` tag has a span that displays the pending `Todo` items' count and
+    a button to remove the completed `Todo` items from the list. This button has a
+    `click` event mapped with the `removeCompleted` method in `AppComponent`.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Updating the index page
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: '[PRE40]'
+  prefs: []
+  type: TYPE_PRE
+- en: '[PRE41]'
+  prefs: []
+  type: TYPE_PRE
+- en: Note that the `body` tag has a special `<my-app/>` tag, which is the metadata
+    in `AppComponent`. This is where `AppComponent` will be instantiated and rendered
+    using the template.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Running the application
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+- en: '* * *'
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'Let''s run the application by pressing *F5*, and after this, you will be able
+    to perform operations such as adding, editing, removing, and listing `Todo` items:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '![](img/image_06_014.png)'
+  prefs: []
+  type: TYPE_IMG
+- en: My Todo App with all the operations
+  prefs: []
+  type: TYPE_NORMAL
+- en: Summary
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+- en: '* * *'
+  prefs: []
+  type: TYPE_NORMAL
+- en: We started this chapter with an introduction to RESTful services and gave you
+    an overview of the ASP.NET Web API. We also discussed why the ASP.NET Web API
+    is the best fit for Angular applications.Â Then, you learned about adding and
+    configuring Entity Framework in an ASP.NET 5 project and the steps required to
+    create a database using databaseÂ migration.Â Next, we walked through the process
+    of creating a Web API service and managing data using Entity Framework.Â Finally,
+    you learned about consuming the Web API from Angular applications.
+  prefs: []
+  type: TYPE_NORMAL
+- en: In this chapter, we discussed how to consume a Web API service from an Angular
+    application to add, update, delete, and retrieve the Todo items from a database
+    using Entity Framework.
+  prefs: []
+  type: TYPE_NORMAL
+- en: In the next chapter, we will discuss how to integrate an Angular application
+    with the ASP.NET MVC and Web API.
+  prefs: []
+  type: TYPE_NORMAL

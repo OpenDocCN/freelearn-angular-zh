@@ -1,0 +1,715 @@
+- en: Chapter 1. Getting Started with Angular
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+- en: If you are reading this book, it is because you are a .NET developer and would
+    like to learn how to use Angular with the .NET Framework technologies such asÂ ASP.NET
+    **Model View Controller**Â (**MVC)** and Web API, and legacy technologies such
+    asÂ web forms and web services. It enables the developer to develop richer and
+    dynamic .NET web applications powered by Angular. Angular is an open source JavaScript
+    framework that helps create dynamic web applications.
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'In this chapter, we will cover the following topics:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: Introducing Angular
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: The Angular architecture
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Building a Hello World app with Angular
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Introducing Angular
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+- en: '* * *'
+  prefs: []
+  type: TYPE_NORMAL
+- en: Let's discuss the history of AngularJS before introducing you to Angular. It
+    all started with improving the development process of client-side web. As part
+    of the improvement, Microsoft introduced the XML HTTP request object to retrieve
+    data from the server. As the advanced JavaScript libraries such as jQuery and
+    Prototype were introduced, developers started using Ajax to asynchronously request
+    data from the server. These libraries were extensively used to manipulate the
+    DOM and bind data to a UI in the late 90s.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Ajax is the short form of asynchronous JavaScript and XML. Ajax can enable web
+    applications to send data to or retrieve data from a server asynchronously without
+    interfering with the display and behavior of the page. Ajax allows web applications
+    to change content dynamically, without reloading the full page by decoupling the
+    data interchange layer from the presentation layer.
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'In late 2010, two JavaScript MVC frameworks were introduced: backbone and knockout.
+    Backbone provided a complete Model-View-Controller experience, whereas knockout
+    mainly focused on binding using the MVVM pattern. With the release of these frameworks,
+    people started believing in the power of client-side MVC frameworks.'
+  prefs: []
+  type: TYPE_NORMAL
+- en: The birth of AngularJS
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: A developer from Google felt that there was one major part missing in the client-side
+    MVC frameworks that existed in the market, that is, testability. He felt that
+    there was a better way to implement client-side MVC, and this made him start his
+    journey to build Angular.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Google supported the Angular project, seeing its potential, and made it open
+    source for the world to use it for free. Angular created a lot of awareness among
+    all the MVC frameworks in the market as it was backed by Google and also due to
+    its features, such as testability and directives. Today, the Angular team has
+    grown from a single developer to a large number of developers, and it has become
+    the first choice to add the power of client-side MVC to small, medium, or big
+    web applications.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Why AngularJS?
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: 'Let''s discuss why to use AngularJS and what is the benefit or value addition
+    that our application can get by using AngularJS:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '**AngularJS provides two-way binding**: Many client-side MVC frameworks provide
+    only one-way binding. This means that other MVC frameworks will update HTML with
+    the model from the server, and when the user changes the model on the page, the
+    frameworks will not update the model according to the changes made. A developer
+    has to write code to update the model according to the user action. However, AngularJS
+    facilitates two-way binding and has made the life of developers easier by updating
+    the model as per the user''s actions on it.'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '**AngularJS utilizes declarative views**: This means that the functionalities
+    will be communicated as declarative directions in HTML to render the models and
+    interact with the DOM to change the page state based on changes in the model.
+    This extensively reduces the code by about 50% to 75% for this purpose and makes
+    the life of developers easier.'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '**AngularJS supports the directive concept**: This is like writing a domain-specific
+    language for the web application. Directives will extend the functionality of
+    HTML and render them dynamically according to the changes in the application rather
+    than just displaying the HTML page.'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '**AngularJS is highly testable**: As said earlier, one of the main mottos of
+    the development of Angular is to introduce a testable client-side MVC framework.
+    AngularJS is highly testable, and in fact, the Angular team has introduced two
+    frameworks: Karma and Protractor, to write end-to-end unit testing to ensure the
+    stability of the code and to enable the refactoring of the code confidently.'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Angular 2
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: AngularJS is a good framework. However, it is six years old, and there are a
+    lot of things that have changed in these six years in the web world. To accommodate
+    all these modern happenings in AngularJS, it would have to undergo many changes
+    in the existing implementation, and this made the Angular team write AngularJS
+    from scratch.
+  prefs: []
+  type: TYPE_NORMAL
+- en: At the ngEurope conference held in October 2014, Angular 2 was announced as
+    a massive update to Angular 1 for building complex web applications. The ngCommunity
+    was a little upset as they invested a lot of time in learning and implementing
+    Angular 1, and now they had to redo the process of learning and implementing Angular
+    again. However, Google invested a lot in the migration and upgrade process from
+    Angular 1 to 2 by introducing ngUpgrade and ngForward. Once the developers started
+    learning and building products in Angular 2, they realized the power of cleaner,
+    faster, and easier Angular 2.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Angular 2 was rewritten from scratch. It helped us write clean and testable
+    code that can run on any device and platform. Angular 2 eliminated many concepts
+    from Angular 1\. Angular 2 follows the standardization of ECMAScript 2015\. With
+    the recent web standardization, the shadow DOM replaced transclusion and the ECMAScript
+    6 modules replaced Angular modules. Angular 2 is five times faster than Angular
+    1.x.
+  prefs: []
+  type: TYPE_NORMAL
+- en: The benefits of Angular 2
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: 'The following are the features and benefits of Angular 2:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: It supports cross-platform application development, such as high performing
+    apps like web apps, native apps using Ionic Framework, NativeScript, React Native,
+    and creating desktop-installed apps by accessing native OS APIs using Angular
+    methods.
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Angular 2 inherits all the benefits of Angular 1\. It replaced controllers and
+    directives with components.
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Angular 2 was written in TypeScript and also, it enabled developers to write
+    Angular 2 applications using TypeScript.
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Angular 2 is significantly faster than Angular 1\. The new component router
+    only loads code required to render a view that is requested. The template syntax
+    enables a developer to quickly create views with the powerful template syntax.
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Angular 2 enables us to use shadow Document Object Model (DOM). Shadow DOM encapsulates
+    CSS, template, and the component. This enables decoupling from the DOM of the
+    main document.
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: It is the simpler cognitive model. A lot of directives were removed in Angular
+    2 and this means that Angular 2 has fewer pieces and fewer moving parts so that
+    it is easier to build larger applications with Angular 2 than with Angular 1.
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: The development process in Angular 2
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: 'Angular 2 has two development processes, namely, the following:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: With a transpiler
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Without a transpiler
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: What is ECMAScript 6?
+  prefs:
+  - PREF_H4
+  type: TYPE_NORMAL
+- en: ES6 is the latest version of scripting language specification. It is a JavaScript
+    language used on the world wide web for client-side scripting. ECMAScript 6 is
+    aÂ great update to JavaScript language and the process of implementation of these
+    features in JavaScript engine is in progress.
+  prefs: []
+  type: TYPE_NORMAL
+- en: What is a transpiler?
+  prefs:
+  - PREF_H4
+  type: TYPE_NORMAL
+- en: A transpiler basically converts any specific language to JavaScript. A good
+    example of this is the Typescript transpiler, whichÂ converts Typescript code
+    to JavaScript.
+  prefs: []
+  type: TYPE_NORMAL
+- en: What is TypeScript?
+  prefs:
+  - PREF_H4
+  type: TYPE_NORMAL
+- en: TypeScript is an open source programming language developed by Microsoft. It
+    is a superset of JavaScript, and it enables programmers to write object-oriented
+    programs in JavaScript. TypeScript is also used to develop transpiler, whichÂ converts
+    TypeScript to JavaScript. It is designed to develop larger applications. TypeScript
+    was developed as per the proposal of ECMAScript standard. TypeScript has features
+    such as classes, modules, and an arrow function syntax, as proposed in ECMAScript
+    6 standard.
+  prefs: []
+  type: TYPE_NORMAL
+- en: The development process in JavaScript
+  prefs:
+  - PREF_H5
+  type: TYPE_NORMAL
+- en: 'Before discussing the development process with a transpiler, let''s look at
+    the development process specific to JavaScript to build a web app. We will write
+    our code in **ECMAScript 5** and **Deploy** it to the **Server**. ECMAScript 5
+    is the script that every browser understands today. When a **Request** comes from
+    the **Browser**, the server will serve the script and the browser will run it
+    in the client side. The following diagram shows the typical development process
+    for JavaScript:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '![](img/image_01_001.png)'
+  prefs: []
+  type: TYPE_IMG
+- en: The development process in JavaScript
+  prefs: []
+  type: TYPE_NORMAL
+- en: Development with a build-time transpiler
+  prefs:
+  - PREF_H5
+  type: TYPE_NORMAL
+- en: Instead of writing scripts in the current version of JavaScript, ECMAScript
+    5, we can also write scripts in **ECMAScript 6+** using Typescript and **Transpile**Â them
+    into **ECMAScript 5**. Then, **Deploy** the transpiled script to the **Server**,
+    and the **Browser****Request** will be served with the Transpiled script, which
+    is ECMAScript 5, that is to be executed on the client side. The benefit of this
+    is that we can use the new features of the latest version of JavaScript or ECMAScript.
+  prefs: []
+  type: TYPE_NORMAL
+- en: '![](img/image_01_002.png)'
+  prefs: []
+  type: TYPE_IMG
+- en: The development process with a build-time transpiler
+  prefs: []
+  type: TYPE_NORMAL
+- en: Development with a runtime transpiler
+  prefs:
+  - PREF_H5
+  type: TYPE_NORMAL
+- en: There is another development option called runtime transpiler. In this case,
+    we start off by writing scripts in **ECMAScript 6+** using Typescript or CoffeeScript
+    and then **Deploy** the scripts to the **Server**. When a **Request** comes to
+    the **Server**, it simply serves **ECMAScript 6+** code without Transpiling to
+    the **Browser**. Then, the browser **Transpiles** the scripts to **ECMAScript
+    5** using a runtime transpiler to execute it in the client side. This type of
+    option is not good for production applications as it puts extra load on the browser.
+  prefs: []
+  type: TYPE_NORMAL
+- en: '![](img/image_01_003.png)'
+  prefs: []
+  type: TYPE_IMG
+- en: The development process with a runtime Transpiler
+  prefs: []
+  type: TYPE_NORMAL
+- en: Transpiler options
+  prefs:
+  - PREF_H5
+  type: TYPE_NORMAL
+- en: 'In Angular 2, we have two options- to use a transpiler or to not use a transpiler.
+    The following are a few types of transpilers that are available:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '**Traceur**: It is the most popular transpiler by Google, and it can be used
+    both in build-time mode and runtime mode.'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '**Babel**: This transpiler works on the most latest version of ECMAScript.'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '**Typescript**: This is one of the most popular and preferred transpiler for
+    Angular. The Angular team collaborated with the Typescript team and they haveÂ worked
+    together to build Angular 2.'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: What happened to Angular 3?
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: After the release of Angular 2, the team decided to go with semantic versioning.
+    Semantic versioning follows three number versioning, representing major, minor,
+    and patch. Patch version is the last number in the version that will be incremented
+    for every patch release, usually bug fixes. Minor version is the middle number
+    in the version that deals with the release ofÂ new features or enhancements. Finally,
+    the major version is the first number in the version that is incremented for the
+    release with breaking changes.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Angular team switched to use TypeScript 2.2 from TypeScript 1.8 that is used
+    in Angular 2\. This introduces some breaking change that obviously leads to increment
+    the major version number. Also, the current version of router module is 3.3.0,
+    which is not in alignment with the other modules of Angular that are still in
+    2.3.0\. So, in order to keep all the module versions in sync and follow semantic
+    versioning, the Angular team decided to go with Angular instead of Angular 3 for
+    their next major release.
+  prefs: []
+  type: TYPE_NORMAL
+- en: What's new in Angular ?
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: 'The following are the new features in Angular:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: TyepScript 2.1+ is the required scripting language for Angular.
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Ahead of Time compilation mode enables Angular to compile the templates and
+    generates JavaScript code during the build process. This helps us identify the
+    errors in templates during the build-time rather than at runtime.
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Angular animation has itsÂ own package, and it means that you don't need to
+    ship animation packages to the projects that don't need animation.
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Template tag is now deprecated as it leads to confusion with the template HTML
+    tag that is used in web components. So, ng-template is introduced for templates
+    in Angular.
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Apart from these, otherÂ new features have been introduced in code level.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Why Angular for .NET developers?
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: The complexity of writing client-side code using JavaScript in .NET web applications
+    kept increasing in scenarios such as data-binding, server calls, and validations.
+    .NET developers faced difficulties in writing client-side validations using JavaScript.
+    So, they discovered and started using jQuery plugins for validations and mostly,
+    just to change the views according to user actions. In the later stages, .NET
+    developers were looked after by JavaScript libraries that ensure the structure
+    of the code and provide good features to simplify the client-side code. Then,
+    they ended up using a few client-side MVC frameworks in the market. However, they
+    only used the MVC frameworks to communicate with the server and to update views.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Later, a trend of **SPA** (**Single Page Applications**) came into picture in
+    the web development scenario.Â These kinds of applications will be served with
+    an initial page, possibly in a layout view or master view. Then, the other views
+    will be loaded onto the master view as and when requested. This scenario will
+    be achieved by implementing client-side routing so that the client will request
+    a small part of the view rather than the entire view from the server. Achieving
+    these steps created more complexities in client-side development.
+  prefs: []
+  type: TYPE_NORMAL
+- en: AngularJS came as a life saver for .NET developers by enabling them to reduceÂ their
+    efforts in performing client-side development of handling applications, such as
+    SPA. Data binding is the coolest feature of Angular that enables the developer
+    to concentrate on other parts of the application instead of writing huge code
+    to handle data binding, traversing, manipulating, and listening to the DOM. The
+    templates in Angular are simple plain HTML strings that will be parsed into DOM
+    by the browser; the Angular compiler traverses the DOM to data bind and render
+    instructions. Angular enables us to create custom HTML tags and extend the behavior
+    of the existing elements of DOM. With the built-in support to dependency injection,
+    Angular resolves dependent parameters by providing their instances implicitly.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Building a Hello World app with Angular
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+- en: '* * *'
+  prefs: []
+  type: TYPE_NORMAL
+- en: Before we start building our first Angular application, let's set up the development
+    environment to get started with Angular apps.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Setting up the development environment
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: The first thing to do before writing any code is to set up the local development
+    environment. We need an editor to write the code, a local server to run the application,
+    package managers to manage the external libraries, compilers to compile the code,
+    and so on.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Installing Visual Studio Code
+  prefs:
+  - PREF_H4
+  type: TYPE_NORMAL
+- en: Visual Studio Code is one of the greatest editors used to write Angular applications.
+    So, we start with installing Visual Studio Code. Navigate to [https://code.visualstudio.com/](https://code.visualstudio.com/)
+    and click on **`Download Code for Windows`**. Visual Studio Code supports platforms
+    such as Windows, Linux, and OS X. So, you can also download it for other platforms
+    depending on your need.
+  prefs: []
+  type: TYPE_NORMAL
+- en: '![](img/image_01_004.png)'
+  prefs: []
+  type: TYPE_IMG
+- en: The home page of Visual Studio Code
+  prefs: []
+  type: TYPE_NORMAL
+- en: Visual Studio Code is an open source and cross-platform editor that supports
+    Windows, Linux, and OS X. It is one of the powerful text editors that includes
+    features such as navigation, keyboard support with customizable bindings, syntax
+    highlighting, bracket matching, auto indentation, and snippets, with support for
+    many programming languages. It has built-in support to IntelliSense code completion,
+    richer semantic code understanding and navigation, and code refactoring. It provides
+    a streamlined, integrated debugging experience, with support for Node.js debugging.
+    It is a lighter version of Visual Studio. It doesn't contain any built-in development
+    server, such as IIS Express. However, it is very important to test a web application
+    in a local web server as part of the development process. There are several ways
+    available in the market to set up a local web server.
+  prefs: []
+  type: TYPE_NORMAL
+- en: However, I chose lite-server as it is a lightweight, development-only node server
+    that serves the static content, detects changes, refreshes the browser, and offers
+    many customizations. Lite-server is available as an NPM package for Node.js. First,
+    we will see how to install Node.js in the next section.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Installing Node.js
+  prefs:
+  - PREF_H4
+  type: TYPE_NORMAL
+- en: Node.js is used to develop server-side web applications. It is an open source
+    and cross-platform runtime environment. The built-in libraries in Node.js allow
+    applications to act as a standalone web server. Node.js can be used in scenarios
+    where lightweight, real-time response is needed, such as communication apps and
+    web-based gaming.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Node.js is available for various platforms, such as Windows, Linux, Mac OS X,
+    Sun OS, and ARM. You can also download the source code of Node.js and customize
+    it according to your needs.
+  prefs: []
+  type: TYPE_NORMAL
+- en: In order to install Node.js, navigate to [https://nodejs.org/en/](https://nodejs.org/en/)
+    and download the mature and dependable LTS (long-term support) version for Windows.
+  prefs: []
+  type: TYPE_NORMAL
+- en: '![](img/image_01_005.png)'
+  prefs: []
+  type: TYPE_IMG
+- en: The home page of Node.js
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'Node.js comes with NPM, a package manager that is used to acquire and manage
+    JavaScript libraries for your development. To verify that the installation of
+    Node.js and NPM is successful, follow these steps:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: Open Windows Command Prompt, type the `node -v` command, and run it. You will
+    get the version of Node.js that we installed.
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: Now, check whether NPM is installed along with Node.js. Run the `NPM -v` command,
+    and you will get the version number of NPM that is installed.
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: '![](img/image_01_006.png)'
+  prefs: []
+  type: TYPE_IMG
+- en: Command Prompt with commands verifying the Node.js and NPM installations
+  prefs: []
+  type: TYPE_NORMAL
+- en: Now, we have all that we need to write our first Angular application. Let's
+    get started.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Creating an Angular application
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: 'I assume that you have installed Node.js, NPM, and Visual Studio Code and are
+    ready to use them for development. Now, let''s create an Angular application by
+    cloning the git repository withÂ the following steps:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'Open Node.Js Command Prompt and execute the following command:'
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: '[PRE0]'
+  prefs: []
+  type: TYPE_PRE
+- en: This command will clone the Angular quickstart repository and create an Angular
+    application named `my-angular` for you with all the boilerplate codes required.
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'Open the `my-angular` cloned application using Visual Studio Code:'
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: '![](img/image_01_007-2.png)'
+  prefs: []
+  type: TYPE_IMG
+- en: Folder structure of the my-angular application
+  prefs: []
+  type: TYPE_NORMAL
+- en: The folder structure and the boilerplate code are organized according to the
+    official style guide atÂ [https://angular.io/docs/ts/latest/guide/style-guide.html](https://angular.io/docs/ts/latest/guide/style-guide.html).
+    The `src` folder has the code files related to application logic, and the `e2e`
+    folder has the files related to end-to-end testing. Don't worry about other files
+    in the application now. Let's only focus on `package.json` for now.
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'Click on the `package.json` file; it will have the details about the configurations
+    of the metadata and project dependencies. The following is the content of the
+    `package.json` file:'
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: '[PRE1]'
+  prefs: []
+  type: TYPE_PRE
+- en: 'Now, we need to run the NPM install command in the command window by navigating
+    to the application folder to install the required dependencies specified in `package.json`:'
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: '![](img/image_01_008-2.png)'
+  prefs: []
+  type: TYPE_IMG
+- en: Execute the NPM command to install the dependencies specified in package.json
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'Now, you will have all the dependencies added to the project under the `node_modules`
+    folder, as shown in this screenshot:'
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: '![](img/image_01_009-2.png)'
+  prefs: []
+  type: TYPE_IMG
+- en: Dependencies under theÂ node_modules folder
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'Now, let''s run this application. To run it, execute the following command
+    in the command window:'
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: '[PRE2]'
+  prefs: []
+  type: TYPE_PRE
+- en: Open any browser and navigate to `http://localhost:3000/`; you will findÂ the
+    following page, whichÂ is rendered through our Angular application, displayed.
+    Running this command builds the application, starts the lite-server, and hosts
+    the application on it.
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: '![](img/image_01_010-2.png)'
+  prefs: []
+  type: TYPE_IMG
+- en: Activating the debug window in VS Code
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'Let''s now walk through the content of `index.html`. The following is the content
+    of `index.html`:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE3]'
+  prefs: []
+  type: TYPE_PRE
+- en: So far, we have seen how to create an Angular application by cloning the official
+    QuickStart repository from GitHub. We will cover the steps to create Angular applications
+    in detail in the upcoming chapters. Note that the scripts are loaded using System.js.
+    System.js is the module loader that loads the modules during runtime.
+  prefs: []
+  type: TYPE_NORMAL
+- en: The architecture of Angular
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+- en: '* * *'
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'Before we jump onto our Hello World application on Angular, let me give you
+    a quick overview of the Angular architecture. The architecture of Angular comprises
+    of eight core building blocks: a module, component, template, metadata, data binding,
+    service, directive, and dependency injection.'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '![](img/image_01_011.png)'
+  prefs: []
+  type: TYPE_IMG
+- en: Architecture of Angular
+  prefs: []
+  type: TYPE_NORMAL
+- en: An Angular application normally starts with the designing of templates with
+    Angular tags or markups. Then, we write components to handle the templates. The
+    application-specific logic will be added to services. Finally, the starting component
+    or root component will be passed on to the Angular bootstrapper.
+  prefs: []
+  type: TYPE_NORMAL
+- en: When we run the application, Angular takes the responsibility of presenting
+    the template to the browser and takes care of user interactions with the elements
+    in the template according to the logic provided in the components and directives.
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'Let''s see the objective of each block of Angular in the following points:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: Any Angular application will be comprised of a collection of components.
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Services will be injected into components.
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Templates are responsible for rendering the components in the form of HTML.
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Components hold an application logic that supports the views or templates.
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Angular itself is a collection of modules. In Angular 1, the main module or
+    application module is bootstrapped using the `ng-app` directive. We can include
+    other lists of modules that our application module or main module is dependent
+    on; they will be defined in the empty array in `angular.module('myApp', [])`.
+    Angular uses ES6 modules, and the functions or variables defined in modules should
+    be exported explicitly to be consumed in other modules. The exported functions
+    or variables are made available in other modules using the import keyword followed
+    by the function name and then a from keyword followed by the module name. For
+    example, `import {http}` from `@angular/http`.
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Each Angular library is a facade of many private modules that are logically
+    related.
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Directives provide instructions to render the templates.
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: We will see each building block of the Angular architecture in detail in the
+    subsequentÂ chapters.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Summary
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+- en: '* * *'
+  prefs: []
+  type: TYPE_NORMAL
+- en: That was easy, wasn't it? We just introduced you to the Angular framework.
+  prefs: []
+  type: TYPE_NORMAL
+- en: We started with the history of AngularJS. Then, we discussed the benefits of
+    AngularJS and the birth of AngularJS. We discussed what's new in Angular and gave
+    you a brief introduction to the architecture of Angular.
+  prefs: []
+  type: TYPE_NORMAL
+- en: We also saw what is needed and how to set up a development environment in order
+    to write an Angular application.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Finally, we did a walk-through on how to create your first Angular application
+    using Visual Studio Code and Node.js.
+  prefs: []
+  type: TYPE_NORMAL
+- en: We had a great start and learned a few basics in this chapter. However, this
+    is just the beginning. In the next chapter, we will discuss some of the core building
+    blocks of the Angular architecture, such as a module, component, template, and
+    directive. Let's get the ball rolling!
+  prefs: []
+  type: TYPE_NORMAL

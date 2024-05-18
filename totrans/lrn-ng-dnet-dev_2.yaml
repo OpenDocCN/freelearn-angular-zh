@@ -1,0 +1,784 @@
+- en: Chapter 2. Angular Building Blocks - Part 1
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+- en: This chapter gives you a detailed walk through the core building blocks of the
+    Angular architecture.
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'In this chapter, we will cover the following topics:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: Modules
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Components
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Decorators and metadata
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Templates
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Bindings
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Directives
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Dependency injection
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Modules (NgModules)
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+- en: '* * *'
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'A module is a single unit of implementation of distinct functionalities. Collections
+    of such modules will be used to implement complex applications. Implementing module
+    patterns helps you avoid global collisions of variables and methods. JavaScript
+    encapsulates both private and public methods under a single object by implementing
+    a modular pattern. The modular pattern achieves encapsulation using closure in
+    JavaScript. JavaScript doesn''t support access modifiers; however, the same effectÂ can
+    be achieved using function scopes. All Angular applications are modular in nature.
+    We develop Angular applications by creating many modules. We develop modules to
+    encapsulate functionalities that are independent and have one responsibility.
+    A module exports the classes available in that module. Angular modules are called
+    as `NgModules`. At least one Angular module will be present in any Angular application:
+    a root module, which will represented as `AppModule`. `AppModule` is a class decorated
+    with `@NgModule`.'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE0]'
+  prefs: []
+  type: TYPE_PRE
+- en: '[PRE1]'
+  prefs: []
+  type: TYPE_PRE
+- en: In the precedingÂ code, anÂ `NgModule`Â imported from `@angular/core` is decorated
+    to the `AppModule` class. Note that `NgModule` has some important properties,
+    such as imports, exports, providers, declarations, and bootstrap.
+  prefs: []
+  type: TYPE_NORMAL
+- en: The metadata declarations should be assigned with view classes such as components,
+    directives, and pipes that belong to this module. The metadata exports will be
+    assigned with the components, directives, or pipes that are usable in the component
+    templates. The metadata imports should be assigned with the exported classes that
+    are used by component templates. The metadata providers will be assigned with
+    the services that are used or accessed in the entire application. It creates the
+    instance of services assigned and adds to the global collection of services so
+    that the services will be ready to be consumed across the Angular application.
+    The metadata bootstrap is assigned with the root component that is responsible
+    to render the main view of the application.
+  prefs: []
+  type: TYPE_NORMAL
+- en: '![](img/image_02_001.png)'
+  prefs: []
+  type: TYPE_IMG
+- en: The Angular module
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'A sample `AppComponent` class is shown as follows. TheÂ export statement exposes
+    the component, and the `AppComponent` class is accessible to other modules in
+    the application:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE2]'
+  prefs: []
+  type: TYPE_PRE
+- en: A class is a template that contains definitions ofÂ methods and variables of
+    an object. An object is an instance of the class, so it can hold the real value
+    of the variables, and the methods can perform actions against the actual values.
+    Note that the current version of JavaScript doesn't support classes. It's a class-free
+    language. In JavaScript, everything is an object, and functions are used to mimic
+    classes. ECMAScript 6 introduces syntactic sugar over JavaScript prototype-based
+    inheritance by introducing classes to JavaScript.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Here, we leverage the power of TypeScript as a superset of JavaScript. The export
+    keyword in the statement says that we are exporting or exposing an `AppComponent`
+    class to other modules of the application.
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'Let''s consider that we have saved this component in a file named `app.component.ts`.
+    In order to access or reference the `AppComponent` class that is exposed, we need
+    to import it in the file we willÂ access. The following statement does this:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE3]'
+  prefs: []
+  type: TYPE_PRE
+- en: Here, the import keyword in the statement means that we are importing a class
+    that is exposed:Â `AppComponent`. The `from` keyword represents or refers to the
+    file or module where the importing component exists. For example, it is `app.component.ts`Â in
+    our case. A module name is the filename of the component without the extension;
+    so, here the module name is `app.component`. We start the module's filename with
+    the relative file path (`./`), and it represents the same folder.
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'Modules can also have a collection of other modules and such modules are known
+    as library modules. Angular itself has many library modules. Some library modules
+    are core, common, router, and so on. We import `Component` from the `@angular/core`
+    library module, which is the primary module that we use for most things:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE4]'
+  prefs: []
+  type: TYPE_PRE
+- en: All Angular library modules will be mentioned without any relative file path
+    in the from clause.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Components
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+- en: '* * *'
+  prefs: []
+  type: TYPE_NORMAL
+- en: AngularJS has controllers, scopes, and directives to deal with views, bind data,
+    and respond to events by updating changes to data. In Angular, Components replaced
+    controllers, scopes, and directives from AngularJS.
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'Angular, introduced components that support the object-oriented component model
+    to write cleaner code. A component is a simple class that holds the logic of managing
+    the associated template or view. A simple component class is given as follows:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE5]'
+  prefs: []
+  type: TYPE_PRE
+- en: In a component class, we will expose properties and methods to a template or
+    view. Component properties can provide data for a template or view and allow the
+    user to modify property values. Component methods can be called according to user
+    actions over the view.
+  prefs: []
+  type: TYPE_NORMAL
+- en: '![](img/image_02_002.png)'
+  prefs: []
+  type: TYPE_IMG
+- en: The Angular component FirstComponent
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'As you can see, the preceding code creates a simple JavaScript class named
+    `**`FirstComponent`**`. You may be wondering how a JavaScript plain class can
+    be treated as a component and how a template can be wired up to this class. In
+    order to achieve this, Angular leverages the syntax of TypeScript to annotate
+    the `**`FirstComponent`**` class as per ES6 specification 2015\. The following
+    code shows the component class with an annotation that declares the class as a
+    component and wires up the template with the markup identifier in the selector:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE6]'
+  prefs: []
+  type: TYPE_PRE
+- en: You might be surprised to see that we have not used `$scope` to expose the property
+    and method of `FirstComponent`. Here, our component gets instantiated and is available
+    in the template or view. So, we can access any property of that instance; also,
+    we can call methods in the instance according to user actions or input in the
+    view or template. The component instance provides the encapsulated data pertaining
+    to that instance that is similar to the isolated scope in AngularJS.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Inheritance of components can happen in Angular when the template of the root
+    component has the special tags of another component's selector, and this also
+    enables the child component to access its parents and siblings.
+  prefs: []
+  type: TYPE_NORMAL
+- en: '![](img/image_02_003.png)'
+  prefs: []
+  type: TYPE_IMG
+- en: The application's component hierarchy
+  prefs: []
+  type: TYPE_NORMAL
+- en: The life cycle of a component
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: 'Angular manages the life cycle of a component. Angular takes care of creating
+    and rendering the components and their children and destroying them before removing
+    them from the DOM. Angular keeps track of the value of the component property
+    value. The following are the life cycle events of anÂ Angular component given
+    in calling order:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '**OnChanges**: This event is fired when a binding values changes. This method
+    will have access to both the old value and the new value.'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '**OnInit**: This event is fired after the execution of theÂ `OnChanges` event
+    due to binding value changes.'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '**DoCheck**: This event is fired for every change detected, and developers
+    can write custom logic to check for the property changed.'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '**AfterContentInit**: This event will be fired when the directive''s content
+    has been completely initialized.'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '**AfterContentChecked**: This event will be fired after a directive''s content
+    has been checked.'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '**AfterViewInit**: This event will be fired when the component''s template
+    has been completely initialized.'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '**AfterViewChecked**: This event will be fired after the component''s template
+    has been checked.'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '**OnDestroy**: This event will be fired before destroying the directive or
+    component.'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: You can either implement all of these events or only the specific events that
+    are required for your component.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Decorators and metadata
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+- en: '* * *'
+  prefs: []
+  type: TYPE_NORMAL
+- en: As you saw in the lastÂ section, we define JavaScript plain classes for a component,
+    and we annotate it with some information to inform the Angular framework that
+    this class is a component.
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'We leverage the Typescript syntaxÂ and attach the classes with metadata using
+    the decorator feature. To make a class as a component, we add the `@Component`
+    decorator, as shown in the following code:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE7]'
+  prefs: []
+  type: TYPE_PRE
+- en: 'Now, let''s attach metadata to the `FirstComponent` class using the decorator
+    syntax:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE8]'
+  prefs: []
+  type: TYPE_PRE
+- en: 'Here, we have added metadata, such as a selector and `templateUrl`. The selector
+    metadata configured in the component tells Angular to create the instance of a
+    component when it encounters the `<first-controller>` markup:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE9]'
+  prefs: []
+  type: TYPE_PRE
+- en: The `templateUrl` provides a URL of the template file for the component to render.
+    When you run the application, the `<first-controller>` tag will be replaced by
+    the content of the template that is referred to in `templateUrl`. This metadata
+    is actually a parameter to the `@Component` decorator, and the decorator is a
+    function.
+  prefs: []
+  type: TYPE_NORMAL
+- en: By adding metadata via decorators, we are actually telling Angular what to do
+    with the defined class. The component, template, and metadata together constitute
+    a view.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Templates
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+- en: '* * *'
+  prefs: []
+  type: TYPE_NORMAL
+- en: You willÂ have noted that we have added inline markups for a view or template
+    when annotating the component. We can also add a template URL isolating the view,
+    or template markups in a separate HTML file, instead of having it as an inline
+    view or template.
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'A template comprises HTML tags that provide information to Angular on rendering
+    the components. A simple template content is given in the following lines of code.
+    It renders the name of the book and publisher:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE10]'
+  prefs: []
+  type: TYPE_PRE
+- en: Inline templates
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: 'An inline template is used when there is a need to render very simple content,
+    such as a one-liner, for example. In such cases, inline views or templates will
+    be defined directly in the annotation:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE11]'
+  prefs: []
+  type: TYPE_PRE
+- en: Isolated templates
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: 'Isolated templates are used mostly when the template contains more contents.
+    In such cases, rather than assigning the larger content as an inline view, the
+    content will be moved to a separate file and the HTML file URL will be assigned
+    to `templateUrl`, as follows:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE12]'
+  prefs: []
+  type: TYPE_PRE
+- en: The local template variable
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: 'Angular permitsÂ creating template-scoped variables to move data across the
+    elements in a template:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE13]'
+  prefs: []
+  type: TYPE_PRE
+- en: In the preceding template markup, we have declared a local variable, todo, using
+    the let keyword. Then, we iterate through the collection variable todos; each
+    todo item gets assigned to todo and is available for use in `<todo-item>`.
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'A local template variable can also be used to hold the DOM element. The following
+    code shows that the author will hold the input element itself, and the value of
+    the element can be accessed using author.value:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE14]'
+  prefs: []
+  type: TYPE_PRE
+- en: Binding
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+- en: '* * *'
+  prefs: []
+  type: TYPE_NORMAL
+- en: The binding technique will enable you to bind data to a template and will allow
+    users to interact with the bound data. The Angular binding framework takes care
+    of rendering the data to a view and updating itÂ as per user actions over the
+    view.
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'The following screenshot gives you a quick glimpseÂ of the various binding
+    techniques in Angular. We will go through each binding technique in detail:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '![](img/image_02_004.png)'
+  prefs: []
+  type: TYPE_IMG
+- en: Various binding syntaxes
+  prefs: []
+  type: TYPE_NORMAL
+- en: One-way binding
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: 'Binding types such as `Interpolation`, `Property`, `Attribute`, `Class`, and
+    `Style` support one-way data flow from the data source (exposed from the component)
+    to a view or template. Template markups that let the data flow from a component
+    property or method to a template are given in the following table (one-way binding):'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '| **Template code** | **Description** |'
+  prefs: []
+  type: TYPE_TB
+- en: '| `{{expression}}` | This displays the expression built from the data source
+    |'
+  prefs: []
+  type: TYPE_TB
+- en: '| `[target]` = "expression" | This assigns the expression of a data source
+    to the target property |'
+  prefs: []
+  type: TYPE_TB
+- en: '| `bind-target` = "expression" | This assigns the expression of a data source
+    to the bind-target attribute |'
+  prefs: []
+  type: TYPE_TB
+- en: 'Template markups that let data flow from a template to a component property
+    or method are given in the following table (one-way binding):'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '| **Template code** | **Description** |'
+  prefs: []
+  type: TYPE_TB
+- en: '| `(target)` = "statement" | This assigns the expression of a data source to
+    a target property |'
+  prefs: []
+  type: TYPE_TB
+- en: '| `on-target` = "statement" | This assigns the expression of a data source
+    to a bind-target attribute |'
+  prefs: []
+  type: TYPE_TB
+- en: Interpolation binding
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: 'Interpolation is one of the main features ofÂ Angular. You can interpolate
+    any property value or expression to the content of any HTML element, such as `div`Â andÂ `li`.
+    You can achieve this with the help of double-curly braces, `{{and}}`, as shown
+    in the following line of code:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE15]'
+  prefs: []
+  type: TYPE_PRE
+- en: Here, we interpolate `authorName` to the content of the `div` tag. This is a
+    one-way binding where the data flows from the component property or method to
+    the template.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Property binding
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: 'Property binding is used to bind a component property to an HTML element property:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE16]'
+  prefs: []
+  type: TYPE_PRE
+- en: Event binding
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: 'HTML elements have various DOM events that will be fired when an event is triggered.
+    For example, a button will fire a click event when itÂ is clicked on. We hook
+    an event listener to get notified whenever an event is fired:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE17]'
+  prefs: []
+  type: TYPE_PRE
+- en: The preceding Angular code snippet that wraps the event name in brackets needs
+    to hook the event listener so that it gets called when a click event is fired.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Two-way binding
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: Angular has removed a core feature from its framework, which was one main reason
+    for the birth of AngularJS, that is, two-way binding. So, two way binding is not
+    available by default. Now, let's see how to implement a two-way binding in Angular.
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'Angular combined property and event binding for us to implement two-way binding,
+    as shown in the following line of code:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE18]'
+  prefs: []
+  type: TYPE_PRE
+- en: 'Template markup that helps data flow in both ways, from a template to a component
+    and from a component to a template, is given in the following table (two-way binding):'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '| **Template code** | **Description** |'
+  prefs: []
+  type: TYPE_TB
+- en: '| `[(target)]` = "expression" | This assigns the expression of a data source
+    to a target property |'
+  prefs: []
+  type: TYPE_TB
+- en: '| `bindon-target` = "expression" | This assigns the expression of a data source
+    to a bind-target attribute |'
+  prefs: []
+  type: TYPE_TB
+- en: Directives
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+- en: '* * *'
+  prefs: []
+  type: TYPE_NORMAL
+- en: We walked through the Angular component and the way it is decorated. The `@Component`
+    itself is a directive with a template configured in the metadata. So, a directive
+    is a component without a template, and `@directive` is used in Typescript to attach
+    metadata to it.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Structural directives
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: 'Structural directives deal with modifyingÂ elements in the DOM by adding new
+    elements, removing existing elements, and replacing existing elements with new
+    elements. The following markup shows two structural directives:Â `*ngFor` and
+    `*ngIf`:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE19]'
+  prefs: []
+  type: TYPE_PRE
+- en: '`*ngFor` iterates through each item in the todos collection and adds a `div`
+    tag for each item. And `*ngIf` renders `<todo-item>` only if selectedTodo is available.'
+  prefs: []
+  type: TYPE_NORMAL
+- en: Attribute directives
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: 'AnÂ attribute directive will be added like an attribute to existing HTML elements,
+    and this can alter or extend the behavior of HTML elements. For example, an ngModel
+    directive, if added to an input element, will extend it by updating its value
+    property and also by responding to change events:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE20]'
+  prefs: []
+  type: TYPE_PRE
+- en: We can also write our own directives apart from using existing ones, such as
+    `ngSwitch`, `ngStyles`, and `ngClass`.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Dependency injection
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+- en: '* * *'
+  prefs: []
+  type: TYPE_NORMAL
+- en: Dependency injection is a design pattern that handles dependencies and resolves
+    them. An instance of the dependencies will be passed to the dependent in order
+    to use it. If a client module or class is dependent on a service, it needs to
+    create an instance of the service before using it. We can inject or pass the instance
+    of the service to the client using a dependency injection pattern, rather than
+    a client module building the service.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Applying dependency injection enables us to create a client that does not have
+    any knowledge of the service to be built and of the actual service it is consuming.
+    The client will only have knowledge about the interface of the service as it needs
+    to know how to use the service.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Why dependency injection?
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: Consider that we are creating a `Mobile` class, and it has dependency on a `camera`
+    and `internet` connectivity.
+  prefs: []
+  type: TYPE_NORMAL
+- en: '![](img/image_02_005.png)'
+  prefs: []
+  type: TYPE_IMG
+- en: The code snippet of a Mobile class
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE21]'
+  prefs: []
+  type: TYPE_PRE
+- en: The `Mobile` class is dependent on `Camera` and `Internet`, and this increases
+    the difficulty in testing. We can only test Mobile with 2G Internet and 2 MP Camera
+    because we cannot control the dependencies as the `Mobile` class takes care of
+    the instance of dependency by itself.
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'Now, let''s modify the constructor to receive the instance of `Camera` and
+    `Internet` as parameters, as shown in the following line of code:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE22]'
+  prefs: []
+  type: TYPE_PRE
+- en: 'Now the `Mobile` class will not create an instance of `Camera` or `Internet`.
+    It just consumes the instance of `Camera` or `Internet` that is received from
+    the constructor parameters. This means that we moved the dependencies to the constructor.
+    The client can create a `Mobile` class by passing the instance of `Camera` and
+    `Internet` to the constructor, as shown in the following code snippet:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE23]'
+  prefs: []
+  type: TYPE_PRE
+- en: 'As you can see, the definitions of `Camera` and `Internet` have been decoupled
+    from the `Mobile` class. We can pass any type of Camera with various megapixels
+    and Internet with various bandwidths, such as 2G, 3G, and 4G, as long as both
+    the `Camera` and `Internet` types passed by the client comply with the interface
+    of `Camera` and `Internet`:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE24]'
+  prefs: []
+  type: TYPE_PRE
+- en: There is no change in the `Mobile` class to accommodate the 20 MP Camera and
+    4G Internet dependencies. The `Mobile` class is much easier to test with various
+    combinations of `Camera` and `Internet`, as we have complete control over the
+    dependencies. We can also use a mocking technique in testing and pass mocks of
+    `Camera` and `Internet` to constructor so that all the necessary operations will
+    be done against the mocks of `Camera` and `Internet`.
+  prefs: []
+  type: TYPE_NORMAL
+- en: The role of injectors
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: We just got to know what a dependency injection is and how it receives dependencies
+    from an external client rather than creating themÂ itself. However, the client
+    needs to update its code to pass an instance of 20 MP Camera and 4G Internet dependencies.
+    Any client that wants to consume the `Mobile` class must create instances of `Camera`
+    and `Internet` as the `Mobile` class depends on them. We eliminated the responsibility
+    for creating the instances of dependencies from the `Mobile` class and moved them
+    to clients that willÂ consume the `Mobile` class.
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'Now, it has become the poor client''s problem to create the instances of `Camera`
+    and `Internet`. So, to reduce the extra efforts of a client in creating the instances
+    of dependencies, we need injectors that take care of assembling instances of the
+    required `Camera` and `Internet` for the client. The dependency injection framework
+    has something called an injector where we register our classes, such as `Mobile`.
+    We can then request the injector to create the instance of `Mobile` for us. The
+    injector will then take care of resolving the dependencies and creating `mobile`,
+    as shown in the following line of code:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE25]'
+  prefs: []
+  type: TYPE_PRE
+- en: Handling dependency injection in Angular
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: Angular has its own dependency injection framework, and we will see, with an
+    example, how it handles dependency injection.
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'First, we will create a `Todo` class under `app/todos/todo.ts` with properties
+    such as `id`, `description`, and `isCompleted`, as given in the following screenshot:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '![](img/image_02_006.png)'
+  prefs: []
+  type: TYPE_IMG
+- en: A code snippet of the Todo class
+  prefs: []
+  type: TYPE_NORMAL
+- en: Then, create a `TodoListComponent` component and add the property to hold the
+    collection of todo items retrieved from the injected `TodoService`. The service
+    will be injected into constructor when `TodoListComponent` is instantiated by
+    the dependency injection framework. You will learn more about services in r 3,
+    *Angular Building Blocks - Part 2*.
+  prefs: []
+  type: TYPE_NORMAL
+- en: '![](img/image_02_007.png)'
+  prefs: []
+  type: TYPE_IMG
+- en: A code snippet of the TodoListComponent class
+  prefs: []
+  type: TYPE_NORMAL
+- en: The code is written using Typescript, and when it compiles the code to JavaScript,
+    it includes information about the class metadata, as the class was decorated with
+    `@component`. This class metadata holds the information about associating the
+    `todoService` parameter with the `TodoService` class. This enables the Angular
+    injector to inject the instance of `TodoService` when it creates a new `TodoListComponent`.
+  prefs: []
+  type: TYPE_NORMAL
+- en: We don't explicitly call an injector to inject the service in our code. Instead,
+    Angular's automated dependency injection takes care of it. The injector will be
+    called implicitly while Angular instantiates components when it encounters the
+    `<todo-list>` selector through HTML markups or when navigating to a component
+    via a router.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Now, we will create `TodosComponent`, which registers `TodoService` using the
+    providers parameter in the `@Component` directive. The instance of `TodoService`
+    is readily available for the injection both in `TodosComponent` and in all its
+    child s.
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE26]'
+  prefs: []
+  type: TYPE_PRE
+- en: Now, let's create the `TodoService` service that returns the collection of todo
+    items.
+  prefs: []
+  type: TYPE_NORMAL
+- en: '![](img/image_02_008.png)'
+  prefs: []
+  type: TYPE_IMG
+- en: The code snippet of TodoService
+  prefs: []
+  type: TYPE_NORMAL
+- en: In the production `TodoList` application, the `getTodos` method in `TodoService`
+    will make an HTTP request to get the list of todos. For the basics, we are returning
+    the collection of todos from the `mock-todos`.
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'Finally, we need to create `mock-todos`, which holds the collection of todo
+    items, as illustrated in the following screenshot:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '![](img/image_02_009.png)'
+  prefs: []
+  type: TYPE_IMG
+- en: A code snippet of mock-todos
+  prefs: []
+  type: TYPE_NORMAL
+- en: This file is used as an in-memory collection to hold the todo items, and it
+    is made available to the components that import this file. This approach is good
+    for the development phase, but this needs to be changed in the production phase
+    to fetch todo items from the remote server.
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'Run the application by pressing *F5* in VS Code, and you will get the output
+    of the Angular TodoList application, as shown in the following screenshot:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '![](img/todoapp.png)'
+  prefs: []
+  type: TYPE_IMG
+- en: The TodoList application running in a browser
+  prefs: []
+  type: TYPE_NORMAL
+- en: Summary
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+- en: '* * *'
+  prefs: []
+  type: TYPE_NORMAL
+- en: Wow! You must have learned a lot about Angular architecture's core building
+    blocks by now.Â We started with e and discussed how it encapsulates the functionalities
+    that are independent and have one responsibility.Â Then, you learned about the
+    concepts of components and how they replaced controllers, scopes, and directives
+    from AngularJS. You also learned about decorators and metadata that leverage the
+    Typescript syntax to make a plain JavaScript class into an Angular component.
+    Then, we discussed templates and the differences between inline templates and
+    isolated templates. You also learned how to implement various binding techniques
+    in a template. Later, we went through directives and how a directive is differentiated
+    from a component. Finally, you learned about one of the most popular design patterns,
+    dependency injection, and how it is handled by Angular.
+  prefs: []
+  type: TYPE_NORMAL
+- en: In the next chapter, we will discuss the remaining blocks in the Angular architecture.
+  prefs: []
+  type: TYPE_NORMAL

@@ -1,0 +1,979 @@
+- en: Chapter 3. Angular Building Blocks - Part 2
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+- en: 'This chapter gives you a detailed walk-through on the remaining uncovered core
+    building blocks of the Angular architecture. In this chapter, we will cover the
+    following topics:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: Forms
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Pipes
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Router
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Services
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Observables
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Forms
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+- en: '* * *'
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'Every application has a data entry point where it enables end users to input
+    data. Forms are meant to insert or update input data to a server and on a page.
+    Input data should be validated before it is submitted for further action. There
+    are two types of validation methods applied: client-side validation and server-side
+    validation:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '**Server-side validation**: Server-side validations will be handled by the
+    server. The information received will be processed and validated by the server.
+    It is necessary to update the UI with appropriate information if there are any
+    errors in submitting the form. If the information is invalid or not sufficient,
+    then the appropriate response will be sent back to the client. This approach to
+    validation is more secure as it works even if JavaScript is turned off in the
+    browser and also, malicious users can''t bypass the server-side validation. However,
+    the drawback of this approach is that the form will be validated only after submitting
+    it to the server. So, the user has to wait until the form is fully submitted to
+    the server in order to know whetherÂ all the data supplied is valid.'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '**Client-side validation**: Though server-side validation is more secure, itÂ will
+    not provide a better user experience. Client-side validations are implemented
+    using a scripting language such asÂ JavaScript, and the validations will be done
+    on the client itself. The user input data can be validated as and when keyed in
+    by the user. This leads to a richer experience by providing immediate response
+    with validation errors on the screen. The user need not wait for the entire form
+    to beÂ submitted to know whetherÂ the data entered isÂ valid.'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Angular has classes such as FormBuilder, Control, and Validators to handle forms.
+    ItÂ enables you to easily set validation rules using Control and Validators.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Tools for forms
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: 'Angular has various tools to achieve the preceding scenarios to implement forms
+    in our application. The following are such tools and their respective purposes:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '**Controls**: These provide objects by encapsulating the inputs of forms'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '**Validators**: These help in validating the input data from forms'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '**Observers**: These help keep track of changes in forms and informs the user
+    ofÂ any validation errors'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Types of Angular forms
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: 'Angular provides two approaches for handling forms: template-driven forms and
+    model-driven forms.'
+  prefs: []
+  type: TYPE_NORMAL
+- en: Templete driven forms
+  prefs:
+  - PREF_H4
+  type: TYPE_NORMAL
+- en: AngularJS handled forms using the `ng-model` directive, and it leveraged the
+    power of two-way binding that made the lives of developers easier. Angular enables
+    developers to build template-driven forms using `ngModel`, which is similar to
+    `ng-model` in AngularJS.
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'The following is the implementation of template-driven forms:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: Let's create an app named First Template Form in **Visual Studio Code**Â (**VS
+    Code**).
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: Add the required packages and dependency details in `package.json`, and install
+    them using the `npm` install command.
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: '[PRE0]'
+  prefs: []
+  type: TYPE_PRE
+- en: 'Create a class book and add the following code snippet:'
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: '[PRE1]'
+  prefs: []
+  type: TYPE_PRE
+- en: 'Create `AppComponent` and add the following code:'
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: '[PRE2]'
+  prefs: []
+  type: TYPE_PRE
+- en: This `AppComponent` shown earlierÂ is the root component of the application
+    that will host the `BookFormComponent`. `AppComponent` is decorated with the first-template-form
+    selector and template that has the inline HTML with the `<book-form/>`Â special
+    tag. This tag will be updated with the actual template during runtime.
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'Now, let''s add the book-form.component.ts with the following code snippet:'
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: '[PRE3]'
+  prefs: []
+  type: TYPE_PRE
+- en: Here, note that we have imported Book from `book.ts`. Book is the data model
+    for this form. `BookFormComponent` is decorated with theÂ `@Component` directive
+    that was imported from `@angular/core`. Selector value is set to `book-form` and
+    the templateUrl is assigned with the template HTML file. In the `BookFormCompoent`,
+    we have instantiated Book model with the dummy data. We have two methods--`onSubmit()`
+    and `newBook()`--one to post the data submitted to API and the other to clear
+    the form.
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'Now, let''s add the `book-form.component.html` template file to the following
+    HTML content:'
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: '[PRE4]'
+  prefs: []
+  type: TYPE_PRE
+- en: This is a simple template form that has three input controls to key in the book,
+    author, and publisher name, a submit button to submit the details, and a Clear
+    button to clear the form. Angular implicitly applies the `ngForm` directive to
+    the forms in the template. We assigned the `ngForm` directive to the `#bookForm`Â local
+    variable.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Using theÂ `#bookForm`Â local variable, we can track the form for errors and
+    check whether they are valid or invalid, touched or untouched, and pristine or
+    dirty. Here, the submit button will be enabled only if the valid property of `ngForm`
+    returns true, as it is assigned to the button's disabled property.
+  prefs: []
+  type: TYPE_NORMAL
+- en: The `onSubmit` function from `BookFormComponent` is assigned to the ngSubmit
+    event of the form. So, when the submit button is clicked on, it will call the
+    `onSubmit` function in `BookFormComponent`.
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'Note that all the input controls contain the `ngModel` event-cum-property attribute,
+    and it is assigned with their respective model properties, such as `model.name`,
+    `model.author`, and `model.publication` respectively. In this way, we can achieve
+    the two-way binding so that the model properties in `BookFormComponent` will be
+    updated with their respective values when they are keyed into the corresponding
+    input controls:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'We have the required template and components in place. Now we need to create
+    an `AppModule` to bootstrap the root component of our application, `AppComponent`.
+    Create a file named `app.module.ts` and add the following code snippet:'
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: '[PRE5]'
+  prefs: []
+  type: TYPE_PRE
+- en: As we discussed inÂ [chapter 2](Learning%20Angular%20for%20.NET%20Developers_split_000.html#)*Angular
+    Building Blocks - Part 1*, any Angular application will have a root module thatÂ will
+    be decorated with theÂ `NgModule` directive along with the metadata details, such
+    as imports, declarations, and bootstrap.
+  prefs: []
+  type: TYPE_NORMAL
+- en: In the precedingÂ code, note that we assigned the `AppComponent` class to bootstrap
+    metadata to inform Angular that `AppComponent` is the root component of the application.
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'Now that we have all the required templates and classes in place, we need to
+    bootstrap the module. Let''s create a file named `main.ts` with the following
+    code snippet that bootstraps the module:'
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: '[PRE6]'
+  prefs: []
+  type: TYPE_PRE
+- en: 'Finally, add the index.html file with the following content:'
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: '[PRE7]'
+  prefs: []
+  type: TYPE_PRE
+- en: 'Note that the `<first-template-form/>` special tag is added in the body. This
+    tag will be updated with the actual template during runtime. Also, note that the
+    required libraries are loaded during runtime using the `System.js` module loader.
+    The `systemjs.config.js` file should have the instructions on mapping the npm
+    packages and our application''s starting point. Here, our application is bootstrapped
+    in the `main.ts`, which will be transpiled to `main.js` after the application
+    is built. The content of the `systemjs.config.js` is given as follows:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE8]'
+  prefs: []
+  type: TYPE_PRE
+- en: 'Now, we have all that we need. Let''s run the application by pressing *F5*,
+    and the index page will be rendered with the template powered by `BookFormComponent`,Â as
+    follows:'
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: '![](img/image_03_001.png)'
+  prefs: []
+  type: TYPE_IMG
+- en: The output of the FIrstTemplateForm application
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'Now remove the dummy texts assigned to input controls and note that the form
+    validation got fired showing the validation error message keeping the **`Submit`**
+    button in a disabled state:'
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: '![](img/image_03_002.png)'
+  prefs: []
+  type: TYPE_IMG
+- en: Inspecting the console log to form submit
+  prefs: []
+  type: TYPE_NORMAL
+- en: In this template-drive form, you would have noted that we have applied the required
+    attribute to the input controls. Similar to this, we can also apply minimum length
+    and maximum length validations. However, applying validations like these tightly
+    couples the validation logic to the template, and we can only test these validations
+    by writing browser-based, end-to-end tests.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Model-driven forms
+  prefs:
+  - PREF_H4
+  type: TYPE_NORMAL
+- en: Angular provides the `FormGroup` and `FormControl` attributes to implement model-driven
+    forms.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Fundamental objects of model-driven forms
+  prefs:
+  - PREF_H5
+  type: TYPE_NORMAL
+- en: '`FormControl` and `FormGroup` are the two fundamental objects in a model-driven
+    form.Â `FormControl` is an input field in the Angular form that encapsulates the
+    value of the input field, its state (is valid), if it has changed (is dirty),
+    or has any errors.'
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'When we build a form, we need to create controls and attach metadata to the
+    controls. We have to attach the Control class to the DOM input element by adding
+    the `formControlName` attribute, as shown:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE9]'
+  prefs: []
+  type: TYPE_PRE
+- en: '`FormGroup` can be instantiated by FormBuilder. We can also manually construct
+    `FormGroup` in the components with the default values, as illustrated:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE10]'
+  prefs: []
+  type: TYPE_PRE
+- en: 'Let''s create an app named `ModelDrivenForm` in**Â Visual Studio Code** (**VS
+    Code**). The following is the implementation of model-driven forms:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'Add the required package and dependency details, and install them using the
+    npm install command:'
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: '[PRE11]'
+  prefs: []
+  type: TYPE_PRE
+- en: 'Create a `Book` class and add the following code snippet:'
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: '[PRE12]'
+  prefs: []
+  type: TYPE_PRE
+- en: 'Create `AppComponent` and add the following code:'
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: '[PRE13]'
+  prefs: []
+  type: TYPE_PRE
+- en: This `AppComponent` shown earlierÂ is the root component of the application
+    that will host the `BookFormComponent`. `AppComponent` is decorated with the first-model-form
+    selector and template that has the inline HTML with the `<book-form/>`Â special
+    tag. This tag will be updated with the actual template during runtime.
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'Now, let''s add the `book-form.component.ts` with the following code snippet:'
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: '[PRE14]'
+  prefs: []
+  type: TYPE_PRE
+- en: Here, note that we have imported `FormControl`, `FormGroup`, and `Validators`Â from
+    `@angular/forms`. These are the essential classes to implement a model-driven
+    form. We have also imported `Component` and `OnInit` from `@angular/core` for
+    Component class implementation, and then we have imported Book from `book.ts`.
+    Book is the data model for this form.
+  prefs: []
+  type: TYPE_NORMAL
+- en: '`BookFormComponent` is decorated with theÂ `@Component` directive that was
+    imported from `@angular/core`. Selector value is set to `book-form`, and the `templateUrl`
+    is assigned with the template HTML file.'
+  prefs: []
+  type: TYPE_NORMAL
+- en: In the `BookFormCompoent`, we have initialized the form model by instantiating
+    `FormGroup` with the `FormControl` properties instantiated and assigned to properties
+    such as name, author, and publication. We have theÂ `onSubmit()` methods to post
+    the data submitted to API.
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'Now, let''s add the `book-form.component.html` template file to the following
+    HTML content:'
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: '[PRE15]'
+  prefs: []
+  type: TYPE_PRE
+- en: Similar to the template-driven form, this is a simple form based on model driven
+    that has three input controls to key in the book, author, and publisher name and
+    a submit button to submit the details. In the form tag, we have added the `formGroup`
+    directive to the forms and assigned `bookForm` to it. Each input control has a
+    special attribute form `ControlName` assigned with their respective `formControl`,
+    such as name, author, and publication respectively.
+  prefs: []
+  type: TYPE_NORMAL
+- en: The `onSubmit` function from `BookFormComponent` is assigned to the `ngSubmit`
+    event of the form. So, when the submit button is clicked on, it will call the
+    `onSubmit` function in `BookFormComponent`, passing value and valid property of
+    `bookForm`.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Note that all the input controls do not have any event-cum-property attribute
+    as in the template-driven form. Here, we can achieve the two-way binding by passing
+    the model value from theÂ `bookForm.value` property to theÂ `onSubmit` function
+    and accessing the model from component.
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'We have the required template and components in place. Now we need to create
+    an `AppModule` to bootstrap the root component of our application, `AppComponent`.
+    Create a file named `app.module.ts` and add the following code snippet:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE16]'
+  prefs: []
+  type: TYPE_PRE
+- en: In the preceding code, note that we have assigned the `AppComponent` class to
+    bootstrap metadata to inform Angular that `AppComponent` is the root component
+    of the application. Also, note that we have imported `FormsModule` and `ReactiveFormsModule`
+    from `@angular/forms`.
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'Now that we have all the required templates and classes in place, we need to
+    bootstrap the module. Let''s create a file named `main.ts` with the following
+    code snippet that bootstraps the module:'
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: '[PRE17]'
+  prefs: []
+  type: TYPE_PRE
+- en: 'Finally, add the `index.html` file with the following content:'
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: '[PRE18]'
+  prefs: []
+  type: TYPE_PRE
+- en: 'Note that the `<first-model-form/>` special tag is added in the body. This
+    tag will be updated with the actual template during runtime. Also, note that the
+    required libraries are loaded during runtime using the `System.js` module loader.
+    The `systemjs.config.js` file should have the instructions on mapping the `npm`
+    packages and our application''s starting point. Here, our application is bootstrapped
+    in the `main.ts`, which will be transpiled to `main.js` after the application
+    is built. The content of the `systemjs.config.js` is given here:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE19]'
+  prefs: []
+  type: TYPE_PRE
+- en: 'Now, we have all that we need. Let''s run the application by pressing *F5*,
+    and the index page will be rendered with the template powered by `BookFormComponent`,
+    as follows:'
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: '![](img/image_03_003.png)'
+  prefs: []
+  type: TYPE_IMG
+- en: The output of the model-driven form
+  prefs: []
+  type: TYPE_NORMAL
+- en: On clicking on the **`Submit`** button by keeping the console window open in
+    the developer tools of the Chrome browser, note that the logging model object
+    is logged with the form valid to false as the author property is missing its value.
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'Now, let''s key in some value in the author property and click on theÂ **`Submit`**
+    button by keeping the console window open in the developer tools of the Chrome
+    browser. Note that the model object logged with the form valid to true will all
+    the required properties filled with value, shown as follows:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '![](img/image_03_004.png)'
+  prefs: []
+  type: TYPE_IMG
+- en: Inspecting the model-driven form submission
+  prefs: []
+  type: TYPE_NORMAL
+- en: As we have configured the validations in the component using `FormGroup`, we
+    have loosely coupled the validation logic by moving it from template to component.
+    So, we can write test methods using any test framework to verify the validation
+    logic by asserting the components. Refer to [Chapter 8](Learning%20Angular%20for%20.NET%20Developers_split_000.html#),
+    *Testing Angular applications* to know how to test an angular application.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Pipes
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+- en: '* * *'
+  prefs: []
+  type: TYPE_NORMAL
+- en: Pipes in Angular are a replacement of filters in AngularJS 1.x. Pipes are an
+    improved version of filters that transform common data. Most of the applications
+    fetch data from a server and transform it before displaying the data on the frontend.
+    In such cases, pipes are very useful in transforming the data on rendering the
+    template. Angular provides these cool API pipes for this purpose. Pipes take data
+    as input and output transformed data as needed.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Common pipes
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: 'The following are the built-in pipes available in `@angular/core`, and we will
+    see a few pipes with examples:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: AsyncPipe
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: CurrencyPipe
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: DatePipe
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: DecimalPipe
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: I18nPluralPipe
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: I18nSelectPipe
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: JsonPipe
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: LowerCasePipe
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: PercentPipe
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: SlicePipe
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: TitleCasePipe
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: UpperCasePipe
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Pipe with parameters
+  prefs:
+  - PREF_H4
+  type: TYPE_NORMAL
+- en: 'We can pass parameters to a pipe followed by a colon (:) symbol,Â as follows:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE20]'
+  prefs: []
+  type: TYPE_PRE
+- en: 'Multiple inputs to a pipe can be added by separating the values by (:), as
+    shown:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE21]'
+  prefs: []
+  type: TYPE_PRE
+- en: Chaining pipes
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: 'In some scenarios, it may be necessary to use more than one pipe. For example,
+    consider a scenario to display data in uppercase, long formatted date. The following
+    code displays the publishing date of a book in uppercase and in long formatted
+    date:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE22]'
+  prefs: []
+  type: TYPE_PRE
+- en: Currency pipes
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: 'Currency pipes format the number to the required currency format that is provided.
+    This is the syntax for a currency pipe:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE23]'
+  prefs: []
+  type: TYPE_PRE
+- en: 'The `expression` is the input data for a pipe;Â `currency` is the keyword of
+    the pipe, and it takes three arguments, namely `currencyCode`, which takes values
+    such as USD, INR, GBP, and EUR, `symbolDisplay`, which accepts true or false to
+    show/hide the currency symbol, and `digitInfo`, which takes the decimal format
+    for the currency. The following template demonstrates how to use the currency
+    pipe:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '![](img/image_03_005.png)'
+  prefs: []
+  type: TYPE_IMG
+- en: The template that implements a currency pipe
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'The output of the template will be as follows for various currency formats:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '![](img/image_03_006.png)'
+  prefs: []
+  type: TYPE_IMG
+- en: The output of using a currency pipe
+  prefs: []
+  type: TYPE_NORMAL
+- en: Date pipes
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: 'Date pipes transform input data to various date formats that are supported
+    by a date pipe. The syntax of the date pipe is as follows:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE24]'
+  prefs: []
+  type: TYPE_PRE
+- en: 'Let''s assume that `dateData` is assigned with `Date.now()` in a component.
+    The implementation of the date pipe in the template is as shownÂ in the following
+    screenshot:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '![](img/image_03_007.png)'
+  prefs: []
+  type: TYPE_IMG
+- en: The template that implements the date pipe
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'The output of this template after applying various date formats is as follows:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '![](img/image_03_008.png)'
+  prefs: []
+  type: TYPE_IMG
+- en: The output of using a date pipe
+  prefs: []
+  type: TYPE_NORMAL
+- en: A date pipe supports various formats, such as `medium` (`yMMMdjms`), `short`
+    (`yMdjm`), `mediumDate` (`yMMMd`), `shortDate` (`yMd`), `fullDate` (`yMMMMEEEEd`),
+    `longDate` (`yMMMMd`), `mediumTime` (`jms`), and `shortTime` (`jm`).
+  prefs: []
+  type: TYPE_NORMAL
+- en: Uppercase and lowercase pipes
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: 'Uppercase and lowercase pipes transform input data into uppercase and lowercase
+    respectively. The following template displays an author name both in lowercase
+    and uppercase:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '![](img/image_03_009.png)'
+  prefs: []
+  type: TYPE_IMG
+- en: The template that implements theÂ uppercase and lowercase pipes
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'The output of this template is as follows:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '![](img/image_03_010.png)'
+  prefs: []
+  type: TYPE_IMG
+- en: The output of implementing an uppercase and lowercase pipe
+  prefs: []
+  type: TYPE_NORMAL
+- en: JSON pipes
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: 'A JSON pipe is similar to applying `JSON.Stringify` in JavaScript to an object
+    that holds JSON values. The usage of a JSON pipe in a template is shown in this
+    screenshot:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '![](img/image_03_011.png)'
+  prefs: []
+  type: TYPE_IMG
+- en: The template that implements the JSON pipe
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'The output of using a JSON pipe in a template is as illustrated:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '![](img/image_03_012.png)'
+  prefs: []
+  type: TYPE_IMG
+- en: The output of using the JSON pipe
+  prefs: []
+  type: TYPE_NORMAL
+- en: AppComponent
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+- en: '* * *'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '`AppComponent` is the component of an application that is configured as root
+    component, and it handles the rendering of the `app.component.html`Â template.
+    In the preceding sections, we saw the template code that implemented various pipes
+    and their respective output. The following code snippet shows the component for
+    the template:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE25]'
+  prefs: []
+  type: TYPE_PRE
+- en: Pipes, very powerful and simple-to-use APIs provided by Angular, ease our process
+    of formatting data before displaying it on the screen.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Routers
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+- en: '* * *'
+  prefs: []
+  type: TYPE_NORMAL
+- en: AngularJS used the `ngRoute` module to run simple routers with basic features.
+    It enables deep linking of URLs to components and views by mapping the path to
+    the routes configured using the `$routeProvider` service. AngularJS 1.x needs
+    the `ngRoute` module to be installed to implement routing in an application.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Angular introduced a Component Router that deep links the URL request and navigates
+    to the template or view. It passes parameters, if any, to the respective component
+    that is annotated for this route.
+  prefs: []
+  type: TYPE_NORMAL
+- en: The core concept of Component Routers
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: Angular uses a Component Router for a view system. It also works on AngularJS
+    1.x. It supports intercepting routes and providing route-specific values to the
+    loaded component, automatic deep linking, nested, and sibling routes. Let's go
+    through some of the core features of Component Routers.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Setting up a Component Router
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: A Component Router is not part of the core Angular framework. It comes as part
+    of the Angular NPM bundle as an individual library, `@angular/router`. We need
+    to add `@angular/router` to the `packages.json` under the dependencies section.
+    Then, in the `app.routing.ts`, we need to import `Routes` and `RouterModule` from
+    `@angular/router`. The router constitutes directives such as `RouterOutlet`, `RouterLink`,
+    and `RouterLinkActive`, a service `RouterModule` and the configuration for `Routes`.
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE26]'
+  prefs: []
+  type: TYPE_PRE
+- en: '[PRE27]'
+  prefs: []
+  type: TYPE_PRE
+- en: Configuring routes
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: '[PRE28]'
+  prefs: []
+  type: TYPE_PRE
+- en: '[PRE29]'
+  prefs: []
+  type: TYPE_PRE
+- en: Here, we have configured two routes that help the user navigate to the `about`
+    and `contact` views when clicked on. Routes are basically a collection of route
+    definitions. The value of the path defined identifies the component to be instantiated
+    when the URL in the browser matches the path. Then, the instantiated component
+    will take care of rendering the view.
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'Now, we need to add the configured routes to the `AppModule`, import the `RouterModule`
+    from `@angular/router`, and add it to the imports section of `@NgModule`, as described:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE30]'
+  prefs: []
+  type: TYPE_PRE
+- en: Here, the `forRoot()` method provides router service providers and directives
+    to perform navigation.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Router Outlet and Router Links
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: When the user passes `'/about'` in the address bar of the browser appending
+    to the end of the application URL, the router will match the request with the
+    `'about'` and initiate the `AboutComponent` to handle rendering the view for `about`.
+    We need to somehow inform the router where to display this `about` view. This
+    can be achieved by specifying `<router-outlet/>`, which is similar to the `<ng-view/>`
+    tag in AngularJS 1.x to load the templates associated with the corresponding path
+    of the route.
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'Router links help navigate the route URL via the link specified in the anchor
+    tag by clicking on the router link. A sample router link tag is given here:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE31]'
+  prefs: []
+  type: TYPE_PRE
+- en: Services
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+- en: '* * *'
+  prefs: []
+  type: TYPE_NORMAL
+- en: The applications we create handle volumes of data. Most of the data will be
+    retrieved from services and will be reused in various parts of the application.
+    Let's create a service that can retrieve data using `http`. The service should
+    be loosely coupled with components, as the primary focus of the component should
+    be to support the view. So, the service can be injected to components using a
+    dependency injection. This approach will enable us to mock the service in order
+    to unit test the component.
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE32]'
+  prefs: []
+  type: TYPE_PRE
+- en: '[PRE33]'
+  prefs: []
+  type: TYPE_PRE
+- en: Note that the service decorated with `@Injectable` is to let Angular know that
+    this service is injectable.
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'We can inject the injectable `TodoService` to the constructor of `AppComponent`,
+    as follows:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE34]'
+  prefs: []
+  type: TYPE_PRE
+- en: 'When bootstrapping, we also need to pass `TodoService` so that Angular will
+    create anÂ instance of the service and keep it available wherever it is injected.
+    So, let''s pass `TodoService` to the `bootstrap` function, as illustrated, in
+    the `main.ts` file:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE35]'
+  prefs: []
+  type: TYPE_PRE
+- en: Note that the injectable service is wrapped with square brackets. This is one
+    way of applying the dependency injection. Refer toÂ [Chapter 2](Learning%20Angular%20for%20.NET%20Developers_split_000.html#),
+    *Angular Building Blocks - Part 1*,Â for more information on the dependency injection
+    in Angular. Angular has improved dependency injection that takes care of creating
+    an instance of `TodoService` and injecting it to Component.
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'In the `app.component.html` template, we iterate each item of the `todos` property
+    in `AppComponent` and list them:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE36]'
+  prefs: []
+  type: TYPE_PRE
+- en: 'The content of this template will be rendered under the `<my-service>` special
+    tag in the body of the `index.html` file:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE37]'
+  prefs: []
+  type: TYPE_PRE
+- en: 'On running, the application will render the list of `todo` items, as shown:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '![](img/image_03_013.png)'
+  prefs: []
+  type: TYPE_IMG
+- en: The output of my to-do application
+  prefs: []
+  type: TYPE_NORMAL
+- en: Observables
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+- en: '* * *'
+  prefs: []
+  type: TYPE_NORMAL
+- en: In AngularJS, we consumed services to retrieve data asynchronously using promises
+    in `$http`. In Angular, we have the `Http` service over `$http`, and it returns
+    an observable object instead of a promise as it applies a pattern called the analogous
+    pattern. Angular leverages the Observable class adopted from the ReactiveX library.
+    ReactiveX is an API for asynchronous programming with Observables that is done
+    by applying the observer andÂ iterator patterns and functional programming. You
+    can find more information about Reactive programming atÂ [http://reactivex.io/](http://reactivex.io/).
+  prefs: []
+  type: TYPE_NORMAL
+- en: Observer pattern will notify the dependents if their dependency object is changed.
+    Iterator pattern will facilitate access to a collection without the need to know
+    about the structure of the element in the collection. Combining these patterns
+    in ReactiveX enables the observer to subscribe to an observable collection objection.
+    The observer doesn't need to wait until the observable collection object is available.
+    Instead, the observer will react when it gets the notification ofÂ the changes
+    in the observables.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Angular uses the JavaScript implementation called RxJS, which is a set of libraries
+    rather than a specific API. It uses Observables in the HTTPÂ service and event
+    system. A promiseÂ always returns one value.
+  prefs: []
+  type: TYPE_NORMAL
+- en: The `http.get()` method will return Observables, and this can be subscribed
+    by a client to get the data returned from the service. Observables can handle
+    multiple values. So, we can also call multiple `http.get()` methods and wrap them
+    under the `forkJoin` method that is exposed by Observables.
+  prefs: []
+  type: TYPE_NORMAL
+- en: We can also control the service call and delay the call using Observable by
+    applying a rule to call the service only if the previous call to the service was
+    500 milliseconds ago.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Observables are cancelable. So, it is also possible to cancel the previous request
+    by unsubscribing to it and making a new request. We can cancel any previously
+    unserved call anytime.
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'Let''s modify `TodoService` to use Observable and replace the hardcoded JSON
+    value with the `http.get()` call to a `todos.json` file. The updated `TodoService`
+    is shownÂ here:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE38]'
+  prefs: []
+  type: TYPE_PRE
+- en: Note that we have imported HTTPÂ modules, response from `@angular/http`, and
+    the Observable module from `rsjs/Rx`, which is based on ReactiveX. The `getTodos`
+    method is updated with an `http.get()` call that queries `todos.json` and returns
+    a collection of to-do items.
+  prefs: []
+  type: TYPE_NORMAL
+- en: '`AppComponent` and `TodoService` are bootstrapped in the `app.module.ts` file,
+    as shown:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE39]'
+  prefs: []
+  type: TYPE_PRE
+- en: 'Import `{bootstrap}` from `''@angular/platform-browser-dynamic''`; the template
+    is updated to render the list of todos, as follows:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE40]'
+  prefs: []
+  type: TYPE_PRE
+- en: 'Running the application will render the data subscribed from Observables that
+    is returned by the methods in `TodoService`:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '![](img/image_03_014.png)'
+  prefs: []
+  type: TYPE_IMG
+- en: The output of index.html that renders the data subscribed from Observables
+  prefs: []
+  type: TYPE_NORMAL
+- en: Summary
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+- en: '* * *'
+  prefs: []
+  type: TYPE_NORMAL
+- en: Woohoo! You've completed learning the rest of the building blocks of the Angular
+    architecture. We started the chapter with forms and walked through the types of
+    forms available in Angular and how to implement them. Then, you learned about
+    pipes, which is an alternative to filters in AngularJS 1.x. Next, we discussed
+    routers, and you learned how easy it is to configure a router to a component in
+    Angular.Â Finally, you learned how to create a service in Angular and how to access
+    an external service using the HTTPÂ module. You also learned about the advantages
+    of using Observables and implementing it in service calls.
+  prefs: []
+  type: TYPE_NORMAL
+- en: In the next chapter, we will discuss the fundamentals of TypeScript.
+  prefs: []
+  type: TYPE_NORMAL

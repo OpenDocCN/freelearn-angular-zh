@@ -1,0 +1,743 @@
+- en: Chapter 5. Creating an Angular Single-Page Application in Visual Studio
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+- en: This chapter guides you through the process of creating an AngularÂ **Single
+    Page Application**Â (**SPA**) using Visual Studio.
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'In this chapter, we will cover the following topics:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: Creating an ASP.NET Core web application
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Adding client-side packages using NPM package manager
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Using Gulp to run tasks
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Adding Angular components and templates
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Creating an ASP.NET core web application
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+- en: '* * *'
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'Let''s start this chapter by creating an ASP.NET Core web application. I am
+    assuming that you have Visual Studio 2017 or a later version installed in your
+    development environment. Follow these steps to create the application:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: Open Visual Studio and click on the menu item by navigating to `File` | `New`
+    | `Project`.
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: Navigate to **`Visual C#`** from the installed template and select **`Web`**.
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: 'Then, select **`ASP.NET Core Web Application`** and enter the application name
+    as `My Todo`, as shown in the following screenshot:'
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: '![](img/image_05_001.png)'
+  prefs: []
+  type: TYPE_IMG
+- en: CreatingÂ a project named My Todo
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'Select the **`ASP.NET Core Empty`** template and click on **`Ok`** to create
+    the project, as illustrated:'
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: '![](img/image_05_002.png)'
+  prefs: []
+  type: TYPE_IMG
+- en: Select an empty ASP.NET Core template
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'The solution structure of the `My Todo` application that we created is shown
+    in the following screenshot:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '![](img/image_05_003.png)'
+  prefs: []
+  type: TYPE_IMG
+- en: The default solution structure of My Todo
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'The `Startup` class is the entry point of an ASP.NET Core web application.
+    The `Configure` method in the `Startup` class is used to set up a request pipeline
+    to handle all the requests coming to the application. Here, the default code of
+    the `Startup` class is configured to return the `Hello World!`Â text by default:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '![](img/image_05_004.png)'
+  prefs: []
+  type: TYPE_IMG
+- en: The default code of the Startup class
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'So, when you run the application, you will get the following output in the
+    browser:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '![](img/image_05_005.png)'
+  prefs: []
+  type: TYPE_IMG
+- en: The default output of the 'My Todo' project
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'Now, let''s make the application to serve a default page for any request coming
+    through. Follow these steps to do so:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'Select the `wwwroot` folder under the `My Todo` project. Right-click on selecting
+    the project and navigate to **`Add`** and click **`New Item`**:'
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: '![](img/image_05_006.png)'
+  prefs: []
+  type: TYPE_IMG
+- en: Navigate to the Add New Item menu
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'In the **`Add New Item`** window, click onÂ **`Content`** under **`Web`**,
+    and then select **`HTML Page`** from the center pane. Enter `index.html` as the
+    filename and click on **`Add`**:'
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: '![](img/image_05_007.png)'
+  prefs: []
+  type: TYPE_IMG
+- en: Name the HTML file as index.html
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'Update the content of the `index.html` file, as follows:'
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: '![](img/image_05_008.png)'
+  prefs: []
+  type: TYPE_IMG
+- en: The updated code of index.html
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'Open the `Startup` class and delete the following code snippet that writes
+    the `Hello World` default text to a response for each request:'
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: '[PRE0]'
+  prefs: []
+  type: TYPE_PRE
+- en: 'Add the following code to the `Configure` method so that the pipeline serves
+    default and static files to the request:'
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: '![](img/image_05_009.png)'
+  prefs: []
+  type: TYPE_IMG
+- en: The code to enable the pipeline to serve static and default files
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'You need to add the `Microsoft.AspNetCore.StaticFiles` NuGet package, as shown,
+    in order to use these extensions:'
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: '![](img/image_05_010.png)'
+  prefs: []
+  type: TYPE_IMG
+- en: Adding a reference to a namespace if required
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'Now, add an `index.html` file under theÂ `wwwroot` folder and run the application
+    by pressing *F5*. You will note that the application serves the `index.html` file
+    as the default file for the request. Here, I have added an `h1` tag with the content
+    **`My Todo Landing Page`**:'
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: '![](img/image_05_011.png)'
+  prefs: []
+  type: TYPE_IMG
+- en: The output of the application after adding index.html
+  prefs: []
+  type: TYPE_NORMAL
+- en: Adding client-side packages using NPM package manager
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+- en: '* * *'
+  prefs: []
+  type: TYPE_NORMAL
+- en: When we develop applications, we add references to many frameworks and libraries
+    as dependencies. In Visual Studio, we have the NuGet package manager tool to manage
+    all those packages in our application.
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'In the frontend web community, using Bower, Grunt, Gulp, and NPM to manage
+    packages and running build tasks to develop modern web applications has become
+    widely popular. As this ecosystem is very rich and widely accepted, Visual Studio
+    2015 has adopted these systems to manage client-side frameworks and libraries,
+    as illustrated. NuGet is ideal to manage server-side packages:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '![](img/image_05_012.png)'
+  prefs: []
+  type: TYPE_IMG
+- en: Various package managing tools
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'We saw how to manage client-side packages using NPM in Visual Studio Code.
+    Similarly, we use NPM in Visual Studio 2015 or later to manage frontend frameworks
+    and libraries in our project. Let''s add the Angular framework and other required
+    JavaScript libraries as dependencies to our project using NPM by following these
+    steps:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: First, let's add **`NPM Configuration File`** to our project. Right-click on
+    the project node and navigate to `Add` | `New Item`. Select **`General`** under
+    **`Web`**Â from the left-hand side pane and **`NPM Configuration File`** from
+    the middle pane.
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: 'Then, click on **`Add`**, leaving the default name as `package.json`:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '![](img/image_05_013.png)'
+  prefs: []
+  type: TYPE_IMG
+- en: The NPM configuration file named package.json
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'The `package.json` file will be added to your project with the following default
+    JSON code:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '![](img/image_05_014.png)'
+  prefs: []
+  type: TYPE_IMG
+- en: The code snippet of package.json
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'Update the `name` field with `my-todo` and add the required dependencies to
+    the `package.json` file, as shown:'
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: '[PRE1]'
+  prefs: []
+  type: TYPE_PRE
+- en: 'The moment we save `package.json` with all the dependency information, Visual
+    Studio adds the required packages to our project under the `node_modules` hidden
+    folder, and you can see the list of loaded dependencies by navigating to theÂ `npm`
+    folder under the `Dependencies` node, as illustratedÂ in the following screenshot:'
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: '![](img/image_05_015.png)'
+  prefs: []
+  type: TYPE_IMG
+- en: The NPM folder with dependency libraries
+  prefs: []
+  type: TYPE_NORMAL
+- en: We have all the client-side frameworks and libraries in our project dependency
+    node that we need. However, we need to add the dependent libraries to our `wwwroot`
+    folder for our application to refer and consume. We will discuss this in the next
+    section.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Using Gulp to run tasks
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+- en: '* * *'
+  prefs: []
+  type: TYPE_NORMAL
+- en: Gulp is a task runner that runs on `node.js`. Using Gulp, we can automate activities
+    such as moving or copying files, and bundling and minification. In ASP.NET Core,
+    Microsoft also integrated Gulp with Visual Studio as it has been widely accepted
+    by the web community to run and manage complex tasks very easily. You can find
+    more information by visiting the official site atÂ [http://gulpjs.com/](http://gulpjs.com/)
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'Let''s use Gulp to push the required JavaScript frameworks and libraries from
+    the `node_modules` folder hidden in the solution to the `libs` folder under `wwwroot`.
+    Installing Gulp in Visual Studio is easy. Perform the following steps to install
+    and run Gulp tasks:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'Add Gulp as a dev dependency in the `package.json` NPM configuration file,
+    as shown, and save the file:'
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: '[PRE2]'
+  prefs: []
+  type: TYPE_PRE
+- en: 'When we save the `package.json` file with Gulp added in the dev dependencies,
+    Visual Studio installs the package into our application under the node `Dependencies`
+    | `npm` folder, as in the following screenshot:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '![](img/image_05_016.png)'
+  prefs: []
+  type: TYPE_IMG
+- en: The Gulp dependency under the added npm folder
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'We have the gulp package in our application. Now, we need to write a task in
+    JavaScript to copy the required JavaScript libraries from the `node_modules` folder
+    that is hidden in a solution, as follows:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '![](img/image_05_017.png)'
+  prefs: []
+  type: TYPE_IMG
+- en: The node_modules hidden folder
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'Now, let''s add theÂ **`Gulp Configuration File`** to our project. Right-click
+    on the project and navigate to `Add` | `New Item`. Select **`General`** under
+    **`Web`** on the left-hand side pane, and then select **`Gulp Configuration File`**
+    from the middle pane. Then, click on **`Add`**, leaving the default name asÂ `gulpfile.js`:'
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: '![](img/image_05_018.png)'
+  prefs: []
+  type: TYPE_IMG
+- en: Adding the Gulp configuration file
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'The default content of the Gulp configuration file `gulpfile.js` is as follows:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '![](img/image_05_019.png)'
+  prefs: []
+  type: TYPE_IMG
+- en: The default code snippet of the Gulp configuration file
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'Let''s write another task to copy the required JavaScript libraries from the
+    `node_modules` hidden folder to the `libs` folder under the `wwwroot` node of
+    the project. Add the following code snippet to `gulpfile.js` for the new task:'
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: '[PRE3]'
+  prefs: []
+  type: TYPE_PRE
+- en: The `paths` variable holds the source and target folder of the libraries to
+    be moved, and the `librariesToMove` variable holds the list of libraries to be
+    moved to the `libs` folder. The last statement in the file is the new task that
+    copies the required JavaScript libraries to the `libs` folder when it is run.
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'We have the code for the Gulp task ready, and now, we need to run the Gulp
+    task to copy the libraries. So, to run the task, open **`Task Runner Explorer`**
+    by right-clicking on `gulpfile.js`, as shown in the following screenshot:'
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: '![](img/image_05_020.png)'
+  prefs: []
+  type: TYPE_IMG
+- en: Opening Task Runner Explorer
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'Task Runner Explorer will list the available tasks written in `gulpfile.js`
+    as a child tree node under **`Tasks`**, as in the screenshot here:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '![](img/image_05_021.png)'
+  prefs: []
+  type: TYPE_IMG
+- en: The list of tasks available in gulpfile.js
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'Right-click on the `librariesToMove` task listed in ****`Task Runner Explorer`****
+    and select **`Run`** from the menu, as follows:'
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: '![](img/image_05_022.png)'
+  prefs: []
+  type: TYPE_IMG
+- en: Running the librariesToMove task in gulpfile.js
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'You can see the command getting executed to run the task on the right-hand
+    side pane of **`Task Runner Explorer`**:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '![](img/image_05_023.png)'
+  prefs: []
+  type: TYPE_IMG
+- en: The task completed with zero errors
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'Note that the libraries are copied to `wwwroot` under the `libs` folder, as
+    illustratedÂ in the following screenshot:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '![](img/image_05_024.png)'
+  prefs: []
+  type: TYPE_IMG
+- en: The libs folder created with the required JavaScript libraries
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'Now that we have the required libraries under the `libs` folder in the `wwwroot`
+    node, let''s update `index.html` by adding both the script references to the libraries
+    in the `libs` folder and the code to configure `SystemJS`, as demonstrated:'
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: '[PRE4]'
+  prefs: []
+  type: TYPE_PRE
+- en: 'Add a `system.js` configuration file `systemjs.config.js` and update it withÂ the
+    followingÂ content. This has the mapping information to load the angular libraries
+    when running the applications:'
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: '[PRE5]'
+  prefs: []
+  type: TYPE_PRE
+- en: We created a project to develop the `My Todo`Â application and managed all the
+    client-side dependencies using NPM package manager. We also used Gulp to run a
+    task in order to copy JavaScript libraries to the `wwwroot` node. In the next
+    section, let's create the required Angular components for our application.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Adding Angular components and templates
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+- en: '* * *'
+  prefs: []
+  type: TYPE_NORMAL
+- en: We will be writing Angular components for our application using TypeScript.
+    The TypeScript files should be compiled to JavaScript, targeting ECMAScript 5.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Configuring TypeScript compiler options
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: 'We need to inform Visual Studio about the compiler options required to compile
+    TypeScript for our application to consume when it is running. With the help of
+    a TypeScript configuration file, we can configure the compiler options and other
+    details using the following steps:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'Let''s add **`TypeScript Configuration File`** by right-clicking on the project
+    and navigating to `Add`**`|`**`New Item` in the menu, leaving the filename to
+    default, as shown in this screenshot:'
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: '![](img/image_05_025.png)'
+  prefs: []
+  type: TYPE_IMG
+- en: Adding the TypeScript configuration file
+  prefs: []
+  type: TYPE_NORMAL
+- en: A file named `tsconfig.json` will be added to the project root directory.
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'Replace the content of the TypeScript configuration file with the following
+    configuration:'
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: '[PRE6]'
+  prefs: []
+  type: TYPE_PRE
+- en: Adding an Angular component
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: 'We configured the project with TypeScript compiler options. Now, let''s add
+    an Angular root component for our application. Follow these steps to do so:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'First, create an `app` folder under `wwwroot` by right-clicking on it and navigate
+    to `Add` | `New Folder`, as shown in the following screenshot:'
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: '![](img/image_05_026.png)'
+  prefs: []
+  type: TYPE_IMG
+- en: Adding a new folder named app for the Angular application folder
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'We have the `app` folder ready. Let''s add the TypeScript file to create a
+    root component by right-clicking on the `app` folder and navigating to `Add` |
+    `New Item`. Select **`Scripts`** under **`Web`**Â from the left-hand side pane
+    and select **`TypeScript File`** from the middle pane. Name the file as theÂ `app.component.ts`
+    file and click on **`Add`**:'
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: '![](img/image_05_027.png)'
+  prefs: []
+  type: TYPE_IMG
+- en: Adding a root component named app.component.ts
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'Add the following code snippet to `app.component.ts`:'
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: '[PRE7]'
+  prefs: []
+  type: TYPE_PRE
+- en: A root component named `AppComponent` is created and decorated with the component
+    metadata `selector` and `templateUrl`.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Adding app module
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: 'In the preceding section, we created an Angular component named `AppComponent`.
+    Now we need to bootstrap this `AppComponent` so that Angular will consider this
+    as a root component of the application. We can bootstrap a component by decorating
+    an `AppModule` class with the `NgModule` and adding the metadata bootstrap assigned
+    with `AppComponent`. Follow these steps to create `AppModule`:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'Create a `TypeScript` by right-clicking on the `app` folder and navigating
+    to `Add` | `New Item`. Select **`Scripts`** under **`Web`** from the left-hand
+    side pane and select **`TypeScript File`** from the middle pane. Add a file named
+    `app.module.ts`, and click on **`Add`**:'
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: '![](img/image_05_028.png)'
+  prefs: []
+  type: TYPE_IMG
+- en: Adding the TypeScript file namedÂ app.module.ts
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'Add the following code snippet to `app.module.ts`:'
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: '[PRE8]'
+  prefs: []
+  type: TYPE_PRE
+- en: Here, we added `AppComponent` as root component and imported `BrowserModule`
+    as our application will be consumed via browser and `FormsModule` two bindings.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Adding an Angular component
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: 'Now we need to bootstrap the `AppModule` created in the preceding section.
+    Perform the following steps:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'Let''s create a `TypeScript` file,Â `main.ts`, to bootstrap `AppModule`. Right-click
+    on the `wwwroot` folder and navigate to `Add` | `New Item`. Select **`Scripts`**
+    under **`Web`** on the left-hand side pane and select **`TypeScript File`** from
+    the middle pane. Name the file as `main.ts`, and click on **`Add`**:'
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: '![](img/image_05_029.png)'
+  prefs: []
+  type: TYPE_IMG
+- en: Adding the TypeScript file named main.ts
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'Update the `main.ts` file with this code snippet:'
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: '[PRE9]'
+  prefs: []
+  type: TYPE_PRE
+- en: Here, platform browser dynamic contains angular features that make the app run
+    in the browser by bootstrapping application module. We can ignore this if our
+    application is not targeting to run on the browser.
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'We have all that we need to verify that our Angular application is running
+    properly. Note how nicely Visual Studio has organized the template files, TypeScript
+    files, and their respective compiled JavaScript files under the solution explorer,
+    as shown in the following screenshot:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '![](img/image_05_030.png)'
+  prefs: []
+  type: TYPE_IMG
+- en: Compiled TypeScript files to JavaScript files
+  prefs: []
+  type: TYPE_NORMAL
+- en: Note that Visual Studio will automatically generate JavaScript files after compiling
+    the TypeScript files in the app folder as and when you make changes and save the
+    files.
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'Let''s run the application by pressing *F5*, and, if it builds successfully,
+    you will get to see the output in the browser, as shown in the following screenshot:'
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: '![](img/image_05_031.png)'
+  prefs: []
+  type: TYPE_IMG
+- en: The output of the application
+  prefs: []
+  type: TYPE_NORMAL
+- en: Note
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: Note that the inner text of the `<my-app>` tag is inserted with the content
+    in `app.component.html`.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Adding a Todo class
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: 'Our application deals with `Todo` items. So, let''s create a class named `Todo`
+    and add properties such as `title` and `completed` to it, as illustrated:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE10]'
+  prefs: []
+  type: TYPE_PRE
+- en: This `Todo` class also has a constructor that takes `title` as a parameter and
+    a method that sets the `todo` item as `completed`.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Adding a TodoService class
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: '[PRE11]'
+  prefs: []
+  type: TYPE_PRE
+- en: '[PRE12]'
+  prefs: []
+  type: TYPE_PRE
+- en: We have created the `TodoService` class with various methods to add, remove,
+    and return the collection of `todo` items.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Updating the AppComponent class
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: 'Now that we have the `TodoService` class in place, let''s update the `AppComponent`
+    class, as shown, to consume the `TodoService` class:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE13]'
+  prefs: []
+  type: TYPE_PRE
+- en: Note that the metadataÂ `template` in the `@Component` has been replaced with
+    the `templateUrl` and is assigned with an `AppComponent` template file `app.component.html`.
+    As the template content is complex now, we need to introduce an HTML file for
+    theÂ `AppComponent` view.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Updating the AppModule
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: '[PRE14]'
+  prefs: []
+  type: TYPE_PRE
+- en: '[PRE15]'
+  prefs: []
+  type: TYPE_PRE
+- en: Adding the AppComponent template
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: '[PRE16]'
+  prefs: []
+  type: TYPE_PRE
+- en: '[PRE17]'
+  prefs: []
+  type: TYPE_PRE
+- en: As you can see, we applied two-way binding using `ngModel` to the input control
+    in order to bind the new `todo` item, `title`. We assigned the `addTodo` method
+    to the click event of the `Add` button to add a new `todo` item to the in-memory
+    collection of `Todo` items in `todoService`. We applied `ngFor` to the `<li>`
+    tag to iterate each `Todo` item in `todoService`. The checkbox rendered for each
+    `Todo` item has its `click` event, the `checked` property mapped with the `toggleCompletion`
+    method, and a `completed` property of the `Todo` item, respectively. Next, the
+    remove button has its `click` event mapped with the `remove` method in `AppComponent`.
+  prefs: []
+  type: TYPE_NORMAL
+- en: The footer tag has a span that displays the pending `Todo` items' count and
+    a button to remove the completed `todo` items from the list. This button has a
+    `click` event mapped with the `removeCompleted` method in `AppComponent`.
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'Let''s run the application by pressing *F5*, and you will be able to perform
+    all the operations, such as adding, removing, and listing `todo` items:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '![](img/image_05_032.png)'
+  prefs: []
+  type: TYPE_IMG
+- en: My Todo App operations
+  prefs: []
+  type: TYPE_NORMAL
+- en: Summary
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+- en: '* * *'
+  prefs: []
+  type: TYPE_NORMAL
+- en: Hurray! You actually learned the very important and core objective of the book
+    in this chapter. Yes! I am talking about integrating Angular with .NET applications.
+  prefs: []
+  type: TYPE_NORMAL
+- en: We started the chapter by creating a new ASP.NET Core empty application and
+    updated the `Startup` class to serve static and default pages for any request.
+    Then, you learned about managing client-side packages using NPM in Visual Studio,
+    and we managed to automate and run tasks using Gulp in Visual Studio.Â Next, you
+    learned how to add the required components for the application and bootstrap it.
+    Later, we designed a model class and a service class that handle the core business
+    logic of the application. Finally, we designed a template to list the `Todo` items,
+    and also, we added a few controls and hooked them to certain methods in `TodoService`
+    and `AppComponent`.
+  prefs: []
+  type: TYPE_NORMAL
+- en: This application only deals with the in-memory todo items. However, in the real-time
+    application, we consume a service to add, delete, or fetch the `todo` items. In
+    the next chapter, we will discuss how to create an ASP.NET Core Web API service
+    that handles retrieving, saving, and deleting `todo` items and also consuming
+    it from our Angular application that we just built.
+  prefs: []
+  type: TYPE_NORMAL

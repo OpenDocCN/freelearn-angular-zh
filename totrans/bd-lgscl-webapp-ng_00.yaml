@@ -1,0 +1,297 @@
+- en: Preface
+  prefs:
+  - PREF_H1
+  type: TYPE_NORMAL
+- en: If you have been burnt by unreliable JavaScript frameworks before, you will
+    be amazed by the maturity of the Angular platform. Angular enables you to build
+    fast, efficient, and real-world web apps. In this Learning Path, you'll learn
+    Angular and to deliver high-quality and production-grade Angular apps from design
+    to deployment.
+  prefs: []
+  type: TYPE_NORMAL
+- en: You will begin by creating a simple fitness app, using the building blocks of
+    Angular, and make your final app, Personal Trainer, by morphing the workout app
+    into a full-fledged personal workout builder and runner with advanced directive
+    building - the most fundamental and powerful feature of Angular.
+  prefs: []
+  type: TYPE_NORMAL
+- en: You will learn the different ways of architecting Angular applications using
+    RxJS, and some of the patterns that are involved in it. Later you’ll be introduced
+    to the router-first architecture, a seven-step approach to designing and developing
+    mid-to-large line-of-business apps, along with popular recipes. By the end of
+    this book, you will be familiar with the scope of web development using Angular,
+    Swagger, and Docker, learning patterns and practices to be successful as an individual
+    developer on the web or as a team in the Enterprise.
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'This Learning Path includes content from the following Packt products:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: Angular 6 by Example by Chandermani Arora, Kevin Hennessy
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Architecting Angular Applications with Redux, RxJS, and NgRx by Christoffer
+    Noring
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Angular 6 for Enterprise-Ready Web Applications by Doguhan Uluca
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Who this book is for
+  prefs:
+  - PREF_H1
+  type: TYPE_NORMAL
+- en: If you’re a JavaScript or frontend developer looking to gain comprehensive experience
+    of using Angular for end-to-end enterprise-ready applications, this Learning Path
+    is for you.
+  prefs: []
+  type: TYPE_NORMAL
+- en: What this book covers
+  prefs:
+  - PREF_H1
+  type: TYPE_NORMAL
+- en: '[Chapter 1](8eb47c1f-58fe-45dd-9afe-b955ef2080be.xhtml), *Building Our First
+    App – 7 Minute Workout*, teaches us how to build our first real Angular app. In
+    the process, we will learn more about one of the primary building blocks of Angular,
+    components. We will also be introduced to Angular’s templating constructs, databinding
+    capabilities, and services.'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[Chapter 2](4b0ad450-2a56-4c24-b431-116d7225a57e.xhtml), *Personal Trainer*,
+    introduces a new exercise where we morph the *7 Minute workout* into a generic
+    Personal Trainer app. This app has the capability to create new workout plans
+    other than the original 7 minute workout. This chapter covers Angular’s form capabilities
+    and how we can use them to build custom workouts.'
+  prefs: []
+  type: TYPE_NORMAL
+- en: Chapter 3, *Supporting Server Data Persistence*, deals with saving and retrieving
+    workout data from the server. We augment Personal Trainer with persistence capabilities
+    as we explore Angular's http client library and how it uses RxJS Observables.
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[Chapter 4](c3725f08-81b4-4bd5-a50f-6173510dd9c6.xhtml), *Angular Directives
+    in Depth*, goes deep into the inner workings of Angular directives and components.
+    We build a number of directives to support Personal Trainer.'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[Chapter 5](c38d8d6b-23f1-4e6d-aee3-db093c15f2d4.xhtml), *1.21 Gigawatt – Flux
+    Pattern Explained*, teaches what the Flux pattern is and what concepts it consists
+    of. It shows how to implement the Flux pattern using stores, a dispatcher, and
+    several views.'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[Chapter 6](b13e692b-93ec-477e-a1b7-6c2a7aaff6b0.xhtml), *Functional Reactive
+    Programming*, drills down into certain properties of functional programming, such
+    as higher-order functions, immutability, and recursion. Furthermore, we look at
+    how to make code reactive and what reactive means.'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[Chapter 7](6dbd2f0c-ad4b-4fc6-8511-ba24fd0b3607.xhtml), *Manipulating Stream
+    and Their Values*, focuses a lot on educating the reader on operators, the thing
+    that gives RxJS its power. The reader should leave this chapter with a lot more
+    knowledge about how to manipulate data as well as Observables.'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[Chapter 8](1cd60ce6-607e-40aa-a87b-84370191f92e.xhtml), *RxJS Advanced*, goes
+    deeper and tries to explain more advanced concepts in RxJS, such as hot and cold
+    Observables, subjects, error handling, and how to test your RxJS code with Marble
+    testing.'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[Chapter 9](7c897af2-bc94-4c2f-a5ad-8ae0b4bc0508.xhtml), *Create a Local Weather
+    Web Application,* introduces the Kanban method of software development with easy-to-use
+    design tools used to communicate ideas. It also covers Angular fundamentals, unit
+    testing, and leveraging CLI tools to maximize your impact.'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[Chapter 10](4628e6f3-23d6-4aa7-a842-d1df666718de.xhtml), *Prepare Angular
+    App for Production Release, *covers how to use containerization with Docker to
+    enable cloud deployments.'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[Chapter 11](96bc5869-a891-4695-a315-de55d8abc6b8.xhtml), *Enhance Angular
+    App with Angular Material, *introduces you to Angular material and explains how
+    to use it to build great-looking apps.'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[Chapter 12](b49e4716-d083-4c8c-a083-bcf6cf182a6f.xhtml), *Create a Router-First
+    Line-of-Business App,* focuses on the Router-first architecture, a seven-step
+    approach to the design and development of mid-to-large applications.'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[Chapter 13](215237a5-318b-4de2-82a8-4e40e438b228.xhtml), *Continuous Integration
+    and API Design, *goes over continuous integration using CircleCI and early integration
+    with backend APIs using Swagger.'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[Chapter 14](c1386d03-1f04-49e0-a623-bc5c64be089c.xhtml), *Design Authentication
+    and Authorization, *dives into authentication- and authorization-related patterns
+    in Angular and RESTful applications.'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[Chapter 15](3da8e826-b070-415b-b3ce-d535358db5de.xhtml), *Angular App Design
+    and Recipes, *contains recipes commonly needed for line-of-business applications.'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[Chapter 16](7ccc1261-21e7-44b9-aaf8-0079360288e7.xhtml), *Highly-Available
+    Cloud Infrastructure on AWS,* moves beyond application features to go over provisioning a
+    highly-available cloud infrastructure on AWS.'
+  prefs: []
+  type: TYPE_NORMAL
+- en: To get the most out of this book
+  prefs:
+  - PREF_H1
+  type: TYPE_NORMAL
+- en: We will be building our apps in the TypeScript language; therefore, it would
+    be preferable if you have an IDE that makes development with TypeScript easy.
+    IDEs such as Atom, Sublime, WebStorm, and Visual Studio (or VS Code) are great
+    tools for this purpose.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Download the example code files
+  prefs:
+  - PREF_H1
+  type: TYPE_NORMAL
+- en: You can download the example code files for this book from your account at [www.packtpub.com](http://www.packtpub.com).
+    If you purchased this book elsewhere, you can visit [www.packtpub.com/support](http://www.packtpub.com/support)
+    and register to have the files emailed directly to you.
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'You can download the code files by following these steps:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: Log in or register at [www.packtpub.com](http://www.packtpub.com/support).
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: Select the SUPPORT tab.
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: Click on Code Downloads & Errata.
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: Enter the name of the book in the Search box and follow the onscreen instructions.
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: 'Once the file is downloaded, please make sure that you unzip or extract the
+    folder using the latest version of:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: WinRAR/7-Zip for Windows
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Zipeg/iZip/UnRarX for Mac
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: 7-Zip/PeaZip for Linux
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: The code bundle for the book is also hosted on GitHub at [https://github.com/chandermani/angular6byexample](https://github.com/chandermani/angular6byexample) and
+    [https://github.com/PacktPublishing/Architecting-Angular-Applications-with-Redux-RxJs-and-NgRx](https://github.com/PacktPublishing/Architecting-Angular-Applications-with-Redux-RxJs-and-NgRx).
+     The code bundle for the third module is hosted on author's GitHub repository
+    at [https://github.com/duluca/local-weather-app](https://github.com/duluca/local-weather-app) and [https://github.com/duluca/lemon-mart](https://github.com/duluca/lemon-mart). In
+    case there's an update to the code, it will be updated on the existing GitHub
+    repository.
+  prefs: []
+  type: TYPE_NORMAL
+- en: We also have other code bundles from our rich catalog of books and videos available
+    at **[https://github.com/PacktPublishing/](https://github.com/PacktPublishing/)**.
+    Check them out!
+  prefs: []
+  type: TYPE_NORMAL
+- en: Conventions used
+  prefs:
+  - PREF_H1
+  type: TYPE_NORMAL
+- en: There are a number of text conventions used throughout this book.
+  prefs: []
+  type: TYPE_NORMAL
+- en: '`CodeInText`: Indicates code words in text, database table names, folder names,
+    filenames, file extensions, pathnames, dummy URLs, user input, and Twitter handles.
+    Here is an example: "We can see how the router combines the routes in `app.routes.ts` with
+    the default route in `workout-builder.routes.ts`".'
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'A block of code is set as follows:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE0]'
+  prefs: []
+  type: TYPE_PRE
+- en: 'When we wish to draw your attention to a particular part of a code block, the
+    relevant lines or items are set in bold:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE1]'
+  prefs: []
+  type: TYPE_PRE
+- en: 'Any command-line input or output is written as follows:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE2]'
+  prefs: []
+  type: TYPE_PRE
+- en: '**Bold**: Indicates a new term, an important word, or words that you see onscreen.
+    For example, words in menus or dialog boxes appear in the text like this. Here
+    is an example: "With the Developer tools open in the Sources tab"'
+  prefs: []
+  type: TYPE_NORMAL
+- en: Warnings or important notes appear like this.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Tips and tricks appear like this.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Get in touch
+  prefs:
+  - PREF_H1
+  type: TYPE_NORMAL
+- en: Feedback from our readers is always welcome.
+  prefs: []
+  type: TYPE_NORMAL
+- en: '**General feedback**: Email `feedback@packtpub.com` and mention the book title
+    in the subject of your message. If you have questions about any aspect of this
+    book, please email us at `questions@packtpub.com`.'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '**Errata**: Although we have taken every care to ensure the accuracy of our
+    content, mistakes do happen. If you have found a mistake in this book, we would
+    be grateful if you would report this to us. Please visit [www.packtpub.com/submit-errata](http://www.packtpub.com/submit-errata),
+    selecting your book, clicking on the Errata Submission Form link, and entering
+    the details.'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '**Piracy**: If you come across any illegal copies of our works in any form
+    on the Internet, we would be grateful if you would provide us with the location
+    address or website name. Please contact us at `copyright@packtpub.com` with a
+    link to the material.'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '**If you are interested in becoming an author**: If there is a topic that you
+    have expertise in and you are interested in either writing or contributing to
+    a book, please visit [authors.packtpub.com](http://authors.packtpub.com/).'
+  prefs: []
+  type: TYPE_NORMAL
+- en: Reviews
+  prefs:
+  - PREF_H1
+  type: TYPE_NORMAL
+- en: Please leave a review. Once you have read and used this book, why not leave
+    a review on the site that you purchased it from? Potential readers can then see
+    and use your unbiased opinion to make purchase decisions, we at Packt can understand
+    what you think about our products, and our authors can see your feedback on their
+    book. Thank you!
+  prefs: []
+  type: TYPE_NORMAL
+- en: For more information about Packt, please visit [packtpub.com](https://www.packtpub.com/).
+  prefs: []
+  type: TYPE_NORMAL
