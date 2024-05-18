@@ -3,6 +3,7 @@
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 个人教练
 - en: The *7 Minute Workout* app has been an excellent opportunity for us to learn
     about Angular. Working through the app, we have covered a number of Angular constructs.
     Still, there are areas such as Angular form support and client-server communication
@@ -13,6 +14,8 @@
   id: totrans-1
   prefs: []
   type: TYPE_NORMAL
+  zh: '*7分钟健身* 应用程序为我们学习 Angular 提供了绝佳的机会。通过使用该应用程序，我们已经涵盖了许多 Angular 构造。尽管如此，仍然有一些领域，比如
+    Angular 表单支持和客户端-服务器通信，尚未被探索。这在一定程度上是因为从功能角度来看，7分钟健身对最终用户的接触点有限。交互仅限于启动、停止和暂停健身。此外，该应用程序既不消费也不生成任何数据（除了健身历史记录）。'
 - en: In this chapter, we plan to delve deeper into one of the two aforementioned
     areas, Angular form support. Keeping up with the health and fitness theme (no
     pun intended), we plan to build a *Personal Trainer* app. The new app will be
@@ -21,21 +24,26 @@
   id: totrans-2
   prefs: []
   type: TYPE_NORMAL
+  zh: 在本章中，我们计划更深入地研究前面提到的两个领域之一，即 Angular 表单支持。为了跟上健康和健身主题（无恶意），我们计划构建一个 *个人教练* 应用程序。新的应用程序将是
+    *7分钟健身* 的延伸，使我们能够构建属于自己的定制健身计划，而不仅仅局限于我们已经拥有的 *7分钟健身* 计划。
 - en: This chapter is dedicated to understanding Angular forms and how to put them
     to use as we build out our *Personal Trainer* app.
   id: totrans-3
   prefs: []
   type: TYPE_NORMAL
+  zh: 本章致力于理解 Angular 表单以及如何在构建 *个人教练* 应用程序时将其应用。
 - en: 'The topics that we will cover in this chapter are as follows:'
   id: totrans-4
   prefs: []
   type: TYPE_NORMAL
+  zh: 本章我们将涵盖的主题包括以下内容：
 - en: '**Defining Personal Trainer requirements**: Since we are building a new app
     in this chapter, we start with defining the app requirements.'
   id: totrans-5
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '**定义个人教练需求**：因为我们在本章构建一个新应用程序，所以我们从定义应用程序需求开始。'
 - en: '**Defining the Personal Trainer model**: Any app design starts with defining
     its model. We define the model for *Personal Trainer*, which is similar to the
     *7 Minute Workout* app built earlier.'
@@ -43,6 +51,7 @@
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '**定义个人教练模型**：任何应用程序设计都始于定义其模型。我们定义了 *个人教练* 的模型，它与之前构建的 *7分钟健身* 应用程序类似。'
 - en: '**Defining the Personal Trainer layout and navigation**: We define the layout,
     navigation patterns, and views for the new app. We also set up a navigation system
     that is integrated with Angular routes and the main view.'
@@ -50,6 +59,7 @@
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '**定义个人教练布局和导航**：我们为新应用程序定义布局、导航模式和视图。我们还设置了与 Angular 路由和主视图集成的导航系统。'
 - en: '**Adding support pages**: Before we focus on the form capability and build
     a Workout component, we build some supporting components for workout and exercise
     listing.'
@@ -57,12 +67,14 @@
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '**添加支持页面**：在我们专注于表单功能并构建健身组件之前，我们要构建一些用于健身和锻炼列表的支持组件。'
 - en: '**Defining the Workout Builder component structure**: We lay out the Workout
     Builder components that we will use to manage workouts.'
   id: totrans-9
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '**定义健身构建器组件结构**：我们布置了健身构建器组件，我们将用它来管理健身。'
 - en: '**Building forms**: We make extensive use of HTML forms and input elements
     to create custom workouts. In the process, we will learn more about Angular Forms.
     The concepts that we cover include:'
@@ -70,6 +82,7 @@
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '**构建表单**：我们广泛使用 HTML 表单和输入元素来创建自定义健身计划。在这个过程中，我们将了解更多关于 Angular 表单的概念。我们将覆盖的概念包括：'
 - en: '**Form types**: The two types of form that can be built with Angular are template-driven
     and reactive. We''re working with both template-driven and reactive forms in this
     chapter.'
@@ -78,6 +91,7 @@
   - PREF_IND
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '**表单类型**：在 Angular 中可以构建的两种表单类型分别是模板驱动型和响应式型。本章我们将使用这两种类型的表单。'
 - en: '**ngModel**: This provides two-way data binding for template driven forms and
     allows us to track changes and validate form input.'
   id: totrans-12
@@ -85,6 +99,7 @@
   - PREF_IND
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '**ngModel**：这为模板驱动表单提供了双向数据绑定，允许我们跟踪更改并验证表单输入。'
 - en: '**Reactive Form Controls**: These include the form builder, form control, form
     group, and form array. These are used to construct forms programmatically.'
   id: totrans-13
@@ -92,6 +107,7 @@
   - PREF_IND
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '**响应式表单控件**：这些包括表单构建器、表单控件、表单组和表单数组。这些用于以编程方式构建表单。'
 - en: '**Data formatting**: These are the CSS classes that permit us to style our
     feedback to the user.'
   id: totrans-14
@@ -99,6 +115,7 @@
   - PREF_IND
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '**数据格式化**：这些是允许我们对用户的反馈进行样式化的 CSS 类。'
 - en: '**Input validation**: We will learn about the validation capabilities of Angular
     forms.'
   id: totrans-15
@@ -106,27 +123,32 @@
   - PREF_IND
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '**输入验证**：我们将了解 Angular 表单的验证能力。'
 - en: Personal Trainer requirements
   id: totrans-16
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 个人教练需求
 - en: 'Based on the notion of managing workouts and exercises, these are some of the
     requirements that our *Personal Trainer* app should fulfill:'
   id: totrans-17
   prefs: []
   type: TYPE_NORMAL
+  zh: 基于管理训练和练习的概念，这是我们的*个人教练*应用程序应该满足的一些要求：
 - en: The ability to list all available workouts.
   id: totrans-18
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 列出所有可用的训练的能力。
 - en: 'The ability to create and edit a workout. While creating and editing a workout,
     it should have:'
   id: totrans-19
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '**创建和编辑训练**的能力。在创建和编辑训练时，它应包括：'
 - en: The ability to add workout attributes including name, title, description, and
     rest duration
   id: totrans-20
@@ -134,35 +156,41 @@
   - PREF_IND
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 为训练添加名称、标题、描述和休息时间等训练属性的能力
 - en: The ability to add/remove multiple exercises for workouts
   id: totrans-21
   prefs:
   - PREF_IND
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 为训练添加/移除多个练习的能力
 - en: The ability to order exercises in the workout
   id: totrans-22
   prefs:
   - PREF_IND
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 对训练中的练习进行排序的能力
 - en: The ability to save workout data
   id: totrans-23
   prefs:
   - PREF_IND
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '**保存训练数据**的能力'
 - en: The ability to list all available exercises.
   id: totrans-24
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 列出所有可用的练习的能力。
 - en: 'The ability to create and edit an exercise. While creating and editing an exercise,
     it should have:'
   id: totrans-25
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '**创建和编辑练习**的能力。在创建和编辑练习时，它应包括：'
 - en: The ability to add exercise attributes such as name, title, description, and
     procedure
   id: totrans-26
@@ -170,40 +198,47 @@
   - PREF_IND
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 能够添加诸如名称、标题、描述和程序之类的练习属性
 - en: The ability to add pictures for the exercise
   id: totrans-27
   prefs:
   - PREF_IND
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 为练习添加图片的能力
 - en: The ability to add related videos for the exercise
   id: totrans-28
   prefs:
   - PREF_IND
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 为练习添加相关视频的能力
 - en: The ability to add audio clues for the exercise
   id: totrans-29
   prefs:
   - PREF_IND
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 为练习添加**音频提示**的能力
 - en: All the requirements seem to be self-explanatory, so let's start with the design
     of the application. As customary, we first need to think about the model that
     can support these requirements.
   id: totrans-30
   prefs: []
   type: TYPE_NORMAL
+  zh: 所有要求似乎都很简单明了，所以让我们先从应用程序的设计开始。依照惯例，我们首先需要考虑能够支持这些要求的模型。
 - en: Getting started with the code for Personal Trainer
   id: totrans-31
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 开始使用个人教练的代码
 - en: First, download the base version of the new *Personal Trainer* app from `checkpoint4.1`
     in the GitHub repository for the book.
   id: totrans-32
   prefs: []
   type: TYPE_NORMAL
+  zh: 首先，从GitHub仓库中的`checkpoint4.1`下载新*个人教练*应用程序的基本版本。
 - en: 'The code is available on GitHub [https://github.com/chandermani/angular6byexample](https://github.com/chandermani/angular6byexample)
     for everyone to download. Checkpoints are implemented as branches in GitHub. The
     branch to download is as follows: `GitHub Branch: checkpoint4.1`. If you are not
@@ -214,49 +249,60 @@
   id: totrans-33
   prefs: []
   type: TYPE_NORMAL
+  zh: '该代码可在GitHub [https://github.com/chandermani/angular6byexample](https://github.com/chandermani/angular6byexample)
+    上下载。检查点在GitHub中作为分支实现。要下载的分支如下：`GitHub Branch: checkpoint4.1`。如果您未使用Git，请从以下GitHub位置下载Checkpoint
+    4.1的快照（ZIP文件）：[https://github.com/chandermani/angular6byexample/archive/checkpoint4.1.zip](https://github.com/chandermani/angular6byexample/archive/checkpoint4.1.zip)。首次设置快照时，请参考`trainer`文件夹中的`README.md`文件。'
 - en: 'This code has the complete *7 Minute Workout (Workout Runner)* app. We have
     added some more content to support the new *Personal Trainer* app. Some of the
     relevant updates are:'
   id: totrans-34
   prefs: []
   type: TYPE_NORMAL
+  zh: 这个代码包含完整的*7分钟训练（训练运行器）*应用程序。我们添加了一些内容来支持新的*个人教练*应用程序。一些相关的更新包括：
 - en: Adding the new `WorkoutBuilder` feature. This feature contains implementations
     pertaining to *Personal Trainer*.
   id: totrans-35
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 添加新的`WorkoutBuilder`功能。此功能包含与*个人教练*相关的实现。
 - en: Updating the layout and styles of the app.
   id: totrans-36
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 更新应用程序的布局和样式。
 - en: Adding some components and HTML templates with placeholder content for *Personal
     Trainer* in the `workout-builder` folder under `trainer/src/app`.
   id: totrans-37
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 在`trainer/src/app`的`workout-builder`文件夹下为*个人教练*添加一些组件和带有占位内容的HTML模板。
 - en: Defining a new route to the `WorkoutBuilder` feature. We will cover setting
     up this route within the app in the coming section.
   id: totrans-38
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 定义到`WorkoutBuilder`功能的新路由。我们将在接下来的部分介绍如何在应用程序中设置这个路由。
 - en: As we just mentioned, moving the existing  `model.ts` file into the `core` folder.
   id: totrans-39
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 正如我们刚才提到的，将现有的`model.ts`文件移动到`core`文件夹中。
 - en: Let's discuss how we will be using the model.
   id: totrans-40
   prefs: []
   type: TYPE_NORMAL
+  zh: 让我们讨论一下我们将如何使用这个模型。
 - en: Using the Personal Trainer model in Workout Builder services
   id: totrans-41
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 在Workout Builder服务中使用个人教练模型
 - en: Services are useful for sharing data across controllers and other Angular constructs.
     Open the `model.ts` file present in the `core` folder under `app`. In this class,
     we essentially do not have any data, but a blueprint that describes the shape
@@ -402,25 +448,30 @@
   id: totrans-63
   prefs: []
   type: TYPE_TB
+  zh: '| `/builder/exercises` | 这列出所有可用的练习 |'
 - en: '| `/builder/exercise/new` | This creates a new exercise |'
   id: totrans-64
   prefs: []
   type: TYPE_TB
+  zh: '| `/builder/exercise/new` | 这创建一个新的练习 |'
 - en: '| `/builder/exercise/:id` | This edits an existing exercise with the specific
     ID |'
   id: totrans-65
   prefs: []
   type: TYPE_TB
+  zh: '| `/builder/exercise/:id` | 这将使用特定ID编辑现有练习 |'
 - en: Getting started with Personal Trainer navigation
   id: totrans-66
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 开始使用个人健身教练导航
 - en: At this point, if you look at the route configuration in `app-routing.module.ts`
     in the `src/app` folder, you will find one new route definition, `builder`**:**
   id: totrans-67
   prefs: []
   type: TYPE_NORMAL
+  zh: 此时，如果您查看`app-routing.module.ts`中的路由配置，您将在`src/app`文件夹中找到一个新的路由定义，`builder`**：**
 - en: '[PRE0]'
   id: totrans-68
   prefs: []
@@ -431,14 +482,17 @@
   id: totrans-69
   prefs: []
   type: TYPE_NORMAL
+  zh: 如果您运行应用程序，您会发现起始屏幕显示另一个链接，创建一个锻炼：
 - en: '![](img/91aeb5b5-d0e6-4423-b679-0dd4c8b1d79f.png)'
   id: totrans-70
   prefs: []
   type: TYPE_IMG
+  zh: '![图片](img/91aeb5b5-d0e6-4423-b679-0dd4c8b1d79f.png)'
 - en: 'Behind the scenes, we have added another router link for this link into `start.component.html`:'
   id: totrans-71
   prefs: []
   type: TYPE_NORMAL
+  zh: 幕后，我们已将另一个路由链接添加到`start.component.html`中的此链接中：
 - en: '[PRE1]'
   id: totrans-72
   prefs: []
@@ -448,15 +502,18 @@
   id: totrans-73
   prefs: []
   type: TYPE_NORMAL
+  zh: 如果你点击这个链接，你将进入以下视图：
 - en: '![](img/c4bb197b-3abd-4895-be6c-ced456c6b230.png)'
   id: totrans-74
   prefs: []
   type: TYPE_IMG
+  zh: '![图片](img/c4bb197b-3abd-4895-be6c-ced456c6b230.png)'
 - en: 'Again, behind the scenes we have added  `workout-builder.component.ts` to the
     `trainer/src/app/workout-builder` folder with the following inline template:'
   id: totrans-75
   prefs: []
   type: TYPE_NORMAL
+  zh: 同样，在幕后，我们已将`workout-builder.component.ts`添加到`trainer/src/app/workout-builder`文件夹，并包含以下内联模板：
 - en: '[PRE2]'
   id: totrans-76
   prefs: []
@@ -467,6 +524,7 @@
   id: totrans-77
   prefs: []
   type: TYPE_NORMAL
+  zh: 并且这个视图在屏幕上显示在我们的`app.component.html`模板中使用的路由器插座下的标题下：
 - en: '[PRE3]'
   id: totrans-78
   prefs: []
@@ -477,6 +535,7 @@
   id: totrans-79
   prefs: []
   type: TYPE_NORMAL
+  zh: 我们已将此组件（以及我们为此功能生成的其他文件）包装在名为`workout-builder.module.ts`的新模块中：
 - en: '[PRE4]'
   id: totrans-80
   prefs: []
@@ -489,10 +548,12 @@
   id: totrans-81
   prefs: []
   type: TYPE_NORMAL
+  zh: 这里可能与我们创建的其他模块有所不同的是，我们导入的是`CommonModule`而不是`BrowserModule`。这样避免了第二次导入整个`BrowserModule`，这会在实现此模块的延迟加载时产生错误。
 - en: 'Finally, we have added an import for this module to `app.module.ts`:'
   id: totrans-82
   prefs: []
   type: TYPE_NORMAL
+  zh: 最后，我们已向`app.module.ts`添加了此模块的导入：
 - en: '[PRE5]'
   id: totrans-83
   prefs: []
@@ -505,6 +566,7 @@
   id: totrans-84
   prefs: []
   type: TYPE_NORMAL
+  zh: 所以，没有什么新奇的地方。根据这些模式，我们现在应该开始考虑为我们的新功能添加先前概述的附加导航。然而，在我们着手进行之前，有一些事情我们需要考虑。
 - en: First, if we start adding our routes to the `app.routing-module.ts` file, then
     the number of routes stored there will grow. These new routes for *Workout Builder*
     will also be intermixed with the routes for *Workout Runner***.** While the number
@@ -513,6 +575,8 @@
   id: totrans-85
   prefs: []
   type: TYPE_NORMAL
+  zh: 首先，如果我们开始将我们的路由添加到`app.routing-module.ts`文件中，那么存储在那里的路由数量将增加。这些用于*Workout Builder*的新路由也将与*Workout
+    Runner*的路由混合在一起。虽然我们现在添加的路由数量可能看起来微不足道，但随着时间的推移，这可能成为一个维护问题。
 - en: Second, we need to take into consideration that our application now consists
     of two features—*Workout Runner* and *Workout Builder*. We should be thinking
     about ways to separate these features within our application so that they can
@@ -520,6 +584,7 @@
   id: totrans-86
   prefs: []
   type: TYPE_NORMAL
+  zh: 其次，我们需要考虑到我们的应用程序现在由两个功能组成——*Workout Runner*和*Workout Builder*。我们应该考虑如何在应用程序中分离这些功能，以便它们可以独立开发。
 - en: Put differently, we want **loose coupling** between the features that we build.
     Using this pattern allows us to swap out a feature within our application without
     affecting the other features. For example, somewhere down the line, we may want
@@ -528,6 +593,8 @@
   id: totrans-87
   prefs: []
   type: TYPE_NORMAL
+  zh: 换句话说，我们希望我们构建的功能之间具有**松耦合**。使用这种模式可以让我们在应用程序中替换功能而不影响其他功能。例如，远期，我们可能希望将*Workout
+    Runner*转换为移动应用程序，但保留*Workout Builder*作为基于Web的应用程序。
 - en: This ability to separate our components from each other is one of the key advantages
     of using the **component design pattern** that Angular implements. Fortunately,
     Angular's router gives us the ability to separate out our routing into logically
@@ -1562,6 +1629,7 @@
   id: totrans-230
   prefs: []
   type: TYPE_NORMAL
+  zh: 我们正在使用Angular核心指令之一，`ngFor`，来循环遍历锻炼计划列表并在页面上以列表形式显示它们。我们在`ngFor`前面添加`*`号来标识它为Angular指令。使用`let`语句，我们将`workout`分配为一个本地变量，我们用它来遍历锻炼计划列表并识别每个锻炼计划要显示的值（例如`workout.title`）。然后，我们使用我们的自定义管道之一，`orderBy`，以按标题字母顺序显示锻炼计划列表。我们还使用另一个自定义管道，`secondsToTime`，来格式化显示总锻炼计划持续时间的时间。
 - en: If you are coding along with us, you will need to move the `secondsToTime` pipe
     into the shared folder and include it in the `SharedModule`. Then, add `SharedModule`
     to `WorkoutBuilderModule` as an additional import. That change has already been
@@ -1569,11 +1637,14 @@
   id: totrans-231
   prefs: []
   type: TYPE_NORMAL
+  zh: 如果您正在与我们一起编码，您将需要将`secondsToTime`管道移动到共享文件夹中，并将其包含在`SharedModule`中。然后，将`SharedModule`添加到`WorkoutBuilderModule`作为额外的导入。这个更改已经在GitHub存储库的`checkpoint
+    4.4`中进行了。
 - en: 'Finally, we bind the click event to the following `onSelect` method that we
     add to our component:'
   id: totrans-232
   prefs: []
   type: TYPE_NORMAL
+  zh: 最后，我们将点击事件绑定到以下`onSelect`方法，我们将其添加到我们的组件中：
 - en: '[PRE25]'
   id: totrans-233
   prefs: []
@@ -1585,6 +1656,7 @@
   id: totrans-234
   prefs: []
   type: TYPE_NORMAL
+  zh: 这将设置导航到锻炼计划详情页面。当我们点击锻炼计划列表中的项目时，导航将发生。所选锻炼计划名称作为路由`/URL`的一部分传递到锻炼计划详情页面。
 - en: 'Go ahead and refresh the builder page (`/builder/workouts`); one workout is
     listed, the 7 Minute Workout. Click on the tile for that workout. You''ll be taken
     to the Workout screen and the workout name, `7MinWorkout`, will appear at the
@@ -1592,19 +1664,23 @@
   id: totrans-235
   prefs: []
   type: TYPE_NORMAL
+  zh: 请继续刷新构建器页面（`/builder/workouts`）；显示一个锻炼计划，即7分钟锻炼。点击该锻炼计划的瓷砖。您将被带到锻炼屏幕，锻炼计划名称`7MinWorkout`将出现在URL末尾：
 - en: '![](img/52e68978-023c-4c2a-baaa-3bdc273eb151.png)'
   id: totrans-236
   prefs: []
   type: TYPE_IMG
+  zh: '![](img/52e68978-023c-4c2a-baaa-3bdc273eb151.png)'
 - en: The Workout screen
   id: totrans-237
   prefs: []
   type: TYPE_NORMAL
+  zh: 锻炼计划屏幕
 - en: Exercises list views
   id: totrans-238
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 锻炼计划列表视图
 - en: 'We are going to follow the same approach for the `Exercises` list view as we
     did for the `Workouts` list view, except that in this case, we will actually be
     implementing two views: one for the `Exercises` component (which will display
@@ -1614,6 +1690,7 @@
   id: totrans-239
   prefs: []
   type: TYPE_NORMAL
+  zh: 对于`锻炼`列表视图，我们将按照与`锻炼计划`列表视图相同的方式进行操作，只是在这种情况下，我们实际上将实现两个视图：一个用于`锻炼`组件（当用户导航到该组件时将显示在主内容区域中），另一个是用于`LeftNavExercisesComponent`锻炼上下文菜单（当用户导航到`锻炼计划`组件以创建或编辑锻炼计划时将显示）。
 - en: For the `Exercises` component, we will follow an approach that is almost identical
     to what we did to display a list of workouts in the `Workouts` component. So,
     we won't show that code here. Just add the files for `exercises.component.ts`
@@ -1621,11 +1698,14 @@
   id: totrans-240
   prefs: []
   type: TYPE_NORMAL
+  zh: 对于`锻炼`组件，我们将遵循几乎与在`锻炼计划`组件中显示锻炼计划列表相同的方法。所以，我们不会在这里显示那些代码。只需添加来自`checkpoint
+    4.4`的`exercises.component.ts`和`exercises.component.html`文件。
 - en: When you are done copying the files, click on the Exercises link in the left
     navigation to load the 12 exercises that you have already configured in `WorkoutService`.
   id: totrans-241
   prefs: []
   type: TYPE_NORMAL
+  zh: 复制文件完成后，请点击左侧导航中的`锻炼`链接，以加载您在`WorkoutService`中已经配置的12个锻炼计划。
 - en: As with the `Workouts` list, this sets up the navigation to the exercise detail
     page. Clicking on an item in the exercises list takes us to the exercise detail
     page. The selected exercise name is passed as part of the route`/URL` to the exercise
@@ -1633,6 +1713,7 @@
   id: totrans-242
   prefs: []
   type: TYPE_NORMAL
+  zh: 针对`锻炼计划`列表，这将设置导航到锻炼计划详情页面。在锻炼计划列表中点击项目会带我们到锻炼计划详情页面。所选锻炼计划名称作为路由`/URL`的一部分传递到锻炼计划详情页面。
 - en: In the final list view, we will add a list of exercises that will display in
     the left context menu for the *Workout Builder* screen. This view is loaded in
     the left navigation when we create or edit a workout. Using Angular's component-based
@@ -2210,11 +2291,13 @@
   id: totrans-319
   prefs: []
   type: TYPE_NORMAL
+  zh: 现在我们已经建立了将我们带到“训练”组件的路由，让我们转向完成它的实现。因此，从“checkpoint 4.5”下的“trainer/src/app/workout-builder/workout”文件夹中复制`workout.component.ts`文件。（同时，从“workout-builder”文件夹中复制`workout-builder.module.ts`文件。当我们到达Angular表单时，我们将稍后讨论对该文件的更改。）
 - en: 'Open `workout.component.ts` and you''ll see that we have added a constructor
     that injects `ActivatedRoute` and `WorkoutBuilderService`:'
   id: totrans-320
   prefs: []
   type: TYPE_NORMAL
+  zh: 打开`workout.component.ts`，你会看到我们已经添加了一个注入`ActivatedRoute`和`WorkoutBuilderService`的构造函数：
 - en: '[PRE35]'
   id: totrans-321
   prefs: []
@@ -2224,6 +2307,7 @@
   id: totrans-322
   prefs: []
   type: TYPE_NORMAL
+  zh: 此外，我们添加了以下`ngOnInit`方法：
 - en: '[PRE36]'
   id: totrans-323
   prefs: []
@@ -2235,6 +2319,7 @@
   id: totrans-324
   prefs: []
   type: TYPE_NORMAL
+  zh: 该方法订阅了`route`并从`route.data`中提取了`workout`。没有必要检查训练是否存在，因为我们在“训练解析器”中已经做过了。
 - en: We are subscribing to the `route.data` because as an `ActivatedRoute`, the `route`
     exposes its `data` as an  `Observable`, which can change during the lifetime of
     the component. This gives us the ability to reuse the same component instance
@@ -2244,6 +2329,7 @@
   id: totrans-325
   prefs: []
   type: TYPE_NORMAL
+  zh: 我们订阅`route.data`，因为作为“ActivatedRoute”，`route`将其`data`公开为一个`Observable`，在组件的生命周期内可以随时改变。这给了我们能力在同一组件实例中使用不同的参数，即使该组件的`OnInit`生命周期事件只被调用一次。我们将在下一章节详细介绍`Observables`。
 - en: In addition to this code, we have also added a series of methods to the `Workout
     Component` for adding, removing,  and moving a workout. These methods all call
     corresponding methods on the `WorkoutBuilderService` and we will not review them
@@ -2252,16 +2338,19 @@
   id: totrans-326
   prefs: []
   type: TYPE_NORMAL
+  zh: 除了这段代码外，我们还为“训练组件”添加了一系列方法，用于添加、删除和移动训练。这些方法都调用了“训练生成器服务”上的相应方法，我们将不在这里详细审查它们。我们还添加了一个“持续时间”数组用于填充持续时间下拉列表。
 - en: For now, this is enough for the **component** class implementation. Let's update
     the associated `Workout` template.
   id: totrans-327
   prefs: []
   type: TYPE_NORMAL
+  zh: 目前，这就足够了**组件**类的实现。让我们更新相关的“训练”模板。
 - en: Implementing the Workout template
   id: totrans-328
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 实现训练模板
 - en: Now, copy the `workout.component.html` files from the `workout-builder/workout`
     folder under `trainer/src/app` in `checkpoint 4.5`. Run the app, navigate to `/builder/workouts`,
     and double-click on the *7 Minute Workout* tile. This should load the *7 Minute
@@ -2270,37 +2359,44 @@
   id: totrans-329
   prefs: []
   type: TYPE_NORMAL
+  zh: 现在，从“checkpoint 4.5”下的“trainer/src/app/workout-builder/workout”文件夹中复制`workout.component.html`文件。运行应用程序，导航至“/builder/workouts”，双击“7分钟训练”磁贴。这应该会加载类似于“构建训练”章节开头所示的视图的“7分钟训练”细节。
 - en: 'In the event of any problem, you can refer to the `checkpoint4.5` code in the
     `GitHub repository: Branch: checkpoint4.5` (folder - `trainer`).'
   id: totrans-330
   prefs: []
   type: TYPE_NORMAL
+  zh: 在出现任何问题的情况下，您可以参考“GitHub仓库：分支：checkpoint4.5”中的“checkpoint4.5”代码（文件夹-`trainer`）。
 - en: We will be dedicating a lot of time to this view, so let's understand some specifics
     here.
   id: totrans-331
   prefs: []
   type: TYPE_NORMAL
+  zh: 我们将会在这个视图上花费很多时间，所以让我们在这里了解一些具体内容。
 - en: 'The exercise list div (`id="exercise-list"`) lists the exercises that are part
     of the workout in order. We display them as top-to-bottom tiles in the left part
     of the content area. Functionally, this template has:'
   id: totrans-332
   prefs: []
   type: TYPE_NORMAL
+  zh: 练习列表div（`id="exercise-list"`）按顺序列出组成训练的练习。我们在内容区域的左边以从上到下的形式显示它们。在功能上，这个模板有：
 - en: The Delete button to delete the exercise
   id: totrans-333
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 删除按钮用于删除练习
 - en: Reorder buttons to move the exercise up and down the list, as well as to the
     top and bottom
   id: totrans-334
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 重新排列按钮可以将练习移到列表中的上下位置，以及移到顶部和底部。
 - en: 'We use `ngFor` to iterate over the list of exercises and display them:'
   id: totrans-335
   prefs: []
   type: TYPE_NORMAL
+  zh: 我们使用`ngFor`来遍历练习列表并显示它们：
 - en: '[PRE37]'
   id: totrans-336
   prefs: []
@@ -2642,16 +2738,19 @@
   id: totrans-383
   prefs: []
   type: TYPE_NORMAL
+  zh: 换句话说，如果我们在表单中引用一个模型元素，`ngModel`足够聪明以知道我们要做的是更新该元素（这里是`workout.name`）当用户输入或更改与其绑定的输入字段中的数据时。在幕后，Angular创建了一个类似于我们否则必须自己编写的更新方法。太棒了！这种方法让我们不必编写重复的代码来更新我们的模型。
 - en: Angular supports most of the HTML5 input types, including text, number, select,
     radio, and checkbox. This means binding between a model and any of these input
     types just works out of the box.
   id: totrans-384
   prefs: []
   type: TYPE_NORMAL
+  zh: Angular支持大多数HTML5输入类型，包括文本、数字、选择、单选和复选框。这意味着模型和任何这些输入类型之间的绑定都可以直接使用。
 - en: 'The `textarea` element works the same as the input:'
   id: totrans-385
   prefs: []
   type: TYPE_NORMAL
+  zh: '`textarea`元素与输入框的用法相同：'
 - en: '[PRE44]'
   id: totrans-386
   prefs: []
@@ -2663,12 +2762,14 @@
   id: totrans-387
   prefs: []
   type: TYPE_NORMAL
+  zh: 在这里，我们将`textarea`绑定到`workout.description`。在幕后，`ngModel`会根据我们在文本区域中键入的内容每次改变都更新我们模型中的workout描述。
 - en: 'To test out how this works, why don''t we verify this binding? Add a model
     interpolation expression at the end of any of the linked inputs, such as this
     one:'
   id: totrans-388
   prefs: []
   type: TYPE_NORMAL
+  zh: 要测试这是如何工作的，为什么不验证一下这个绑定？在任何一个链接的输入框的末尾添加一个模型插值表达式，比如这样一个：
 - en: '[PRE45]'
   id: totrans-389
   prefs: []
@@ -2679,19 +2780,23 @@
   id: totrans-390
   prefs: []
   type: TYPE_NORMAL
+  zh: 打开Workout页面，在输入框中输入一些内容，看看插值是如何立即更新的。双向绑定的神奇！
 - en: '![](img/f8286d8e-bfb3-44e6-a448-771693aa1e64.png)'
   id: totrans-391
   prefs: []
   type: TYPE_IMG
+  zh: '![](img/f8286d8e-bfb3-44e6-a448-771693aa1e64.png)'
 - en: Using ngModel with select
   id: totrans-392
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 使用ngModel与select
 - en: 'Let''s look at how `select` has been set up:'
   id: totrans-393
   prefs: []
   type: TYPE_NORMAL
+  zh: 让我们来看一下`select`是如何设置的：
 - en: '[PRE46]'
   id: totrans-394
   prefs: []
@@ -2702,6 +2807,7 @@
   id: totrans-395
   prefs: []
   type: TYPE_NORMAL
+  zh: 我们在这里使用`ngFor`绑定到一个数组，`durations`，它在`Workout`组件类中。数组的结构如下：
 - en: '[PRE47]'
   id: totrans-396
   prefs: []
@@ -2714,6 +2820,7 @@
   id: totrans-397
   prefs: []
   type: TYPE_NORMAL
+  zh: '`ngFor`组件将循环数组，并使用插值将下拉框的值与数组中相应的值填充，每个项目的标题使用插值显示，`{{duration.title}}`。 然后`[(ngModel)]`将下拉选择绑定到模型中的`exercisePlan.duration`。'
 - en: Notice here that we are binding to the nested model: `ExercisePlan`. And, we
     may have multiple exercises to which we will be applying this binding. With that
     being the case, we have to make use of another Angular form directive—`ngModelGroup`—to
@@ -2723,11 +2830,14 @@
   id: totrans-398
   prefs: []
   type: TYPE_NORMAL
+  zh: 注意这里，我们将绑定到嵌套模型：`ExercisePlan`。 可能会有多个练习要应用这个绑定。在这种情况下，我们必须使用另一个Angular表单指令—
+    `ngModelGroup`—来处理这些绑定。`ngModelGroup`将允许我们在我们的模型中创建一个包含在训练中包含的练习列表的嵌套组，并然后循环每个练习来将其持续时间绑定到模型。
 - en: 'To start with, we will add `ngModelGroup` to the div tag that we have created
     within the form to hold our list of exercises:'
   id: totrans-399
   prefs: []
   type: TYPE_NORMAL
+  zh: 首先，我们将在表单中创建的div标签上添加`ngModelGroup`，以保存我们的练习列表：
 - en: '[PRE48]'
   id: totrans-400
   prefs: []
@@ -2739,6 +2849,7 @@
   id: totrans-401
   prefs: []
   type: TYPE_NORMAL
+  zh: 这样就创建了嵌套的练习列表。现在，我们必须处理列表中的单个练习，我们可以在包含每个练习的单独div中添加另一个`ngModelGroup`来做到这一点：
 - en: '[PRE49]'
   id: totrans-402
   prefs: []
@@ -2752,6 +2863,8 @@
   id: totrans-403
   prefs: []
   type: TYPE_NORMAL
+  zh: 在这里，我们使用循环的索引动态创建每个练习的单独模型组。这些模型组将嵌套在我们创建的第一个模型组中。临时地，在表单的底部添加标签`<pre>{{ f.value
+    | json }}</pre>`，就可以看到这个嵌套模型的结构：
 - en: '[PRE50]'
   id: totrans-404
   prefs: []
@@ -3060,11 +3173,13 @@
   id: totrans-451
   prefs: []
   type: TYPE_NORMAL
+  zh: 在为`input`字段添加了`ngModel`和`required`属性的本地变量引用之后，我们已经能够看到`ngModel`如何跟踪这些控件的状态变化以及如何切换CSS样式。
 - en: Displaying appropriate validation messages
   id: totrans-452
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 显示适当的验证消息
 - en: Now, the input needs to have a value; otherwise, the validation fails. But,
     how can we know if the validation has failed? `ngModel` comes to our rescue here.
     It can provide the validation state of the particular input. And that gives us
@@ -3072,11 +3187,13 @@
   id: totrans-453
   prefs: []
   type: TYPE_NORMAL
+  zh: 现在，输入必须有值，否则验证将失败。但是，我们如何知道验证是否失败呢？`ngModel`在这里来拯救我们。它可以提供特定输入的验证状态。这就给了我们显示适当验证消息所需的信息。
 - en: 'Let''s go back to the input control for the Workout name. In order to get a
     validation message to display, we have to first modify the input tag to the following:'
   id: totrans-454
   prefs: []
   type: TYPE_NORMAL
+  zh: '让我们回到训练计划名称的输入控件。为了显示验证消息,我们必须先修改输入标签如下:'
 - en: '[PRE55]'
   id: totrans-455
   prefs: []
@@ -3088,6 +3205,7 @@
   id: totrans-456
   prefs: []
   type: TYPE_NORMAL
+  zh: '我们添加了一个名为`#name`的本地变量,并将`ngModel`分配给它。这被称为模板引用变量,我们可以使用以下标签来显示输入的验证消息:'
 - en: '[PRE56]'
   id: totrans-457
   prefs: []
@@ -3101,6 +3219,7 @@
   id: totrans-458
   prefs: []
   type: TYPE_NORMAL
+  zh: 当未提供名称并且控件已被触摸时，我们会显示验证消息。为了检查第一个条件，我们检索控件的`hasError`属性并查看错误类型是否为`required`。我们检查名称输入是否已被`touched`，因为我们不希望在表单首次加载新训练计划时显示消息。
 - en: You will notice that we are using a somewhat more verbose style to identify
     validation errors than is required in this situation. Instead of `name.control.hasError('required')`,
     we could have used `!name. valid` and it would have worked perfectly fine. However,
@@ -3111,55 +3230,66 @@
   id: totrans-459
   prefs: []
   type: TYPE_NORMAL
+  zh: 你会注意到，我们使用了一种相对冗长的方式来识别验证错误，而不是简单地使用`!name.valid`。这种方法允许我们以更具体的方式识别验证错误，这在我们开始为表单控件添加多个验证器时将非常重要。我们将在本章稍后讨论使用多个验证器。为了保持一致性，我们将坚持使用这种更冗长的方法。
 - en: 'Load the new Workout page (`/builder/workouts/new`) now. Enter a value in the
     name input box and then delete it. The error label appears as shown in the following
     screenshot:'
   id: totrans-460
   prefs: []
   type: TYPE_NORMAL
+  zh: 现在加载新的训练计划页面(`/builder/workouts/new`)。在名称输入框中输入一个值,然后删除它。错误标签会像下面的截图所示的那样显示出来。
 - en: '![](img/a29cbdcd-9184-49cb-9e78-ab45b6605d97.png)'
   id: totrans-461
   prefs: []
   type: TYPE_IMG
+  zh: '![](img/a29cbdcd-9184-49cb-9e78-ab45b6605d97.png)'
 - en: Adding more validation
   id: totrans-462
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 添加更多验证
 - en: 'Angular provides several out-of-the-box validators, including:'
   id: totrans-463
   prefs: []
   type: TYPE_NORMAL
+  zh: Angular提供了几个现成的验证器，包括：
 - en: '`required`'
   id: totrans-464
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '`required`'
 - en: '`minLength`'
   id: totrans-465
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '`minLength`'
 - en: '`maxLength`'
   id: totrans-466
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '`maxLength`'
 - en: '`email`'
   id: totrans-467
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '`email`'
 - en: '`pattern`'
   id: totrans-468
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '`pattern`'
 - en: For the complete list of out-of-the box validators, see the documentation for
     the `Validators` class at [https://angular.io/api/forms/Validators.](https://angular.io/api/forms/Validators)
   id: totrans-469
   prefs: []
   type: TYPE_NORMAL
+  zh: 有关现成验证器的完整列表，请参阅[https://angular.io/api/forms/Validators](https://angular.io/api/forms/Validators)中`Validators`类的文档。
 - en: 'We''ve seen how the `required` validator works. Now, let''s look at two of
     the other out-of-the-box validators: `minLength` and `maxLength`. In addition
     to making it required, we want the title of the workout to be between 5 and 20
@@ -3167,12 +3297,14 @@
   id: totrans-470
   prefs: []
   type: TYPE_NORMAL
+  zh: 我们已经看到了`required`验证器的工作原理。现在,让我们看看另外两个现成的验证器:`minLength`和`maxLength`。除了将其设为必填项外，我们还希望训练计划的标题长度在5到20个字符之间（我们稍后将介绍`pattern`验证器）。
 - en: 'So, in addition to the `required` attribute we added previously to the title
     input box, we will add the `minLength` attribute and set it to `5`, and add the
     `maxLength` attribute and set it to `20`, like so:'
   id: totrans-471
   prefs: []
   type: TYPE_NORMAL
+  zh: 除了之前添加到标题输入框的`required`属性外，我们还将添加`minLength`属性并将其设置为`5`，并添加`maxLength`属性并将其设置为`20`。
 - en: '[PRE57]'
   id: totrans-472
   prefs: []
@@ -3314,6 +3446,7 @@
   id: totrans-492
   prefs: []
   type: TYPE_NORMAL
+  zh: 实现刚刚进行的自定义验证通常不是您经常想要做的事情。相反，通常更合理的做法是在自定义指令内部实现这种复杂逻辑。我们将在[第4章](c3725f08-81b4-4bd5-a50f-6173510dd9c6.xhtml)的*深入理解Angular指令*中详细介绍创建自定义指令。
 - en: One nuisance with our newly implemented `Exercise Count` validation is that
     it shows when the screen for a new `Workout` first appears. With this message,
     we are not able to use `ng-touched` to hide the display. This is because the exercises
@@ -3322,6 +3455,7 @@
   id: totrans-493
   prefs: []
   type: TYPE_NORMAL
+  zh: 我们新实现的`Exercise Count`验证的一个讨厌之处是，在新的`Workout`屏幕首次出现时就会显示。使用这个消息，我们无法使用`ng-touched`来隐藏显示。因为练习是以程序方式添加的，并且我们使用来跟踪其数量的隐藏输入在练习被添加或删除时从未改变为已接触的状态。
 - en: 'To fix this problem, we need an additional value to check when the state of
     the exercise list has been reduced to zero, except when the form is first loaded.
     The only way that situation can happen is if the user adds and then removes exercises
@@ -3331,6 +3465,7 @@
   id: totrans-494
   prefs: []
   type: TYPE_NORMAL
+  zh: 要解决这个问题，我们需要一个额外的值来检查练习列表的状态何时减少到零，除非表单是第一次加载。这种情况发生的唯一方式是用户添加然后从锻炼中删除练习，直到没有更多的练习为止。因此，我们将向组件添加另一个属性，用于跟踪删除方法是否已被调用。我们称这个值为`removeTouched`并设置其初始值为`false`：
 - en: '[PRE63]'
   id: totrans-495
   prefs: []
@@ -3340,6 +3475,7 @@
   id: totrans-496
   prefs: []
   type: TYPE_NORMAL
+  zh: 然后，在删除方法中，我们将该值设置为`true`：
 - en: '[PRE64]'
   id: totrans-497
   prefs: []
@@ -3350,6 +3486,7 @@
   id: totrans-498
   prefs: []
   type: TYPE_NORMAL
+  zh: 接下来，我们将将`removeTouched`添加到我们的验证消息条件中，如下所示：
 - en: '[PRE65]'
   id: totrans-499
   prefs: []
@@ -3360,26 +3497,31 @@
   id: totrans-500
   prefs: []
   type: TYPE_NORMAL
+  zh: 现在，当我们打开一个新的锻炼屏幕时，验证消息将不会显示。但是，如果用户添加然后删除所有练习，那么它将显示。
 - en: To understand how model validation rolls up into form validation, we need to
     understand what form-level validation has to offer. However, even before that,
     we need to implement saving the workout and calling it from the workout form.
   id: totrans-501
   prefs: []
   type: TYPE_NORMAL
+  zh: 要理解模型验证如何转化为表单验证，我们需要了解表单级别验证提供了什么。但是，即使在那之前，我们也需要实现保存锻炼并从锻炼表单中调用它。
 - en: Saving the workout
   id: totrans-502
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 保存锻炼
 - en: The workout that we are building needs to be persisted (in-memory only). The
     first thing that we need to do is extend `WorkoutService` and `WorkoutBuilderService`.
   id: totrans-503
   prefs: []
   type: TYPE_NORMAL
+  zh: 我们正在构建的锻炼需要被持久化（仅内存中）。我们需要做的第一件事就是扩展`WorkoutService`和`WorkoutBuilderService`。
 - en: '`WorkoutService` needs two new methods, `addWorkout` and `updateWorkout`:'
   id: totrans-504
   prefs: []
   type: TYPE_NORMAL
+  zh: '`WorkoutService`需要两个新方法，`addWorkout`和`updateWorkout`：'
 - en: '[PRE66]'
   id: totrans-505
   prefs: []
@@ -3392,16 +3534,19 @@
   id: totrans-506
   prefs: []
   type: TYPE_NORMAL
+  zh: '`addWorkout`方法对锻炼名称进行基本检查，然后将锻炼推入锻炼数组中。由于没有涉及后备存储，如果刷新页面，数据就会丢失。我们将在下一章中修复这个问题，将数据持久保存到服务器。'
 - en: The `updateWorkout` method looks for a workout with the same name in the existing
     workouts array and if found, updates and replaces it.
   id: totrans-507
   prefs: []
   type: TYPE_NORMAL
+  zh: '`updateWorkout`方法在现有的锻炼数组中查找具有相同名称的锻炼，并在找到时进行更新和替换。'
 - en: 'We only add one save method to `WorkoutBuilderService` as we are already tracking
     the context in which workout construction is going on:'
   id: totrans-508
   prefs: []
   type: TYPE_NORMAL
+  zh: 我们只需要向`WorkoutBuilderService`添加一个保存方法，因为我们已经在追踪进行中的锻炼构建的上下文：
 - en: '[PRE67]'
   id: totrans-509
   prefs: []
@@ -3413,17 +3558,20 @@
   id: totrans-510
   prefs: []
   type: TYPE_NORMAL
+  zh: '`save`方法根据是否正在创建新的锻炼或正在编辑现有的锻炼，在`Workout`服务中调用`addWorkout`或`updateWorkout`。'
 - en: From a service perspective, that should be enough. Time to integrate the ability
     to save workouts into the `Workout` component and learn more about the form directive!
   id: totrans-511
   prefs: []
   type: TYPE_NORMAL
+  zh: 从服务的角度来看，这就足够了。是时候将保存锻炼的能力集成到`Workout`组件中，并了解更多关于表单指令的知识了！
 - en: 'Before we look at `NgForm` in more detail, let''s add the save method to `Workout`
     to save the workout when the `Save` button is clicked on. Add this code to the
     `Workout` component:'
   id: totrans-512
   prefs: []
   type: TYPE_NORMAL
+  zh: 在更详细地查看`NgForm`之前，让我们向`Workout`添加保存方法，以便在单击`保存`按钮时保存训练计划。将以下代码添加到`Workout`组件中：
 - en: '[PRE68]'
   id: totrans-513
   prefs: []
@@ -3434,11 +3582,13 @@
   id: totrans-514
   prefs: []
   type: TYPE_NORMAL
+  zh: 我们使用其invalid属性检查表单的验证状态，如果表单状态有效，则调用`WorkoutBuilderService.save`方法。
 - en: More on NgForm
   id: totrans-515
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: NgForm更多内容
 - en: Forms in Angular have a different role to play as compared to traditional forms
     that post data to the server. If we go back and look again at the form tag, we
     will see that it is missing the standard action attribute. The standard form behavior
@@ -3448,6 +3598,7 @@
   id: totrans-516
   prefs: []
   type: TYPE_NORMAL
+  zh: 在Angular中，与传统的向服务器发送数据的表单相比，表单扮演了不同的角色。如果我们回头再看一下form标签，会发现它缺少标准的action属性。使用Angular等SPA框架时，通过完整页面的回发方式向服务器发送数据不合理。在Angular中，所有服务器请求都是通过起源于指令或服务的异步调用进行的。
 - en: Under the hood, Angular is also turning off the browser's inbuilt validation.
     As you have seen in this chapter, we are still using validation attributes such
     as `required` that look the same as native HTML validation attributes. However,
@@ -3456,22 +3607,27 @@
   id: totrans-517
   prefs: []
   type: TYPE_NORMAL
+  zh: 在幕后，Angular还关闭了浏览器的内置验证。正如您在本章中看到的，我们仍在使用`required`等验证属性，看起来与原生HTML验证属性相同。然而，正如Angular文档所解释的那样，在Angular表单内部，“Angular使用指令将这些属性与框架中的验证器函数匹配。”
+    参见[https://angular.io/guide/form-validation#template-driven-validation](https://angular.io/guide/form-validation#template-driven-validation)。
 - en: 'The form here plays a different role. When the form encapsulates a set of input
     elements (such as input, textarea, and select) it provides an API for:'
   id: totrans-518
   prefs: []
   type: TYPE_NORMAL
+  zh: 这里的表单扮演着不同的角色。当表单封装一组输入元素（如输入、文本框和选择）时，它提供了一个API来：
 - en: Determining the state of the form, such as whether the form is dirty or pristine
     based on the input controls on it
   id: totrans-519
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 根据表单上的输入控件确定表单的状态，例如表单是脏的还是原始的
 - en: Checking validation errors at the form or control level
   id: totrans-520
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 在表单或控制级别检查验证错误
 - en: If you still want the standard form behavior, you can add an `ngNoForm` attribute
     to the `form` element, but this will definitely cause a full-page refresh. You
     can also turn on the browser's inbuilt validation by adding the `ngNativeValidate`
@@ -3480,6 +3636,8 @@
   id: totrans-521
   prefs: []
   type: TYPE_NORMAL
+  zh: 如果您仍希望使用标准表单行为，可以向`form`元素添加`ngNoForm`属性，但这肯定会导致完整页面刷新。您还可以通过添加`ngNativeValidate`属性来开启浏览器的内置验证。在本章后面的部分，当我们看到如何保存表单和实现验证时，我们将更详细地探讨`NgForm`
+    API的具体内容。
 - en: The state of the `FormControl` objects within the form is being monitored by
     `NgForm`. If any of them are invalid, then `NgForm` sets the entire form to invalid.
     In this case, we have been able to use `NgForm` to determine that one or more
@@ -3488,15 +3646,18 @@
   id: totrans-522
   prefs: []
   type: TYPE_NORMAL
+  zh: 表单内FormControl对象的状态由`NgForm`监视。如果其中任何一个无效，那么`NgForm`会将整个表单设置为无效。在这种情况下，我们已经能够使用`NgForm`确定一个或多个`FormControl`对象是无效的，因此整个表单的状态也是无效的。
 - en: Let's look at one more issue before we finish this chapter.
   id: totrans-523
   prefs: []
   type: TYPE_NORMAL
+  zh: 在完成本章节之前，让我们再看一起问题。
 - en: Fixing the saving of forms and validation messages
   id: totrans-524
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 修复表单的保存和验证消息
 - en: 'Open a new Workout page and directly click on the Save button. Nothing is saved
     as the form is invalid, but validations on individual form input do not show up
     at all. It now becomes difficult to know what elements have caused validation
@@ -3505,6 +3666,7 @@
   id: totrans-525
   prefs: []
   type: TYPE_NORMAL
+  zh: 打开一个新的Workout页面，直接点击保存按钮。由于表单无效，什么也没有被保存，但是单个表单输入的验证根本不会显示出来。现在很难知道是哪些元素导致了验证失败。这种行为背后的原因非常明显。如果我们查看名称输入元素的错误消息绑定，会看到以下内容：
 - en: '[PRE69]'
   id: totrans-526
   prefs: []
@@ -3516,6 +3678,7 @@
   id: totrans-527
   prefs: []
   type: TYPE_NORMAL
+  zh: 请记住，在本章的早些时候，我们明确禁用了显示验证消息，直到用户触摸输入控件为止。同样的问题又回来找我们了，我们现在需要修复它。
 - en: 'We do not have a way to explicitly change the touched state of our controls
     to untouched. Instead, we will resort to a little trickery to get the job done.
     We''ll introduce a new property called `submitted`. Add it at the top of the `Workout`
@@ -3523,6 +3686,7 @@
   id: totrans-528
   prefs: []
   type: TYPE_NORMAL
+  zh: 我们没有办法显式地将控件的触摸状态更改为未触摸状态。相反，我们将求助于一点欺诈来完成工作。我们将引入一个名为`submitted`的新属性。将其添加在`Workout`类定义的顶部，并将其初始值设置为`false`，如下所示：
 - en: '[PRE70]'
   id: totrans-529
   prefs: []
@@ -3533,6 +3697,7 @@
   id: totrans-530
   prefs: []
   type: TYPE_NORMAL
+  zh: 当保存按钮被点击时，变量将被设置为`true`。通过添加以下高亮显示的代码来更新保存的实现：
 - en: '[PRE71]'
   id: totrans-531
   prefs: []
@@ -3544,6 +3709,7 @@
   id: totrans-532
   prefs: []
   type: TYPE_NORMAL
+  zh: 然而，这有什么帮助呢？好吧，这个修复的另一个部分需要我们更改我们正在验证的每个控件的错误消息。现在表达式变成了：
 - en: '[PRE72]'
   id: totrans-533
   prefs: []
@@ -3555,20 +3721,24 @@
   id: totrans-534
   prefs: []
   type: TYPE_NORMAL
+  zh: 通过这个修复，当控件被触摸时或表单提交按钮被按下时（`submitted`为`true`），错误消息将被显示。此表达式修复现在必须适用于每个出现检查的验证消息。
 - en: 'If we now open the new Workout page and click on the Save button, we should
     see all validation messages on the input controls:'
   id: totrans-535
   prefs: []
   type: TYPE_NORMAL
+  zh: 如果现在打开新的Workout页面并点击保存按钮，则应该在输入控件上看到所有验证消息：
 - en: '![](img/39735e3a-1907-4f9b-b1c6-b619a72a9c98.png)'
   id: totrans-536
   prefs: []
   type: TYPE_IMG
+  zh: '![](img/39735e3a-1907-4f9b-b1c6-b619a72a9c98.png)'
 - en: Reactive forms
   id: totrans-537
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 响应式表单
 - en: The other type of form that Angular supports is called **reactive** forms. **Reactive
     forms** start with a model that is constructed in a component class. With this
     approach, we use the **form builder API** to create a form in code and associate
@@ -3576,6 +3746,7 @@
   id: totrans-538
   prefs: []
   type: TYPE_NORMAL
+  zh: Angular支持的另一种表单类型称为**响应式**表单。**响应式表单**始于在组件类中构建的模型。通过这种方式，我们使用**表单构建器API**在代码中创建一个表单，并将其与一个模型关联起来。
 - en: Given the minimal code we have to write to get template-driven forms working,
     why and when should we consider using reactive forms? There are several situations
     in which we might want to use them. These include cases where we want to take
@@ -3585,12 +3756,14 @@
   id: totrans-539
   prefs: []
   type: TYPE_NORMAL
+  zh: 给定我们必须编写的最小代码来使模板驱动表单工作，那么为什么以及何时应考虑使用响应式表单呢？有几种情况下，我们可能想要使用它们。这些情况包括我们想要以编程方式控制创建表单的情况。尤其是在我们试图基于从服务器检索到的数据动态创建表单控件时，这是特别有益的，正如我们将看到的那样。
 - en: If our validation gets complicated, it is often easier to handle it in code.
     Using reactive forms, we can keep this complicated logic out of the HTML template,
     making the template syntax simpler.
   id: totrans-540
   prefs: []
   type: TYPE_NORMAL
+  zh: 如果我们的验证变得复杂，通常更容易在代码中处理。使用响应式表单，我们可以将这些复杂的逻辑从HTML模板中分离出来，使模板语法更简单。
 - en: Another significant advantage of reactive forms is that they make unit-testing
     the form possible, which is not the case with **template-driven forms.** We can
     simply instantiate our form controls in our tests and then test them outside the
@@ -3598,6 +3771,7 @@
   id: totrans-541
   prefs: []
   type: TYPE_NORMAL
+  zh: 响应式表单的另一个重要优势是，它使得对表单进行单元测试成为可能，这对**模板驱动表单**来说并非如此。我们可以在我们的测试中简单实例化我们的表单控件，然后在页面上的标记之外对它们进行测试。
 - en: '**Reactive forms** use three new form directives that we haven''t discussed
     before: `FormGroup`, `FormControl`, and `FormArray`. These directives allow the
     form object that is constructed in code to be tied directly to the HTML markup
@@ -3610,11 +3784,14 @@
   id: totrans-542
   prefs: []
   type: TYPE_NORMAL
+  zh: '**响应式表单**使用了三个我们之前没有讨论过的新表单指令：`FormGroup`、 `FormControl` 和 `FormArray`。这些指令允许在代码中构建的表单对象与模板中的
+    HTML 标记直接绑定。在组件类中创建的表单控件随后也直接可用于表单本身。从技术上讲，这意味着我们不需要在响应式表单中使用 `ngModel`（这是模板驱动表单的核心部分），尽管它也可以使用。总体上，这种方法使得模板更清晰、更简洁，更专注于驱动表单的代码。让我们开始构建一个响应式表单。'
 - en: Getting started with reactive forms
   id: totrans-543
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 使用响应式表单入门
 - en: We'll make use of reactive forms to build the form to add and edit Exercises.
     Among other things, this form will allow the user to add links to exercise videos
     on YouTube. And since they can add any number of video links, we will need to
@@ -3624,18 +3801,22 @@
   id: totrans-544
   prefs: []
   type: TYPE_NORMAL
+  zh: 我们将使用响应式表单来构建添加和编辑练习的表单。除其他内容外，该表单将允许用户在 YouTube 上添加练习视频的链接。由于他们可以添加任意数量的视频链接，我们需要能够动态添加这些视频链接的控件。这个挑战将对响应式表单在开发更复杂的表单时的有效性提出良好的测试。
 - en: 'Here is how the form will look:'
   id: totrans-545
   prefs: []
   type: TYPE_NORMAL
+  zh: 表单将如下所示：
 - en: '![](img/5dbd17b9-5bcb-41b1-b46d-5f1260402003.png)'
   id: totrans-546
   prefs: []
   type: TYPE_IMG
+  zh: '![](img/5dbd17b9-5bcb-41b1-b46d-5f1260402003.png)'
 - en: 'To get started, open `workout-builder.module.ts` and add the following `import`:'
   id: totrans-547
   prefs: []
   type: TYPE_NORMAL
+  zh: 要开始，请打开 `workout-builder.module.ts` 并添加以下`import`：
 - en: '[PRE73]'
   id: totrans-548
   prefs: []
@@ -3645,11 +3826,14 @@
   id: totrans-549
   prefs: []
   type: TYPE_NORMAL
+  zh: '`ReactiveFormsModule` 包含了构建响应式表单所需的内容。'
 - en: 'Next, copy `exercise-builder-service.ts` from the `workout-builder/builder-services`
     folder under `trainer/src/app` in `checkpoint 4.6` and import it into `workout-builder.module.ts`:'
   id: totrans-550
   prefs: []
   type: TYPE_NORMAL
+  zh: 接下来，从 `checkpoint 4.6` 下的 `trainer/src/app` 中的 `workout-builder/builder-services`
+    文件夹中复制 `exercise-builder-service.ts` 并将其导入到 `workout-builder.module.ts` 中：
 - en: '[PRE74]'
   id: totrans-551
   prefs: []
@@ -3660,6 +3844,7 @@
   id: totrans-552
   prefs: []
   type: TYPE_NORMAL
+  zh: 然后，在同一文件中的提供者数组中将其添加为附加提供者：
 - en: '[PRE75]'
   id: totrans-553
   prefs: []
@@ -3672,10 +3857,13 @@
   id: totrans-554
   prefs: []
   type: TYPE_NORMAL
+  zh: 请注意，我们还已将 `ExerciseResolver` 添加为提供者。我们在这里不会讨论这个，但你应该从 `exercise` 文件夹下也复制它，并且还要复制更新后的
+    `workout-builder-routing.module.ts`，将它作为导航到 `ExerciseComponent` 的路由守卫。
 - en: 'Now, open `exercise.component.ts` and add the following import statement:'
   id: totrans-555
   prefs: []
   type: TYPE_NORMAL
+  zh: 现在，打开 `exercise.component.ts` 并添加以下导入语句：
 - en: '[PRE76]'
   id: totrans-556
   prefs: []
@@ -3685,31 +3873,37 @@
   id: totrans-557
   prefs: []
   type: TYPE_NORMAL
+  zh: 这将引入我们将用来构建表单的以下内容：
 - en: '`FormBuilder`'
   id: totrans-558
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '`FormBuilder`'
 - en: '`FormGroup`'
   id: totrans-559
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '`FormGroup`'
 - en: '`FormControl`'
   id: totrans-560
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '`FormControl`'
 - en: '`FormArray`'
   id: totrans-561
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '`FormArray`'
 - en: 'Finally, we inject `FormBuilder` (as well as `Router`, `ActivatedRoute`, and
     `ExerciseBuilderService`) into the constructor of our class:'
   id: totrans-562
   prefs: []
   type: TYPE_NORMAL
+  zh: 最后，我们将 `FormBuilder`（以及 `Router`、 `ActivatedRoute` 和 `ExerciseBuilderService`）注入到我们类的构造函数中：
 - en: '[PRE77]'
   id: totrans-563
   prefs: []
@@ -3720,17 +3914,20 @@
   id: totrans-564
   prefs: []
   type: TYPE_NORMAL
+  zh: 通过完成这些初步步骤，我们现在可以开始构建我们的表单了。
 - en: Using the FormBuilder API
   id: totrans-565
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 使用 FormBuilder API
 - en: 'The `FormBuilder` API is the foundation for reactive forms. You can think of
     it as a factory for turning out the forms we are constructing in our code. Go
     ahead and add the `ngOnInit` lifecycle hook to your class, as follows:'
   id: totrans-566
   prefs: []
   type: TYPE_NORMAL
+  zh: '`FormBuilder` API 是响应式表单的基础。你可以把它想象成是在我们的代码中构建表单的工厂。现在，在你的类中添加 `ngOnInit` 生命周期钩子，如下所示：'
 - en: '[PRE78]'
   id: totrans-567
   prefs: []
@@ -3742,11 +3939,14 @@
   id: totrans-568
   prefs: []
   type: TYPE_NORMAL
+  zh: 当 `ngOnInit` 被触发时，它将从由 `ExerciseResolver` 检索和返回的路由数据中提取现有或新的 `exercise` 的数据。这与初始化
+    `Workout` 组件时遵循的模式相同。
 - en: 'Now, let''s implement the `buildExerciseForm` method by adding the following
     code:'
   id: totrans-569
   prefs: []
   type: TYPE_NORMAL
+  zh: 现在，让我们通过添加以下代码来实现 `buildExerciseForm` 方法：
 - en: '[PRE79]'
   id: totrans-570
   prefs: []
@@ -3759,6 +3959,7 @@
   id: totrans-571
   prefs: []
   type: TYPE_NORMAL
+  zh: 让我们来看一下这段代码。首先，我们使用注入的`FormBuilder`实例来构建表单并将其分配给一个本地变量`exerciseForm`。使用`formBuilder.group`，我们向表单添加了多个表单控件。我们通过简单的键/值映射添加了每个表单控件：
 - en: '[PRE80]'
   id: totrans-572
   prefs: []
@@ -3773,6 +3974,7 @@
   id: totrans-573
   prefs: []
   type: TYPE_NORMAL
+  zh: 映射的左侧是`FormControl`的名称，右侧是一个数组，它的第一个元素是控件的值（在我们的例子中是我们练习模型上对应的元素），第二个是验证器（在这种情况下是开箱即用的必需验证器）。非常整洁！通过在模板之外设置表单控件来设置它们，肯定更容易看到和理解我们的表单控件。
 - en: 'We can not only build up `FormControls` in our form this way but also add `FormControlGroups`
     and `FormControlArray`, which contain `FormControls` within them. This means we
     can create complex forms that contain nested input controls. In our case, as we
@@ -3782,6 +3984,7 @@
   id: totrans-574
   prefs: []
   type: TYPE_NORMAL
+  zh: 我们不仅可以用这种方式在我们的表单中构建`FormControls`，还可以添加`FormControlGroups`和`FormControlArray`，它们包含其中的`FormControls`。这意味着我们可以创建包含嵌套输入控件的复杂表单。在我们的情况下，正如我们已经提到的，我们需要考虑用户可能向练习中添加多个视频的情况。我们可以通过添加以下代码来实现：
 - en: '[PRE81]'
   id: totrans-575
   prefs: []
@@ -3793,6 +3996,7 @@
   id: totrans-576
   prefs: []
   type: TYPE_NORMAL
+  zh: 我们在这里做的是将一个`FormArray`分配给视频，这意味着我们可以在这个映射中分配多个控件。为了构造这个新的`FormArray`，我们向我们的类添加了以下`addVideoArray`方法：
 - en: '[PRE82]'
   id: totrans-577
   prefs: []
@@ -3803,11 +4007,13 @@
   id: totrans-578
   prefs: []
   type: TYPE_NORMAL
+  zh: 这个方法为每个视频构造了一个`FormControl`；然后将每个视频添加到分配给我们的表单中的`videos`控件的`FormArray`中。
 - en: Adding the form model to our HTML view
   id: totrans-579
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 将表单模型添加到我们的HTML视图
 - en: 'So far, we have been working behind the scenes in our class to construct our
     form. The next step is to wire up our form to the view. To do this, we use the
     same controls that we used to build the form in our code: `formGroup`, `formControl`,
@@ -3815,10 +4021,12 @@
   id: totrans-580
   prefs: []
   type: TYPE_NORMAL
+  zh: 到目前为止，我们一直在我们的类中幕后工作来构建我们的表单。下一步是将我们的表单连接到视图。为此，我们使用了同样的控件，用来在我们的代码中构建表单：`formGroup`，`formControl`和`formArray`。
 - en: 'Open `exercise.component.html` and add a `form` tag as follows:'
   id: totrans-581
   prefs: []
   type: TYPE_NORMAL
+  zh: 打开`exercise.component.html`并添加如下的`form`标签：
 - en: '[PRE83]'
   id: totrans-582
   prefs: []
@@ -3831,16 +4039,19 @@
   id: totrans-583
   prefs: []
   type: TYPE_NORMAL
+  zh: 在标签内，我们首先将我们刚刚在代码中构建的`exerciseForm`分配给`formGroup`。这样建立了我们编码模型与视图中表单的连接。我们还将`ngSubmit`事件与代码中的`onSubmit`方法连接起来（我们稍后会讨论这个方法）。
 - en: Adding form controls to our form inputs
   id: totrans-584
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 将表单控件添加到我们的表单输入中
 - en: 'Next, we start constructing the inputs for our form. We''ll start with the
     input for the name of our exercise:'
   id: totrans-585
   prefs: []
   type: TYPE_NORMAL
+  zh: 接下来，我们开始构建我们表单的输入。我们将以我们练习名称的输入开始：
 - en: '[PRE84]'
   id: totrans-586
   prefs: []
@@ -3852,16 +4063,19 @@
   id: totrans-587
   prefs: []
   type: TYPE_NORMAL
+  zh: 我们将我们编码的表单控件的名称分配给`formControlName`。这样就建立了我们代码中的控件与标记中的`input`字段之间的链接。这里另一个值得注意的是，我们没有使用`required`属性。
 - en: Adding validation
   id: totrans-588
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 添加验证
 - en: 'The next thing that we do is add a validation message to the control that will
     display in the event of a validation error:'
   id: totrans-589
   prefs: []
   type: TYPE_NORMAL
+  zh: 我们接下来要做的是向控件添加验证消息，以便在验证出错时显示：
 - en: '[PRE85]'
   id: totrans-590
   prefs: []
@@ -3874,6 +4088,7 @@
   id: totrans-591
   prefs: []
   type: TYPE_NORMAL
+  zh: 请注意，这种标记非常类似于我们在模板驱动表单中用于验证的内容，只是用于识别控件的语法有点更冗长。它再次检查控件的`hasError`属性状态，以确保它是有效的。
 - en: 'But wait a minute! How can we validate this input? Haven''t we removed the
     required attribute from our tag? This is where the control mappings that we added
     in our code come into play. If you look back at the code for the form model, you
@@ -3881,6 +4096,7 @@
   id: totrans-592
   prefs: []
   type: TYPE_NORMAL
+  zh: '但等一下！我们如何验证此输入？我们难道没有从标签中删除`required`属性吗？这就是我们在代码中添加的控件映射发挥作用的地方。如果回顾一下表单模型的代码，您可以看到`name`控件的以下映射:'
 - en: '[PRE86]'
   id: totrans-593
   prefs: []
@@ -3895,11 +4111,13 @@
   id: totrans-594
   prefs: []
   type: TYPE_NORMAL
+  zh: 映射数组中的第二个元素将必填验证器分配给名称表单控件。这意味着我们不必在模板中添加任何内容；相反，表单控件本身附加了一个必填验证器到模板上。在代码中添加验证器的能力使我们能够方便地在模板之外添加验证器。当涉及编写具有复杂逻辑的自定义验证器时，这是特别有用的。
 - en: Adding dynamic form controls
   id: totrans-595
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 添加动态表单控件
 - en: 'The Exercise form that we are building requires that we allow the user to add
     one or more videos to the exercise. Since we don''t know how many videos the user
     may want to add, we will have to build the `input` fields for these videos dynamically
@@ -3907,20 +4125,24 @@
   id: totrans-596
   prefs: []
   type: TYPE_NORMAL
+  zh: '我们正在构建的练习表单要求允许用户向练习中添加一个或多个视频。由于我们不知道用户可能希望添加多少视频，我们将不得不在用户点击添加视频按钮时动态构建这些视频的`input`字段。它将如下所示:'
 - en: '![](img/94aa6524-5112-41ea-8ce0-6c9e622cdce8.png)'
   id: totrans-597
   prefs: []
   type: TYPE_IMG
+  zh: '![](img/94aa6524-5112-41ea-8ce0-6c9e622cdce8.png)'
 - en: We have already seen the code in our component class that we use to do this.
     Now, let's take a look at how it is implemented in our template.
   id: totrans-598
   prefs: []
   type: TYPE_NORMAL
+  zh: 我们已经在我们的组件类中看到了用于执行此操作的代码。现在，让我们看看如何在我们的模板中实现它。
 - en: 'We first use `ngFor` to loop through our list of videos. Then, we assign the
     index in our videos to a local variable, `i`. No surprises so far:'
   id: totrans-599
   prefs: []
   type: TYPE_NORMAL
+  zh: 首先，我们使用`ngFor`循环遍历视频列表。然后，我们将视频在列表中的索引赋值给本地变量`i`。到目前为止，没有什么意外。
 - en: '[PRE87]'
   id: totrans-600
   prefs: []
@@ -3931,6 +4153,7 @@
   id: totrans-601
   prefs: []
   type: TYPE_NORMAL
+  zh: 在循环内，我们做了三件事。首先，我们为当前练习中的每个视频动态添加一个视频`input`字段。
 - en: '[PRE88]'
   id: totrans-602
   prefs: []
@@ -3940,6 +4163,7 @@
   id: totrans-603
   prefs: []
   type: TYPE_NORMAL
+  zh: '接下来，我们添加一个按钮，允许用户删除视频:'
 - en: '[PRE89]'
   id: totrans-604
   prefs: []
@@ -3950,10 +4174,12 @@
   id: totrans-605
   prefs: []
   type: TYPE_NORMAL
+  zh: 我们将组件类中的`deleteVideo`方法绑定到按钮的`click`事件上，并传递给它被删除的视频的索引。
 - en: 'We then add a validation message for each of the video `input` fields:'
   id: totrans-606
   prefs: []
   type: TYPE_NORMAL
+  zh: '然后，我们为每个视频`input`字段添加验证消息:'
 - en: '[PRE90]'
   id: totrans-607
   prefs: []
@@ -3966,17 +4192,20 @@
   id: totrans-608
   prefs: []
   type: TYPE_NORMAL
+  zh: 验证消息遵循了在本章其他地方使用的显示消息的相同模式。我们进入`exerciseFormControls`组以找到特定索引的控件。再次，语法冗长但足够容易理解。
 - en: Saving the form
   id: totrans-609
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 保存表单
 - en: 'The final step in building out our reactive form is to handle saving the form.
     When we constructed the form tag earlier, we bound the `ngSubmit` event to the
     following `onSubmit` method in our code:'
   id: totrans-610
   prefs: []
   type: TYPE_NORMAL
+  zh: 构建响应式表单的最后一步是处理表单的保存。在先前构造表单标签时，我们将`ngSubmit`事件绑定到代码中的以下`onSubmit`方法上。
 - en: '[PRE91]'
   id: totrans-611
   prefs: []
@@ -3991,6 +4220,7 @@
   id: totrans-612
   prefs: []
   type: TYPE_NORMAL
+  zh: 此方法将`submitted`设置为`true`，这将触发可能之前因表单未被触摸而隐藏的任何验证消息的显示。如果没有任何验证错误，则返回而不保存。如果没有错误，则调用以下`mapFormValues`方法，将表单中的值分配给将要保存的`exercise`。
 - en: '[PRE92]'
   id: totrans-613
   prefs: []
@@ -4002,6 +4232,7 @@
   id: totrans-614
   prefs: []
   type: TYPE_NORMAL
+  zh: 然后它调用了`ExerciseBuilderService`中的保存方法，并将用户路由回练习列表屏幕（请记住，任何新练习不会显示在该列表中，因为我们尚未在应用程序中实现数据持久性）。
 - en: We hope this makes it clear; reactive forms offer many advantages when we are
     trying to build more complicated forms. They allow programming logic to be removed
     from the template. They permit validators to be added to the form programmatically.
@@ -4009,11 +4240,13 @@
   id: totrans-615
   prefs: []
   type: TYPE_NORMAL
+  zh: 我们希望这让事情变得清晰起来；当我们尝试构建更复杂的表单时，响应式表单提供了许多优势。它们允许将编程逻辑从模板中移除。它们允许以编程方式向表单添加验证器。而且，它们支持在运行时动态构建表单。
 - en: Custom validators
   id: totrans-616
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 自定义验证器
 - en: Now, we'll take a look at one more thing before we conclude this chapter. As
     anyone who has worked on building web forms (either in Angular or any other web
     technology) knows, we are often called on to create validations that are unique
@@ -4022,6 +4255,7 @@
   id: totrans-617
   prefs: []
   type: TYPE_NORMAL
+  zh: 现在，在我们结束本章之前，我们再看一件事。任何在构建Web表单上工作过的人（无论是在Angular还是任何其他Web技术上）都知道，我们经常需要创建适用于我们正在构建的应用程序的独特验证。Angular为我们提供了通过构建自定义验证器来增强我们的响应式表单验证的灵活性。
 - en: In building our exercise form, we need to be sure about what is entered, as
     a name contains only alphanumeric characters and no spaces. This is because when
     we get to storing the exercises in a remote data store, we are going to use the
@@ -4031,6 +4265,7 @@
   id: totrans-618
   prefs: []
   type: TYPE_NORMAL
+  zh: 在构建我们的运动形式时，我们需要确保输入的内容，因为名称只包含字母数字字符且没有空格。这是因为当我们开始将练习存储在远程数据存储中时，我们将使用练习的名称作为其键。因此，除了标准的必填字段验证器之外，让我们构建另一个验证器，以确保输入的名称只以字母数字形式存在。
 - en: 'Creating a custom control is quite straightforward. In its simplest form, an
     Angular custom validator is a function that takes a control as an input parameter,
     runs the validation check, and returns true or false. So, let''s start by adding
@@ -4040,6 +4275,7 @@
   id: totrans-619
   prefs: []
   type: TYPE_NORMAL
+  zh: 创建自定义控件非常简单。在其最简单的形式中，Angular自定义验证器是一个以控件作为输入参数的函数，运行验证检查，并返回true或false。因此，让我们首先添加一个名为`alphanumeric-validator.ts`的TypeScript文件。在该文件中，首先从`@angular/forms`中导入`FormControl`，然后在该文件中添加以下类：
 - en: '[PRE93]'
   id: totrans-620
   prefs: []
@@ -4052,11 +4288,13 @@
   id: totrans-621
   prefs: []
   type: TYPE_NORMAL
+  zh: 该代码遵循我们刚提到的创建验证器的模式。唯一可能有点意外的是当验证失败时它返回true！只要你明白这个怪癖，你就应该没有问题编写自己的自定义验证器。
 - en: Integrating a custom validator into our forms
   id: totrans-622
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 将自定义验证器整合到我们的表单中
 - en: 'So how do we plug our custom validator into our form? If we are using reactive
     forms, the answer is pretty simple. We add it just like a built-in validator when
     we build our form in code. Let''s do that. Open `exercise.component.ts` and first
@@ -4064,6 +4302,7 @@
   id: totrans-623
   prefs: []
   type: TYPE_NORMAL
+  zh: 那么我们如何将自定义验证器插入我们的表单中？如果我们使用响应式表单，答案非常简单。当我们在代码中构建表单时，我们就像添加内置验证器那样添加它。让我们这样做。打开`exercise.component.ts`并首先为我们的自定义验证器添加一个导入：
 - en: '[PRE94]'
   id: totrans-624
   prefs: []
@@ -4073,6 +4312,7 @@
   id: totrans-625
   prefs: []
   type: TYPE_NORMAL
+  zh: 然后，修改表单构建器代码，将验证器添加到`name`控件中：
 - en: '[PRE95]'
   id: totrans-626
   prefs: []
@@ -4084,12 +4324,14 @@
   id: totrans-627
   prefs: []
   type: TYPE_NORMAL
+  zh: 由于名称控件已经具有必填验证器，我们使用一个包含两个验证器的数组将`AlphaNumericValidator`作为第二个验证器添加到控件中。该数组可以用于向控件添加任意数量的验证器。
 - en: 'The final step is to incorporate the appropriate validation message for the
     control into our template. Open `workout.component.html` and add the following
     label just below the label that displays the message for the required validator:'
   id: totrans-628
   prefs: []
   type: TYPE_NORMAL
+  zh: 最后一步是在我们的模板中将控件的适当验证消息合并到我们的模板中。打开`workout.component.html`并在显示所需验证器消息的标签下方添加以下标签：
 - en: '[PRE96]'
   id: totrans-629
   prefs: []
@@ -4100,10 +4342,12 @@
   id: totrans-630
   prefs: []
   type: TYPE_NORMAL
+  zh: 如果在名称输入框中输入了非字母数字值，练习屏幕现在将显示验证消息：
 - en: '![](img/62930377-9559-4807-8c6f-b86049e996e2.png)'
   id: totrans-631
   prefs: []
   type: TYPE_IMG
+  zh: '![](img/62930377-9559-4807-8c6f-b86049e996e2.png)'
 - en: As we hope you can see, reactive forms give us the ability to add custom validators
     to our forms in a straightforward manner that allows us to maintain the validation
     logic in our code and easily integrate it into our templates.
@@ -4201,6 +4445,8 @@
   id: totrans-645
   prefs: []
   type: TYPE_NORMAL
+  zh: 你可能看不出在这里使用模糊设置的必要性。但是，在可能需要通过调用外部数据存储进行验证的情况下，这种方法可以帮助限制调用的次数。在我们实现自定义指令时，会进行这样的远程调用，这就是我们将在[第4章](c3725f08-81b4-4bd5-a50f-6173510dd9c6.xhtml)中所做的事情，*深入理解
+    Angular 指令*。该指令将检查我们远程数据存储中已经存在的重复名称。因此，让我们将此配置从标题输入控件中移除，并放置在名称输入控件中，就像这样：
 - en: '[PRE99]'
   id: totrans-646
   prefs: []
@@ -4213,6 +4459,7 @@
   id: totrans-647
   prefs: []
   type: TYPE_NORMAL
+  zh: 我们还可以在响应式表单中设置验证的时间选项。根据我们已经学到的关于响应式表单的知识，你可能不会感到惊讶，我们将在代码中应用这些设置而不是模板中。例如，要为表单组设置它们，使用以下语法：
 - en: '[PRE100]'
   id: totrans-648
   prefs: []
@@ -4226,6 +4473,7 @@
   id: totrans-649
   prefs: []
   type: TYPE_NORMAL
+  zh: 我们还可以将它们应用到单个表单控件上，在我们的锻炼表单的情况下就是这样。与锻炼表单一样，我们希望能够通过远程调用验证名称的唯一性。因此，我们希望以类似的方式限制验证检查。我们将通过在创建名称表单控件的代码中添加以下内容来实现该目的：
 - en: '[PRE101]'
   id: totrans-650
   prefs: []
@@ -4236,11 +4484,13 @@
   id: totrans-651
   prefs: []
   type: TYPE_NORMAL
+  zh: 请注意，我们将设置和`validators`数组放在大括号对内的选项对象中。
 - en: Summary
   id: totrans-652
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 总结
 - en: We now have a *Personal Trainer* app. The process of converting a specific *7
     Minute Workout* app to a generic *Personal Trainer* app helped us learn a number
     of new concepts. We started the chapter by defining the new app requirements.
@@ -4248,12 +4498,14 @@
   id: totrans-653
   prefs: []
   type: TYPE_NORMAL
+  zh: 我们现在有了一个*个人教练*应用程序。将特定的*7分钟锻炼*应用程序转换为通用的*个人教练*应用程序的过程帮助我们学习了许多新概念。本章开始时，我们定义了新应用程序的需求。然后，我们将模型设计为共享服务。
 - en: We defined some new views and corresponding routes for the *Personal Trainer*
     app. We also used both child and asynchronous routing to separate out *Workout
     Builder* from the rest of the app.
   id: totrans-654
   prefs: []
   type: TYPE_NORMAL
+  zh: 我们为*个人教练*应用程序定义了一些新视图和对应的路由。我们还使用了子路由和异步路由来将*锻炼构建器*从应用程序的其余部分分离出来。
 - en: We then turned our focus to workout building. One of the primary technological
     focuses in this chapter was on Angular forms. The *Workout Builder* employed a
     number of form input elements and we implemented a number of common form scenarios
@@ -4263,12 +4515,15 @@
   id: totrans-655
   prefs: []
   type: TYPE_NORMAL
+  zh: 然后，我们将注意力转到了锻炼建设上。本章的主要技术焦点之一是 Angular 表单。*锻炼构建器*使用了许多表单输入元素，并且我们使用了模板驱动和响应式表单实现了许多常见的表单场景。我们还深入探讨了
+    Angular 验证，并实现了自定义验证器。我们还介绍了配置运行验证的时间选项。
 - en: The next chapter is all about client-server interaction. The workouts and exercises
     that we create need to be persisted. In the next chapter, we build a persistence
     layer, which will allow us to save workout and exercise data on the server.
   id: totrans-656
   prefs: []
   type: TYPE_NORMAL
+  zh: 下一章将讨论客户端-服务器交互。我们创建的锻炼和练习需要被持久化。在下一章中，我们将构建一个持久化层，这将允许我们在服务器上保存锻炼和练习数据。
 - en: Before we conclude this chapter, here is a friendly reminder. If you have not
     completed the exercise building routine for *Personal Trainer*, go ahead and do
     it. You can always compare your implementation with what has been provided in
@@ -4279,3 +4534,4 @@
   id: totrans-657
   prefs: []
   type: TYPE_NORMAL
+  zh: 在我们结束这一章之前，这里有一个友好的提醒。如果你还没有完成*个人教练*的练习建设例程，请继续。您可以随时将您的实施与伴侣代码库中提供的内容进行比较。您还可以在原始实施中添加一些内容，例如练习图像的文件上传，一旦您对客户端-服务器交互更加熟悉，还可以远程检查确定YouTube视频是否真的存在。
