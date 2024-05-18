@@ -1917,6 +1917,7 @@
   id: totrans-272
   prefs: []
   type: TYPE_NORMAL
+  zh: 为了做到这一点，我们将修改`WorkoutResolver`，以便在找不到锻炼时重新路由到锻炼页面。首先，在`WorkoutBuilderRoutingModule`中添加以下子路由（确保在现有的锻炼路由之前）：
 - en: '[PRE36]'
   id: totrans-273
   prefs: []
@@ -1927,6 +1928,7 @@
   id: totrans-274
   prefs: []
   type: TYPE_NORMAL
+  zh: 接下来，修改`WorkoutResolver`中的`resolve`方法，在找不到锻炼时重定向到此路由：
 - en: '[PRE37]'
   id: totrans-275
   prefs: []
@@ -1937,6 +1939,7 @@
   id: totrans-276
   prefs: []
   type: TYPE_NORMAL
+  zh: 然后在`Workouts`组件的变量中添加一个名为`notFound`的布尔值，其值设为`false`：
 - en: '[PRE38]'
   id: totrans-277
   prefs: []
@@ -1947,6 +1950,7 @@
   id: totrans-278
   prefs: []
   type: TYPE_NORMAL
+  zh: 并且，在该组件的`ngOnInit`方法中，添加以下代码来检查`workout-not-found`路径并将`notFound`的值设为`true`：
 - en: '[PRE39]'
   id: totrans-279
   prefs: []
@@ -1957,6 +1961,7 @@
   id: totrans-280
   prefs: []
   type: TYPE_NORMAL
+  zh: 最后，在`Workouts.component.html`模板中，在锻炼列表上面添加以下`div`标签，如果`notFound`被设置为`true`则显示：
 - en: '[PRE40]'
   id: totrans-281
   prefs: []
@@ -1967,25 +1972,30 @@
   id: totrans-282
   prefs: []
   type: TYPE_NORMAL
+  zh: 如果在将用户返回到`Workouts`页面时，在路径中找到`workout-not-found`，那么屏幕上将显示以下消息：
 - en: '![](img/fd1d8b39-7c56-46a0-9965-55fa568c53c4.png)'
   id: totrans-283
   prefs: []
   type: TYPE_IMG
+  zh: '![](img/fd1d8b39-7c56-46a0-9965-55fa568c53c4.png)'
 - en: We have fixed routing failure for the Workout Builder page, but the exercise
     builder page is still pending. Again, we will leave it to you to fix it yourself.
   id: totrans-284
   prefs: []
   type: TYPE_NORMAL
+  zh: 我们已经为锻炼构建器页面修复了路由故障，但是还未修复锻炼构建器页面。再次，我们将留给你自己去修复它。
 - en: Another major (and pending) implementation is fixing *7 Minute Workout*, as
     it currently caters to only one workout routine.
   id: totrans-285
   prefs: []
   type: TYPE_NORMAL
+  zh: 另一个重要的（尚未实现的）工作是修复*7分钟锻炼*，因为它目前只适用于一个锻炼常规。
 - en: Fixing the 7 Minute Workout app
   id: totrans-286
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 修复 7 分钟锻炼应用程序
 - en: As it stands now, the *7 Minute Workout* (or *Workout Runner*) app can play
     only one specific workout. It needs to be fixed to support the execution of any
     workout plan built using *Personal Trainer*. There is an obvious need to integrate
@@ -1995,33 +2005,39 @@
   id: totrans-287
   prefs: []
   type: TYPE_NORMAL
+  zh: 目前*7分钟锻炼*（或*锻炼运行器*）程序只能播放一个特定的锻炼。它需要修复以支持使用*个人健身教练*构建的任何锻炼计划的执行。显然需要将这两种解决方案集成起来。我们已经做好了开始整合的准备工作。我们已经有了共享模型服务和`WorkoutService`来加载数据，这已经足够让我们开始了。
 - en: 'Fixing *7 Minute Workout* and converting it into a generic *Workout Runner*
     roughly involves the following steps:'
   id: totrans-288
   prefs: []
   type: TYPE_NORMAL
+  zh: 修复*7分钟锻炼*并将其转换为通用的*锻炼运行器*大致涉及以下步骤：
 - en: Removing the hardcoded workout and exercises used in *7 Minute Workout*.
   id: totrans-289
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 删除*7分钟锻炼*中使用的硬编码锻炼和练习。
 - en: Fixing the start page to show all available workouts and allowing users to select
     a workout to run.
   id: totrans-290
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 修复起始页面以显示所有可用的锻炼，并允许用户选择要进行的锻炼。
 - en: Fixing the workout route configuration to pass the selected workout name as
     the route parameter to the workout page.
   id: totrans-291
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 修复锻炼的路由配置，将所选的锻炼名称作为路由参数传递到锻炼页面。
 - en: Loading the selected workout data using `WorkoutService` and starting the workout.
   id: totrans-292
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 使用`WorkoutService`加载所选的锻炼数据并开始锻炼。
 - en: And, of course, we need to rename the *7 Minute Workout* part of the app; the
     name is now a misnomer. I think the complete app can be called *Personal Trainer*.
     We can remove all references to *7 Minute Workout* from the view as well.
@@ -2029,21 +2045,25 @@
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 当然，我们需要重新命名应用程序的*7分钟锻炼*部分；这个名字现在是一个误称。我认为整个应用程序可以称为*个人健身教练*。我们也可以从视图中删除对*7分钟锻炼*的所有引用。
 - en: An excellent exercise to try out yourself! And that is why we are not going
     to walk you through the solution. Instead, go ahead and implement the solution.
     Compare your implementation with the one available at `checkpoint 5.4`.
   id: totrans-294
   prefs: []
   type: TYPE_NORMAL
+  zh: 一个非常好的练习！这就是为什么我们不会为你讲解解决方案。相反，前进并实施解决方案。将你的实现与`检查点 5.4`提供的实现进行比较。
 - en: It's time to end the chapter and summarize your learning.
   id: totrans-295
   prefs: []
   type: TYPE_NORMAL
+  zh: 是时候结束本章并总结你所学到的知识了。
 - en: Summary
   id: totrans-296
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 总结
 - en: We now have an app that can do a lot of stuff. It can run workouts, load workouts,
     save and update them, and track history. And if we look back, we have achieved
     this with minimal code. We bet that if we were to try this in standard jQuery
