@@ -222,61 +222,74 @@
   id: totrans-28
   prefs: []
   type: TYPE_NORMAL
+  zh: 我们将使用TypeScript语言来构建我们的应用程序；因此，最好使用能够轻松开发TypeScript的IDE。如Atom、Sublime、WebStorm和Visual
+    Studio (或VS Code)都是此目的的绝佳工具。
 - en: Download the example code files
   id: totrans-29
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 下载示例代码文件
 - en: You can download the example code files for this book from your account at [www.packtpub.com](http://www.packtpub.com).
     If you purchased this book elsewhere, you can visit [www.packtpub.com/support](http://www.packtpub.com/support)
     and register to have the files emailed directly to you.
   id: totrans-30
   prefs: []
   type: TYPE_NORMAL
+  zh: 您可以从[www.packtpub.com](http://www.packtpub.com)的账户下载本书的示例代码文件。如果您在其他地方购买了本书，您可以访问[www.packtpub.com/support](http://www.packtpub.com/support)注册，直接通过电子邮件接收文件。
 - en: 'You can download the code files by following these steps:'
   id: totrans-31
   prefs: []
   type: TYPE_NORMAL
+  zh: 您可以通过以下步骤下载代码文件：
 - en: Log in or register at [www.packtpub.com](http://www.packtpub.com/support).
   id: totrans-32
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 在[www.packtpub.com](http://www.packtpub.com/support)上登录或注册。
 - en: Select the SUPPORT tab.
   id: totrans-33
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 选择“支持”标签。
 - en: Click on Code Downloads & Errata.
   id: totrans-34
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 单击`代码下载和勘误`。
 - en: Enter the name of the book in the Search box and follow the onscreen instructions.
   id: totrans-35
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 在搜索框中输入书名，然后按照屏幕上的说明进行操作。
 - en: 'Once the file is downloaded, please make sure that you unzip or extract the
     folder using the latest version of:'
   id: totrans-36
   prefs: []
   type: TYPE_NORMAL
+  zh: 下载文件后，请确保使用最新版本的以下工具解压缩或提取文件夹：
 - en: WinRAR/7-Zip for Windows
   id: totrans-37
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: Windows平台上使用WinRAR/7-Zip
 - en: Zipeg/iZip/UnRarX for Mac
   id: totrans-38
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: Mac平台上使用Zipeg/iZip/UnRarX
 - en: 7-Zip/PeaZip for Linux
   id: totrans-39
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: Linux平台上使用7-Zip/PeaZip
 - en: The code bundle for the book is also hosted on GitHub at [https://github.com/chandermani/angular6byexample](https://github.com/chandermani/angular6byexample) and
     [https://github.com/PacktPublishing/Architecting-Angular-Applications-with-Redux-RxJs-and-NgRx](https://github.com/PacktPublishing/Architecting-Angular-Applications-with-Redux-RxJs-and-NgRx).
      The code bundle for the third module is hosted on author's GitHub repository
@@ -286,21 +299,25 @@
   id: totrans-40
   prefs: []
   type: TYPE_NORMAL
+  zh: 本书的代码束也托管在GitHub上，网址为[https://github.com/chandermani/angular6byexample](https://github.com/chandermani/angular6byexample)和[https://github.com/PacktPublishing/Architecting-Angular-Applications-with-Redux-RxJs-and-NgRx](https://github.com/PacktPublishing/Architecting-Angular-Applications-with-Redux-RxJs-and-NgRx)。第三模块的代码束托管在作者的GitHub代码库中，网址为[https://github.com/duluca/local-weather-app](https://github.com/duluca/local-weather-app)和[https://github.com/duluca/lemon-mart](https://github.com/duluca/lemon-mart)。如果代码有更新，将在现有的GitHub代码库中更新。
 - en: We also have other code bundles from our rich catalog of books and videos available
     at **[https://github.com/PacktPublishing/](https://github.com/PacktPublishing/)**.
     Check them out!
   id: totrans-41
   prefs: []
   type: TYPE_NORMAL
+  zh: 我们还在我们丰富的图书和视频目录中有其他代码束可供选择，网址为**[https://github.com/PacktPublishing/](https://github.com/PacktPublishing/)**。去看看吧！
 - en: Conventions used
   id: totrans-42
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 采用的约定
 - en: There are a number of text conventions used throughout this book.
   id: totrans-43
   prefs: []
   type: TYPE_NORMAL
+  zh: 本书中使用了许多文本约定。
 - en: '`CodeInText`: Indicates code words in text, database table names, folder names,
     filenames, file extensions, pathnames, dummy URLs, user input, and Twitter handles.
     Here is an example: "We can see how the router combines the routes in `app.routes.ts` with
@@ -308,10 +325,12 @@
   id: totrans-44
   prefs: []
   type: TYPE_NORMAL
+  zh: '`CodeInText`：表示文本中的代码词、数据库表名、文件夹名、文件名、文件扩展名、路径名、虚拟URL、用户输入和Twitter账号。以下是一个例子：“我们可以看到路由器如何将`app.routes.ts`中的路由与`workout-builder.routes.ts`中的默认路由合并”。'
 - en: 'A block of code is set as follows:'
   id: totrans-45
   prefs: []
   type: TYPE_NORMAL
+  zh: 代码块设置如下所示：
 - en: '[PRE0]'
   id: totrans-46
   prefs: []
@@ -322,6 +341,7 @@
   id: totrans-47
   prefs: []
   type: TYPE_NORMAL
+  zh: 当我们希望引起您对代码块的特定部分的注意时，相关行或项会以粗体显示：
 - en: '[PRE1]'
   id: totrans-48
   prefs: []
@@ -331,6 +351,7 @@
   id: totrans-49
   prefs: []
   type: TYPE_NORMAL
+  zh: 在命令行中输入或输出如下所示：
 - en: '[PRE2]'
   id: totrans-50
   prefs: []
@@ -342,23 +363,28 @@
   id: totrans-51
   prefs: []
   type: TYPE_NORMAL
+  zh: '**粗体**：表示一个新术语、一个重要词或屏幕上看到的字词。例如，菜单或对话框中的字词会以这种方式出现在文本中。以下是一个例子：“在`开发者`工具中打开`Sources`标签”'
 - en: Warnings or important notes appear like this.
   id: totrans-52
   prefs: []
   type: TYPE_NORMAL
+  zh: 警告或重要说明如下显示。
 - en: Tips and tricks appear like this.
   id: totrans-53
   prefs: []
   type: TYPE_NORMAL
+  zh: 类似于此出现的小技巧和窍门。
 - en: Get in touch
   id: totrans-54
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 联系我们
 - en: Feedback from our readers is always welcome.
   id: totrans-55
   prefs: []
   type: TYPE_NORMAL
+  zh: 我们始终欢迎读者的反馈意见。
 - en: '**General feedback**: Email `feedback@packtpub.com` and mention the book title
     in the subject of your message. If you have questions about any aspect of this
     book, please email us at `questions@packtpub.com`.'
