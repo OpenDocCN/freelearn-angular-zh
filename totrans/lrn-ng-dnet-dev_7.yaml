@@ -347,6 +347,7 @@
   id: totrans-55
   prefs: []
   type: TYPE_NORMAL
+  zh: '`TodosController` Web API控制器的完整源代码如下：'
 - en: '[PRE7]'
   id: totrans-56
   prefs: []
@@ -357,6 +358,7 @@
   prefs:
   - PREF_H3
   type: TYPE_NORMAL
+  zh: Angular中的路由
 - en: 'As we saw in [Chapter 3](Learning%20Angular%20for%20.NET%20Developers_split_000.html#),
     *Angular Building Blocks - Part 2*, Angular introduced a component router that
     deep links the URL request, maps the component that is annotated for this route,
@@ -367,6 +369,8 @@
   id: totrans-58
   prefs: []
   type: TYPE_NORMAL
+  zh: 正如我们在[第3章](Learning%20Angular%20for%20.NET%20Developers_split_000.html#)，*Angular构建模块
+    - 第2部分*中看到的那样，Angular引入了一个组件路由器，它深度链接URL请求，映射为此路由注释的组件，并渲染与该组件关联的模板或视图。Angular路由器不是核心Angular框架的一部分，它作为Angular路由器模块的一部分。我们需要在`package.json`中的依赖项部分添加对此库的引用，如下所示：
 - en: '[PRE8]'
   id: totrans-59
   prefs: []
@@ -382,6 +386,7 @@
   id: totrans-61
   prefs: []
   type: TYPE_NORMAL
+  zh: 路由器通过查看浏览器请求的URL的`RouteDefinition`决定组件和模板。因此，我们需要配置路由定义。
 - en: 'We will have three hyperlinks on the index page, namely `todo`, `about`, and
     `contact`. Clicking onÂ `todo` will navigate the user to theÂ `todo` app, clicking
     onÂ `about` will navigate to `about` view, and finally, clicking onÂ `contact`
@@ -392,17 +397,20 @@
   id: totrans-62
   prefs: []
   type: TYPE_NORMAL
+  zh: 我们的首页将有三个超链接，分别是`todo`、`about`和`contact`。点击`todo`将导航用户到`todo`应用，点击`about`将导航到`about`视图，最后，点击`contact`将导航用户到`contact`视图。因此，我们需要添加另外两个组件，分别是`AboutComponent`和`ContactComponent`，以及它们各自的模板文件，分别是`about.component.html`和`contact.component.html`。按照下面的步骤创建这些组件和它们的模板：
 - en: Right-click on theÂ `app` folder and add two HTML templates:Â `about.component.html`
     and `contact.component.html`.
   id: totrans-63
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 右键单击`app`文件夹，并添加两个HTML模板：`about.component.html`和`contact.component.html`。
 - en: 'Add the following HTML snippet as the content of `about.component.html`:'
   id: totrans-64
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 将以下HTML片段添加为`about.component.html`的内容：
 - en: '[PRE10]'
   id: totrans-65
   prefs: []
@@ -413,6 +421,7 @@
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 将以下HTML片段添加为`contact.component.html`的内容：
 - en: '[PRE11]'
   id: totrans-67
   prefs: []
@@ -424,11 +433,13 @@
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 右键单击`app`文件夹，添加两个Angular组件：`about.component.ts`和`contact.component.ts`。
 - en: 'Add the following code snippet to `about.component.ts`:'
   id: totrans-69
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 将以下代码片段添加到`about.component.ts`：
 - en: '[PRE12]'
   id: totrans-70
   prefs: []
@@ -439,6 +450,7 @@
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 将以下代码片段添加到`contact.component.ts`：
 - en: '[PRE13]'
   id: totrans-72
   prefs: []
@@ -452,6 +464,7 @@
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 还要创建一个Angular组件，`todo.component.ts`，并将`app.component.ts`中的属性和方法移动到`todo.component.ts`。同时，更新`TodoComponent`的导入和注解。`TodoComponent`的完整代码片段如下所示：
 - en: '[PRE14]'
   id: totrans-74
   prefs: []
@@ -463,6 +476,7 @@
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 现在，创建`todo.component.html`模板，并将`app.component.html`的内容移动过去。更新后的`todo.component.html`如下所示：
 - en: '[PRE15]'
   id: totrans-76
   prefs: []
@@ -476,6 +490,7 @@
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 接下来，添加一个`app.routing.ts`文件，并使用下面的代码片段更新它。在这里，我们为`todo`、`about`和`contact`配置了三个路由。此外，我们分配了三个组件--`TodoComponent`、`AboutComponent`和`ContactComponent`--来导出`NgModule`属性的元数据：
 - en: '[PRE16]'
   id: totrans-78
   prefs: []
@@ -487,6 +502,7 @@
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 更新`app.module.ts`如下以导入我们在上一步创建的`AppRoutingModule`：
 - en: '[PRE17]'
   id: totrans-80
   prefs: []
@@ -497,6 +513,7 @@
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 最后，如下更新`app.component.html`：
 - en: '[PRE18]'
   id: totrans-82
   prefs: []
