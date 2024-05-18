@@ -764,6 +764,7 @@
   id: totrans-125
   prefs: []
   type: TYPE_NORMAL
+  zh: JavaScript是一种强大而动态的语言。由于根据ES5和更早的标准在JavaScript中进行动态编程的自由，我们有责任结构化和组织代码。这将使代码的可维护性更容易，并且还可以使我们轻松地定位特定功能的代码。我们可以通过应用模块化模式来组织代码。代码可以分为各种模块，并且相关代码可以放在每个模块中。
 - en: 'TypeScript made it easier to implement modular programming using the keyword
     module as per ECMAScript 6 specifications. Modules enable you to control the scope
     of variables, code reusability, and encapsulation. TypeScript supports two types
@@ -771,17 +772,20 @@
   id: totrans-126
   prefs: []
   type: TYPE_NORMAL
+  zh: TypeScript使得按照ECMAScript 6规范实现模块化编程变得更容易。模块使您能够控制变量的范围，代码的重用性和封装性。TypeScript支持两种类型的模块：内部和外部。
 - en: Namespaces
   id: totrans-127
   prefs:
   - PREF_H3
   type: TYPE_NORMAL
+  zh: 命名空间
 - en: 'We can create namespaces in TypeScript using the namespace keyword, as illustrated.
     All the classes defined under namespace will be scoped under that particular namespace
     and will not be attached to the global scope:'
   id: totrans-128
   prefs: []
   type: TYPE_NORMAL
+  zh: 我们可以使用 `namespace` 关键字在 TypeScript 中创建命名空间，如下所示。在命名空间下定义的所有类都将在该特定命名空间下使用，并且不会附加到全局范围下：
 - en: '[PRE29]'
   id: totrans-129
   prefs: []
@@ -792,6 +796,7 @@
   id: totrans-130
   prefs: []
   type: TYPE_NORMAL
+  zh: 要使 `Product` 类在命名空间外部可用，我们在定义 `Product` 类时需要添加 `export` 关键字，如下所示：
 - en: '[PRE30]'
   id: totrans-131
   prefs: []
@@ -802,6 +807,7 @@
   id: totrans-132
   prefs: []
   type: TYPE_NORMAL
+  zh: 我们也可以通过在引用文件的代码开头添加 `reference` 语句来跨文件共享命名空间，如下所示：
 - en: '[PRE31]'
   id: totrans-133
   prefs: []
@@ -812,12 +818,14 @@
   prefs:
   - PREF_H3
   type: TYPE_NORMAL
+  zh: 模块
 - en: 'TypeScript also supports modules. As we deal with a large number of external
     JavaScript libraries, this module will really help us refer and organize our code.
     Using the `import` statement, we can import external modules, as illustrated:'
   id: totrans-135
   prefs: []
   type: TYPE_NORMAL
+  zh: TypeScript也支持模块。由于我们处理大量的外部JavaScript库，这个模块将帮助我们引用和组织我们的代码。使用 `import` 语句，我们可以导入外部模块，如下所示：
 - en: '[PRE32]'
   id: totrans-136
   prefs: []
@@ -828,11 +836,13 @@
   id: totrans-137
   prefs: []
   type: TYPE_NORMAL
+  zh: 在这里，我们只是导入了先前创建的模块 `Inventory`，并创建了一个分配给变量 `p` 的 `Product` 实例。
 - en: Functions
   id: totrans-138
   prefs:
   - PREF_H3
   type: TYPE_NORMAL
+  zh: 函数
 - en: JavaScript that follows ES5 specificaitons does not support classes and modules.
     However, we tried to achieve the scoping of variables and modularity using functional
     programming in JavaScript. Functions are the building blocks of an application
@@ -840,12 +850,14 @@
   id: totrans-139
   prefs: []
   type: TYPE_NORMAL
+  zh: 遵循ES5规范的JavaScript不支持类和模块。但是，我们尝试使用JavaScript中的函数式编程来实现变量的作用域和模块化。函数是JavaScript应用程序的构建块。
 - en: 'Though TypeScript supports classes and modules, functions play a key role in
     defining a specific logic. We can define both theÂ `function` and `Anonymous`
     functions in JavaScript as shown:'
   id: totrans-140
   prefs: []
   type: TYPE_NORMAL
+  zh: 尽管TypeScript支持类和模块，但函数在定义特定逻辑方面起着关键作用。我们可以在JavaScript中定义`function`和`匿名`函数，如下所示：
 - en: '[PRE33]'
   id: totrans-141
   prefs: []
@@ -857,6 +869,7 @@
   id: totrans-142
   prefs: []
   type: TYPE_NORMAL
+  zh: 在 TypeScript 中，我们使用函数箭头符号定义参数的类型和返回类型，这也适用于 ES6；表示如下：
 - en: '[PRE34]'
   id: totrans-143
   prefs: []
@@ -867,6 +880,7 @@
   prefs:
   - PREF_H3
   type: TYPE_NORMAL
+  zh: 可选和默认参数
 - en: 'Consider thatÂ we have a function with three parameters, and sometimes, we
     may only pass values for the first two parameters in the function. In TypeScript,
     we can handle such scenarios using the optional parameter. We can define the first
@@ -875,6 +889,7 @@
   id: totrans-145
   prefs: []
   type: TYPE_NORMAL
+  zh: 假设我们有一个具有三个参数的函数，并且有时在函数中可能只为前两个参数传递值。在 TypeScript 中，我们可以使用可选参数处理这种情况。我们可以将前两个参数定义为正常参数，将第三个参数定义为可选参数，如下面的代码片段所示：
 - en: '[PRE35]'
   id: totrans-146
   prefs: []
@@ -885,12 +900,14 @@
   id: totrans-147
   prefs: []
   type: TYPE_NORMAL
+  zh: 在这里，`middleName` 是可选参数，在调用函数时可以忽略它。
 - en: 'Now, let''s see how to set default parameters in a function. If a value is
     not supplied to a parameter in the `function`, we can define it to take the default
     value that is configured:'
   id: totrans-148
   prefs: []
   type: TYPE_NORMAL
+  zh: 现在，让我们看看如何在函数中设置默认参数。如果没有为参数提供值，我们可以定义它为配置的默认值：
 - en: '[PRE36]'
   id: totrans-149
   prefs: []
