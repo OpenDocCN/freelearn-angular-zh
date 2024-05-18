@@ -3,12 +3,14 @@
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 支持服务器数据持久性
 - en: It's now time to talk to the server! There is no fun in creating a workout,
     adding exercises, and saving it to later realize that all our efforts are lost
     because the data did not persist anywhere. We need to fix this.
   id: totrans-1
   prefs: []
   type: TYPE_NORMAL
+  zh: 现在是时候与服务器进行交流了！创建锻炼、添加练习并保存下来，然后发现所有努力都白费，因为数据没有持久化存储。我们需要解决这个问题。
 - en: Seldom are applications self-contained. Any consumer app, irrespective of its
     size, has parts that interact with elements outside its boundary. With web-based
     applications, the interaction is mostly with a server. Apps interact with the
@@ -17,22 +19,26 @@
   id: totrans-2
   prefs: []
   type: TYPE_NORMAL
+  zh: 应用程序很少是自包含的。无论大小如何，任何消费者应用程序都有与其边界之外的元素交互的部分。对于基于Web的应用程序，交互主要是与服务器进行的。应用程序与服务器交互用于认证、授权、存储/检索数据、验证数据以及执行其他操作。
 - en: This chapter explores the constructs that Angular provides for client-server
     interaction. In the process, we add a persistence layer to *Personal Trainer*
     that loads and saves data to a backend server.
   id: totrans-3
   prefs: []
   type: TYPE_NORMAL
+  zh: 本章探讨了Angular提供的用于客户端-服务器交互的构造。在这个过程中，我们为*个人教练* 添加了一个持久化层，用于向后端服务器加载和保存数据。
 - en: 'The topics we cover in this chapter include the following:'
   id: totrans-4
   prefs: []
   type: TYPE_NORMAL
+  zh: 本章我们讨论的主题包括以下内容：
 - en: '**Provisioning a backend to persist workout data**: We set up a MongoLab account
     and use its Data API to access and store workout data.'
   id: totrans-5
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '**配置后端以持久化训练数据**：我们设置一个MongoLab账户，并使用其数据API来访问和存储锻炼数据。'
 - en: '**Understanding the Angular HttpClient**: The `HttpClient` allows us to interact
     with a server over HTTP. You''ll learn how to make all types of `GET`, `POST`,
     `PUT`, and `DELETE` requests with the `HttpClient`.'
@@ -40,29 +46,35 @@
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '**了解Angular HttpClient**：`HttpClient`允许我们通过HTTP与服务器进行交互。您将学习如何使用`HttpClient`
+    发起各种类型的`GET`、`POST`、`PUT` 和 `DELETE` 请求。'
 - en: '**Implementing the loading and saving of workout data**: We use the `HTTPClient`
     to load and store workout data in the MongoLab databases.'
   id: totrans-7
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '**实现锻炼数据的加载和保存**：我们使用`HTTPClient`加载并存储MongoLab数据库中的锻炼数据。'
 - en: '**Two ways in which we can use the HttpClient''s XMLHttpRequest**: Either Observables
     or with promises.'
   id: totrans-8
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '**我们可以使用HttpClient的XMLHttpRequest的两种方式**：使用Observables或承诺。'
 - en: '**Using RxJS and Observables**: To subscribe to and query streams of data.'
   id: totrans-9
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '**使用RxJS和Observables**：用于订阅和查询数据流。'
 - en: '**Using promises**: In this chapter, we will see how to use promises as part
     of HTTP invocation and response.'
   id: totrans-10
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '**使用承诺**：在本章中，我们将学习如何在HTTP调用和响应中使用承诺。'
 - en: '**Working with cross-domain access**: As we are interacting with a MongoLab
     server in a different domain, you will learn about browser restrictions on cross-domain
     access. You will also learn how JSONP and CORS help us make cross-domain access
@@ -71,15 +83,18 @@
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '**跨域访问工作**：由于我们要与不同域的MongoLab服务器进行交互，您将了解浏览器对跨域访问的限制。您还将学习JSONP和CORS如何帮助我们轻松进行跨域访问，以及Angular对JSONP的支持。'
 - en: Let's set the ball rolling.
   id: totrans-12
   prefs: []
   type: TYPE_NORMAL
+  zh: 让我们开始吧。
 - en: Angular and server interactions
   id: totrans-13
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: Angular和服务器交互
 - en: Any client-server interaction typically boils down to sending HTTP requests
     to a server and receiving responses from a server. For heavy JavaScript apps,
     we depend on the AJAX request/response mechanism to communicate with the server.
@@ -89,11 +104,14 @@
   id: totrans-14
   prefs: []
   type: TYPE_NORMAL
+  zh: 任何客户端-服务器交互通常归结为向服务器发送HTTP请求并从服务器接收响应。对于重型JavaScript应用程序，我们依赖AJAX请求/响应机制与服务器通信。为了支持基于AJAX的通信，Angular提供了Angular
+    `HttpClient` 模块。在深入研究`HttpClient` 模块之前，我们需要设置存储数据并允许我们管理数据的服务器平台。
 - en: Setting up the persistence store
   id: totrans-15
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 设置持久化存储
 - en: For data persistence, we use a document database called MongoDB ([https://www.mongodb.com/](https://www.mongodb.com/)),
     hosted over MongoLab ([https://www.mlab.com/](https://www.mlab.com/)), as our
     data store. The reason we zeroed in on MongoLab is that it provides an interface
@@ -102,6 +120,7 @@
   id: totrans-16
   prefs: []
   type: TYPE_NORMAL
+  zh: 对于数据持久性，我们使用名为MongoDB（[https://www.mongodb.com/](https://www.mongodb.com/)）的文档数据库，托管在MongoLab（[https://www.mlab.com/](https://www.mlab.com/)）上作为我们的数据存储。我们选择MongoLab的原因是它提供了与数据库直接交互的接口。这样可以节省我们设置服务器中间件来支持MongoDB交互的工作。
 - en: It is never a good idea to expose the data store/database directly to the client.
     But in this case, since our primary aim is to learn about Angular and client-server
     interaction, we take this liberty and directly access the MongoDB instance hosted
@@ -113,22 +132,28 @@
   id: totrans-17
   prefs: []
   type: TYPE_NORMAL
+  zh: 直接将数据存储/数据库暴露给客户端并不是一个好主意。但在这种情况下，由于我们的主要目的是学习 Angular 和客户端-服务器交互，我们冒险直接访问了MongoLab托管的
+    MongoDB 实例。还有一种新型应用程序是建立在**无后端**解决方案上的。在这样的设置中，前端开发人员构建应用程序而无需了解涉及的确切后端知识。服务器交互仅限于向后端发出
+    API 调用。如果你对这些无后端解决方案感兴趣，可以查看 [http://nobackend.org/](http://nobackend.org/)。
 - en: 'Our first task is to provision an account on MongoLab and create a database:'
   id: totrans-18
   prefs: []
   type: TYPE_NORMAL
+  zh: 我们的第一个任务是在 MongoLab 上配置一个账号并创建一个数据库：
 - en: Go to [https://mlab.com](https://mlab.com) and sign up for an mLab account by
     following the instructions on the website
   id: totrans-19
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 前往 [https://mlab.com](https://mlab.com) 并按照网站上的说明注册一个 mLab 账号
 - en: Once the account is provisioned, log in and create a new Mongo database by clicking
     on the Create New button on the home page
   id: totrans-20
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 账号配置好后，登录并点击主页上的“Create New”按钮创建一个新的Mongo数据库
 - en: 'On the database creation screen, you need to make some selections to provision
     the database. See the following screenshot to select the free database tier and
     other options:'
@@ -136,37 +161,44 @@
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 在数据库创建页面上，你需要进行一些选择来配置数据库。参见下面的截图选择免费的数据库层级和其他选项：
 - en: '![](img/f77d00af-d5f5-4a3c-80ec-b4f229c79e75.png)'
   id: totrans-22
   prefs: []
   type: TYPE_IMG
+  zh: '![](img/f77d00af-d5f5-4a3c-80ec-b4f229c79e75.png)'
 - en: Create the database and make a note of the database name that you create
   id: totrans-23
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 创建数据库，记下你创建的数据库名称
 - en: 'Once the database is provisioned, open the database and add two collections
     to it from the Collection tab:'
   id: totrans-24
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 一旦数据库被配置好，打开数据库并从“Collection”标签页向其中添加两个集合：
 - en: '`exercises`: This stores all *Personal Trainer* exercises'
   id: totrans-25
   prefs:
   - PREF_IND
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '`exercises`: 这里存储了所有*个人教练*的锻炼'
 - en: '`workouts`: This stores all *Personal Trainer* workouts'
   id: totrans-26
   prefs:
   - PREF_IND
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '`workouts`: 这里存储了所有的*个人教练*锻炼'
 - en: Collections in the MongoDB world equate to a database table.
   id: totrans-27
   prefs: []
   type: TYPE_NORMAL
+  zh: MongoDB 中的集合相当于数据库表。
 - en: MongoDB belongs to a breed of databases called **document databases**. The central
     concepts here are documents, attributes, and their linkages. And unlike traditional
     databases, the schema is not rigid. We will not be covering what document databases
@@ -177,23 +209,27 @@
   id: totrans-28
   prefs: []
   type: TYPE_NORMAL
+  zh: MongoDB 属于一类称为**文档数据库**的数据库。这里的核心概念是文档、属性和它们的关联。与传统数据库不同，这里的模式不是固定的。我们在这本书中不会涵盖文档数据库的概念以及如何为基于文档的存储执行数据建模。*个人教练*的存储需求有限，我们使用上述的两个文档集合进行管理。甚至我们可能根本不会以真正意义上的文档数据库来使用它。
 - en: Once the collections are added, add yourself as a user to the database from
     the Users tab.
   id: totrans-29
   prefs: []
   type: TYPE_NORMAL
+  zh: 添加集合后，从“Users”标签页将自己添加为数据库用户。
 - en: 'The next step is to determine the API key for the MongoLab account. The provisioned
     API key has to be appended to every request made to MongoLab. To get the API key,
     perform the following steps:'
   id: totrans-30
   prefs: []
   type: TYPE_NORMAL
+  zh: 下一步是确定 MongoLab 账号的 API 密钥。配置好的 API 密钥必须附加到每个发送给 MongoLab 的请求中。要获得 API 密钥，请执行以下步骤：
 - en: Click on the username (not the account name) in the top-right corner to open
     the user profile.
   id: totrans-31
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 点击右上角的用户名（而不是账户名）以打开用户配置文件。
 - en: In the section titled API Key, the current API key is displayed; copy it. At
     the same time, click on the button below the API key to Enable Data API access.
     This is disabled by default.
@@ -201,46 +237,55 @@
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 在名为“API Key”的部分，会显示当前的 API 密钥；复制它。同时，点击 API 密钥下面的按钮以启用数据 API 访问。默认情况下是禁用的。
 - en: The data store schema is complete. We now need to seed these collections.
   id: totrans-33
   prefs: []
   type: TYPE_NORMAL
+  zh: 数据存储模式已经完成。现在我们需要填充这些集合。
 - en: Seeding the database
   id: totrans-34
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 填充数据库
 - en: The *Personal Trainer* app already has a predefined workout and a list of 12
     exercises. We need to seed the collections with this data.
   id: totrans-35
   prefs: []
   type: TYPE_NORMAL
+  zh: '*个人教练*应用程序已经有一个预定义的锻炼和一个包含 12 个锻炼的列表。我们需要使用这些数据填充集合。'
 - en: Open `seed.js` in the `trainer/db` folder for checkpoint 5.1 from the companion
     code base. It contains the seed JSON script and detailed instructions on how to
     seed data into the MongoLab database instance.
   id: totrans-36
   prefs: []
   type: TYPE_NORMAL
+  zh: 在`trainer/db`文件夹的检查点5.1中打开`seed.js`。 它包含种子JSON脚本和有关如何向MongoLab数据库实例种子数据的详细说明。
 - en: 'Once seeded, the database will have one workout in the workouts collection
     and 12 exercises in the exercises collection. Verify this on the MongoLab site;
     the collections should show the following:'
   id: totrans-37
   prefs: []
   type: TYPE_NORMAL
+  zh: 种子后，数据库将在workouts收集中有一个锻炼和在exercises收集中有12个练习。 在MongoLab网站上验证这一点;收集应该显示如下：
 - en: '![](img/f0da6449-0b07-4221-a218-299189fbad23.png)'
   id: totrans-38
   prefs: []
   type: TYPE_IMG
+  zh: '![](img/f0da6449-0b07-4221-a218-299189fbad23.png)'
 - en: Everything has been set up now, so let's start our discussion of the `HttpClient` module
     and implement workout/exercise persistence for the *Personal Trainer* app.
   id: totrans-39
   prefs: []
   type: TYPE_NORMAL
+  zh: 现在一切都设置好了，让我们开始讨论`HttpClient`模块并为*个人健身教练*应用程序实现锻炼/运动持久性。
 - en: The basics of the HTTPClient module
   id: totrans-40
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: HTTPClient模块的基础
 - en: At the core of the `HTTPClient` module is the `HttpClient`. It performs HTTP
     requests using `XMLHttpRequest` as the default backend (JSONP is also available,
     as we will see later in this chapter). It supports requests such as `GET`, `POST`,
@@ -252,6 +297,9 @@
   id: totrans-41
   prefs: []
   type: TYPE_NORMAL
+  zh: 在`HTTPClient`模块的核心是`HttpClient`。 它使用`XMLHttpRequest`作为默认后端执行HTTP请求（JSONP也可用，我们将在本章后面看到）。
+    它支持`GET`，`POST`，`PUT`和`DELETE`等请求。 在本章中，我们将使用`HttpClient`进行所有这些类型的请求。 正如我们将看到的，`HttpClient`使得以最少的设置和复杂性很容易进行这些调用。
+    这些术语对于之前曾经使用过Angular或构建过与后端数据存储通信的JavaScript应用程序的人来说都不会感到意外。
 - en: However, there is a substantial change in the way Angular handles HTTP requests.
     Calling a request now returns an Observable of HTTP responses. It does so by using
     the RxJS library, which is a well-known open source implementation of the asynchronous
@@ -259,6 +307,7 @@
   id: totrans-42
   prefs: []
   type: TYPE_NORMAL
+  zh: 但是，Angular处理HTTP请求的方式发生了重大变化。 现在调用请求会返回HTTP响应的Observable。 它这样做是使用RxJS库，这是一种广为人知的异步Observable模式的开源实现。
 - en: You can find the RxJS project on GitHub at [https://github.com/Reactive-Extensions/RxJS](https://github.com/Reactive-Extensions/RxJS).
     The site indicates that the project is being actively developed by Microsoft in
     collaboration with a community of open source developers. We will not be covering
@@ -268,6 +317,9 @@
   id: totrans-43
   prefs: []
   type: TYPE_NORMAL
+  zh: 您可以在GitHub上找到RxJS项目[https://github.com/Reactive-Extensions/RxJS](https://github.com/Reactive-Extensions/RxJS)。
+    该网站表明该项目正在与开源开发人员社区一起由微软积极开发。 我们将不会在这里详细介绍RxJS如何实现异步Observable模式，我们鼓励您访问该网站，以了解有关该模式以及RxJS如何实现它的更多信息。
+    Angular使用的RxJS版本是beta 5。
 - en: In the simplest of terms, using Observables allows a developer to think about
     the data that flows through an application as streams of information that the
     application can dip into and use whenever it wants. These streams change over
@@ -278,6 +330,8 @@
   id: totrans-44
   prefs: []
   type: TYPE_NORMAL
+  zh: 简而言之，使用Observable允许开发人员将应用程序中流动的数据视为信息流，应用程序可以随时候接并使用的信息流。 这些信息流随时间变化，这允许应用程序对这些变化做出反应。
+    Observable的这种特性为**函数式响应式编程**（**FRP**）提供了基础，从命令式转变为响应式从根本上改变了构建Web应用程序的范例。
 - en: The `RxJS` library provides operators that allow you to subscribe to and query
     these data streams. Moreover, you can easily mix and combine them, as we will
     see in this chapter. Another advantage of Observables is that it is easy to cancel
@@ -285,6 +339,7 @@
   id: totrans-45
   prefs: []
   type: TYPE_NORMAL
+  zh: '`RxJS`库提供了运算符，允许您订阅和查询这些数据流。 此外，您可以轻松混合和组合它们，正如我们将在本章看到的。 Observable的另一个优点是轻松取消或退订它们，从而可以无缝处理错误。'
 - en: While it is still possible to use promises, the default method in Angular uses
     Observables. We will also cover promises in this chapter.
   id: totrans-46
@@ -1305,11 +1360,13 @@
   id: totrans-193
   prefs: []
   type: TYPE_NORMAL
+  zh: 在进行实际的`POST`或`PUT`之前，会对相同的端点进行一个`OPTIONS`请求。在这里我们见到的行为被称为**预检请求**。这是因为我们正在对`api.mongolab.com`进行跨域请求。
 - en: Using promises for HTTP requests
   id: totrans-194
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 使用promises进行HTTP请求
 - en: The bulk of this chapter has focused on how the Angular `HTTPClient` uses Observables
     as the default for `XMLHttpRequests`. This represents a significant change from
     the way things used to work. Many developers are familiar with using promises
@@ -1319,11 +1376,13 @@
   id: totrans-195
   prefs: []
   type: TYPE_NORMAL
+  zh: 本章的大部分内容都集中在Angular `HTTPClient`如何将Observables作为`XMLHttpRequests`的默认方式。这代表着与过去的工作方式相比存在着重大的变化。许多开发人员习惯于使用promises进行异步HTTP请求。在这种情况下，Angular继续支持promises，但不再是默认选择。开发人员必须选择promises才能在`XMLHttpRequest`中使用它们。
 - en: 'For example, if we want to use promises with the `getExercises` method in `WorkoutService`,
     we will have to restructure the command as follows:'
   id: totrans-196
   prefs: []
   type: TYPE_NORMAL
+  zh: 例如，如果我们想要在`WorkoutService`的`getExercises`方法中使用promises，我们将不得不重新构建命令如下：
 - en: '[PRE22]'
   id: totrans-197
   prefs: []
@@ -1335,6 +1394,7 @@
   id: totrans-198
   prefs: []
   type: TYPE_NORMAL
+  zh: 要将此方法转换为使用promises，我们只需在方法链中添加`.toPromise()`，一个成功的参数`then`，以及一个指向现有`handleError`方法的`catch`和`Promise.reject`。
 - en: 'For upstream components, we just have to switch to handling the return value
     as a promise rather than an Observable. So, to use promises in this case, we would
     have to change the code in `Exercises.component.ts` and `LeftNavExercises.component.ts`
@@ -1343,6 +1403,7 @@
   id: totrans-199
   prefs: []
   type: TYPE_NORMAL
+  zh: 对于上游组件，我们只需将返回值的处理方式切换为promises而不是Observables。因此，要在这种情况下使用promises，我们需要更改`Exercises.component.ts`和`LeftNavExercises.component.ts`中的代码，首先添加一个用于错误消息的新属性（关于如何在屏幕上显示错误消息，我们将留给你来完成）：
 - en: '[PRE23]'
   id: totrans-200
   prefs: []
@@ -1352,6 +1413,7 @@
   id: totrans-201
   prefs: []
   type: TYPE_NORMAL
+  zh: 然后将调用`WorkoutService`的`ngOnInit`方法更改为以下内容：
 - en: '[PRE24]'
   id: totrans-202
   prefs: []
@@ -1365,6 +1427,7 @@
   id: totrans-203
   prefs: []
   type: TYPE_NORMAL
+  zh: 当然，我们可以在这个简单的例子中很容易地用promises代替Observables，这并不意味着它们本质上是相同的。一个`then` promise会返回另一个promise，这意味着你可以创建连续链接的promises。而在Observable的情况下，订阅本质上是终点，不能在此之后再进行映射或订阅。
 - en: If you're familiar with promises, it may be tempting at this stage to stick
     with them and not give Observables a try. After all, much of what we have done
     with Observables in this chapter can be done with promises as well. For example,
@@ -1374,6 +1437,7 @@
   id: totrans-204
   prefs: []
   type: TYPE_NORMAL
+  zh: 如果你熟悉promises，在这个阶段可能会倾向于坚持使用它们，而不去尝试使用Observables。毕竟，在本章中我们使用Observables所做的大部分工作也可以用promises实现。例如，我们使用Observable的`forkJoin`操作符对`getWorkouts`的两个Observable流进行映射，与之相对应，在promise中也可以使用`q,all`函数来执行相同的操作。
 - en: However, you would be selling yourself short if you took that approach. Observables
     open up an exciting new way of doing web development using what is called functional
     reactive programming. They involve a fundamental shift in thinking that treats
@@ -1384,6 +1448,7 @@
   id: totrans-205
   prefs: []
   type: TYPE_NORMAL
+  zh: 然而，如果你采用这种方式，你实际上是在低估自己。Observables打开了一种令人兴奋的新的网页开发方式，这种方式称为函数式响应式编程。它们涉及到了一种根本性的思维转变，将应用程序的数据视为一种不断变化的信息流，应用程序对其做出反应和响应。这种转变使得应用程序可以以不同的架构构建，使其更快速和更具弹性。在Angular中，Observables是这些方面的核心，如事件发射器和新版本的`NgModel`。
 - en: While promises are a useful tool to have in your toolkit, we encourage you to
     investigate Observables as you get into developing with Angular. They are part
     of the forward-looking philosophy of Angular and will be useful in future-proofing
@@ -1391,6 +1456,7 @@
   id: totrans-206
   prefs: []
   type: TYPE_NORMAL
+  zh: 尽管promises是你工具包中的一个有用工具，但我们鼓励你在使用Angular开发时调查Observables。它们是Angular前瞻性哲学的一部分，并将对未来的应用程序和技能集具有用处。
 - en: 'Check out the `checkpoint 5.3` file for an up-to-date implementation that includes
     the promises-related code that we covered previously. If you are not using Git,
     download the snapshot of Checkpoint 5.3 (a ZIP file) from the following GitHub
@@ -1402,11 +1468,15 @@
   id: totrans-207
   prefs: []
   type: TYPE_NORMAL
+  zh: 查看`checkpoint 5.3`文件，其中包含我们之前涵盖的与promises相关的代码的最新实现。如果你不使用Git，请从以下GitHub位置下载Checkpoint
+    5.3的快照（ZIP文件）：[https://github.com/chandermani/angular6byexample/tree/checkpoint5.3](https://github.com/chandermani/angular6byexample/tree/checkpoint5.3)。首次设置快照时，请参考`trainer`文件夹中的`README.md`文件。请注意，在下一节中，我们将重新使用Observables来编写这段代码。这段代码可以在`checkpoint
+    5.4`文件中找到。
 - en: The async pipe
   id: totrans-208
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 异步管道
 - en: As we have seen with many of the data operations covered in this chapter, there
     is a fairly common pattern being repeated over and over again. When an Observable
     is returned from an HTTP request, we convert the response to JSON and subscribe
@@ -1416,6 +1486,7 @@
   id: totrans-209
   prefs: []
   type: TYPE_NORMAL
+  zh: 正如我们在本章涵盖的许多数据操作中所看到的，有一个相当常见的模式一再重复。当一个Observable从HTTP请求中返回时，我们将响应转换为JSON并订阅它。订阅然后将Observable输出绑定到UI元素。如果我们能消除这种重复的编码并用更简单的方法来完成我们想要做的事情，那不是很好吗？
 - en: Not surprisingly, Angular provides us with just the right way to do that. It's
     called the **async pipe**, and it can be used like any other pipe for binding
     to an element on the screen. However, the async pipe is a much more powerful mechanism
@@ -1425,6 +1496,7 @@
   id: totrans-210
   prefs: []
   type: TYPE_NORMAL
+  zh: 毫不奇怪，Angular为我们提供了恰当的方法。它被称为**async管道**，可以像其他管道一样用于绑定到屏幕上的元素。但是，异步管道是比其他管道更强大的机制。它以Observable或promise作为输入，并自动订阅它。它还处理Observable的订阅解除，而无需任何进一步的代码。
 - en: Let's look at an example of this in our application. Let's go back to the `LeftNavExercises`
     component that we were just looking at in the previous section in connection with
     promises. Note that we have converted this component and the `Exercises` component
@@ -1432,6 +1504,7 @@
   id: totrans-211
   prefs: []
   type: TYPE_NORMAL
+  zh: 让我们看一个在我们应用程序中的例子。让我们回到我们在之前关于promises讨论的部分中刚才看到的`LeftNavExercises`组件。请注意，我们已将该组件和`Exercises`组件从promises转换回使用Observables。
 - en: 'Check out the `checkpoint 5.4` file for an up-to-date implementation that includes
     the conversion of this code to use Observables once again. If you are not using
     Git, download the snapshot of Checkpoint 5.4 (a ZIP file) from the following GitHub
@@ -1441,11 +1514,14 @@
   id: totrans-212
   prefs: []
   type: TYPE_NORMAL
+  zh: 查看`checkpoint 5.4`文件，其中包含将该代码再次转换为使用Observables的最新实现。如果你不使用Git，请从以下GitHub位置下载Checkpoint
+    5.4的快照（ZIP文件）：[https://github.com/chandermani/angular6byexample/tree/checkpoint5.4](https://github.com/chandermani/angular6byexample/tree/checkpoint5.4)。首次设置快照时，请参考`trainer`文件夹中的`README.md`文件。
 - en: 'Then make the following changes in `LeftNavExercises`. First, import Observable
     from RxJs:'
   id: totrans-213
   prefs: []
   type: TYPE_NORMAL
+  zh: 然后在`LeftNavExercises`中做以下更改。首先，从RxJs导入Observable：
 - en: '[PRE25]'
   id: totrans-214
   prefs: []
@@ -1456,6 +1532,7 @@
   id: totrans-215
   prefs: []
   type: TYPE_NORMAL
+  zh: 然后将`exerciseList`从一组练习更改为相同类型的Observable：
 - en: '[PRE26]'
   id: totrans-216
   prefs: []
@@ -1466,6 +1543,7 @@
   id: totrans-217
   prefs: []
   type: TYPE_NORMAL
+  zh: 然后修改获取练习的`WorkoutService`调用以消除订阅：
 - en: '[PRE27]'
   id: totrans-218
   prefs: []
