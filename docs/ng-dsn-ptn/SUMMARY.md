@@ -1,3 +1,4 @@
++   [Angular 设计模式](README.md)
 +   [前言](ng-dsn-ptn_0.md)
 +   [第一章：TypeScript 最佳实践](ng-dsn-ptn_1.md)
 +   [第二章：Angular 引导](ng-dsn-ptn_2.md)

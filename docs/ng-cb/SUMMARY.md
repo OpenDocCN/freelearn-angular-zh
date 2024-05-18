@@ -1,3 +1,4 @@
++   [Angular 秘籍](README.md)
 +   [前言](ng-cb_00.md)
 +   [第一章：*第一章*：获胜的组件通信](ng-cb_01.md)
 +   [第二章：*第二章*：理解和使用 Angular 指令](ng-cb_02.md)

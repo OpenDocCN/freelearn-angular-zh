@@ -1,3 +1,4 @@
++   [Angular 专家级编程](README.md)
 +   [前言](exp-ng_00.md)
 +   [第一章：Angular 的架构概述和构建简单应用](exp-ng_01.md)
 +   [第二章：将 AngularJS 应用程序迁移到 Angular 应用程序](exp-ng_02.md)
@@ -5,6 +6,7 @@
 +   [第四章：使用组件](exp-ng_04.md)
 +   [第五章：实现 Angular 路由和导航](exp-ng_05.md)
 +   [第六章：创建指令和实现变更检测](exp-ng_06.md)
++   [使用 Observable 进行异步编程](exp-ng_07.md)
 +   [第七章：模板和数据绑定语法](exp-ng_08.md)
 +   [第八章：Angular 中的高级表单](exp-ng_09.md)
 +   [第九章：Angular 中的 Material Design](exp-ng_10.md)
