@@ -36,19 +36,7 @@ Angular 2 如何知道如何处理我们的类作为组件？我们需要向类�
 
 让我们逐行探索组件代码，这是`app.component.ts`的代码
 
-```ts
-[app.component.ts]
-import { Component } from '@angular/core';
-
-@Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
-})
-export class AppComponent {
-  title = 'app works!';
-}
-```
+[PRE0]
 
 在第一行，我们从 Angular 核心模块导入`Component`装饰器
 
@@ -88,19 +76,7 @@ export class AppComponent {
 
 以下代码来自`main.ts`文件：
 
-```ts
-import './polyfills.ts';
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-import { enableProdMode } from '@angular/core';
-import { environment } from './environments/environment';
-import { AppModule } from './app/';
-
-if (environment.production) {
-  enableProdMode();
-}
-
-platformBrowserDynamic().bootstrapModule(AppModule);
-```
+[PRE1]
 
 其余的代码对使用根模块引导 Angular 没有任何影响。`enableProdMode`方法是 Angular 核心中的一个方法，它在生产模式下运行应用程序。环境只是一个常量，它保存一个布尔值，指示我们是否在生产环境中运行。
 
@@ -112,20 +88,7 @@ platformBrowserDynamic().bootstrapModule(AppModule);
 
 在这种情况下，在预编译应用程序之后，您需要在`main.ts`文件中使用`platform-browser-dynamic`模块的`platformBrowserDynamic`方法：
 
-```ts
-import './polyfills.ts';
-import { platformBrowser } from '@angular/platform-browser';
-import { enableProdMode } from '@angular/core';
-import { environment } from './environments/environment';
-import { AppModuleNgFactory } from './app/app.module.ng.factory';
-
-if (environment.production) {
-  enableProdMode();
-
-}
-
-platformBrowser().bootstrapModuleFactory(AppModuleNgFactory);
-```
+[PRE2]
 
 # 组件选择器
 
@@ -137,30 +100,7 @@ platformBrowser().bootstrapModuleFactory(AppModuleNgFactory);
 
 在项目根目录的`src/app`目录下，找到并打开`app.module.ts`文件。这个文件包含了应用程序的根模块的定义：
 
-```ts
-[app.module.ts]
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
-import { AppComponent } from './app.component';
-
-@NgModule({
-  declarations: [
-    AppComponent
-  ],
-
-  imports: [
-    BrowserModule,
-    FormsModule,
-    HttpModule
-  ],
-
-  providers: [],
-  bootstrap: [AppComponent]
-})
-export class AppModule { }
-```
+[PRE3]
 
 `app.module.ts` 负责实例化组件类。当这发生时，Angular 会在`index.html`文件中搜索我们在组件装饰器中定义的选择器。我们需要放置在`index.html`中的唯一组件是在`app.module.ts`中的根模块的`bootstrap`属性中定义的根组件。
 
@@ -168,17 +108,7 @@ export class AppModule { }
 
 打开`index.html`，它位于`main.ts`旁边，检查代码：
 
-```ts
-[index.html]
-<html>
-  <head>
-    <!-- other code related to the page head -->
-  </head>
-  <body>
-    <app-root>Loading...</app-root>
-  </body>
-</html>
-```
+[PRE4]
 
 我们看到的第一件事是，在我们的`html`文件中，我们将选择器用作元素。这是 Angular 的默认行为。
 
@@ -192,75 +122,43 @@ export class AppModule { }
 
 +   按 CSS 类名选择：
 
-```ts
-@Component({
-  selector: '.app-root'
-})
-```
+[PRE5]
 
 在标记中使用：
 
-```ts
-<div class="app-root">Loading...</div>
-```
+[PRE6]
 
 +   按属性名选择：
 
-```ts
-@Component({
-  selector: '[app-root]'
-})
-```
+[PRE7]
 
 在标记中使用：
 
-```ts
-<div app-root>Loading...</div>
-```
+[PRE8]
 
 +   按属性名和值选择：
 
-```ts
-@Component({
-  selector: 'div[app=components]'
-})
-```
+[PRE9]
 
 在标记中使用：
 
-```ts
-<div app="components">Loading...</div>
-```
+[PRE10]
 
 +   仅在元素不匹配选择器时选择：
 
-```ts
-@Component({
-  selector: 'div:not(.widget)'
-})
-```
+[PRE11]
 
 在标记中使用：
 
-```ts
-<div class="app">Loading...</div>
-```
+[PRE12]
 
 +   如果其中一个选择器匹配，则选择：
 
-```ts
-@Component({
-  selector: 'app-root, .app, [ng=app]'
-})
-```
+[PRE13]
 
 在标记中使用：
 
-```ts
-<app-root>Loading...</app-root>
-<div class="app">Loading...</div>
-<div ng="app">Loading...</div>
-```
+[PRE14]
 
 大多数情况下，保留默认值——即组件选择器——正是我们在构建常见组件时想要的。在后面的章节中，我们还将看到其他用法。
 
@@ -276,48 +174,17 @@ export class AppModule { }
 
 由`angular-cli`创建的`app-root`包含外部模板。它是用`templateUrl`属性定义的：
 
-```ts
-[app.component.ts]
-@Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html'
-})
-```
+[PRE15]
 
 我们可以在`app.component.ts`旁边找到模板，它是一个与`app.component.html`同名的 HTML 文件。让我们打开它来检查代码：
 
-```ts
-[app.component.html]
-<h1>
-  {{title}}
-</h1>
-```
+[PRE16]
 
 现在我们知道`<h1>`是从哪里来的。你可以猜到，双大括号会从组件类中渲染标题。
 
-如果我们想要内联声明我们的模板，我们应该使用模板属性。幸运的是，在 ES6 中，我们有一种简单创建多行字符串的方法。这个功能称为**模板字符串**，并且用反引号（```ts) character. In the following example, we demonstrate how to declare an inline template:
+如果我们想要内联声明我们的模板，我们应该使用模板属性。幸运的是，在 ES6 中，我们有一种简单创建多行字符串的方法。这个功能称为**模板字符串**，并且用反引号（`` ` ``）字符。 在以下示例中，我们演示了如何声明内联模板：
 
-```
-
-[app.component.ts]
-
-@Component({
-
-selector: 'app-root',
-
-template: `
-
-<h1>
-
-{{title}}
-
-</h1>
-
-`
-
-})
-
-```ts
+[PRE17]
 
 Keeping the template inline is comfortable as we can see both the template and the component class in the same file.
 
@@ -327,59 +194,11 @@ We will probably want to use some CSS in our component's template. Like template
 
 As the property name suggests, we can supply more than one URL to pull the CSS from. The styles defined on those CSS files are now available for use within our template. First let's take a look at the current component declaration:
 
-```
-
-[app.component.ts]
-
-@Component({
-
-selector: 'app-root',
-
-template: `
-
-<h1>
-
-{{title}}
-
-</h1>
-
-`,
-
-styleUrls: ['./app.component.css']
-
-})
-
-```ts
+[PRE18]
 
 Alternatively, we can define styles inline, just like the template, by using the **styles** property instead. **styles** is an array of strings where we can write our CSS rules. The following example demonstrates how to style the `<h1>` tag using inline styles:
 
-```
-
-[app.component.ts]
-
-@Component({
-
-selector: 'app-root',
-
-template: `
-
-<h1>
-
-{{title}}
-
-</h1>
-
-`,
-
-styles: [`
-
-h1 { color: darkblue }
-
-`]
-
-})
-
-```ts
+[PRE19]
 
 Let's explore the element in Chrome DevTool. Right-click on the `title` and choose inspect from the pop up menu. The Chrome DevTool will launch:
 
@@ -398,37 +217,7 @@ When we are creating a component in Angular 2, a shadow DOM is created and our t
 
 Let's see a well-known example of a shadow DOM, an HTML `select`, in action. Create a plain HTML file in your favorite text editor and create a `select` element in its body:
 
-```
-
-<!doctype html>
-
-<html lang="en">
-
-<head>
-
-<meta charset="UTF-8">
-
-<title>Document</title>
-
-</head>
-
-<body>
-
-<select>
-
-<option>ONE</option>
-
-<option>TWO</option>
-
-<option>THREE</option>
-
-</select>
-
-</body>
-
-</html>
-
-```ts
+[PRE20]
 
 Next, open it up in Chrome and right-click on the element, then choose **Inspect Element** from the pop-up menu:
 
@@ -474,35 +263,7 @@ To change this, we need to define an encapsulation mode. Angular 2 provides us t
 
 To define encapsulation options, we need to import the `ViewEncapsulation` from Angular core and use one of the options to define the component encapsulation property. The following example demonstrates how to set the component encapsulation model to `None`:
 
-```
-
-[app.component.ts]
-
-@Component({
-
-selector: 'app-root',
-
-encapsulation: ViewEncapsulation.None,
-
-template: `
-
-<h1>
-
-{{title}}
-
-</h1>
-
-`,
-
-styles: [`
-
-h1 { color: darkblue }
-
-`]
-
-})
-
-```ts
+[PRE21]
 
 Most of the time, leaving the default emulate mode is fine. In the future chapters, we will encounter some situations where setting the mode to `None` is crucial.
 
@@ -512,43 +273,7 @@ To fully understand the component code that was generated for us by angular-cli,
 
 First, let's take a look at the entire component code:
 
-```
-
-[app.component.ts]
-
-import { Component, ViewEncapsulation } from '@angular/core';
-
-@Component({
-
-selector: 'app-root',
-
-封装：ViewEncapsulation.None，
-
-template: `
-
-<h1>
-
-{{title}}
-
-</h1>
-
-`,
-
-styles: [`
-
-h1 { color: darkblue }
-
-`]
-
-})
-
-export class AppComponent {
-
-title = 'app works!';
-
-}
-
-```
+[PRE22]
 
 很容易在模板中发现双大括号。这是 Angular 模板语法的一部分，负责从组件类进行单向数据绑定。在这种情况下，我们将 title 属性（字符串）绑定到`<h1>`标签之间呈现。
 
